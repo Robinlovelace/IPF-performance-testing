@@ -5,7 +5,7 @@ Introduction
 ----------
 This project will rigorously test static spatial microsimulation models in a range of conditions. We will begin with IPF-based approaches, as these are simple, deterministic and readily available. The project is open access: all the code and datasets used to conduct the testing can be downloaded and modified. We encourage others to fork the entire project using the command `git clone` for testing on home computers. 
 
-### Reasearch problem
+### Research problem
 The research problem tackled is lack of rigorous and repeatable model evaluation and testing. Data and code used in published microsimulation research is not always publicly available. This can make it difficult for readers to reproduce results, test models in new ways and adapt the code for their own purposes. 
 
 ### Aim

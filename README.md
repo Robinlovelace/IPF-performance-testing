@@ -31,7 +31,7 @@ This is the current list of priorities, and will be updated as the project progr
 
 RMarkdown
 =======
-It is recommended that the initial analysis is written in RMarkdown language (as this introductory page is): it is lightweight, fast to type and, most importantly, allows R commands to be embedded and compiled within the text. For example, let us plot a a simple polynomial:
+It is recommended that the initial analysis is written in RMarkdown language (as this introductory page is): it is lightweight, fast to type and, most importantly, allows R commands to be embedded and compiled within the text. For example, let us plot a simple polynomial:
 
 
 ```r

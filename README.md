@@ -40,7 +40,7 @@ x2 = x^2 - 0.1 * x^3
 plot(x, x2)
 ```
 
-[[https://github.com/Robinlovelace/IPF-performance-testing/blob/master/figure/unnamed-chunk-1.png]]
+![R-generated-image](https://github.com/Robinlovelace/IPF-performance-testing/blob/master/figure/unnamed-chunk-1.png)
 
 
 

@@ -8,8 +8,16 @@ This project will rigorously test static spatial microsimulation models in a ran
 ### Research problem
 The research problem tackled is lack of rigorous and repeatable model evaluation and testing. Data and code used in published microsimulation research is not always publicly available. This can make it difficult for readers to reproduce results, test models in new ways and adapt the code for their own purposes. 
 
-### Aim
+### Aim and objectives
 The project aims to test each IPF model in a range of realistic conditions, changing only one parameter at a time. This will allow factors affecting IPF performance to be isolated and analysed.
+
+Our objectives in creatng a framework for model evaluation are exactly the same as Holm and Malika's (2013) 'wish list', a set of principles that should be considered before developing new models:
+* Using the most modern software
+* Using standard methods, shared by many users 
+* Backward compatibility (so keeping our old models and subsystems running) 
+* Avoiding relearning 
+* Developing solutions that are theoretically well designed 
+* Transferring knowledge and know-how to new colleagues
 
 ### Input data
 This data-driven approach requires a variety of input data sets. These will be grouped into scenarios that are designed to be realistic: simple to complex, small to large. The next stage is model preparation, which involves tailoring each to produce small area microdata in each of the scenarios. The final stage is testing: systematically altering specific aspects of each model to observe the factors affecting model performance.

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>IPFinR a script for IPF in R</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>IPFinR a script for IPF in R</h1>
+
+<p>This page showcases an updated version of the model <code>etsim.R</code> in action.
+The ultimate aim of these improvements is to set all the parameters in the first few lines of code, dramatically reducing the time spent fiddling about with large bodies of code to get the code working correctly.</p>
+
+<p>Note also the final correlation is 1, indicating that the IPF code is working correctly and converging to the optimal solution.</p>
+
+<pre><code class="r"># Initial conditions
+start.time &lt;- proc.time() # for measuring model runtime
+l = 1
+# for(l in 1:1){
+k = l * 1
+num.its = 5
+
+# set working directory of input data
+setwd(&quot;~/IPF-performance-testing/input-data/small-area-eg/&quot;) 
+
+load(&quot;ind.RData&quot;)  # read-in the survey dataset. Preprocessed to 
+# to contain the desired microdataset and saved in a dataframe called &#39;ind&#39;
+
+# read aggregate constraints. nrow of these data frames (areas) must be equal 
+source(file=&quot;cons.R&quot;) # call separate script to read in data, for modularity
+# calculate number of constraints (objects with names con1, con2 etc):
+num.cons &lt;- length(grep(pattern=&quot;con[1-9]&quot;, x=ls())) 
+
+# Checking that totals add up
+sum(con1)
+</code></pre>
+
+<pre><code>## [1] 2785
+</code></pre>
+
+<pre><code class="r">sum(con2)
+</code></pre>
+
+<pre><code>## [1] 4404
+</code></pre>
+
+<pre><code class="r">sum(con3) # add more if need&#39;s be
+</code></pre>
+
+<pre><code>## [1] 2496
+</code></pre>
+
+<pre><code class="r">
+all.msim &lt;- cbind(con1 
+                  # comment out constraints not included
+                  ,con2
+                  ,con3
+                  #,con4 # add more constraints here if needed
+                  )
+
+# setting totals to sum(con2) - replace con2 with most reliable constraint
+con.pop &lt;- rowSums(con2) 
+
+con1 &lt;- con1 * con.pop / rowSums(con1)
+con2 &lt;- con2 * con.pop / rowSums(con2) 
+con3 &lt;- con3 * con.pop / rowSums(con3)
+
+sum(con1) == sum(con2) 
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">sum(con2) == sum(con3)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">
+# IF CELL VALUE == 0, SET to 0.0001 (a very small number)
+con1[con1 == 0]   &lt;- 0.0001 
+con2[con2 == 0]   &lt;- 0.0001 
+con3[con3 == 0]   &lt;- 0.0001 # add more constraints if needed
+
+# setting-up reweighting data
+category.labels &lt;- names(all.msim) # should be correct from cons.R
+all.mim.orig &lt;- all.msim # save original (un-adjusted) constraints
+all.msim &lt;- cbind(con1 
+                  ,con2
+                  ,con3
+                  #,con4 # add more if needed
+                  )
+
+# aggregate values - column for each category
+source(&quot;categorise.R&quot;) # this script must be customised to input data
+
+# check constraint totals - should be true
+sum(ind.cat[,1:ncol(con1)]) == nrow(ind) # is the number in each category correct
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">sum(ind.cat[,ncol(con1)+1:ncol(con2)]) == nrow(ind) 
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">sum(ind.cat[,ncol(con1)+ncol(con2)+1:ncol(con3)]) == nrow(ind) 
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">
+# create weights in 3D matrix (individuals, areas, iteration)
+weights &lt;- array(dim=c(nrow(ind),nrow(all.msim),num.cons+1)) 
+weights[,,4][] &lt;- 1 # sets initial weights to 1
+weights[8,,4] &lt;- k
+ini.ws &lt;- weights[,,4]
+
+# convert survey data into aggregates to compare with census (3D matix)
+ind.agg &lt;- array(dim=c(nrow(all.msim),ncol(all.msim),num.cons+1))
+
+for (i in 1:nrow(all.msim)){
+  ind.agg[i,,1]   &lt;- colSums(ind.cat) * weights[i,1,4]}
+
+# re-weighting for constraint 1 via IPF 
+for (j in 1:nrow(all.msim)){
+ weights[which(ind.cat[,1] == 1),j,1] &lt;- con1[j,1] /ind.agg[j,1,1]
+ weights[which(ind.cat[,2] == 1),j,1] &lt;- con1[j,2] /ind.agg[j,2,1]
+ weights[which(ind.cat[,3] == 1),j,1] &lt;- con1[j,3] /ind.agg[j,3,1]
+ weights[which(ind.cat[,4] == 1),j,1] &lt;- con1[j,4] /ind.agg[j,4,1]
+ weights[which(ind.cat[,5] == 1),j,1] &lt;- con1[j,5] /ind.agg[j,5,1]
+ weights[which(ind.cat[,6] == 1),j,1] &lt;- con1[j,6] /ind.agg[j,6,1]
+ weights[which(ind.cat[,7] == 1),j,1] &lt;- con1[j,7] /ind.agg[j,7,1]
+ weights[which(ind.cat[,8] == 1),j,1] &lt;- con1[j,8] /ind.agg[j,8,1]
+ weights[which(ind.cat[,9] == 1),j,1] &lt;- con1[j,9] /ind.agg[j,9,1]
+ weights[which(ind.cat[,10] == 1),j,1] &lt;- con1[j,10] /ind.agg[j,10,1]
+ weights[which(ind.cat[,11] == 1),j,1] &lt;- con1[j,11] /ind.agg[j,11,1]
+ weights[which(ind.cat[,12] == 1),j,1] &lt;- con1[j,12] /ind.agg[j,12,1]}
+
+# convert con1 weights back into aggregates
+for (i in 1:nrow(all.msim)){
+  ind.agg[i,,2]   &lt;- colSums(ind.cat * weights[,i,4] * weights[,i,1])}
+
+# test results for first row
+ind.agg[1,1:12,2] - all.msim[1,1:12]
+</code></pre>
+
+<pre><code>##   m1 m6       m16 m31 m38 m49 f1         f6        f16 f31 f38 f49
+## 1  0  0 8.882e-16   0   0   0  0 -1.776e-15 -3.553e-15   0   0   0
+</code></pre>
+
+<pre><code class="r">
+# second constraint
+for (j in 1:nrow(all.msim)){
+  weights[which(ind.cat[,13] == 1),j,2] &lt;- all.msim[j,13] /ind.agg[j,13,2]
+  weights[which(ind.cat[,14] == 1),j,2] &lt;- all.msim[j,14] /ind.agg[j,14,2]
+  weights[which(ind.cat[,15] == 1),j,2] &lt;- all.msim[j,15] /ind.agg[j,15,2]
+  weights[which(ind.cat[,16] == 1),j,2] &lt;- all.msim[j,16] /ind.agg[j,16,2]
+  weights[which(ind.cat[,17] == 1),j,2] &lt;- all.msim[j,17] /ind.agg[j,17,2]}  
+
+# convert con2 back into aggregate
+for (i in 1:nrow(all.msim)){
+ind.agg[i,,3]   &lt;- colSums(ind.cat * weights[,i,4] * weights[,i,1] *
+                             weights[,i,2])}
+
+# test results for first row
+ind.agg[5,ncol(con1)+1:ncol(con2),3] 
+</code></pre>
+
+<pre><code>## [1]  43 118   5  27  15
+</code></pre>
+
+<pre><code class="r">all.msim[5,ncol(con1)+1:ncol(con2)]
+</code></pre>
+
+<pre><code>##   single married separated divorced widowed
+## 5     43     118         5       27      15
+</code></pre>
+
+<pre><code class="r">
+# third constraint
+for (j in 1:nrow(all.msim)){
+  weights[which(ind.cat[,18] == 1),j,3] &lt;- all.msim[j,18] /ind.agg[j,18,3]
+  weights[which(ind.cat[,19] == 1),j,3] &lt;- all.msim[j,19] /ind.agg[j,19,3]
+  weights[which(ind.cat[,20] == 1),j,3] &lt;- all.msim[j,20] /ind.agg[j,20,3]
+  weights[which(ind.cat[,21] == 1),j,3] &lt;- all.msim[j,21] /ind.agg[j,21,3]
+  weights[which(ind.cat[,22] == 1),j,3] &lt;- all.msim[j,22] /ind.agg[j,22,3]}  
+
+# convert con3 back into aggregate
+for (i in 1:nrow(all.msim)){
+  ind.agg[i,,4]   &lt;- colSums(ind.cat * weights[,i,4] * weights[,i,1] * weights[,i,2] * 
+                               weights[,i,3])}
+# test results for first row
+ind.agg[5,ncol(con1)+ncol(con2)+1:ncol(con3),4] 
+</code></pre>
+
+<pre><code>## [1] 92.2435 88.6261  0.0001 12.6609 14.4696
+</code></pre>
+
+<pre><code class="r">all.msim[5,ncol(con1)+ncol(con2)+1:ncol(con3)]
+</code></pre>
+
+<pre><code>##     own  mort shared letting other
+## 5 92.24 88.63  1e-04   12.66 14.47
+</code></pre>
+
+<pre><code class="r">
+# for multiple iterations
+wf &lt;- array(dim=c(dim(weights), num.its))
+indf &lt;- array(dim=c(dim(ind.agg), num.its))
+wf[,,,1] &lt;- weights 
+indf[,,,1] &lt;- ind.agg
+
+a.v &lt;- as.vector(as.matrix(all.msim)) # constraints in long form, for cor
+g.v &lt;- as.vector(as.matrix(indf[,,4,1]))
+t1 &lt;- data.frame(it = 1, corr = cor(a.v,g.v))
+</code></pre>
+
+<h3>Now run the loop as many times as specified by num.its</h3>
+
+<p>This code has been massively shrunk compared with previous editions, and now requires only 1 external file, <code>e2.R</code>. Note also that the code also automatically generates a simple evaluation and plots it at the end:</p>
+
+<pre><code class="r">for (it in 2:num.its) {
+    source(file = &quot;~/IPF-performance-testing/input-data/small-area-eg/e2.R&quot;)
+    wf[, , , it] &lt;- weights
+    indf[, , , it] &lt;- ind.agg
+    g.v &lt;- as.vector(as.matrix(indf[, , 4, it]))
+    t1[it, ] &lt;- c(it, cor(a.v, g.v))
+}
+barplot(height = t1$corr, names.arg = t1$it, ylim = c(t1[1, 2], 1))
+</code></pre>
+
+<p><img src="data:image/png;base64,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B4ABCfyCnH322e3atWvqMRbli1/8Yjt27Oi0007rXe96V1/72temHmkxHnnkkS677LLe+MY3dtppp3XmmWf29a9/feqxFmfXrl295jWvmXqMxXn3u9/dL/zCLzz2ddZZZ0090uII/AL8xV/8RR/+8If78z//86lHWZR77rmn3/zN3+wtb3lLV155ZS95yUs677zzph5rMW644YY+9alPdeGFF/YHf/AHPfvZz+6SSy6ZeqxFefjhh/vQhz7UAw88MPUoi/ONb3yj3/3d3+3yyy/v8ssv7+yzz556pMUR+AX4yle+0pYtW9pvv/2mHmVRbr755p73vOd10kkndcABB/TWt761Xbt2tWfPnqlHW4StW7d23nnn9ZznPKctW7b04z/+4x166KFTj7UoV111VYcffvjUYyzOQw891L333tuLXvSijjrqqI466ij/9p6CfaYegH/em970pqp27tw58STL8rM/+7OdeOKJjz2/5ZZbOuqoozrwwAMnnGo5tm7d2tatW/vsZz/b+eef38EHH2wFvxfuvPPOPvGJT3TBBRd03XXXTT3Oonzzm99sv/326zd+4zf6+te/3gtf+MJ++Zd/ucMOO2zq0RbFCp5h7b///h1yyCE98sgjXX/99X3gAx/one98Z5s2bZp6tEU5+eST++QnP9kpp5zShz70oanHWYRHHnmkCy+8sHe84x3tv//+U4+zOLt37+7II4/s9a9/fb/1W7/V5s2be//73z/1WItjBc/Qvv3tb3fhhRd21113df7553fsscdOPdJi/O3f/m377rtvRxxxRPvtt19vfvObe8Mb3tCDDz7Yli1bph5v1v7oj/6oww47rJ/7uZ9r9+7dU4+zOMcdd1yXXnrpY8/f/e53t23btnbv3t3BBx884WTLYgXPsB588MF+7dd+rec+97ldfPHF4r6Xdu7c2R/+4R8+9vy+++7rGc94Rps3b55wqmW44YYb+rM/+7NOP/303vrWt/bwww93+umnd8stt0w92iJ8+ctf7uabb37s+ZYtW9q8ebN/e3vJCp5h7dy5s4cffrjXvva13XXXXY+9fsQRR/SMZ/jZ9p9z4oknds455/TqV7+6rVu39vu///u98pWv9He3DmeeeWb3339/VXv27GnHjh1deumlHXLIIRNPtgwPPPBAv/7rv94HPvCBjjnmmC6//PJe/OIXu35mLwk8w7r99tv76le/2pvf/Ob/6/WrrrrK23zrcOyxx3bGGWf0wQ9+sLvvvruXv/zlnXnmmVOPtQgHHXTQY4/33XffNm3a5Gr6vXDCCSe0Y8eOLrzwwr71rW/1Mz/zM51zzjlTj7U4Ar8gH/vYx6YeYVHOOOOMzjjjjKnHWLRTTz21U089deoxFu3ggw/u05/+9NRjLMqmTZvavn1727dvn3qURfNeGwAMSOABYEACDwADEngAGJDAA8CABB4ABiTwADAggQeAAQk8AAxI4AFgQAIPAAMSeAAYkMADwIAEHgAGJPAAMCCBB4ABCTwADEjgAWBAAg8AAxJ4ABiQwAPAgAQeAAYk8AAwIIEHgAEJPAAMSOABYEACDwADEngAGJDAA8CABB4ABiTwADAggQeAAQk8AAxI4AFgQAIPAAMSeAAYkMADwIAEHgAGJPAAMCCBB4ABCTwADEjgAWBAAg8AAxJ4ABiQwAPAgAQeAAYk8AAwoP8DzXWaSiA/zMwAAAAASUVORK5CYII=" alt="plot of chunk unnamed-chunk-2"/> </p>
+
+<pre><code class="r">t1
+</code></pre>
+
+<pre><code>##   it   corr
+## 1  1 0.9982
+## 2  2 1.0000
+## 3  3 1.0000
+## 4  4 1.0000
+## 5  5 1.0000
+</code></pre>
+
+</body>
+
+</html>
+

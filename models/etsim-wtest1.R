@@ -3,8 +3,12 @@
 #### Robin Lovelace (2013), after Malcolm Campell
 ############################################
 
-# loading data
+# Initial conditions
 start.time <- proc.time() # for measuring model runtime
+l = 1
+# for(l in 1:1){
+k = l * 1
+num.its = 2
 
 # set working directory of input data
 setwd("~/IPF-performance-testing/input-data/small-area-eg/") 
@@ -46,6 +50,7 @@ con3[con3 == 0]   <- 0.0001 # add more constraints if needed
 
 # setting-up reweighting data
 category.labels <- names(all.msim) # should be correct from cons.R
+all.mim.orig <- all.msim # save original (un-adjusted) constraints
 all.msim <- cbind(con1 
                   ,con2
                   ,con3
@@ -62,14 +67,15 @@ sum(ind.cat[,ncol(con1)+ncol(con2)+1:ncol(con3)]) == nrow(ind)
 
 # create weights in 3D matrix (individuals, areas, iteration)
 weights <- array(dim=c(nrow(ind),nrow(all.msim),num.cons+1)) 
-weights[,,1] <- 1 # sets initial weights to 1
-weights[1,1,1] <- k
+weights[,,4][] <- 1 # sets initial weights to 1
+weights[8,,4] <- k
+ini.ws <- weights[,,4]
 
 # convert survey data into aggregates to compare with census (3D matix)
 ind.agg <- array(dim=c(nrow(all.msim),ncol(all.msim),num.cons+1))
 
 for (i in 1:nrow(all.msim)){
-  ind.agg[i,,1]   <- colSums(ind.cat) * weights[i,1,1]}
+  ind.agg[i,,1]   <- colSums(ind.cat) * weights[i,1,4]}
 
 # re-weighting for constraint 1 via IPF 
 for (j in 1:nrow(all.msim)){
@@ -88,7 +94,7 @@ for (j in 1:nrow(all.msim)){
 
 # convert con1 weights back into aggregates
 for (i in 1:nrow(all.msim)){
-  ind.agg[i,,2]   <- colSums(ind.cat * weights[,i,1])}
+  ind.agg[i,,2]   <- colSums(ind.cat * weights[,i,4] * weights[,i,1])}
 
 # test results for first row
 ind.agg[1,1:12,2] - all.msim[1,1:12]
@@ -103,7 +109,8 @@ for (j in 1:nrow(all.msim)){
 
 # convert con2 back into aggregate
 for (i in 1:nrow(all.msim)){
-ind.agg[i,,3]   <- colSums(ind.cat * weights[,i,1] * weights[,i,2])}
+ind.agg[i,,3]   <- colSums(ind.cat * weights[,i,4] * weights[,i,1] *
+                             weights[,i,2])}
 
 # test results for first row
 ind.agg[5,ncol(con1)+1:ncol(con2),3] 
@@ -119,31 +126,51 @@ for (j in 1:nrow(all.msim)){
 
 # convert con3 back into aggregate
 for (i in 1:nrow(all.msim)){
-  ind.agg[i,,4]   <- colSums(ind.cat * weights[,i,1] * weights[,i,2] * 
+  ind.agg[i,,4]   <- colSums(ind.cat * weights[,i,4] * weights[,i,1] * weights[,i,2] * 
                                weights[,i,3])}
 # test results for first row
 ind.agg[5,ncol(con1)+ncol(con2)+1:ncol(con3),4] 
 all.msim[5,ncol(con1)+ncol(con2)+1:ncol(con3)]
 
 # for multiple iterations
-num.its <- 5 # change number of iterations 
-weights[,,num.cons+1] <- weights[,,1] * weights[,,2] *  weights[,,3]
-weightsk <- array(dim = c(dim(weights),10))
+wf <- array(dim=c(dim(weights), num.its))
+indf <- array(dim=c(dim(ind.agg), num.its))
+wf[,,,1] <- weights 
+indf[,,,1] <- ind.agg
+weights[,,4] <- weights[,,1] * weights[,,2] *  weights[,,3]
+ind.agg[,,1] <- ind.agg[,,4]
 
-aagg <- array(dim=c(dim(ind.agg),10))
-aagg[,,,k] <- ind.agg
-dim(aagg)
+source(file="e2.R")
+wf[,,,2] <- weights
+indf[,,,2] <- ind.agg
+source(file="e2.R")
+wf[,,,3] <- weights
+indf[,,,3] <- ind.agg
 
-# Test results for first row
-time1 <- proc.time() -start.time
-time1
 
-### Basic analysis
+
+# testing if 2nd iteration has worked
 a.v <- as.vector(as.matrix(all.msim))
-g.v <- as.vector(as.matrix(ind.agg[,,num.cons+1]))
+g.v <- as.vector(as.matrix(indf[,,4,1]))
 plot(a.v, g.v)
+g.v <- as.vector(as.matrix(indf[,,4,2]))
+plot(a.v, g.v)
+proc.time() - start.time
 
-#### Iterations: uncomment following lines to run 10 iterations of IPF
+knew <- data.frame(it = rep(2,num.cons), con = 1:num.cons, 
+                   original = rep(k, num.cons), 
+                   final = colMeans(weights[8,,1:num.cons]))
+kweights <- rbind(kweights, knew)
+
+kweights <- data.frame(it = as.character(), con = as.character(), 
+                       original = as.numeric(), final = as.numeric())
+
+library(ggplot2)
+iteration <- paste(kweights$it, kweights$con, sep=".")
+ggplot(data = kweights, 
+       aes(x = original, 
+       y = final, color = it)) + geom_point()
+
 
 # setwd("its/")
 # source(file="etsim2.r") # Include to run second iteration

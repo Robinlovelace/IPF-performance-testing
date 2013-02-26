@@ -1,8 +1,12 @@
-############################################
-#### IPFinR a script for IPF in R
-#### Robin Lovelace (2013), after Malcolm Campell
-############################################
+IPFinR a script for IPF in R
+======
+This page showcases an updated version of the model `etsim.R` in action.
+The ultimate aim of these improvements is to set all the parameters in the first few lines of code, dramatically reducing the time spent fiddling about with large bodies of code to get the code working correctly.
 
+Note also the final correlation is 1, indicating that the IPF code is working correctly and converging to the optimal solution.
+
+
+```{r}
 # Initial conditions
 start.time <- proc.time() # for measuring model runtime
 l = 1
@@ -141,9 +145,14 @@ indf[,,,1] <- ind.agg
 a.v <- as.vector(as.matrix(all.msim)) # constraints in long form, for cor
 g.v <- as.vector(as.matrix(indf[,,4,1]))
 t1 <- data.frame(it = 1, corr = cor(a.v,g.v))
+```
 
+### Now run the loop as many times as specified by num.its
+This code has been massively shrunk compared with previous editions, and now requires only 1 external file, `e2.R`. Note also that the code also automatically generates a simple evaluation and plots it at the end:
+
+```{r}
 for(it in 2:num.its){
-source(file="e2.R")
+source(file="~/IPF-performance-testing/input-data/small-area-eg/e2.R")
 wf[,,,it] <- weights
 indf[,,,it] <- ind.agg
 g.v <- as.vector(as.matrix(indf[,,4,it]))
@@ -151,5 +160,6 @@ t1[it,] <- c(it,cor(a.v,g.v))
 }
 barplot(height=t1$corr, names.arg=t1$it, ylim=c(t1[1,2],1))
 t1
+```
 
 

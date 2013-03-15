@@ -8,13 +8,11 @@ start.time <- proc.time() # for measuring model runtime
 l = 1
 # for(l in 1:1){
 k = l * 1
-num.its = 5
+num.its = 3
 
 # set working directory of input data
 setwd("~/IPF-performance-testing/input-data/small-area-eg/") 
-
-load("ind.RData")  # read-in the survey dataset. Preprocessed to 
-# to contain the desired microdataset and saved in a dataframe called 'ind'
+load("ind.RData")  # read-in the survey dataset called 'ind'
 
 # read aggregate constraints. nrow of these data frames (areas) must be equal 
 source(file="cons.R") # call separate script to read in data, for modularity
@@ -26,8 +24,7 @@ sum(con1)
 sum(con2)
 sum(con3) # add more if need's be
 
-all.msim <- cbind(con1 
-                  # comment out constraints not included
+all.msim <- cbind(con1
                   ,con2
                   ,con3
                   #,con4 # add more constraints here if needed
@@ -40,13 +37,7 @@ con1 <- con1 * con.pop / rowSums(con1)
 con2 <- con2 * con.pop / rowSums(con2) 
 con3 <- con3 * con.pop / rowSums(con3)
 
-sum(con1) == sum(con2) 
-sum(con2) == sum(con3)
-
-# IF CELL VALUE == 0, SET to 0.0001 (a very small number)
-con1[con1 == 0]   <- 0.0001 
-con2[con2 == 0]   <- 0.0001 
-con3[con3 == 0]   <- 0.0001 # add more constraints if needed
+sum(con1) == sum(con2) # check populations are equal
 
 # setting-up reweighting data
 category.labels <- names(all.msim) # should be correct from cons.R
@@ -56,6 +47,7 @@ all.msim <- cbind(con1
                   ,con3
                   #,con4 # add more if needed
                   )
+all.msim[all.msim == 0] <- 0.00001 # avoid zeros
 
 # aggregate values - column for each category
 source("categorise.R") # this script must be customised to input data
@@ -79,18 +71,8 @@ for (i in 1:nrow(all.msim)){
 
 # re-weighting for constraint 1 via IPF 
 for (j in 1:nrow(all.msim)){
- weights[which(ind.cat[,1] == 1),j,1] <- con1[j,1] /ind.agg[j,1,1]
- weights[which(ind.cat[,2] == 1),j,1] <- con1[j,2] /ind.agg[j,2,1]
- weights[which(ind.cat[,3] == 1),j,1] <- con1[j,3] /ind.agg[j,3,1]
- weights[which(ind.cat[,4] == 1),j,1] <- con1[j,4] /ind.agg[j,4,1]
- weights[which(ind.cat[,5] == 1),j,1] <- con1[j,5] /ind.agg[j,5,1]
- weights[which(ind.cat[,6] == 1),j,1] <- con1[j,6] /ind.agg[j,6,1]
- weights[which(ind.cat[,7] == 1),j,1] <- con1[j,7] /ind.agg[j,7,1]
- weights[which(ind.cat[,8] == 1),j,1] <- con1[j,8] /ind.agg[j,8,1]
- weights[which(ind.cat[,9] == 1),j,1] <- con1[j,9] /ind.agg[j,9,1]
- weights[which(ind.cat[,10] == 1),j,1] <- con1[j,10] /ind.agg[j,10,1]
- weights[which(ind.cat[,11] == 1),j,1] <- con1[j,11] /ind.agg[j,11,1]
- weights[which(ind.cat[,12] == 1),j,1] <- con1[j,12] /ind.agg[j,12,1]}
+  for(i in 1:ncol(con1)){
+ weights[which(ind.cat[,i] == 1),j,1] <- con1[j,i] /ind.agg[j,i,1]}}
 
 # convert con1 weights back into aggregates
 for (i in 1:nrow(all.msim)){
@@ -101,37 +83,26 @@ ind.agg[1,1:12,2] - all.msim[1,1:12]
 
 # second constraint
 for (j in 1:nrow(all.msim)){
-  weights[which(ind.cat[,13] == 1),j,2] <- all.msim[j,13] /ind.agg[j,13,2]
-  weights[which(ind.cat[,14] == 1),j,2] <- all.msim[j,14] /ind.agg[j,14,2]
-  weights[which(ind.cat[,15] == 1),j,2] <- all.msim[j,15] /ind.agg[j,15,2]
-  weights[which(ind.cat[,16] == 1),j,2] <- all.msim[j,16] /ind.agg[j,16,2]
-  weights[which(ind.cat[,17] == 1),j,2] <- all.msim[j,17] /ind.agg[j,17,2]}  
+  for(i in 1:ncol(con2) + ncol(con1)){
+  weights[which(ind.cat[,i] == 1),j,2] <- all.msim[j,i] /ind.agg[j,i,2]}}  
 
 # convert con2 back into aggregate
 for (i in 1:nrow(all.msim)){
 ind.agg[i,,3]   <- colSums(ind.cat * weights[,i,4] * weights[,i,1] *
                              weights[,i,2])}
-
 # test results for first row
 ind.agg[5,ncol(con1)+1:ncol(con2),3] 
 all.msim[5,ncol(con1)+1:ncol(con2)]
 
 # third constraint
 for (j in 1:nrow(all.msim)){
-  weights[which(ind.cat[,18] == 1),j,3] <- all.msim[j,18] /ind.agg[j,18,3]
-  weights[which(ind.cat[,19] == 1),j,3] <- all.msim[j,19] /ind.agg[j,19,3]
-  weights[which(ind.cat[,20] == 1),j,3] <- all.msim[j,20] /ind.agg[j,20,3]
-  weights[which(ind.cat[,21] == 1),j,3] <- all.msim[j,21] /ind.agg[j,21,3]
-  weights[which(ind.cat[,22] == 1),j,3] <- all.msim[j,22] /ind.agg[j,22,3]}  
+  for(i in 1:ncol(con3) + ncol(con1) + ncol(con2)){
+    weights[which(ind.cat[,i] == 1),j,3] <- all.msim[j,i] /ind.agg[j,i,3]}}
 
 # convert con3 back into aggregate
 for (i in 1:nrow(all.msim)){
   ind.agg[i,,4]   <- colSums(ind.cat * weights[,i,4] * weights[,i,1] * weights[,i,2] * 
                                weights[,i,3])}
-# test results for first row
-ind.agg[5,ncol(con1)+ncol(con2)+1:ncol(con3),4] 
-all.msim[5,ncol(con1)+ncol(con2)+1:ncol(con3)]
-
 # for multiple iterations
 wf <- array(dim=c(dim(weights), num.its))
 indf <- array(dim=c(dim(ind.agg), num.its))
@@ -151,5 +122,4 @@ t1[it,] <- c(it,cor(a.v,g.v))
 }
 barplot(height=t1$corr, names.arg=t1$it, ylim=c(t1[1,2],1))
 t1
-
-
+proc.time() - start.time 

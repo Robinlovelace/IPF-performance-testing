@@ -13,7 +13,7 @@ start.time <- proc.time() # for measuring model runtime
 l = 1
 # for(l in 1:1){
 k = l * 1
-num.its = 5
+num.its = 3
 
 # set working directory of input data
 setwd("~/IPF-performance-testing/input-data/small-area-eg/") 
@@ -269,8 +269,6 @@ t1
 ## 1  1 0.9982
 ## 2  2 1.0000
 ## 3  3 1.0000
-## 4  4 1.0000
-## 5  5 1.0000
 ```
 
 

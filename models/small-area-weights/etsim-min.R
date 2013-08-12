@@ -1,11 +1,11 @@
 ############################################
 #### IPFinR a script for IPF in R
-#### Robin Lovelace (2013), after Malcolm Campell
+#### Robin Lovelace (2013)
 #### Modified to show impact of initial weights - simplest case
 ############################################
 
 # Initial conditions # start from IPF-performance-testing folder
-num.ws = 2 # Number of different weights to test
+num.ws = 1 # Number of different weights to test
 num.its = 5
 # Read-in data (ensure working directory set correctly)
 load("../../input-data/small-area-eg/ind.RData")  # read-in the survey dataset called 'ind'
@@ -24,6 +24,8 @@ all.msim <- cbind(con1
                   ,con3
                   #,con4 # add more constraints here if needed
                   )
+# create weights in 3D matrix (individuals, areas, iteration)
+weights <- array(dim=c(nrow(ind),nrow(all.msim),num.cons+1)) 
 ind.agg <- array(dim=c(nrow(all.msim),ncol(all.msim),num.cons+1))
 wf <- array(dim=c(dim(weights), num.its, num.ws))
 indf <- array(dim=c(dim(ind.agg), num.its, num.ws))
@@ -62,9 +64,7 @@ sum(ind.cat[,1:ncol(con1)]) == nrow(ind) # is the number in each category correc
 sum(ind.cat[,ncol(con1)+1:ncol(con2)]) == nrow(ind) 
 sum(ind.cat[,ncol(con1)+ncol(con2)+1:ncol(con3)]) == nrow(ind) 
 
-# create weights in 3D matrix (individuals, areas, iteration)
-weights <- array(dim=c(nrow(ind),nrow(all.msim),num.cons+1)) 
-weights[,,4][] <- 1 # sets initial weights to 1
+weights[,,4] <- 1 # sets initial weights to 1
 weights[s.w,,4] <- k
 ini.ws <- weights[,,4]
 
@@ -115,9 +115,4 @@ source(file="e2.R")
 wf[,,,it,u] <- weights
 indf[,,,it,u] <- ind.agg
 }}
-# Analysis (best to move this to analysis section)
-# plot(tw1[,1:2])
-# points(tw1[,c(1,3)])
-# points(tw1[,c(1,4)])
-# points(tw1[,c(1,5)])
 proc.time() - start.time 

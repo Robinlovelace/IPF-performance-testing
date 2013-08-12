@@ -44,7 +44,7 @@ p = ggplot(wf.ws.m[,], aes(x=Var3, y=value, colour=paste(Var2,Var1)))
 p + geom_line()
 
 ### Now do it for different individuals
-head(wf[,,2,2,4])
+head(wf[,,2,2,2])
 ind.samp <- sample(1:nrow(ind),2)
 # ind.samp <- c(1654,1075)
 wf.ws <- wf[c(1,2,ind.samp),1,1:3,,]
@@ -67,5 +67,6 @@ plot(wf[1,1,3,1,])
 plot(wf[1,1,3,2,])
 (wf[1,1,3,1,1] - wf[1,1,3,1,5])/wf[1,1,3,1,5]
 (wf[1,1,3,2,1] - wf[1,1,3,2,5])/wf[1,1,3,2,5]
+
 
 0.8 / 1.5

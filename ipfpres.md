@@ -77,6 +77,32 @@ Three baseline scenarios were used:
 
 Most tests were done on the 'small area' scenario
 
+Baseline result
+====================================
+- Correlation rapidly approaches 1
+- Beyond 5 iterations, result is indistinguishable from 1
+- perfect convergence (no empty cells)
+
+- But are we using the right metric of model fit?
+
+Baseline result - visual
+===================================
+![Convergence between constraints](figure/analysis1.png)
+
+-------------------
+
+![Correlation over time - baseline](figure/corr-baseline.png)
+
+Evaluating model fit
+====================================
+Commonly used options include:
+- Pearson's coefficient of correlation (r)
+- Total and Standardised Absolute Error (TAE and SAE)
+- Root mean squared (RMS)
+- Z-scores 
+- Standard Error Around Identity (SEI)
+- other metrics do exist!
+
 Model experiments
 =====================================
 The impact of the following changes was tested:
@@ -87,16 +113,27 @@ The impact of the following changes was tested:
 - empty cells
 - integerisation
 
-Results 1
+Results - Initial weights I
 =======================================
-Initial weights have very little impact on the results
-(their impact diminished to almost zero after 2 iterations)
+  <img src="models/small-area-weights/weight-1-5-its.png" height="600px" width="1000px" />
+  
+  Doubling initial weight has some impact after 1 iteration, tends rapidly to 0
 
+Results - Initial weights II
+=======================================
+![Influence of weights](models/small-area-weights/weights-exp-5.4.nice2.png)
+
+Effects most pronounced within each iteration (between constraints)
+
+Knock-on effects on other individuals
+
+Results - integerisation
+======================================
 
 
 Summary of findings
 =======================================
-
+Initial weights have very little impact on the results
 
 
 Conclusions and further work

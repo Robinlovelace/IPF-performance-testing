@@ -12,7 +12,7 @@ for (i in 1:nrow(all.msim)){
   ind.agg[i,,2]   <- colSums(ind.cat * weights[,i,4] * weights[,i,1])}
 
 # test results for first row
-ind.agg[1,1:12,2] - all.msim[1,1:12]
+ind.agg[1,1:ncol(con1),2] - all.msim[1,1:ncol(con1)]
 
 # second constraint
 for (j in 1:nrow(all.msim)){

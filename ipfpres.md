@@ -5,7 +5,7 @@ transition: rotate
 <large> **new tests for an old technique** </large>
 
 Robin Lovelace   
-[RSAI-BIS](http://www.rsai-bis.org/) August 2013  
+[RSAI-BIS](http://www.rsai-bis.org/) August 2013, Cambridge  
 Wednesday 21^st  11 - 13, early careers session
 
 
@@ -17,6 +17,10 @@ Introduction
 - It estimates the values of internal cells, based on marginal totals:    
 ![Marginal totals table](figure/t2.png)
 - Used in spatial microsimulation for allocating individuals to zones [(Lovelace et al., 2013)]( http://dx.doi.org/10.1016/j.compenvurbsys.2013.03.004)
+
+Other applications of IPF
+=======================================================
+
 
 How IPF works 1 - visually
 ========================================================
@@ -113,9 +117,16 @@ The impact of the following changes was tested:
 - empty cells
 - integerisation
 
+Results - Iterations and constraints
+======================================
+- After 4 iterations all models had near-perfect fit
+- The order of constraints had some impact, but not a lot
+- Fewer constraints > faster convergence (dur!)
+
 Results - Initial weights I
 =======================================
   <img src="models/small-area-weights/weight-1-5-its.png" height="600px" width="1000px" />
+  
   
   Doubling initial weight has some impact after 1 iteration, tends rapidly to 0
 
@@ -123,28 +134,39 @@ Results - Initial weights II
 =======================================
 ![Influence of weights](models/small-area-weights/weights-exp-5.4.nice2.png)
 
-Effects most pronounced within each iteration (between constraints)
+Effects most pronounced within each iteration
 
 Knock-on effects on other individuals
 
-Results - integerisation
-======================================
-
-
 Summary of findings
 =======================================
-Initial weights have very little impact on the results
-
+- The number of lines of code to perform IPF has been reduced
+- IPF converges rapidly to a single result, if set-up correctly
+- Supports previous work suggesting convergence after 10 iterations ([Ballas et al. 2005](http://www.jrf.org.uk/sites/files/jrf/1859352669.pdf))
+- Five is probably sufficient for 4 or fewer constraints
+- Initial weights seem to have very little impact on the results - will have no impact on the model
+- Integerisation has a slight negative impact on fit
 
 Conclusions and further work
 ======================================
+- IPF is a useful procedure for various applications, but its utility can be extended and enhanced in various ways ([Pritchard and Miller, 2012](http://www.springerlink.com/index/10.1007/s11116-011-9367-4))
+- Before 'trying to run', however, researchers should master walking 
+- Therefore these basic tests on the performance of IPF should be useful in informing future work
+- Reproducible code and example data should be useful to others ('fork me' on [Github](https://github.com/Robinlovelace/IPF-performance-testing) !)
+- More model experiments: missing cells and interactions between variables
+- Is it possible for IPF to be made even faster?
+- Methods for grouping individuals (e.g. into families)
 
-References
+Key references (see links to others)
 ========================================
 <small>
 Deming, W. (1940). On a least squares adjustment of a sampled frequency table when the expected marginal totals are known. [The Annals of Mathematical Statistics](http://www.jstor.org/stable/10.2307/2235722) 
 
 Lovelace, R., & Ballas, D. (2013). “Truncate, replicate, sample”: A method for creating integer weights for spatial microsimulation. [*CEUS*, 41, 1–11](doi:http://dx.doi.org/10.1016/j.compenvurbsys.2013.03.004)
 
-</small>
+"[IPF-performance-testing](https://github.com/Robinlovelace/IPF-performance-testing)" github repository - please 'clone' this and contribute! + this presentation at [www.rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/7598)
 
+Pritchard, D. R., & Miller, E. J. (2012). Advances in population synthesis: fitting many attributes per agent and fitting to household and person margins simultaneously. [Transportation, 39(3)](http://www.springerlink.com/index/10.1007/s11116-011-9367-4)
+
+Thanks for listening  `r.lovelace at leeds.ac.uk`
+</small>

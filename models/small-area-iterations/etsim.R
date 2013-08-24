@@ -6,10 +6,10 @@
 # Initial conditions # start from IPF-performance-testing folder
 # setwd("models/small-area-iterations/")
 start.time <- proc.time() # for measuring model runtime
-l = 1
+l = 1 # set initial weight of counter (number of weight scenarios)
 # for(l in 1:1){
 k = l * 1
-num.its = 4
+num.its = 3
 
 # Read-in data (ensure working directory set correctly)
 load("../../input-data/small-area-eg/ind.RData")  # read-in the survey dataset called 'ind'

@@ -1,4 +1,4 @@
-### IPFinR a script for IPF in R, Robin Lovelace (2013)
+### IPFinR a script for IPF in R Robin Lovelace (2013)
 
 # initial conditions - start from IPF-performance-testing folder
 num.its = 3
@@ -87,4 +87,4 @@ for (it in 2:num.its) {
     wf[, , , it, 1] <- weights
     indf[, , , it, 1] <- ind.agg
 }
-proc.time() - start.time  # analysis - see analyis files 
+proc.time() - start.time  # Analysis - see analyis files 

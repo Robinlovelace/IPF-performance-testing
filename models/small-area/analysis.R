@@ -23,7 +23,7 @@ for(i in 1:num.its){
     zs <- zscore(a.v, g.v)
     p5 <- perc.5(a.v, g.v)
     
-    measures[i*2+j-2,] <- c(pcor, tae, sae, rmse, zs, p5)
+    measures[i*num.cons+j-num.cons,] <- c(pcor, tae, sae, rmse, zs, p5)
   }
 }
 options(digits = 5)

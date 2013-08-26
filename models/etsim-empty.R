@@ -8,8 +8,8 @@ num.its = 3
 # Read-in data (manually to start, will use scripts in future)
 c.names <- c("id", "age", "sex")
 ind <- c(       1, 59, "m",
-
-                3, 35, "m", 
+                2, 54, "m", 
+                # individual deleted!
                 4, 73, "f", 
                 5, 49, "f")
 ind <- matrix(ind, nrow = 5, byrow = T) # Convert long data into matrix, by row

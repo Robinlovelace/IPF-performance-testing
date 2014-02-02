@@ -1,0 +1,34 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+
+%opening
+\title{The performance of Iterative Proportional Fitting for spatial microsimulation: applying new tests to an old technique}
+\author{Robin Lovelace}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Iterative Proportional Fitting (IPF)
+is an established technique in Regional Science with a long history dating back to 1940. 
+IPF has been used for a variety of purposes in the field, primary amongst these being 
+the generation of small area microdata.  
+In this context, the technique is well understood and can is considered a mature, 
+widely used and relatively straight-forward method. Perhaps because of this, there have been few
+recent studies focussed on evaluating the performance of IPF. 
+An additional research problem that has rarely been tackled is the tendency of 
+researchers to 'start from scratch', and create their own implementation of 
+IPF in a programming language they are comfortable with, rather than thinking 
+systematically evaluating the various options before forging ahead with the analysis...
+
+Instead of starting from a blank slate each time, we argue that new systems of collaborative coding could benefit all researchers using IPF and lead to a reduction in implementation error. 
+
+This gap in the literature has important implications for researchers using IPF. Answers to many methodological questions must be guessed or assumed, and many researchers simply follow pre-existing conventions. Under what conditions can a 'perfect' match be expected, and how can one test whether these conditions exist in the input datasets?  How many iterations should be used for any given application? What is the impact of initial weights on the final results? And what impact will integerisation have on accuracy?  This paper tackles each of these questions in turn, using a systematic methodology and sample datasets that have been made freely available online. The use of the collaborative coding site Github makes it easy for other researchers to fork our test runs and test the method on their own datasets or against their own performances metrics.
+
+The results confirm IPF's status as robust and widely applicable method for combining areal and individual-level data.  We have also been able to generate simple rules of thumb, and transferable tests of performance, that should be of use to researchers using IPF in the future.
+\end{abstract}
+
+\section{}
+
+\end{document}

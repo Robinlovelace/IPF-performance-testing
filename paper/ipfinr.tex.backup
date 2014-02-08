@@ -1,5 +1,6 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8x]{inputenc}
+\usepackage{natbib}
 
 %opening
 \title{The performance of Iterative Proportional Fitting for spatial microsimulation: applying new tests to an old technique}
@@ -61,7 +62,9 @@ not know from a flat dataset if the hypothetical individual mentioned above earn
 anywhere in between. Also, when flattening is associated with geographical aggregation, there is usually
 a loss of geographical resolution: instead of knowing the person's full postcode from the full dataset, we 
 may only be able to pin them down to a relatively large administrative zone such as a Local Authority in the UK context
-in the flattened dataset.
+in the flattened dataset. Finally, the cross-tabulations between the variables are generally during the process of 
+flattening.
+% make bullet points???
 
 Both types of data representation are common in the physical sciences, although the raw data 
 is usually available in long-form. In the social sciences, by contrast, the long format is often unavailable. 
@@ -77,15 +80,55 @@ of the data, which can result in a compromise between detail and accuracy of res
 a spatial problem is being presented with two datasets: one long aspatial 
 survey table where each row represents the characteristics of an individual --- such as
 age, sex, employment status and income --- and another of `flat', geographically aggregated 
-dataset containing count data for each category. As presented in Fig. 1, flat datasets are
-are wider and shorter, containing multiple columns for each variable from the raw dataset.
-Most flat datasets contain little or no \emph{cross tabulation}
-However, in most cases a combination of the information in both datasets is needed to 
-address policy-relevant questions (e.g. what is the total number of unemployed people 
-in each geographical area who at the same time have a university degree, 
-are female and 22 years old?)
+dataset containing count data for each category. 
 
-One approach to deal with this problem is through the estimation of small area microdata by combining the small area data with national survey data. The result of this process of population synthesis (in its 'long' form) is a table in which rows represent each individual in the study region, with an additional column indicating the area of residence (Table 1).
+As presented in Fig. 1, flat datasets are
+are wider and shorter, containing multiple columns for each variable from the raw dataset.
+The loss of information about the linkages between
+the different variables is common, but not essential, in flat datasets. 
+The solution to this problem, however, makes the flat datasets even more unwieldy, as
+each new cross tabulation would add $nv1 \times nv2$ additional columns, where 
+$nv1$ and $nv2$ are the number of discrete categories in contained in the variables to be
+cross tabluted.\footnote{To 
+provide a concrete example, a cross-tabulation 
+of mode of travel to work by sex and social class would contain 540 (12 * 3 * 15) columns,
+due to the number of categories present in each variable. 
+Given that there are dozen of additional variables in any large census, this clearly become unwieldy.
+} % figure???
+The lack of cross tabulation is problematic because 
+in many cases information about the linkages between different variables is needed to 
+address policy-relevant questions. To pick one example related to 
+policies targeted at skilled unemployed young adults: how many unemployed people 
+reside in each geographical area who at the same time have a university degree, 
+are female and over 25 years old? This question is impossible to answer with a 
+geographically aggregated (flat) dataset.
+
+Spatial microsimulation tackles this problem by simulating
+the individuals within each administrative zone. The most detailed output of this process of 
+spatial microsimulation is `spatial microdata', a long table of individuals with  (table 1). 
+small area microdata 
+by combining the small area data with national survey data. The result of this process 
+of population synthesis (in its long % have we already defined long?
+ form --- it can also be represented in a flat table of counts)
+ is a table in which rows represent each 
+individual in the study region, with an additional column indicating the area of residence (Table 1).
+
+Representing the data in this form offers a number of advantages (Clarke and Holm, 1987). These include:
+\begin{itemize}
+ \item The ability to investigate intra-zone variation (by analysing a the variable after subsetting 
+a single area from the data frame),and inter-zone variation in the same dataset.
+\item Cross-tabulations can be created for any combination of variables (e.g. age and employment status):
+ ().
+\item
+\item
+\end{itemize}
+
+
+
+The presentation of continuous variables such as income as real numbers, rather than as categorical count data, in which there is always data loss.
+The data is in a form that is ready to be passed into an individual-level model. For example individual behaviour could simulate traffic, migration or the geographical distribution of future demand for healthcare.
+
+
 \section{IPF: theory and applications}
 \section{Evaluation techniques}
 \section{Input data}
@@ -93,6 +136,6 @@ One approach to deal with this problem is through the estimation of small area m
 \section{Results}
 \section{Conclusions}
 \bibliographystyle{model2-names.bst}
-\bibliography{~/Documents/Microsimulation.bib}
+\bibliography{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib}
 
 \end{document}

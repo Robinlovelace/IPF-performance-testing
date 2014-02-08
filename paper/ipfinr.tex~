@@ -89,16 +89,54 @@ the different variables is common, but not essential, in flat datasets.
 The solution to this problem, however, makes the flat datasets even more unwieldy, as
 each new cross tabulation would add $nv1 \times nv2$ additional columns, where 
 $nv1$ and $nv2$ are the number of discrete categories in contained in the variables to be
-cross tabluted. % figure???
-This lack of cross tabulation is problematic because 
+cross tabluted.\footnote{To 
+provide a concrete example, a cross-tabulation 
+of mode of travel to work by sex and social class would contain 540 (12 * 3 * 15) columns,
+due to the number of categories present in each variable. 
+Given that there are dozen of additional variables in any large census, this clearly become unwieldy.
+} % figure???
+The lack of cross tabulation is problematic because 
 in many cases information about the linkages between different variables is needed to 
 address policy-relevant questions. To pick one example related to 
-programs targetting skilled unemployed young adults: how many unemployed people 
+policies targeted at skilled unemployed young adults: how many unemployed people 
 reside in each geographical area who at the same time have a university degree, 
-are female and over 25 years old? This question is generally impossible to answer with 
-geographically aggregated flat datasets.
+are female and over 25 years old? This question is impossible to answer with a 
+geographically aggregated (flat) dataset.
 
-One approach to deal with this problem is through the estimation of small area microdata by combining the small area data with national survey data. The result of this process of population synthesis (in its 'long' form) is a table in which rows represent each individual in the study region, with an additional column indicating the area of residence (Table 1).
+Spatial microsimulation tackles this problem by simulating
+the individuals within each administrative zone. The most detailed output of this process of 
+spatial microsimulation is `spatial microdata', a long table of individuals with 
+associate attributes and weights for each zone (table 1). 
+Because these individuals correspond to observations in the survey dataset,
+the spatial microdata can be stored with only 3 columns: person identification number (ID), 
+zone and weight. Weights are critical to spatial microdata generated in this way, as they 
+determine how representative each individual is of each zone. Thus, an even more compact way 
+of storing spatial microdata taken from a single dataset is as a `weight matrix' (table 2). 
+% the same dataset can be stored using only two variables:  
+% small area microdata 
+% by combining the small area data with national survey data. The result of this process 
+% of population synthesis (in its long % have we already defined long?
+%  form --- it can also be represented in a flat table of counts)
+%  is a table in which rows represent each 
+% individual in the study region, with an additional column indicating the area of residence (Table 1).
+
+Representing the data in this form offers a number of advantages (Clarke and Holm, 1987). These include:
+\begin{itemize}
+ \item The ability to investigate intra-zone variation (by analysing a the variable after subsetting 
+a single area from the data frame),and inter-zone variation in the same dataset.
+\item Cross-tabulations can be created for any combination of variables (e.g. age and employment status).
+\item The presentation of continuous variables such as income as real numbers, 
+rather than as categorical count data, in which there is always data loss.
+\item The data is in a form that is ready to be passed into an individual-level model.
+For example individual behaviour could simulate traffic, migration or the geographical distribution of future demand for healthcare.
+\end{itemize}
+
+A potential downside of spatial microdata is that it can provides a misleading impression about the
+
+
+
+
+
 
 
 \section{IPF: theory and applications}

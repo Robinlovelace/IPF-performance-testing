@@ -16,6 +16,16 @@ src_extensions=.tex .ltx .latex .dtx .ins
 MakeIndex=
 QuickBuild=
 
+[item:../../../Documents/Microsimulation.bib]
+archive=true
+column=0
+encoding=
+highlight=
+line=0
+mode=
+open=false
+order=-1
+
 [item:ipfinr.kilepr]
 archive=true
 column=1
@@ -28,10 +38,10 @@ order=-1
 
 [item:ipfinr.tex]
 archive=true
-column=0
+column=27
 encoding=UTF-8
 highlight=LaTeX
-line=24
+line=91
 mode=LaTeX
 open=true
 order=0
@@ -47,5 +57,5 @@ open=false
 order=-1
 
 [view-settings,view=0,item:ipfinr.tex]
-CursorColumn=0
-CursorLine=24
+CursorColumn=27
+CursorLine=91

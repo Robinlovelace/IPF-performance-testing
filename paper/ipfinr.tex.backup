@@ -11,18 +11,88 @@
 
 \begin{abstract}
 Iterative Proportional Fitting (IPF)
-is an established technique in Regional Science with a long history dating back to 1940. 
-IPF has been used for a variety of purposes in the field, primary amongst these being 
+is an established technique in Regional Science and
+ has been used for a variety of purposes in the field, primary amongst these being 
 the generation of small area microdata.  
-In this context, the technique is well understood:  
-rocedure works by creating a matrix that assigns each individual from 
-a non-geographical survey a set of weights, one weight for each area under investigation.  It is a mature, widely used and relatively straight-forward method. However, there have been few studies focussed on evaluating the performance of the IPF procedure under a variety of conditions. An additional research problem that has rarely been tackled is the tendency of researchers to 'start from scratch', and create their own implementation of IPF in a programming language of their choosing. Instead of starting from a blank slate each time, we argue that new systems of collaborative coding could benefit all researchers using IPF and lead to a reduction in implementation error. 
+The technique is mature, widely used and relatively straight-forward
+yet there have been few studies focussed on evaluation of it performance. 
+An additional research problem is the tendency of 
+researchers to `start from scratch', resulting in a variety ad-hock implementations,
+with little evidence of the merits of differing approaches.
+Although IPF is well described mathematically, reproducible
+examples of the algorithm, written in modern programming language, are rare in the academic literature.
+These knowledge gaps mean that answers to methodological questions must be guessed:
+Under what conditions can a 'perfect' 
+match be expected, and how can one test whether these conditions exist in the input datasets?  
+How many iterations should be used for any given application? 
+What is the impact of initial weights on the final results? 
+And what impact will integerisation have on accuracy?  
+This paper tackles such questions, using a systematic methodology 
+based on publicly available code and input data. 
+The results confirm IPF's status as robust and widely applicable 
+method for combining areal and individual-level data and demonstrate the importance
+of various parameters determining its performace.
+We conclude with an agenda for future tests and offer more general guidance on how the 
+the method can be optimised to maximise its utility for future research.
 
-This gap in the literature has important implications for researchers using IPF. Answers to many methodological questions must be guessed or assumed, and many researchers simply follow pre-existing conventions. Under what conditions can a 'perfect' match be expected, and how can one test whether these conditions exist in the input datasets?  How many iterations should be used for any given application? What is the impact of initial weights on the final results? And what impact will integerisation have on accuracy?  This paper tackles each of these questions in turn, using a systematic methodology and sample datasets that have been made freely available online. The use of the collaborative coding site Github makes it easy for other researchers to fork our test runs and test the method on their own datasets or against their own performances metrics.
+Keywords: Iterative proportional fitting, spatial microsimulation, modelling
 
-The results confirm IPF's status as robust and widely applicable method for combining areal and individual-level data.  We have also been able to generate simple rules of thumb, and transferable tests of performance, that should be of use to researchers using IPF in the future.
+JEL Code: C
 \end{abstract}
 
-\section{}
+\section{Introduction}
+The aggregation of survey data has a long history in the social sciences. 
+The most common form of 
+aggregation conducted by national statistical agencies collecting data about citizens 
+is 'flattening': converting data from `long' to `flat' form. This involves involves a) converting all 
+variables into discrete categories (e.g.~an individual with an income of £13,000 per year
+would be allocated to band of £10,000 to £15,000 per year), b) assigning a column to each category and c) assigning 
+integer counts to cells in each column (Fig. 1). Each row in this aggregated form can 
+represent the entire dataset or subsets thereof. (Geographical aggregation – one row 
+per zone – is the most common form of aggregation, but any subsets, from social class, 
+time period or other \emph{cross-tablulations} of the dataset can be used).
+
+The main advantage of 'flat' data is that it can summarise information about a very large number of individuals
+in a small number of rows. Often, such flattened datasets are the only format in which 
+statistical agencies make large datasets (e.g. the National Census) available, 
+to save storage space, ease data analysis and ensure the anonymity and unidentifiability of survey respondents.
+The main disadvantage is that the process of flattening is almost always associated with data loss: we do 
+not know from a flat dataset if the hypothetical individual mentioned above earns \pounds10,000, \pounds15,000 or 
+anywhere in between. Also, when flattening is associated with geographical aggregation, there is usually
+a loss of geographical resolution: instead of knowing the person's full postcode from the full dataset, we 
+may only be able to pin them down to a relatively large administrative zone such as a Local Authority in the UK context
+in the flattened dataset.
+
+Both types of data representation are common in the physical sciences, although the raw data 
+is usually available in long-form. In the social sciences, by contrast, the long format is often unavailable. 
+As indicated above, this can be attributed to the long history of and confidentiality 
+issues surrounding officially collected survey data. National Census datasets --- in which characteristics of 
+every individual are recorded --- and some of the best datasets in social science are only available 
+in flat form, however, posing major challenges to researchers in the sciences. 
+
+A related long-standing research problem especially prevalent in geography and regional science
+is the scale of analysis. There is often a trade-off between the quality and resolution 
+of the data, which can result in a compromise between detail and accuracy of results 
+\citep{ballas2003microsimulation-30-years}. A common scenario facing researchers investigating 
+a spatial problem is being presented with two datasets: one long aspatial 
+survey table where each row represents the characteristics of an individual --- such as
+age, sex, employment status and income --- and another of `flat', geographically aggregated 
+dataset containing count data for each category. As presented in Fig. 1, flat datasets are
+are wider and shorter, containing multiple columns for each variable from the raw dataset.
+Most flat datasets contain little or no \emph{cross tabulation}
+However, in most cases a combination of the information in both datasets is needed to 
+address policy-relevant questions (e.g. what is the total number of unemployed people 
+in each geographical area who at the same time have a university degree, 
+are female and 22 years old?)
+
+One approach to deal with this problem is through the estimation of small area microdata by combining the small area data with national survey data. The result of this process of population synthesis (in its 'long' form) is a table in which rows represent each individual in the study region, with an additional column indicating the area of residence (Table 1).
+\section{IPF: theory and applications}
+\section{Evaluation techniques}
+\section{Input data}
+\section{Method: model experiments}
+\section{Results}
+\section{Conclusions}
+\bibliographystyle{model2-names.bst}
+\bibliography{~/Documents/Microsimulation.bib}
 
 \end{document}

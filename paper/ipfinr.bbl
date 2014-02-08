@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Inproceedings
+\bibitem[{Ballas and Clarke(2003)}]{ballas2003microsimulation-30-years}
+\bibinfo{author}{Ballas, D.}, \bibinfo{author}{Clarke, G.P.},
+  \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{{Microsimulation and regional science: 30 years of
+  spatial microsimulation of populations}}, in: \bibinfo{booktitle}{50th Annual
+  North American Meeting of the Regional Science Association, Philadelphia,
+  USA}, pp. \bibinfo{pages}{19--22}.
+
+\end{thebibliography}

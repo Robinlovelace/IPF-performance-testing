@@ -1,0 +1,38 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{natbib}
+
+%opening
+\title{The performance of Iterative Proportional Fitting for spatial microsimulation: applying new tests to an old technique}
+\author{Robin Lovelace}
+
+\begin{document}
+
+\maketitle
+
+\section{IPF: theory and applications}
+\section{Evaluation techniques}
+
+To verify the integrity of any model, it is necessary to compare its outputs 
+with empirical observations or prior expectations gleaned from theory. 
+The same principles apply to spatial microsimulation, which can be evaluated using
+both internal and \emph{external} validation methods \citep{Edwards2009}. 
+\emp{Internal validation} is the process whereby
+the aggregate-level outputs of spatial microsimulation are compared with
+the input constraint variables. Internal validation typically tackle such issues 
+as ``do the simulated populations in each area 
+microdata match the total populations implied by the constrain variables?''
+and ``what is the level of correspondance between the cell values of different 
+attributes in the aggregate input data and the aggregated results of spatial microsimulation?''
+As we shall see below, ideally we woul
+ 
+External validation is the process whereby the variables that are being estimated are compared to data from another source, external to the estimation process, so the output dataset is compared with another known dataset for those variables.
+
+\section{Input data}
+\section{Method: model experiments}
+\section{Results}
+\section{Conclusions}
+\bibliographystyle{model2-names.bst}
+\bibliography{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib}
+
+\end{document}

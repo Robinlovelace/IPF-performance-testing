@@ -46,6 +46,10 @@ mode=
 open=false
 order=-1
 
+[item:ipfinr.tex]
+column=97
+line=233
+
 [item:ipflib.bib]
 archive=true
 column=0
@@ -59,3 +63,7 @@ order=-1
 [view-settings,view=0,item:eval-techs.tex]
 CursorColumn=0
 CursorLine=32
+
+[view-settings,view=0,item:ipfinr.tex]
+CursorColumn=97
+CursorLine=233

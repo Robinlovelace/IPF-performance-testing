@@ -1,7 +1,7 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage{natbib}
-
+\usepackage{cleveref}
 %opening
 \title{The performance of Iterative Proportional Fitting for spatial microsimulation: applying new tests to an old technique}
 \author{Robin Lovelace}
@@ -161,14 +161,158 @@ The longest-established and most straight-forward of these is Iterative Proporti
 
 
 \section{IPF: theory and applications}
-Iterative Proportional Fitting has a long history in Statistics  the social
-sciences (especially in Economics and Geography) for the adjustment of statistical tables to fit known margins.
-The method is also known as matrix raking or scaling, biproportional fitting, RAS, and entropy maximising.
-There are a number of texts discussing the method in a mathematical formal way in some detail (Deming and Stephan 1940; Fienberg 1970; Wong 1992; Johnston & Pattie, 1993; Mosteller, 1968, Pritchard and Miller, 2012). A relatively succinct and simple way to present the method formally is provided by Birkin and Clarke (1988) % described in origin; rethink this...
+Iterative Proportional Fitting has a long history in Statistics and the social
+sciences (especially in Economics and Geography).
+In statistical language, IPF is used to estimate the values of internal
+cells in a cross-tabulated table to fit known margins.
+The method is also known as matrix raking or scaling,
+biproportional fitting, RAS, and entropy maximising.
+There are a number of texts discussing the method in a mathematical formal
+way in some detail (for example \citealp{Mosteller1968, Fienberg1970, Pritchard2012}).
+\citep{Birkin1988} provide a succinct presentation of the
+mathematics of IPF and their work is the foundation of
+the work presented here...% described in origin; rethink this...???
+
 \section{Evaluation techniques}
+
+To verify the integrity of any model, it is necessary to compare its outputs
+with empirical observations or prior expectations gleaned from theory.
+The same principles apply to spatial microsimulation, which can be evaluated using
+both internal and \emph{external} validation methods \citep{Edwards2009}.
+\emph{Internal validation} is the process whereby
+the aggregate-level outputs of spatial microsimulation are compared with
+the input constraint variables. Internal validation typically tackle such issues
+as ``do the simulated populations in each area
+microdata match the total populations implied by the constrain variables?''
+and ``what is the level of correspondance between the cell values of different
+attributes in the aggregate input data and the aggregated results of spatial microsimulation?''
+As we shall see below, ideally we would hope for a perfect fit between the input
+and output datasets during internal evalutation.
+\emph{External validation} is the process whereby the variables that are
+being estimated are compared to data from another source,
+external to the estimation process, so the output dataset is compared with
+another known dataset for those variables.
+%... ?
+
+This section outlines the evaluation techniques that are commonly used in the
+field, with a strong focus on internal validation. The options for external
+validation are heavily context dependent so must generally be decided on a
+case-by-case basis, and are mentioned in passing with a focus on general principles
+rather than specific advice. The methods are presented in ascending order of complexity
+and roughly descending order of frequency of use, ranging from Pearson's coefficient of
+correlation to entropy based measures. Before these methods are described, it is
+worth stating the the purpose of this section is not to find the `best' evaluation metric:
+each has advantages and disadvantages, the importance of which will vary depending on the
+nature of the research. A final point is that the use of a variety of techniques in this paper
+is of interest in itself. The high degree of correspondence between them (presented in \cref{cresults}),
+suggests that researchers need only to present one or two metrics (but should
+perhaps try more, for corroboration) to establish relative levels of goodness of fit between
+different model configurations.
+
+\subsection{Scatter plots and Pearson's coefficient of correlation}
+A scatter plot of cell counts for each category for the original and simulated variables is
+a basic but very useful preliminary diagnostic tool in spatial microsimulation
+\citep{Ballas2005;Edwards2009}.
+In addition marking the points, depending on the
+variable and category % have these been defined?
+which they represent, can help identify which variables are particularly problematic,
+aiding the process of improving faulty code (sometimes referred to as `debugging').
+
+In these scatter plots each data point represents a single zone-category
+combination (e.g. 16-25 year old female in zone 001), with the x axis value corresponding
+to the number of individuals of that description in the input constraint table.
+The y value corresponds to the
+aggregated count of individuals in the same category in the aggregated
+(flat) representation of the spatial microdata output from the model. % have we defined spatial microdata?
+This stage can be conducted either before or after \emph{integerisation}
+(more on this below). As taught in basic statistics courses, the closer the points to the
+1:1 (45 degree, assuming the axes have the same scale) line, the better the fit.
+
+Pearson's coefficient of correlation (henceforth Pearson's $r$) is a quantitative
+indicator of how much deviation there is from this ideal 1:1 line. It varies from 0 to 1,
+and in this context reveals how closely the simulated values fit the actual (census) data.
+An $r$ value of 1 represents a perfect fit; an $r$ value close to zero suggests no correspondance
+between then constraints and simulated outputs (i.e. that the model has failed).
+We would expect to see very high coefficient of determination for
+internal validation (the constraint) and strong
+positive correlation between target variables that have been estimated and
+external datasets (e.g. income).
+% However, regression analysis does not give any information about the fit of the simulated data to the ‘ideal’ line (i.e. where y  =  x and the simulated data is the same as the actual data). Rather, R 2 expresses the fit of the data to the ‘best fit’ line through that data. That is, the coefficient of determination is providing information about precision, not accuracy (Edwards and Tanton, 2013).
+
+% One way to do this is with a t test. With a spatial microsimulation model validation, the data are paired (given we are comparing simulated with actual data), thus an equal variance 2-tailed t test can be used to determine if there is any significant difference between the two datasets (i.e. simulated and actual). Thus, if the simulation is robust, we would expect to see no significant differences between the simulated and actual values for the input variables (and estimated/output variables, if known data are available). This enables the model accuracy to be assessed, as opposed to simply its precision.
+
+\subsection{Standard error around identity (SEI)}
+here SEI is the standard error around identity, y are the estimated values for
+each area, y rel are the reliable estimates for each area from a census or other
+data source and y rel is the mean estimate for all areas where reliable data are available.
+This estimate has been used in validation by both Ballas and Tanton (see Ballas et al. 2007; Tanton et al. 2011).
+
+\subsection{Total Absolute and Standardized Error (TAE and SAE)}
+The SAE addresses this issue by using the population size as the denominator,
+ but generally, authors seem to use total population, rather than the population
+for that categorization of the variable, which may be deemed to understate the size
+of the errors. Also, this measure does not provide any information on whether any
+ differences are statistically significant (Edwards and Tanton, 2013).
+
+\subsection{Z scores}
+Here, the evaluation mainly takes place at the cell level (for a single constraint in a single area).
+However, there should also be attention for the overall picture like spatial concentration.
+
+% Spatial indicators etc??? Add equations to above methods soooon
+
 \section{Input data}
+Three input datasets form the basis of the scenarios tested in this paper,
+`simple', `small-area' and `sheffield'. Each consists of a set of aggregate
+constraints and corresponding individual-level survey tables.
+The latter are anonymous and have been `scrambled' to enable their
+publication on the internet. This enables the results to be replicated by others,
+without breaching the user licenses of the data.
+To this end, all the input data (and code) used to generate the results reported
+in the paper are available online on the code-sharing site GitHub.
+The simplest scenario consists of 6 zones which must be populated by a
+sample survey dataset of only five individuals, constrained by two variables.
+This scenario is purely hypothetical and is used to represent the IPF procedure
+and the tests in the simplest possible terms. Its small size allows the entirety
+of the input data to be viewed in a couple of tables that fit on a single page
+(see \cref{t1} and \cref{t2}). As with all data used in this paper, these tables can be
+viewed and downloaded online.
+
+\begin{table}[htbp]
+\caption{Individual-level data for the simple scenario. Available on github from here.}
+\begin{tabular}{rrl}
+
+\multicolumn{1}{l}{Id} & \multicolumn{1}{l}{Age} & Sex \\
+1 & 59 & m \\
+2 & 54 & m \\
+3 & 35 & m \\
+4 & 73 & f \\
+5 & 49 & f \\
+\end{tabular}
+\label{t1}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Constraint variables for the simple scenario, also available online.}
+\begin{tabular}{rrrrr}
+
+\multicolumn{1}{l}{} & \multicolumn{1}{c}{Age constraint} & \multicolumn{1}{l}{} & \multicolumn{1}{c}{Sex constraint} & \multicolumn{1}{l}{} \\
+\multicolumn{1}{l}{} & \multicolumn{ 2}{l}{16 – 49} & \multicolumn{ 2}{l}{m} \\
+1 & 8 & 4 & 6 & 6 \\
+2 & 2 & 8 & 4 & 6 \\
+3 & 7 & 4 & 3 & 8 \\
+4 & 5 & 4 & 7 & 2 \\
+5 & 7 & 3 & 6 & 4 \\
+6 & 5 & 3 & 2 & 6 \\
+\end{tabular}
+\label{t2}
+\end{table}
+
+
+
 \section{Method: model experiments}
 \section{Results}
+\label{cresults}
+
 \section{Conclusions}
 \bibliographystyle{model2-names.bst}
 \bibliography{/home/robin/Documents/powerstarrefs/Microsimulation.bib}

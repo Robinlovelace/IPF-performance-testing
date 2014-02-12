@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ipfinr.aux
 The style file: model2-names.bst.bst
 Database file #1: /home/robin/Documents/powerstarrefs/Microsimulation.bib.bib
-You've used 11 entries,
+Warning--I didn't find a database entry for "Ballas2005;Edwards2009"
+You've used 12 entries,
             2761 wiz_defined-function locations,
-            678 strings with 7116 characters,
-and the built_in function-call counts, 7342 in all, are:
-= -- 608
-> -- 253
-< -- 13
-+ -- 96
-- -- 85
-* -- 828
-:= -- 1077
-add.period$ -- 30
-call.type$ -- 11
-change.case$ -- 84
-chr.to.int$ -- 11
-cite$ -- 11
-duplicate$ -- 504
-empty$ -- 517
-format.name$ -- 128
-if$ -- 1382
+            689 strings with 7392 characters,
+and the built_in function-call counts, 7942 in all, are:
+= -- 661
+> -- 271
+< -- 14
++ -- 103
+- -- 91
+* -- 895
+:= -- 1167
+add.period$ -- 33
+call.type$ -- 12
+change.case$ -- 91
+chr.to.int$ -- 12
+cite$ -- 12
+duplicate$ -- 544
+empty$ -- 559
+format.name$ -- 139
+if$ -- 1493
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 102
-newline$ -- 62
-num.names$ -- 48
-pop$ -- 107
+missing$ -- 110
+newline$ -- 67
+num.names$ -- 52
+pop$ -- 115
 preamble$ -- 1
-purify$ -- 70
+purify$ -- 76
 quote$ -- 0
-skip$ -- 184
+skip$ -- 197
 stack$ -- 0
-substring$ -- 373
-swap$ -- 432
+substring$ -- 409
+swap$ -- 465
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 96
+type$ -- 105
 warning$ -- 0
-while$ -- 58
+while$ -- 63
 width$ -- 0
-write$ -- 164
+write$ -- 178
+(There was 1 warning)

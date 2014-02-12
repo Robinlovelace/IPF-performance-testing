@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{12}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -45,6 +45,15 @@
   \bibinfo{booktitle}{Spatial Microsimulation: A Reference Guide for Users}.
   \bibinfo{publisher}{Springer}, \bibinfo{address}{Berlin, Heidelberg}.
   chapter~\bibinfo{chapter}{16}, pp. \bibinfo{pages}{259--273}.
+%Type = Article
+\bibitem[{Edwards and Clarke(2009)}]{Edwards2009}
+\bibinfo{author}{Edwards, K.L.}, \bibinfo{author}{Clarke, G.P.},
+  \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{{The design and validation of a spatial
+  microsimulation model of obesogenic environments for children in Leeds, UK:
+  SimObesity.}}
+\newblock \bibinfo{journal}{Social science \& medicine} \bibinfo{volume}{69},
+  \bibinfo{pages}{1127--34}.
 %Type = Article
 \bibitem[{Fienberg(1970)}]{Fienberg1970}
 \bibinfo{author}{Fienberg, S.}, \bibinfo{year}{1970}.

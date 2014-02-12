@@ -131,21 +131,46 @@ rather than as categorical count data, in which there is always data loss.
 For example individual behaviour could simulate traffic, migration or the geographical distribution of future demand for healthcare.
 \end{itemize}
 
-A potential downside of spatial microdata is that it can provides a misleading impression about the
+% A potential downside of spatial microdata is that it can provide a misleading impression about the 
+% quality and detail of the input data. It is important to remember that spatial microdata generated 
+% in this way through spatial microsimulation are only as good as the constraint variables and the 
+% extent to which the national dataset is representative of the zones in the study area.
 
+These benefits have not gone unnoticed by the spatial modelling community.
+Spatial microsimulation is now more than a methodology, and
+can be considered as a research field in its
+own right, with a growing body of literature, methods and results \citep{Tanton2013}.
+In tandem with these methodological developments, a growing number of applied studies
+has emerged to take advantage of the new possibilities opened up by such small area individual-level data,
+with applications as diverse as the location of health services \citep{Tomintz2008} to the
+analysis of commuting \citep{Lovelace2014-jtg}.
+Various strategies for generating small area microdata are available,
+as described in recent overviews on the subject \citep{Tanton2013, Ballas2013-4policy-analysis, Hermes2012a}.
+However, it is not always clear which one is most appropriate,
+as highlighted in the conclusions of a recent Reference Guide to spatial microsimulation
+\citep[p~270]{Clarke2013-concs}:
+``It would be desirable if the spatial microsimulation community were able to continue to
+analyse which of the various reweighting/synthetic reconstruction techniques is most accurate
+--- or to identify whether one approach is superior for some applications while another
+approach is to be preferred for other applications''.
 
+The longest-established and most straight-forward of these is Iterative Proportional Fitting (IPF), the performance of which is the subject of this paper...
 
 
 
 
 
 \section{IPF: theory and applications}
+Iterative Proportional Fitting has a long history in Statistics  the social
+sciences (especially in Economics and Geography) for the adjustment of statistical tables to fit known margins.
+The method is also known as matrix raking or scaling, biproportional fitting, RAS, and entropy maximising.
+There are a number of texts discussing the method in a mathematical formal way in some detail (Deming and Stephan 1940; Fienberg 1970; Wong 1992; Johnston & Pattie, 1993; Mosteller, 1968, Pritchard and Miller, 2012). A relatively succinct and simple way to present the method formally is provided by Birkin and Clarke (1988) % described in origin; rethink this...
 \section{Evaluation techniques}
 \section{Input data}
 \section{Method: model experiments}
 \section{Results}
 \section{Conclusions}
 \bibliographystyle{model2-names.bst}
-\bibliography{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib}
+\bibliography{/home/robin/Documents/powerstarrefs/Microsimulation.bib}
 
 \end{document}

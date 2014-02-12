@@ -105,28 +105,51 @@ geographically aggregated (flat) dataset.
 
 Spatial microsimulation tackles this problem by simulating
 the individuals within each administrative zone. The most detailed output of this process of 
-spatial microsimulation is `spatial microdata', a long table of individuals with  (table 1). 
-small area microdata 
-by combining the small area data with national survey data. The result of this process 
-of population synthesis (in its long % have we already defined long?
- form --- it can also be represented in a flat table of counts)
- is a table in which rows represent each 
-individual in the study region, with an additional column indicating the area of residence (Table 1).
+spatial microsimulation is `spatial microdata', a long table of individuals with 
+associate attributes and weights for each zone (table 1). 
+Because these individuals correspond to observations in the survey dataset,
+the spatial microdata can be stored with only 3 columns: person identification number (ID), 
+zone and weight. Weights are critical to spatial microdata generated in this way, as they 
+determine how representative each individual is of each zone. Thus, an even more compact way 
+of storing spatial microdata taken from a single dataset is as a `weight matrix' (table 2). 
+% the same dataset can be stored using only two variables:  
+% small area microdata 
+% by combining the small area data with national survey data. The result of this process 
+% of population synthesis (in its long % have we already defined long?
+%  form --- it can also be represented in a flat table of counts)
+%  is a table in which rows represent each 
+% individual in the study region, with an additional column indicating the area of residence (Table 1).
 
 Representing the data in this form offers a number of advantages (Clarke and Holm, 1987). These include:
 \begin{itemize}
  \item The ability to investigate intra-zone variation (by analysing a the variable after subsetting 
 a single area from the data frame),and inter-zone variation in the same dataset.
-\item Cross-tabulations can be created for any combination of variables (e.g. age and employment status):
- ().
-\item
-\item
+\item Cross-tabulations can be created for any combination of variables (e.g. age and employment status).
+\item The presentation of continuous variables such as income as real numbers, 
+rather than as categorical count data, in which there is always data loss.
+\item The data is in a form that is ready to be passed into an individual-level model.
+For example individual behaviour could simulate traffic, migration or the geographical distribution of future demand for healthcare.
 \end{itemize}
 
+% A potential downside of spatial microdata is that it can provide a misleading impression about the 
+% quality and detail of the input data. It is important to remember that spatial microdata generated 
+% in this way through spatial microsimulation are only as good as the constraint variables and the 
+% extent to which the national dataset is representative of the zones in the study area.
+
+These benefits have not gone unnoticed by the spatial modelling community.
+Spatial microsimulation is now more than a methodology, and
+can be considered as a research field in its
+own right, with a growing body of literature, methods and results \citep{Tanton2013}.
+In tandem with these methodological developments, a growing number of applied studies
+has emerged to take advantage of the new possibilities opened up by such small area individual-level data,
+with applications as diverse as the location of health services \citep{Tomintz2008} to the
+analysis of commuting \citep{Lovelace2014-jtg}.
+Various strategies for generating small area microdata are available,
+as described in recent overviews on the subject \citep{Tanton2013, Ba} see Tanton and Edwards, 2012; Ballas et al., 2013; Hermes and Poulsen, 2012; Lovelace and Ballas, 2013) . However, it is not always clear which one is most appropriate: “It would be desirable if the spatial microsimulation community were able to continue to analyse which of the various reweighting/synthetic reconstruction techniques is most accurate – or to identify whether one approach is superior for some applications while another approach is to be preferred for other applications” (Clarke and Harding, p. 270). The longest-established and most straight-forward of these is Iterative Proportional Fitting (IPF), the performance of which is the subject of this paper...
 
 
-The presentation of continuous variables such as income as real numbers, rather than as categorical count data, in which there is always data loss.
-The data is in a form that is ready to be passed into an individual-level model. For example individual behaviour could simulate traffic, migration or the geographical distribution of future demand for healthcare.
+
+
 
 
 \section{IPF: theory and applications}
@@ -136,6 +159,6 @@ The data is in a form that is ready to be passed into an individual-level model.
 \section{Results}
 \section{Conclusions}
 \bibliographystyle{model2-names.bst}
-\bibliography{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib}
+\bibliography{/home/robin/Documents/powerstarrefs/Microsimulation.bib}
 
 \end{document}

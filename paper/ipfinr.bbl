@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{11}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -6,6 +6,20 @@
 \providecommand{\eprint}[2][]{\url{#2}}
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Incollection
+\bibitem[{Ballas et~al.(2013)Ballas, Clarke, Hynes, Lennon, Morrissey and
+  Donoghue}]{Ballas2013-4policy-analysis}
+\bibinfo{author}{Ballas, D.}, \bibinfo{author}{Clarke, G.},
+  \bibinfo{author}{Hynes, S.}, \bibinfo{author}{Lennon, J.},
+  \bibinfo{author}{Morrissey, K.}, \bibinfo{author}{Donoghue, C.O.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{{A Review of Microsimulation for Policy Analysis}},
+  in: \bibinfo{editor}{O'Donoghue, C.}, \bibinfo{editor}{Ballas, D.},
+  \bibinfo{editor}{Clarke, G.}, \bibinfo{editor}{Hynes, S.},
+  \bibinfo{editor}{Morrissey, K.} (Eds.), \bibinfo{booktitle}{Spatial
+  Microsimulation for Rural Policy Analysis}. \bibinfo{publisher}{Springer
+  Berlin Heidelberg}, \bibinfo{address}{Berlin, Heidelberg}. Advances in
+  Spatial Science. chapter~\bibinfo{chapter}{3}, pp. \bibinfo{pages}{35--54}.
 %Type = Inproceedings
 \bibitem[{Ballas and Clarke(2003)}]{ballas2003microsimulation-30-years}
 \bibinfo{author}{Ballas, D.}, \bibinfo{author}{Clarke, G.P.},
@@ -14,5 +28,76 @@
   spatial microsimulation of populations}}, in: \bibinfo{booktitle}{50th Annual
   North American Meeting of the Regional Science Association, Philadelphia,
   USA}, pp. \bibinfo{pages}{19--22}.
+%Type = Article
+\bibitem[{Birkin and Clarke(1988)}]{Birkin1988}
+\bibinfo{author}{Birkin, M.}, \bibinfo{author}{Clarke, M.},
+  \bibinfo{year}{1988}.
+\newblock \bibinfo{title}{{SYNTHESIS -- a synthetic spatial information system
+  for urban and regional analysis: methods and examples}}.
+\newblock \bibinfo{journal}{Environment and Planning A} \bibinfo{volume}{20},
+  \bibinfo{pages}{1645--1671}.
+%Type = Incollection
+\bibitem[{Clarke and Harding(2013)}]{Clarke2013-concs}
+\bibinfo{author}{Clarke, G.}, \bibinfo{author}{Harding, A.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{{Conclusions and Future Research Directions}}, in:
+  \bibinfo{editor}{Tanton, R.}, \bibinfo{editor}{Edwards, K.} (Eds.),
+  \bibinfo{booktitle}{Spatial Microsimulation: A Reference Guide for Users}.
+  \bibinfo{publisher}{Springer}, \bibinfo{address}{Berlin, Heidelberg}.
+  chapter~\bibinfo{chapter}{16}, pp. \bibinfo{pages}{259--273}.
+%Type = Article
+\bibitem[{Fienberg(1970)}]{Fienberg1970}
+\bibinfo{author}{Fienberg, S.}, \bibinfo{year}{1970}.
+\newblock \bibinfo{title}{{An iterative procedure for estimation in contingency
+  tables}}.
+\newblock \bibinfo{journal}{The Annals of Mathematical Statistics}
+  \bibinfo{volume}{41}, \bibinfo{pages}{907--917}.
+%Type = Article
+\bibitem[{Hermes and Poulsen(2012)}]{Hermes2012a}
+\bibinfo{author}{Hermes, K.}, \bibinfo{author}{Poulsen, M.},
+  \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{{A review of current methods to generate synthetic
+  spatial microdata using reweighting and future directions}}.
+\newblock \bibinfo{journal}{Computers, Environment and Urban Systems}
+  \bibinfo{volume}{36}, \bibinfo{pages}{281--290}.
+%Type = Article
+\bibitem[{Lovelace et~al.(2014)Lovelace, Ballas and Watson}]{Lovelace2014-jtg}
+\bibinfo{author}{Lovelace, R.}, \bibinfo{author}{Ballas, D.},
+  \bibinfo{author}{Watson, M.}, \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{{A spatial microsimulation approach for the analysis
+  of commuter patterns: from individual to regional levels}}.
+\newblock \bibinfo{journal}{Journal of Transport Geography}
+  \bibinfo{volume}{34}, \bibinfo{pages}{282--296}.
+%Type = Article
+\bibitem[{Mosteller(1968)}]{Mosteller1968}
+\bibinfo{author}{Mosteller, F.}, \bibinfo{year}{1968}.
+\newblock \bibinfo{title}{{Association and estimation in contingency tables}}.
+\newblock \bibinfo{journal}{Journal of the American Statistical Association}
+  \bibinfo{volume}{63}, \bibinfo{pages}{1--28}.
+%Type = Article
+\bibitem[{Pritchard and Miller(2012)}]{Pritchard2012}
+\bibinfo{author}{Pritchard, D.R.}, \bibinfo{author}{Miller, E.J.},
+  \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{{Advances in population synthesis: fitting many
+  attributes per agent and fitting to household and person margins
+  simultaneously}}.
+\newblock \bibinfo{journal}{Transportation} \bibinfo{volume}{39},
+  \bibinfo{pages}{685--704}.
+%Type = Book
+\bibitem[{Tanton and Edwards(2013)}]{Tanton2013}
+\bibinfo{author}{Tanton, R.}, \bibinfo{author}{Edwards, K.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{{Spatial Microsimulation: A Reference Guide for
+  Users}}.
+\newblock \bibinfo{publisher}{Springer}.
+%Type = Article
+\bibitem[{Tomintz et~al.(2008)Tomintz, Clarke and Rigby}]{Tomintz2008}
+\bibinfo{author}{Tomintz, M.N.M.}, \bibinfo{author}{Clarke, G.P.},
+  \bibinfo{author}{Rigby, J.E.J.}, \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{{The geography of smoking in Leeds: estimating
+  individual smoking rates and the implications for the location of stop
+  smoking services}}.
+\newblock \bibinfo{journal}{Area} \bibinfo{volume}{40},
+  \bibinfo{pages}{341--353}.
 
 \end{thebibliography}

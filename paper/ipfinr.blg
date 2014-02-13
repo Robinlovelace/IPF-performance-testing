@@ -1,48 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2013)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ipfinr.aux
 The style file: model2-names.bst.bst
-Database file #1: /home/robin/Documents/powerstarrefs/Microsimulation.bib.bib
-Warning--I didn't find a database entry for "Ballas2005;Edwards2009"
-You've used 12 entries,
+Database file #1: /nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib.bib
+Warning--I didn't find a database entry for ""
+You've used 13 entries,
             2761 wiz_defined-function locations,
-            689 strings with 7392 characters,
-and the built_in function-call counts, 7942 in all, are:
-= -- 661
-> -- 271
+            695 strings with 7609 characters,
+and the built_in function-call counts, 8748 in all, are:
+= -- 719
+> -- 321
 < -- 14
-+ -- 103
-- -- 91
-* -- 895
-:= -- 1167
-add.period$ -- 33
-call.type$ -- 12
-change.case$ -- 91
-chr.to.int$ -- 12
-cite$ -- 12
-duplicate$ -- 544
-empty$ -- 559
-format.name$ -- 139
-if$ -- 1493
++ -- 122
+- -- 109
+* -- 999
+:= -- 1291
+add.period$ -- 36
+call.type$ -- 13
+change.case$ -- 102
+chr.to.int$ -- 13
+cite$ -- 13
+duplicate$ -- 592
+empty$ -- 603
+format.name$ -- 160
+if$ -- 1634
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 110
-newline$ -- 67
-num.names$ -- 52
-pop$ -- 115
+missing$ -- 122
+newline$ -- 72
+num.names$ -- 56
+pop$ -- 127
 preamble$ -- 1
-purify$ -- 76
+purify$ -- 86
 quote$ -- 0
-skip$ -- 197
+skip$ -- 210
 stack$ -- 0
-substring$ -- 409
-swap$ -- 465
+substring$ -- 439
+swap$ -- 513
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 105
+type$ -- 114
 warning$ -- 0
-while$ -- 63
+while$ -- 68
 width$ -- 0
-write$ -- 178
+write$ -- 192
 (There was 1 warning)

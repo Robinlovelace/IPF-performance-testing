@@ -1,7 +1,45 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage{natbib}
-\usepackage{cleveref}
+\usepackage[capitalise]{cleveref}
+\usepackage{booktabs}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{bm}
+\usepackage{xcolor}
+
+\xdefinecolor{gray}{rgb}{0.4,0.4,0.4}
+\xdefinecolor{blue}{RGB}{58,95,205}% R's royalblue3; #3A5FCD
+
+\lstset{% setup listings
+        language=R,% set programming language
+        basicstyle=\ttfamily,% basic font style
+        keywordstyle=\color{blue},% keyword style
+        commentstyle=\color{gray},% comment style
+        numberstyle=\scriptsize,% use small line numbers
+        numbersep=10pt,% space between line numbers and code
+        tabsize=3,% sizes of tabs
+        showstringspaces=false,% do not replace spaces in strings by a certain character
+        captionpos=b,% positioning of the caption below
+        breaklines=true,% automatic line breaking
+        escapeinside={(*}{*)},% escaping to LaTeX
+        fancyvrb=true,% verbatim code is typset by listings
+        extendedchars=false,% prohibit extended chars (chars of codes 128--255)
+        literate={"}{{\texttt{"}}}1{<-}{{$\bm\leftarrow$}}1{<<-}{{$\bm\twoheadleftarrow$}}1
+        {~}{{$\bm\sim$}}1{<=}{{$\bm\le$}}1{>=}{{$\bm\ge$}}1{!=}{{$\bm\neq$}}1{^}{{$^{\bm\wedge}$}}1,% item to replace, text, length of chars
+        alsoletter={.<-},% becomes a letter
+        alsoother={$},% becomes other
+        otherkeywords={!=, ~, $, \&, \%/\%, \%*\%, \%\%, <-, <<-, /},% other keywords
+        deletekeywords={c}% remove keywords
+}
+
+
+\graphicspath{{../figure/}}
+
+
+
 %opening
 \title{The performance of Iterative Proportional Fitting for spatial microsimulation: applying new tests to an old technique}
 \author{Robin Lovelace}
@@ -23,7 +61,7 @@ with little evidence of the merits of differing approaches.
 Although IPF is well described mathematically, reproducible
 examples of the algorithm, written in modern programming language, are rare in the academic literature.
 These knowledge gaps mean that answers to methodological questions must be guessed:
-Under what conditions can a 'perfect' 
+Under what conditions can a `perfect' 
 match be expected, and how can one test whether these conditions exist in the input datasets?  
 How many iterations should be used for any given application? 
 What is the impact of initial weights on the final results? 
@@ -184,10 +222,10 @@ the aggregate-level outputs of spatial microsimulation are compared with
 the input constraint variables. Internal validation typically tackle such issues
 as ``do the simulated populations in each area
 microdata match the total populations implied by the constrain variables?''
-and ``what is the level of correspondance between the cell values of different
+and ``what is the level of correspondence between the cell values of different
 attributes in the aggregate input data and the aggregated results of spatial microsimulation?''
 As we shall see below, ideally we would hope for a perfect fit between the input
-and output datasets during internal evalutation.
+and output datasets during internal evaluation.
 \emph{External validation} is the process whereby the variables that are
 being estimated are compared to data from another source,
 external to the estimation process, so the output dataset is compared with
@@ -212,7 +250,7 @@ different model configurations.
 \subsection{Scatter plots and Pearson's coefficient of correlation}
 A scatter plot of cell counts for each category for the original and simulated variables is
 a basic but very useful preliminary diagnostic tool in spatial microsimulation
-\citep{Ballas2005;Edwards2009}.
+\citep{Ballas2005c,Edwards2009}.
 In addition marking the points, depending on the
 variable and category % have these been defined?
 which they represent, can help identify which variables are particularly problematic,
@@ -231,7 +269,7 @@ This stage can be conducted either before or after \emph{integerisation}
 Pearson's coefficient of correlation (henceforth Pearson's $r$) is a quantitative
 indicator of how much deviation there is from this ideal 1:1 line. It varies from 0 to 1,
 and in this context reveals how closely the simulated values fit the actual (census) data.
-An $r$ value of 1 represents a perfect fit; an $r$ value close to zero suggests no correspondance
+An $r$ value of 1 represents a perfect fit; an $r$ value close to zero suggests no correspondence
 between then constraints and simulated outputs (i.e. that the model has failed).
 We would expect to see very high coefficient of determination for
 internal validation (the constraint) and strong
@@ -270,7 +308,7 @@ without breaching the user licenses of the data.
 To this end, all the input data (and code) used to generate the results reported
 in the paper are available online on the code-sharing site GitHub.
 The simplest scenario consists of 6 zones which must be populated by a
-sample survey dataset of only five individuals, constrained by two variables.
+sample survey dataset of only five individuals, constrained by two variables (age and sex).
 This scenario is purely hypothetical and is used to represent the IPF procedure
 and the tests in the simplest possible terms. Its small size allows the entirety
 of the input data to be viewed in a couple of tables that fit on a single page
@@ -278,43 +316,282 @@ of the input data to be viewed in a couple of tables that fit on a single page
 viewed and downloaded online.
 
 \begin{table}[htbp]
-\caption{Individual-level data for the simple scenario. Available on github from here.}
+\caption{Individual-level data for the simple scenario. Available on github from here...} % where???
+\begin{center}
 \begin{tabular}{rrl}
-
+\toprule
 \multicolumn{1}{l}{Id} & \multicolumn{1}{l}{Age} & Sex \\
+\midrule
 1 & 59 & m \\
 2 & 54 & m \\
 3 & 35 & m \\
 4 & 73 & f \\
 5 & 49 & f \\
+\bottomrule
 \end{tabular}
+\end{center}
 \label{t1}
 \end{table}
 
 \begin{table}[htbp]
-\caption{Constraint variables for the simple scenario, also available online.}
+\caption{Geographically aggregated constraint variables for the simple scenario, also available online}
+\begin{center}
 \begin{tabular}{rrrrr}
-
-\multicolumn{1}{l}{} & \multicolumn{1}{c}{Age constraint} & \multicolumn{1}{l}{} & \multicolumn{1}{c}{Sex constraint} & \multicolumn{1}{l}{} \\
-\multicolumn{1}{l}{} & \multicolumn{ 2}{l}{16 – 49} & \multicolumn{ 2}{l}{m} \\
+\toprule
+\multicolumn{1}{l}{} & \multicolumn{2}{c}{Age constraint} & \multicolumn{2}{c}{Sex constraint} \\
+\multicolumn{1}{l}{Zone} & \multicolumn{1}{c}{16--49} & \multicolumn{1}{c}{50+} & \multicolumn{1}{c}{m} & \multicolumn{1}{c}{f} \\
+\midrule
 1 & 8 & 4 & 6 & 6 \\
 2 & 2 & 8 & 4 & 6 \\
 3 & 7 & 4 & 3 & 8 \\
 4 & 5 & 4 & 7 & 2 \\
 5 & 7 & 3 & 6 & 4 \\
 6 & 5 & 3 & 2 & 6 \\
+\bottomrule
 \end{tabular}
+\end{center}
 \label{t2}
 \end{table}
 
+The next smallest input dataset, and the most commonly used scenario in the paper, 
+is `small-area'. The area constraints consist of 24 Output Areas (the smallest 
+administrative geographical unit in the UK), with an average population of 184 people aged over 16. 
+Three files describe the number of hours worked, the marital status and the tenancy of these 
+individuals (although tenancy in fact counts houses, not people): the files can be accessed 
+from the hyperlinks embedded in digital versions of the previous sentence. 
+% Add these
+A sample of these constraint variables is presented in \cref{t3} below. % aren't we putting ind. data 1st?
 
+\begin{table}[htbp]
+\caption{Sample of constraint variables from the first 5 rows of the small-area-eg input dataset.}
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+\bottomrule
+\end{tabular}
+\end{center}
+\label{t3}
+\end{table}
+
+The individual-level table that compliments these geographically aggregated count constraints 
+is taken from Understanding Society wave 1. These have been randomized to ensure anonymity
+but they are still roughly representative of real data. The table consists of 1768 rows of 
+data and is stored in R’s own space-efficient filetype (see ``ind.RData'', which must be opened in 
+R to be viewed properly). As shown in \cref{t4} below, this consists of the same 3 
+constraint variables as provided in \cref{t3} but at aggregate level, in addition to one 
+`target variable': monthly pre-tax income in pounds. 
+
+\begin{table}[htbp]
+\caption{Randomly selected sample of 5 individuals taken from the individual-level dataset.}
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+\bottomrule
+\end{tabular}
+\end{center}
+\label{t4}
+\end{table}
+
+... More here on loading-up this data.
 
 \section{Method: model experiments}
+\subsection{Baseline scenarios}
+In order to perform a wide range of model experiments, 
+in which only one factor is altered at a time, it was necessary 
+to clearly define baseline scenarios. These are model runs with sensible 
+defaults, which can be referred back to as a reference point and re-used at 
+any point in the future. The baseline ‘simple’ scenario consists of 3 iterations, 
+leading to a total of 6 constraint-iteration permutations. The results of simplest 
+baseline scenario are shown in \cref{tblresults1}. The results show that the model 
+fit improves after every iteration and every constraint in every measure of model 
+fit (except `p5', which reaches zero in the second iteration) --- $pcor$ continues to improve, 
+even though the printed value, to 6 decimal places, is indistinguishable from 1 after two complete iterations.
+
+\begin{table}[htbp]
+\caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+\bottomrule
+\end{tabular}
+\end{center}
+\label{tblresults1}
+\end{table}
+
+The baseline `small-area' scenario consists of three
+ iterations of IPF, in which all three constraints were 
+used. The results for all 9 constraint-iteration permutations 
+of this baseline scenario are illustrated in \cref{fipfinac} and %??? ref
+in the online `measures' table. These results show that IPF successfully 
+brings the simulated cell counts in-line with the census after each constraint 
+is applied and that the fit improves with each iteration (only two iterations are 
+shown here, as the fit improves very little beyond two, and to avoid clutter).
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=12cm]{ipfinac}
+ \end{center}
+\caption{IPF in action: simulated vs census zone counts for the small-area baseline scenario after each constraint (columns) and iteration (rows).}
+\label{fipfinac}
+\end{figure}
+
+The baseline `Sheffield' scenario consists of the same basic set-up, 
+but with 4 constraints. As before, the results show convergence 
+towards better model fit, although the fit does not always improve 
+from one constraint to the next (see the online `measures' table). % online???
+
+\subsection{Constraints and iterations}
+These were the simplest model experiments, requiring only
+ the reporting of iterations that had already taken place,
+ and re-arrangement of the IPF code such that constraints
+ were applied in a different order than before. 
+The re-ordered code for the `small-area' scenario, 
+for example can be seen in the script `etsim-reordered' online.
+
+\subsection{Initial weights}
+The impact of initial weights was tested in two ways: first, the impact
+ of changing a sample of one or more initial weight values by a set 
+amount was explored. Second, the impact of of the size of the initial 
+weights was tested, by running the same model experiment several times, 
+but with incrementally larger initial weights applied to a pre-determined set of individuals.
+
+\subsection{Empty cells} 
+Empty cells refer to cross-tabulations of individual-level 
+attributes that are not represented by any single individual 
+in the survey input data. An example of this would be if no female 
+in the 16 to 49 year age bracket were present in \cref{t1}. 
+The method used to find-out if empty cells exist is to first 
+select only individuals with unique characteristics 
+(in the narrow terms of the constraint variables --- of course every survey individual is unique). 
+The column totals of the categorical (binary, 0 or 1) form of this dataset are compared: 
+any categories with fewer than expected totals have missing cells. 
+
+Once the presence of empty cells is determined in the baseline scenarios, the next 
+stage is to add or subtract empty cells by adding or subtracting individuals to the 
+input data. After these changes were made, the baseline scenarios were run as before.
+
+In the ‘simple’ scenario, this simply involves removing a single individual from the 
+input data, which equates to deleting a single line of code (see `etsim-empty'). %??? online 
+The question of which unique individual to remove is solved by random sampling. 
+
+\subsection{Integerisation}
+This was the next variable that was altered, 
+following \citep{}. In the simplest scenario, the 
+initial weight of a single individual was altered 
+repeatedly, in a controlled manner. The code enabling this model experiment 
+is contained in the folder `small-area-weights' (see `etsim.R'). 
+The number of different initial weights can be controlled by the 
+parameter `num.ws' which is set to 5 as an arbitrary default. 
+Initial weights are set to k, a vector of length \verb num.ws ,
+which are by default set as a function of \verb u \ which is in term
+defined as \verb 1:num.ws :
+
+\begin{lstlisting}
+k = u/5 + 0.5 # initial weight of sample individuals for testing 
+\end{lstlisting}
+
+In this case the resultant weights are set to
+ 0.7, 0.9, 1.1, 1.3 and 1.5 for each model experiment. 
+For factors of one million, for example, 
+the above would be replaced by \lstinline !k = u * 10^6 yrm!. 
+To observe the impacts of altering the weights in this way
+the usual tests of model fit were conducted. In addition,
+the capacity of initial weights to influence an individual's 
+final weight/probability of selection was tested by tracing its
+weight into the future after each successive constraint and iteration. 
+This enabled plotting original vs simulated weights under a 
+range of conditions (\cref{cresults}).
+  
+
 \section{Results}
 \label{cresults}
 
+\subsection{Baseline scenarios}
+As expected from \cref{fipfinac} above, the correlation of 
+the baseline scenario improves over time, with each constraint 
+and from one iteration to the next. Through the course of the first 
+iteration, the correlation improves from 0.67 (the correlation between 
+the frequencies of variables in the survey dataset and their frequencies 
+in the census dataset, for each zone) to 0.9981. As illustrated in \cref{fnconscor}, 
+the marginal improvement reduces from one iteration to the next: 
+at the end of iteration 2, the correlation has improved to 0.999978.   
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=6cm]{corr-baseline}
+ \end{center}
+\caption{Improvement in goodness of fit with additional constraints and iterations, 
+as illustrated by $r$ values.}
+\label{fnconscor}
+\end{figure}
+
+\subsection{Constraints and iterations}
+As illustrated above, the number of iterations 
+required to reach a very close fit between the census
+ and simulated data is very low, with rapid reductions in
+ the marginal accuracy return on additional computing power.
+ After four iterations, the result in R is indistinguishable from 1,
+ with its default accuracy of 7 decimal places. 
+The decay in the rate of improvement with additional 
+iterations and constraints was found to super-exponential. 
+
+\subsection{Initial weights}
+It was found that initial weights had little impact on the overall simulation. 
+Taking the simplest case, a random individual (id = 228) was selected from the 
+`small area' data and his/her initial weight was set to 2 
+(instead of the default of 1). The impact of this change on the individual's 
+simulated weight decayed rapidly, tending to zero after only 5 iterations in the small-area scenario. 
+It was found that altered initial weights affect the simulated weights of all other individuals; 
+this is illustrated in \cref{ficweight}, which shows the impact on individual 228 and a randomly selected 
+individual whose initial weight was not altered, for all areas.
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=12cm]{weight-1-5-its}
+ \end{center}
+\caption{The impact of changing the initial weight of individual 228 on the simulated weights of two individuals after 5 iterations. Each of the 24 coloured lines represents a single zone.}
+\label{ficweight}
+\end{figure}
+
+\cref{ficweight} shows that changing initial weights 
+for individuals has a limited impact on the results that
+ tends to zero from one iteration to the next. 
+After iteration one the impact of a 100\% increase in the initial weight 
+of individual 228 had reduced to 0.3\%; after 3 iterations the impact was negligible. 
+The same pattern can be observed in the control individual 570, 
+although the impact is smaller and in the reverse direction. 
+The same pattern can be observed for other individuals, by altering the `analysis.min'.
+
+To analyse the impacts of changing the initial weights of multiple 
+individuals, the same experiment was conducted, but this time the initial weights were
+applied to the first five individuals. The results are illustrated in \cref{finweight},
+which shows the relationship between initial and final weights for the first two individuals
+and another two individuals 
+(randomly selected to show the impact of altering weights on other individual weights). 
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=12cm]{weights-exp-54nice2}
+ \end{center}
+\caption{Initial vs simulated weight of four individuals for a single area (zone 1).}
+\label{finweight}
+\end{figure}
+
+\cref{finweight} shows that the vast majority of the impact of altered starting weights occurs in iteration-constraint
+combinations 1.1 and 1.2, before a complete iteration has even occurred. 
+After that, the initial weights continue to have an influence, of a magnitude that cannot be 
+seen. For individual 1, the impact of a 53\% difference in initial weights (from 0.7 to 1.5) shrinks to 
+2.0\% by iteration 1.3 and to 1.1\% by iteration 2.3. 
+
+These results suggest that initial weights have a limited impact on the results of IPF, that declines rapidly with each iteration. 
+
+\subsection{Empty cells}
+\subsection{Integerisation}
+
+
 \section{Conclusions}
+
 \bibliographystyle{model2-names.bst}
-\bibliography{/home/robin/Documents/powerstarrefs/Microsimulation.bib}
+\bibliography{/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib}
 
 \end{document}

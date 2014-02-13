@@ -1,4 +1,4 @@
-\begin{thebibliography}{12}
+\begin{thebibliography}{13}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -6,6 +6,17 @@
 \providecommand{\eprint}[2][]{\url{#2}}
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Ballas et~al.(2005)Ballas, Clarke, Dorling, Eyre, Thomas and
+  Rossiter}]{Ballas2005c}
+\bibinfo{author}{Ballas, D.}, \bibinfo{author}{Clarke, G.},
+  \bibinfo{author}{Dorling, D.}, \bibinfo{author}{Eyre, H.},
+  \bibinfo{author}{Thomas, B.}, \bibinfo{author}{Rossiter, D.},
+  \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{{SimBritain: a spatial microsimulation approach to
+  population dynamics}}.
+\newblock \bibinfo{journal}{Population, Space and Place} \bibinfo{volume}{11},
+  \bibinfo{pages}{13--34}.
 %Type = Incollection
 \bibitem[{Ballas et~al.(2013)Ballas, Clarke, Hynes, Lennon, Morrissey and
   Donoghue}]{Ballas2013-4policy-analysis}

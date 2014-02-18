@@ -1,7 +1,6 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage{natbib}
-\usepackage[capitalise]{cleveref}
 \usepackage{booktabs}
 \usepackage[margin=0.9in]{geometry}
 \usepackage{graphicx}
@@ -11,6 +10,7 @@
 \usepackage{xcolor}
 
 \usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
 
 \xdefinecolor{gray}{rgb}{0.4,0.4,0.4}
 \xdefinecolor{blue}{RGB}{58,95,205}% R's royalblue3; #3A5FCD
@@ -483,10 +483,10 @@ initial weight of a single individual was altered
 repeatedly, in a controlled manner. The code enabling this model experiment 
 is contained in the folder `small-area-weights' (see `etsim.R'). 
 The number of different initial weights can be controlled by the 
-parameter `num.ws' which is set to 5 as an arbitrary default. 
-Initial weights are set to k, a vector of length \verb num.ws ,
-which are by default set as a function of \verb u \ which is in term
-defined as \verb 1:num.ws :
+parameter `num.ws' which is set to 5 as an arbitrary default.
+Initial weights are set to k, a vector of length `num.ws' which
+are by default set as a function of `u' which is in term
+defined as the sequence 1:num.ws:
 
 \begin{lstlisting}
 k = u/5 + 0.5 # initial weight of sample individuals for testing 
@@ -594,6 +594,8 @@ These results suggest that initial weights have a limited impact on the results 
 \section{Conclusions}
 
 \bibliographystyle{model2-names.bst}
-\bibliography{/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib}
+\bibliography{ipflib.bib,/home/robin/Documents/powerstarrefs/Microsimulation-ipfinr.bib}
+%/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib
+
 
 \end{document}

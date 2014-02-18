@@ -1,7 +1,6 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage{natbib}
-\usepackage[capitalise]{cleveref}
 \usepackage{booktabs}
 \usepackage[margin=0.9in]{geometry}
 \usepackage{graphicx}
@@ -9,6 +8,9 @@
 \usepackage{listings}
 \usepackage{bm}
 \usepackage{xcolor}
+
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
 
 \xdefinecolor{gray}{rgb}{0.4,0.4,0.4}
 \xdefinecolor{blue}{RGB}{58,95,205}% R's royalblue3; #3A5FCD
@@ -250,7 +252,7 @@ different model configurations.
 \subsection{Scatter plots and Pearson's coefficient of correlation}
 A scatter plot of cell counts for each category for the original and simulated variables is
 a basic but very useful preliminary diagnostic tool in spatial microsimulation
-\citep{Ballas2005;Edwards2009}.
+\citep{Ballas2005c,Edwards2009}.
 In addition marking the points, depending on the
 variable and category % have these been defined?
 which they represent, can help identify which variables are particularly problematic,
@@ -316,7 +318,7 @@ of the input data to be viewed in a couple of tables that fit on a single page
 viewed and downloaded online.
 
 \begin{table}[htbp]
-\caption{Individual-level data for the simple scenario. Available on github from here} % where???
+\caption{Individual-level data for the simple scenario. Available on github from here...} % where???
 \begin{center}
 \begin{tabular}{rrl}
 \toprule
@@ -363,7 +365,7 @@ from the hyperlinks embedded in digital versions of the previous sentence.
 A sample of these constraint variables is presented in \cref{t3} below. % aren't we putting ind. data 1st?
 
 \begin{table}[htbp]
-\caption{Sample of constraint variables from the first 5 rows of the small-area-eg input dataset}
+\caption{Sample of constraint variables from the first 5 rows of the small-area-eg input dataset.}
 \begin{center}
 \begin{tabular}{rrrrr}
 \toprule
@@ -382,7 +384,7 @@ constraint variables as provided in \cref{t3} but at aggregate level, in additio
 `target variable': monthly pre-tax income in pounds. 
 
 \begin{table}[htbp]
-\caption{Randomly selected sample of 5 individuals taken from the individual-level dataset}
+\caption{Randomly selected sample of 5 individuals taken from the individual-level dataset.}
 \begin{center}
 \begin{tabular}{rrrrr}
 \toprule
@@ -408,7 +410,7 @@ fit (except `p5', which reaches zero in the second iteration) --- $pcor$ continu
 even though the printed value, to 6 decimal places, is indistinguishable from 1 after two complete iterations.
 
 \begin{table}[htbp]
-\caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online}
+\caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
 \begin{center}
 \begin{tabular}{rrrrr}
 \toprule
@@ -431,7 +433,7 @@ shown here, as the fit improves very little beyond two, and to avoid clutter).
  \begin{center}
   \includegraphics[width=12cm]{ipfinac}
  \end{center}
-\caption{IPF in action: simulated vs census zone counts for the small-area baseline scenario after each constraint (columns) and iteration (rows)}
+\caption{IPF in action: simulated vs census zone counts for the small-area baseline scenario after each constraint (columns) and iteration (rows).}
 \label{fipfinac}
 \end{figure}
 
@@ -481,10 +483,10 @@ initial weight of a single individual was altered
 repeatedly, in a controlled manner. The code enabling this model experiment 
 is contained in the folder `small-area-weights' (see `etsim.R'). 
 The number of different initial weights can be controlled by the 
-parameter `num.ws' which is set to 5 as an arbitrary default. 
-Initial weights are set to k, a vector of length \verb num.ws ,
-which are by default set as a function of \verb u \ which is in term
-defined as \verb 1:num.ws :
+parameter `num.ws' which is set to 5 as an arbitrary default.
+Initial weights are set to k, a vector of length `num.ws' which
+are by default set as a function of `u' which is in term
+defined as the sequence 1:num.ws:
 
 \begin{lstlisting}
 k = u/5 + 0.5 # initial weight of sample individuals for testing 
@@ -516,18 +518,84 @@ in the census dataset, for each zone) to 0.9981. As illustrated in \cref{fnconsc
 the marginal improvement reduces from one iteration to the next: 
 at the end of iteration 2, the correlation has improved to 0.999978.   
 
-
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=6cm]{corr-baseline}
+ \end{center}
+\caption{Improvement in goodness of fit with additional constraints and iterations, 
+as illustrated by $r$ values.}
+\label{fnconscor}
+\end{figure}
 
 \subsection{Constraints and iterations}
+As illustrated above, the number of iterations 
+required to reach a very close fit between the census
+ and simulated data is very low, with rapid reductions in
+ the marginal accuracy return on additional computing power.
+ After four iterations, the result in R is indistinguishable from 1,
+ with its default accuracy of 7 decimal places. 
+The decay in the rate of improvement with additional 
+iterations and constraints was found to super-exponential. 
+
 \subsection{Initial weights}
+It was found that initial weights had little impact on the overall simulation. 
+Taking the simplest case, a random individual (id = 228) was selected from the 
+`small area' data and his/her initial weight was set to 2 
+(instead of the default of 1). The impact of this change on the individual's 
+simulated weight decayed rapidly, tending to zero after only 5 iterations in the small-area scenario. 
+It was found that altered initial weights affect the simulated weights of all other individuals; 
+this is illustrated in \cref{ficweight}, which shows the impact on individual 228 and a randomly selected 
+individual whose initial weight was not altered, for all areas.
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=12cm]{weight-1-5-its}
+ \end{center}
+\caption{The impact of changing the initial weight of individual 228 on the simulated weights of two individuals after 5 iterations. Each of the 24 coloured lines represents a single zone.}
+\label{ficweight}
+\end{figure}
+
+\cref{ficweight} shows that changing initial weights 
+for individuals has a limited impact on the results that
+ tends to zero from one iteration to the next. 
+After iteration one the impact of a 100\% increase in the initial weight 
+of individual 228 had reduced to 0.3\%; after 3 iterations the impact was negligible. 
+The same pattern can be observed in the control individual 570, 
+although the impact is smaller and in the reverse direction. 
+The same pattern can be observed for other individuals, by altering the `analysis.min'.
+
+To analyse the impacts of changing the initial weights of multiple 
+individuals, the same experiment was conducted, but this time the initial weights were
+applied to the first five individuals. The results are illustrated in \cref{finweight},
+which shows the relationship between initial and final weights for the first two individuals
+and another two individuals 
+(randomly selected to show the impact of altering weights on other individual weights). 
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=12cm]{weights-exp-54nice2}
+ \end{center}
+\caption{Initial vs simulated weight of four individuals for a single area (zone 1).}
+\label{finweight}
+\end{figure}
+
+\cref{finweight} shows that the vast majority of the impact of altered starting weights occurs in iteration-constraint
+combinations 1.1 and 1.2, before a complete iteration has even occurred. 
+After that, the initial weights continue to have an influence, of a magnitude that cannot be 
+seen. For individual 1, the impact of a 53\% difference in initial weights (from 0.7 to 1.5) shrinks to 
+2.0\% by iteration 1.3 and to 1.1\% by iteration 2.3. 
+
+These results suggest that initial weights have a limited impact on the results of IPF, that declines rapidly with each iteration. 
+
 \subsection{Empty cells}
 \subsection{Integerisation}
 
 
-\subsection{}
-
 \section{Conclusions}
-\bibliographystyle{model2-names.bst}
-\bibliography{/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib}
 
-\end{document}
+\bibliographystyle{model2-names.bst}
+\bibliography{ipflib.bib,/home/robin/Documents/powerstarrefs/Microsimulation-ipfinr.bib}
+%/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib
+
+
+\end{document}\\

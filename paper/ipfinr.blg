@@ -1,12 +1,13 @@
-This is BibTeX, Version 0.99d (TeX Live 2013)
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ipfinr.aux
 The style file: model2-names.bst.bst
-Database file #1: /nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib.bib
+Database file #1: ipflib.bib.bib
+Database file #2: /home/robin/Documents/powerstarrefs/Microsimulation-ipfinr.bib.bib
 Warning--I didn't find a database entry for ""
 You've used 13 entries,
             2761 wiz_defined-function locations,
-            695 strings with 7609 characters,
+            696 strings with 7608 characters,
 and the built_in function-call counts, 8748 in all, are:
 = -- 719
 > -- 321

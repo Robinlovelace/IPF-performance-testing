@@ -1,18 +1,15 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.11.26)  13 FEB 2014 16:52
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.6.20)  18 FEB 2014 00:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **ipfinr.tex
 (./ipfinr.tex
 LaTeX2e <2011/06/27>
-Babel <3.9g> and hyphenation patterns for 78 languages loaded.
-
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/base/artic
-le.cls
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/base/size1
-0.clo
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -27,47 +24,33 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/base/input
-enc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/utf8x.
-def
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/utf8x.def
 File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
 ))
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/ucs.st
-y
-Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/ucs.sty
+Package: ucs 2004/10/17 UCS: Unicode input support
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/data/u
-ni-global.def
-File: uni-global.def 2013/05/13 UCS: Unicode global data
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-global.def
+File: uni-global.def 2012/04/20 UCS: Unicode global data
 )
 \uc@secondtry=\count87
 \uc@combtoks=\toks16
 \uc@combtoksb=\toks17
 \uc@temptokena=\toks18
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/natbib/nat
-bib.sty
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip43
 \bibsep=\skip44
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count88
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/cleveref/c
-leveref.sty
-Package: cleveref 2013/03/22 v0.18.9 Intelligent cross-referencing
-Package cleveref Info: always capitalise cross-reference names on input line 73
-58.
-Package cleveref Info: always capitalise cross-reference names on input line 73
-86.
-)
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/booktabs/b
-ooktabs.sty
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \heavyrulewidth=\dimen103
 \lightrulewidth=\dimen104
@@ -87,27 +70,22 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@lastruleclass=\count92
 \@thisrulewidth=\dimen115
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/geometry/g
-eometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/graphics/k
-eyval.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks19
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/generic/oberdiek
-/ifpdf.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/generic/oberdiek
-/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/generic/ifxetex/
-ifxetex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count93
@@ -123,34 +101,27 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen123
 \Gm@dimlist=\toks20
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/graphics/g
-raphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/graphics/g
-raphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/graphics/t
-rig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/latexconfi
-g/graphics.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/pdftex-def
-/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/generic/oberdiek
-/infwarerr.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/generic/oberdiek
-/ltxcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count96
@@ -158,8 +129,7 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen124
 \Gin@req@width=\dimen125
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/fancyvrb/f
-ancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
@@ -171,8 +141,7 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 \FV@StepNumber=\count99
 \FV@OutFile=\write3
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/listings/l
-istings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count100
 \lst@gtempboxa=\box27
 \lst@token=\toks21
@@ -186,21 +155,18 @@ istings.sty
 \lst@lineno=\count105
 \lst@maxwidth=\dimen129
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/listings/l
-stmisc.sty
-File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 \c@lstnumber=\count106
 \lst@skipnumbers=\count107
 \lst@framebox=\box28
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/listings/l
-istings.cfg
-File: listings.cfg 2013/08/26 1.5b listings configuration
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
 ))
-Package: listings 2013/08/26 1.5b (Carsten Heinz)
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/tools/bm.s
-ty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup4
 \symboldletters=\mathgroup5
@@ -208,12 +174,10 @@ Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
 LaTeX Info: Redefining \bm on input line 204.
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/xcolor/xco
-lor.sty
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/latexconfi
-g/color.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -227,17 +191,14 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/hyperref/h
-yperref.sty
-Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/05/13 v6.82q Hypertext links for LaTeX
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/generic/oberdiek
-/hobsub-hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/generic/oberdiek
-/hobsub-generic.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
 Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
 Package hobsub Info: Skipping package `infwarerr' (already loaded).
@@ -276,56 +237,47 @@ Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/oberdiek/a
-uxhook.sty
-Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
-)
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/oberdiek/k
-voptions.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen130
 \Hy@linkcounter=\count108
 \Hy@pagecounter=\count109
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/hyperref/p
-d1enc.def
-File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
 )
 \Hy@SavedSpaceFactor=\count110
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/latexconfi
-g/hyperref.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Hyper figures OFF on input line 4443.
-Package hyperref Info: Link nesting OFF on input line 4448.
-Package hyperref Info: Hyper index ON on input line 4451.
-Package hyperref Info: Plain pages OFF on input line 4458.
-Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Hyper figures OFF on input line 4062.
+Package hyperref Info: Link nesting OFF on input line 4067.
+Package hyperref Info: Hyper index ON on input line 4070.
+Package hyperref Info: Plain pages OFF on input line 4077.
+Package hyperref Info: Backreferencing OFF on input line 4082.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4688.
+Package hyperref Info: Bookmarks ON on input line 4300.
 \c@Hy@tempcnt=\count111
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/url/url.st
-y
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen131
+LaTeX Info: Redefining \url on input line 4653.
 \Fld@menulength=\count112
-\Field@Width=\dimen132
-\Fld@charsize=\dimen133
-Package hyperref Info: Hyper figures OFF on input line 6295.
-Package hyperref Info: Link nesting OFF on input line 6300.
-Package hyperref Info: Hyper index ON on input line 6303.
-Package hyperref Info: backreferencing OFF on input line 6310.
-Package hyperref Info: Link coloring OFF on input line 6315.
-Package hyperref Info: Link coloring with OCG OFF on input line 6320.
-Package hyperref Info: PDF/A mode OFF on input line 6325.
-LaTeX Info: Redefining \ref on input line 6365.
-LaTeX Info: Redefining \pageref on input line 6369.
+\Field@Width=\dimen131
+\Fld@charsize=\dimen132
+Package hyperref Info: Hyper figures OFF on input line 5773.
+Package hyperref Info: Link nesting OFF on input line 5778.
+Package hyperref Info: Hyper index ON on input line 5781.
+Package hyperref Info: backreferencing OFF on input line 5788.
+Package hyperref Info: Link coloring OFF on input line 5793.
+Package hyperref Info: Link coloring with OCG OFF on input line 5798.
+Package hyperref Info: PDF/A mode OFF on input line 5803.
+LaTeX Info: Redefining \ref on input line 5843.
+LaTeX Info: Redefining \pageref on input line 5847.
 \Hy@abspage=\count113
 \c@Item=\count114
 \c@Hfootnote=\count115
@@ -333,36 +285,50 @@ LaTeX Info: Redefining \pageref on input line 6369.
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
-
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/hyperref/h
-pdftex.def
-File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/05/13 v6.82q Hyperref driver for pdfTeX
 \Fld@listcount=\count116
 \c@bookmark@seq@number=\count117
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/oberdiek/r
-erunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip45
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/listings/l
-stlang1.sty
-File: lstlang1.sty 2013/08/26 1.5b listings language file
+(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package: cleveref 2012/03/07{} v0.18.5{} Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2166.
+LaTeX Info: Redefining \cref on input line 2166.
+LaTeX Info: Redefining \Cref on input line 2166.
+LaTeX Info: Redefining \crefrange on input line 2166.
+LaTeX Info: Redefining \Crefrange on input line 2166.
+LaTeX Info: Redefining \cpageref on input line 2166.
+LaTeX Info: Redefining \Cpageref on input line 2166.
+LaTeX Info: Redefining \cpagerefrange on input line 2166.
+LaTeX Info: Redefining \Cpagerefrange on input line 2166.
+LaTeX Info: Redefining \labelcref on input line 2166.
+LaTeX Info: Redefining \labelcpageref on input line 2166.
+Package cleveref Info: `listings' support loaded on input line 2854.
+Package cleveref Info: always capitalise cross-reference names on input line 68
+87.
+Package cleveref Info: loaded `english' language definitions on input line 6907
+.
+Package cleveref Info: always capitalise cross-reference names on input line 69
+08.
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/listings/l
-stlang2.sty
-File: lstlang2.sty 2013/08/26 1.5b listings language file
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/listings/l
-stlang3.sty
-File: lstlang3.sty 2013/08/26 1.5b listings language file
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2004/09/05 1.3 listings language file
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/listings/l
-stmisc.sty
-File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2004/09/05 1.3 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 \lstFV@gtempboxa=\box29
 ) (./ipfinr.aux)
 \openout1 = `ipfinr.aux'.
@@ -382,8 +348,7 @@ LaTeX Font Info:    ... okay on input line 49.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/ucsenc
-s.def
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
 *geometry* driver: auto-detecting
@@ -420,28 +385,23 @@ File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/context/base/sup
-p-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count118
-\scratchdimen=\dimen134
+\scratchdimen=\dimen133
 \scratchbox=\box30
 \nofMPsegments=\count119
 \nofMParguments=\count120
 \everyMPshowfont=\toks22
 \MPscratchCnt=\count121
-\MPscratchDim=\dimen135
+\MPscratchDim=\dimen134
 \MPnumerator=\count122
 \makeMPintoPDFobject=\count123
 \everyMPtoPDFconversion=\toks23
-)
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/oberdiek/e
-pstopdf-base.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/oberdiek/g
-rfext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 )
 Package grfext Info: Graphics extension search list:
@@ -449,8 +409,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 452.
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/latexconfi
-g/epstopdf-sys.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
@@ -458,12 +417,10 @@ e
 \AtBeginShipoutBox=\box31
 Package hyperref Info: Link coloring OFF on input line 49.
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/hyperref/n
-ameref.sty
-Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/generic/oberdiek
-/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count125
@@ -471,7 +428,8 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 49.
 LaTeX Info: Redefining \pageref on input line 49.
 LaTeX Info: Redefining \nameref on input line 49.
- (./ipfinr.out) (./ipfinr.out)
+
+(./ipfinr.out) (./ipfinr.out)
 \@outlinefile=\write4
 \openout4 = `ipfinr.out'.
 
@@ -482,17 +440,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 52.
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/data/u
-ni-0.def
-File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
+File: uni-0.def 2012/04/20 UCS: Unicode data U+0000..U+00FF
 )
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/data/u
-ni-32.def
-File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
+File: uni-32.def 2012/04/20 UCS: Unicode data U+2000..U+20FF
 ) [1
 
-{/apps/applications/texlive/2013/1/default/2013/texmf-var/fonts/map/pdftex/updm
-ap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 130.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -500,144 +455,78 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 165.
 
 
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/base/omscm
-r.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 165.
- [2]
-
-LaTeX Warning: Reference `cresults' on page 1 undefined on input line 247.
-
-[3]
-
-LaTeX Warning: Reference `t1' on page 1 undefined on input line 317.
-
-
-LaTeX Warning: Reference `t2' on page 1 undefined on input line 317.
-
-
-LaTeX Warning: Reference `t3' on page 1 undefined on input line 365.
-
-
-LaTeX Warning: Reference `t4' on page 1 undefined on input line 382.
-
-
-LaTeX Warning: Reference `t3' on page 1 undefined on input line 383.
-
-[4]
-
-LaTeX Warning: Reference `tblresults1' on page 1 undefined on input line 407.
-
-
-LaTeX Warning: Reference `fipfinac' on page 1 undefined on input line 426.
-
-<../figure/ipfinac.png, id=168, 569.0058pt x 426.6339pt>
+ [2] [3] [4]
+<../figure/ipfinac.png, id=177, 569.0058pt x 426.6339pt>
 File: ../figure/ipfinac.png Graphic file (type png)
 
 <use ../figure/ipfinac.png>
 Package pdftex.def Info: ../figure/ipfinac.png used on input line 434.
 (pdftex.def)             Requested size: 341.43306pt x 256.00183pt.
-
-
-LaTeX Warning: Reference `t1' on page 1 undefined on input line 464.
-
-[5]
-
-LaTeX Warning: Reference `cresults' on page 1 undefined on input line 505.
-
-
-LaTeX Warning: Reference `fipfinac' on page 1 undefined on input line 512.
-
-
-LaTeX Warning: Reference `fnconscor' on page 1 undefined on input line 517.
-
-[6 <../figure/ipfinac.png (PNG copy)>]
-<../figure/corr-baseline.png, id=186, 509.905pt x 382.42876pt>
+ [5] [6 <../figure/ipfinac.png (PNG copy)>]
+<../figure/corr-baseline.png, id=197, 509.905pt x 382.42876pt>
 File: ../figure/corr-baseline.png Graphic file (type png)
 
 <use ../figure/corr-baseline.png>
 Package pdftex.def Info: ../figure/corr-baseline.png used on input line 523.
 (pdftex.def)             Requested size: 170.71652pt x 128.04002pt.
 
-
-LaTeX Warning: Reference `ficweight' on page 1 undefined on input line 547.
-
-<../figure/weight-1-5-its.png, id=187, 578.16pt x 382.3083pt>
+<../figure/weight-1-5-its.png, id=199, 578.16pt x 382.3083pt>
 File: ../figure/weight-1-5-its.png Graphic file (type png)
 
 <use ../figure/weight-1-5-its.png>
 Package pdftex.def Info: ../figure/weight-1-5-its.png used on input line 552.
 (pdftex.def)             Requested size: 341.43306pt x 225.76994pt.
 
-
-LaTeX Warning: Reference `ficweight' on page 1 undefined on input line 558.
-
-
-LaTeX Warning: Reference `finweight' on page 1 undefined on input line 569.
-
-<../figure/weights-exp-54nice2.png, id=188, 569.0058pt x 284.5029pt>
+<../figure/weights-exp-54nice2.png, id=202, 569.0058pt x 284.5029pt>
 File: ../figure/weights-exp-54nice2.png Graphic file (type png)
 
 <use ../figure/weights-exp-54nice2.png>
 Package pdftex.def Info: ../figure/weights-exp-54nice2.png used on input line 5
 76.
 (pdftex.def)             Requested size: 341.43306pt x 170.71606pt.
-
-
-LaTeX Warning: Reference `finweight' on page 1 undefined on input line 582.
-
-(./ipfinr.bbl [7 <../figure/corr-baseline.png>] [8 <../figure/weight-1-5-its.pn
-g (PNG copy)> <../figure/weights-exp-54nice2.png (PNG copy)>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 599.
+ (./ipfinr.bbl [7 <../figure/corr-baseline.png>] [8 <../figure/weight-1-5-its.p
+ng (PNG copy)> <../figure/weights-exp-54nice2.png (PNG copy)>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 601.
  [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 599.
-
-(./ipfinr.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 599.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 599.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 601.
+ (./ipfinr.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 601.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 601.
 Package rerunfilecheck Info: File `ipfinr.out' has not changed.
 (rerunfilecheck)             Checksum: 7FB9E071BEF5C384D2064CF03D7FB0A6;1378.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 599.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 601.
  ) 
 Here is how much of TeX's memory you used:
- 11576 strings out of 493308
- 177879 string characters out of 6127609
- 305076 words of memory out of 5000000
- 14851 multiletter control sequences out of 15000+600000
- 14222 words of font info for 49 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
- 29i,9n,41p,626b,1260s stack positions out of 5000i,500n,10000p,200000b,80000s
-</apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public
-/amsfonts/cmextra/cmbsy7.pfb></apps/applications/texlive/2013/1/default/2013/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></apps/applications/texlive/
-2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></apps
-/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx9.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb></apps/applications/texlive/2013/1/default
-/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></apps/applications/t
-exlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr17.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr6.pfb></apps/applications/texlive/2013/1/def
-ault/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></apps/application
-s/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf
-b></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr9.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></apps/applications/texlive/2013/1/
-default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></apps/applic
-ations/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-tt10.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmu10.pfb>
-Output written on ipfinr.pdf (9 pages, 766470 bytes).
+ 11461 strings out of 495059
+ 172531 string characters out of 3182030
+ 333184 words of memory out of 3000000
+ 14463 multiletter control sequences out of 15000+200000
+ 14222 words of font info for 49 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 29i,9n,41p,626b,1265s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmu10.pfb>
+Output written on ipfinr.pdf (9 pages, 758041 bytes).
 PDF statistics:
- 274 PDF objects out of 1000 (max. 8388607)
- 239 compressed objects within 3 object streams
+ 286 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
  57 named destinations out of 1000 (max. 500000)
  189 words of extra memory for PDF output out of 10000 (max. 10000000)
 

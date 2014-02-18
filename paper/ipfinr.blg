@@ -1,49 +1,61 @@
-This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2013)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ipfinr.aux
 The style file: model2-names.bst.bst
+I couldn't open database file /home/robin/Documents/powerstarrefs/Microsimulation-ipfinr.bib.bib
+---line 127 of file ipfinr.aux
+ : \bibdata{ipflib.bib,/home/robin/Documents/powerstarrefs/Microsimulation-ipfinr.bib
+ :                                                                                   }
+I'm skipping whatever remains of this command
 Database file #1: ipflib.bib.bib
-Database file #2: /home/robin/Documents/powerstarrefs/Microsimulation-ipfinr.bib.bib
+Warning--I didn't find a database entry for "mcfadden2006testing"
+Warning--I didn't find a database entry for "Muller2010"
+Warning--I didn't find a database entry for "blien1998entropy"
+Warning--I didn't find a database entry for "Wong1992"
+Warning--I didn't find a database entry for "Norman1999a"
+Warning--I didn't find a database entry for "Ballas2005"
+Warning--I didn't find a database entry for "johnston1985geography"
+Warning--I didn't find a database entry for "Lovelace2013-trs"
 Warning--I didn't find a database entry for ""
-You've used 13 entries,
+You've used 21 entries,
             2761 wiz_defined-function locations,
-            696 strings with 7608 characters,
-and the built_in function-call counts, 8748 in all, are:
-= -- 719
-> -- 321
-< -- 14
-+ -- 122
-- -- 109
-* -- 999
-:= -- 1291
-add.period$ -- 36
-call.type$ -- 13
-change.case$ -- 102
-chr.to.int$ -- 13
-cite$ -- 13
-duplicate$ -- 592
-empty$ -- 603
-format.name$ -- 160
-if$ -- 1634
+            768 strings with 9252 characters,
+and the built_in function-call counts, 13546 in all, are:
+= -- 1112
+> -- 497
+< -- 18
++ -- 190
+- -- 169
+* -- 1542
+:= -- 2023
+add.period$ -- 60
+call.type$ -- 21
+change.case$ -- 160
+chr.to.int$ -- 21
+cite$ -- 21
+duplicate$ -- 910
+empty$ -- 939
+format.name$ -- 248
+if$ -- 2515
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 122
-newline$ -- 72
-num.names$ -- 56
-pop$ -- 127
+missing$ -- 190
+newline$ -- 112
+num.names$ -- 88
+pop$ -- 203
 preamble$ -- 1
-purify$ -- 86
+purify$ -- 138
 quote$ -- 0
-skip$ -- 210
+skip$ -- 317
 stack$ -- 0
-substring$ -- 439
-swap$ -- 513
+substring$ -- 683
+swap$ -- 775
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 114
+type$ -- 180
 warning$ -- 0
-while$ -- 68
+while$ -- 104
 width$ -- 0
-write$ -- 192
-(There was 1 warning)
+write$ -- 302
+(There was 1 error message)

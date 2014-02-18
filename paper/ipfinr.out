@@ -1,21 +1,26 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{IPF: theory and applications}{}% 2
-\BOOKMARK [1][-]{section.3}{Evaluation techniques}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{Scatter plots and Pearson's coefficient of correlation}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{Standard error around identity \(SEI\)}{section.3}% 5
-\BOOKMARK [2][-]{subsection.3.3}{Total Absolute and Standardized Error \(TAE and SAE\)}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.4}{Z scores}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{Input data}{}% 8
-\BOOKMARK [1][-]{section.5}{Method: model experiments}{}% 9
-\BOOKMARK [2][-]{subsection.5.1}{Baseline scenarios}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.2}{Constraints and iterations}{section.5}% 11
-\BOOKMARK [2][-]{subsection.5.3}{Initial weights}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.4}{Empty cells}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.5}{Integerisation}{section.5}% 14
-\BOOKMARK [1][-]{section.6}{Results}{}% 15
-\BOOKMARK [2][-]{subsection.6.1}{Baseline scenarios}{section.6}% 16
-\BOOKMARK [2][-]{subsection.6.2}{Constraints and iterations}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.3}{Initial weights}{section.6}% 18
-\BOOKMARK [2][-]{subsection.6.4}{Empty cells}{section.6}% 19
-\BOOKMARK [2][-]{subsection.6.5}{Integerisation}{section.6}% 20
-\BOOKMARK [1][-]{section.7}{Conclusions}{}% 21
+\BOOKMARK [2][-]{subsection.1.1}{IPF translates between `flat' and `long' data formats}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{IPF in spatial microsimulation}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Applications}{section.1}% 4
+\BOOKMARK [1][-]{section.2}{IPF: theory and a worked example}{}% 5
+\BOOKMARK [2][-]{subsection.2.1}{IPF theory: a worked example}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.2}{Implementing IPF in R}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Evaluation techniques}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Scatter plots and Pearson's coefficient of correlation}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Standard error around identity \(SEI\)}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.3}{Total Absolute and Standardized Error \(TAE and SAE\)}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.4}{Z scores}{section.3}% 12
+\BOOKMARK [1][-]{section.4}{Input data}{}% 13
+\BOOKMARK [1][-]{section.5}{Method: model experiments}{}% 14
+\BOOKMARK [2][-]{subsection.5.1}{Baseline scenarios}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.2}{Constraints and iterations}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.3}{Initial weights}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.4}{Empty cells}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.5}{Integerisation}{section.5}% 19
+\BOOKMARK [1][-]{section.6}{Results}{}% 20
+\BOOKMARK [2][-]{subsection.6.1}{Baseline scenarios}{section.6}% 21
+\BOOKMARK [2][-]{subsection.6.2}{Constraints and iterations}{section.6}% 22
+\BOOKMARK [2][-]{subsection.6.3}{Initial weights}{section.6}% 23
+\BOOKMARK [2][-]{subsection.6.4}{Empty cells}{section.6}% 24
+\BOOKMARK [2][-]{subsection.6.5}{Integerisation}{section.6}% 25
+\BOOKMARK [1][-]{section.7}{Conclusions}{}% 26

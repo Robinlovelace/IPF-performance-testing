@@ -1,4 +1,5 @@
-# analysis
+# analysis.R - basic analysis file for analysing model output
+
 a.v <- as.vector(as.matrix(all.msim)) # constraints in long form, for cor
 g.v <- as.vector(as.matrix(indf[,,1,1,1])) # particular version you want
 

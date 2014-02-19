@@ -41,8 +41,6 @@
 
 \graphicspath{{../figure/}}
 
-
-
 %opening
 \title{The performance of Iterative Proportional Fitting for spatial microsimulation: applying new tests to an old technique}
 \author{Robin Lovelace}
@@ -57,7 +55,7 @@ is an established technique in Regional Science and
  has been used for a variety of purposes in the field, primary amongst these being 
 the generation of small area microdata.  
 The technique is mature, widely used and relatively straight-forward
-yet there have been few studies focussed on evaluation of it performance. 
+yet there have been few studies focussed on evaluation of its performance. 
 An additional research problem is the tendency of 
 researchers to `start from scratch', resulting in a variety ad-hock implementations,
 with little evidence of the merits of differing approaches.
@@ -73,7 +71,7 @@ This paper tackles such questions, using a systematic methodology
 based on publicly available code and input data. 
 The results confirm IPF's status as robust and widely applicable 
 method for combining areal and individual-level data and demonstrate the importance
-of various parameters determining its performace.
+of using various metrics of for determining its performace.
 We conclude with an agenda for future tests and offer more general guidance on how the 
 the method can be optimised to maximise its utility for future research.
 
@@ -81,6 +79,16 @@ Keywords: Iterative proportional fitting, spatial microsimulation, modelling
 
 JEL Code: C
 \end{abstract}
+
+\section{Notes for authors}
+Additonal papers to cite include:
+\begin{itemize}
+ \item \citet{harland2012}
+\item \citet{Smith2009}
+\item \citet{Cullinan2010}
+\item 
+\end{itemize}
+
 
 \section{Introduction}
 The aggregation of survey data has a long history in the social sciences. 
@@ -203,7 +211,21 @@ approach is to be preferred for other applications''.
 The longest-established and most straight-forward of these is Iterative Proportional Fitting (IPF), the performance of which is the subject of this paper...
 
 \subsection{Applications}
+\textbf{Dimitris and Eveline: please fill in this section}
+Applications of IPF include using it ...
 
+The application of greatest interest to regional scientists is as a method of 
+spatial microsimulation: generating individual level data allocated to specific zones...
+Papers that have used IPF in this context (or a subsitutable method such as simulated annealing)
+have explored a range of regional economic problems that purely aggregate level analyses struggle to address.
+These include:
+\begin{itemize}
+ \item using spatial microdata to analyses the wider impacts of major job losses
+at the local level \citep{Ballas2006}.
+\item an investigation into to local impacts of the marine sector in Ireland \citep{Morrissey2013a}
+\item ...
+\item ...
+\end{itemize}
 
 \section{IPF: theory and a worked example}
 Iterative Proportional Fitting has a long history in Statistics and the social
@@ -235,8 +257,9 @@ various externally given population marginals'' \citep{mcfadden2006testing}. In
 other words, and in the context of \emph{spatial} microsimulation, IPF produces
 maximum likelihood estimates for the frequency with which people appear in
 different areas. The method is also known as `matrix raking' or the RAS
-algorithm, (\citealp{Birkin1988, Muller2010,
-Simpson2005, Kalantari2008, Jirousek1995}) and has been described as one
+algorithm, 
+% (\citealp{Birkin1988, Muller2010,Simpson2005, Kalantari2008, Jirousek1995})
+ and has been described as one
 particular instance of a more general procedure of `entropy maximisation'
 \citep{Johnston1993, blien1998entropy}.
 The mathematical properties of IPF
@@ -248,12 +271,12 @@ and \citet{Norman1999a}. \citet{Wong1992} investigated the reliability of IPF
 and evaluated the importance of different factors influencing the its
 performance. Similar methodologies have since been employed by
 \citet{Mitchell2000}, \citet{Williamson2002} and
-Ballas et al.~\citeyearpar{Ballas2005c, Ballas2005}
+Ballas et al.~\citeyearpar{Ballas2005c}
 to investigate a wide range of phenomena.
 
 To illustrate how IPF works in practice, a simplified example is described below.
 This is a modified version of a simpler demonstration from
-\citet{Ballas2005}.\footnote{In \citet{Ballas2005}
+\citet{Ballas2005c}.\footnote{In \citet{Ballas2005c}
 the interaction between the age and sex constraints are assumed to be known.
 (Their equivalent of \cref{t:s2} contains data for every cell,
 not question marks.) This results in IPF converging instantly.
@@ -449,14 +472,13 @@ The above process, when applied to more categories (e.g. socio-economic class)
 and repeated iteratively until a satisfactory convergence occurs, results in a
 series of weighted microdatasets, one for each of the small areas being
 simulated. This allows for the estimation of variables whose values are not
-known at the local level (e.g. income) \citep{Ballas2005}. An issue
+known at the local level (e.g. income) \citep{Ballas2005c}. An issue
 with the results of IPF (absent from combinatorial optimisation methods),
 however, is that it results in non-integer weights: fractions of individuals
 appear in simulated areas. As described in the introduction, this is not ideal
 for certain applications. Integer weights allow the results of spatial
 microsimulation to be further processed using dynamic microsimulation and agent
 based modelling techniques \citep{Pritchard2012}.
-
 
 % A key benefit from a policy perspective is that
 % IPF and other spatial microsimultion techniques
@@ -592,7 +614,7 @@ viewed and downloaded online.
 
 \begin{table}[htbp]
 \caption{Individual-level data for the simple scenario. The file, `vailable from the GitHub in the folder 
-`\hyperref{https://github.com/Robinlovelace/IPF-performance-testing/tree/master/input-data/small-area-eg}{input-data}'} % where???
+`\href{https://github.com/Robinlovelace/IPF-performance-testing/tree/master/input-data/small-area-eg}{input-data}'} % where???
 \begin{center}
 \begin{tabular}{rrl}
 \toprule
@@ -867,9 +889,11 @@ These results suggest that initial weights have a limited impact on the results 
 
 \section{Conclusions}
 
+
 \bibliographystyle{model2-names.bst}
-\bibliography{ipflib.bib,/home/robin/Documents/powerstarrefs/Microsimulation-ipfinr.bib}
-%/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib
+\bibliography{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib, /home/robin/Documents/powerstarrefs/Microsimulation.bib}
+%/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib  desktop.bib,
+% /home/robin/Documents/powerstarrefs/Microsimulation.bib
 
 
 \end{document}

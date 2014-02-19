@@ -28,7 +28,7 @@ for (i in 1:nrow(all.msim)){
 
 for (i in 1:nrow(all.msim)){
   # while loop to iterate until the population is large enough
-  wv = 1
+  wv <- 1
   while (length(ints[[i]]) < sum(all.msim[i,])){
     wv <- wv - 0.001
     ints[[i]] <- c(ints[[i]], which(dr[,i] < wv & 

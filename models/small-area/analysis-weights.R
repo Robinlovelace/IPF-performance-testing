@@ -39,8 +39,8 @@ wf.ws <- wf[3,1,1:3,,]
 wf.ws.m <- melt(wf.ws)
 head(wf.ws.m)
 summary(wf.ws.m) # looks promising: var5 is weight
-wf.ws.m$Var2 = as.factor(wf.ws.m$Var2)
-p = ggplot(wf.ws.m[,], aes(x=Var3, y=value, colour=paste(Var2,Var1)))
+wf.ws.m$Var. <- as.factor(wf.ws.m$Var2)
+p <- ggplot(wf.ws.m[,], aes(x=Var3, y=value, colour=paste(Var2,Var1)))
 p + geom_line()
 
 ### Now do it for different individuals
@@ -51,10 +51,10 @@ wf.ws <- wf[c(1,2,ind.samp),1,1:3,,]
 wf.ws.m <- melt(wf.ws)
 head(wf.ws.m)
 summary(wf.ws.m) # looks promising: var5 is weight
-wf.ws.m$Var3 = as.factor(wf.ws.m$Var3)
-wf.ws.m$Var1 = factor(wf.ws.m$Var1)
+wf.ws.m$Var3 <- as.factor(wf.ws.m$Var3)
+wf.ws.m$Var. <- factor(wf.ws.m$Var1)
 levels(wf.ws.m$Var1) <- as.character(c(1,2,ind.samp))
-p = ggplot(wf.ws.m[,], aes(x=Var4/5 + 0.5, y=value, colour=paste(Var3,Var2)))
+p <- ggplot(wf.ws.m[,], aes(x=Var4/5 + 0.5, y=value, colour=paste(Var3,Var2)))
 p + geom_point() + geom_line() +
   xlab(label="Start weight") + ylab("Simulated weight") +
   facet_grid(facets= . ~Var1) + scale_color_discrete(name="Iteration") +

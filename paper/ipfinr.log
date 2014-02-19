@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.11.26)  18 FEB 2014 18:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.11.26)  19 FEB 2014 14:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -383,20 +383,20 @@ File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 ) (./ipfinr.aux)
 \openout1 = `ipfinr.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
 
 (/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/ucsenc
 s.def
@@ -472,7 +472,7 @@ e
 ))
 \c@lstlisting=\count124
 \AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 50.
+Package hyperref Info: Link coloring OFF on input line 48.
 
 (/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/hyperref/n
 ameref.sty
@@ -484,19 +484,27 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count125
 )
-LaTeX Info: Redefining \ref on input line 50.
-LaTeX Info: Redefining \pageref on input line 50.
-LaTeX Info: Redefining \nameref on input line 50.
+LaTeX Info: Redefining \ref on input line 48.
+LaTeX Info: Redefining \pageref on input line 48.
+LaTeX Info: Redefining \nameref on input line 48.
  (./ipfinr.out) (./ipfinr.out)
 \@outlinefile=\write4
 \openout4 = `ipfinr.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 53.
+(Font)              <12> on input line 51.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 53.
+(Font)              <8> on input line 51.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 53.
+(Font)              <6> on input line 51.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 86.
+
+(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/base/omscm
+r.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 86.
 
 (/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/data/u
 ni-0.def
@@ -510,179 +518,60 @@ File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 {/apps/applications/texlive/2013/1/default/2013/texmf-var/fonts/map/pdftex/updm
 ap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 132.
+(Font)              <7> on input line 140.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 132.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 171.
-
-
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/base/omscm
-r.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 171.
- [2]
-
-Package natbib Warning: Citation `mcfadden2006testing' on page 3 undefined on i
-nput line 234.
-
-
-Package natbib Warning: Citation `Muller2010' on page 3 undefined on input line
- 239.
-
-
-Package natbib Warning: Citation `Simpson2005' on page 3 undefined on input lin
-e 239.
-
-
-Package natbib Warning: Citation `Kalantari2008' on page 3 undefined on input l
-ine 239.
-
-
-Package natbib Warning: Citation `Jirousek1995' on page 3 undefined on input li
-ne 239.
-
-
-Package natbib Warning: Citation `Johnston1993' on page 3 undefined on input li
-ne 241.
-
-
-Package natbib Warning: Citation `blien1998entropy' on page 3 undefined on inpu
-t line 241.
-
-
-Package natbib Warning: Citation `Bishop1975' on page 3 undefined on input line
- 244.
-
-
-Package natbib Warning: Citation `Saito1992' on page 3 undefined on input line 
-246.
-
-
-Package natbib Warning: Citation `Wong1992' on page 3 undefined on input line 2
-46.
-
-
-Package natbib Warning: Citation `Norman1999a' on page 3 undefined on input lin
-e 247.
-
-
-Package natbib Warning: Citation `Wong1992' on page 3 undefined on input line 2
-47.
-
-
-Package natbib Warning: Citation `Mitchell2000' on page 3 undefined on input li
-ne 250.
-
-
-Package natbib Warning: Citation `Williamson2002' on page 3 undefined on input 
-line 250.
-
-
-Package natbib Warning: Citation `Ballas2005' on page 3 undefined on input line
- 251.
-
-
-Package natbib Warning: Citation `Ballas2005' on page 3 undefined on input line
- 256.
-
-
-Package natbib Warning: Citation `Ballas2005' on page 3 undefined on input line
- 266.
-
-
-Package natbib Warning: Citation `johnston1985geography' on page 3 undefined on
- input line 266.
-
-
-Package natbib Warning: Citation `Norman1999a' on page 3 undefined on input lin
-e 266.
-
-
-Package natbib Warning: Citation `Simpson2005' on page 3 undefined on input lin
-e 266.
-
-[3]
-
-LaTeX Warning: Reference `etae' on page 1 undefined on input line 421.
-
-[4]
-
-Package natbib Warning: Citation `Ballas2005' on page 5 undefined on input line
- 452.
-
-
-Package natbib Warning: Citation `Lovelace2013-trs' on page 5 undefined on inpu
-t line 482.
-
-
-Underfull \hbox (badness 1466) in paragraph at lines 487--487
+(Font)              <5> on input line 140.
+ [2] [3] [4] [5]
+Underfull \hbox (badness 1466) in paragraph at lines 509--509
 [][][]\OT1/cmr/m/n/8 This tu-to-rial is avail-able from Rpubs, a site ded-i-cat
 ed to pub-lish-ing R anal-y-ses that are re-pro-ducible. It
  []
 
-[5] [6] [7] <../figure/ipfinac.png, id=260, 569.0058pt x 426.6339pt>
+[6] [7] <../figure/ipfinac.png, id=324, 569.0058pt x 426.6339pt>
 File: ../figure/ipfinac.png Graphic file (type png)
 
 <use ../figure/ipfinac.png>
-Package pdftex.def Info: ../figure/ipfinac.png used on input line 708.
+Package pdftex.def Info: ../figure/ipfinac.png used on input line 730.
 (pdftex.def)             Requested size: 341.43306pt x 256.00183pt.
- [8 <../figure/ipfinac.png (PNG copy)>]
-<../figure/corr-baseline.png, id=271, 509.905pt x 382.42876pt>
+ [8] [9 <../figure/ipfinac.png (PNG copy)>]
+<../figure/corr-baseline.png, id=340, 509.905pt x 382.42876pt>
 File: ../figure/corr-baseline.png Graphic file (type png)
 
 <use ../figure/corr-baseline.png>
-Package pdftex.def Info: ../figure/corr-baseline.png used on input line 797.
+Package pdftex.def Info: ../figure/corr-baseline.png used on input line 819.
 (pdftex.def)             Requested size: 170.71652pt x 128.04002pt.
- [9]
-<../figure/weight-1-5-its.png, id=283, 578.16pt x 382.3083pt>
+ [10]
+<../figure/weight-1-5-its.png, id=351, 578.16pt x 382.3083pt>
 File: ../figure/weight-1-5-its.png Graphic file (type png)
 
 <use ../figure/weight-1-5-its.png>
-Package pdftex.def Info: ../figure/weight-1-5-its.png used on input line 826.
+Package pdftex.def Info: ../figure/weight-1-5-its.png used on input line 848.
 (pdftex.def)             Requested size: 341.43306pt x 225.76994pt.
 
-<../figure/weights-exp-54nice2.png, id=286, 569.0058pt x 284.5029pt>
+<../figure/weights-exp-54nice2.png, id=354, 569.0058pt x 284.5029pt>
 File: ../figure/weights-exp-54nice2.png Graphic file (type png)
 
 <use ../figure/weights-exp-54nice2.png>
 Package pdftex.def Info: ../figure/weights-exp-54nice2.png used on input line 8
-50.
+72.
 (pdftex.def)             Requested size: 341.43306pt x 170.71606pt.
- [10 <../figure/corr-baseline.png> <../figure/weight-1-5-its.png (PNG copy)>] (
-./ipfinr.bbl
-(/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/data/u
-ni-1.def
-File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
-) [11 <../figure/weights-exp-54nice2.png (PNG copy)>])
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 875.
-[12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 875.
- (./ipfinr.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 875.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 875.
+ [11 <../figure/corr-baseline.png> <../figure/weight-1-5-its.png (PNG copy)>] (
+./ipfinr.bbl [12 <../figure/weights-exp-54nice2.png (PNG copy)>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 899.
+ [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 899.
+ (./ipfinr.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 899.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 899.
 Package rerunfilecheck Info: File `ipfinr.out' has not changed.
-(rerunfilecheck)             Checksum: 0F3901B4A69D5FF0F259A937C81088AA;1776.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 875.
+(rerunfilecheck)             Checksum: 832B3DE3AD88C19F572B5DB0600E2AE3;1829.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 899.
  ) 
 Here is how much of TeX's memory you used:
- 12282 strings out of 493308
- 185717 string characters out of 6127609
+ 11709 strings out of 493308
+ 180194 string characters out of 6127609
  310792 words of memory out of 5000000
- 15523 multiletter control sequences out of 15000+600000
+ 14942 multiletter control sequences out of 15000+600000
  14222 words of font info for 49 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  29i,11n,41p,626b,1267s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -691,28 +580,27 @@ Here is how much of TeX's memory you used:
 xmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></apps/applications/texlive/
 2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></apps
 /applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx8.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmbx9.pfb></apps/applications/texlive/2013/1/default/
-2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></apps/applications/t
-exlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+s/cm/cmbx9.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb></apps/applications/texlive/2013/1/default
+/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></apps/applications/t
+exlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
 </apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr10.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr12.pfb></apps/applications/texlive/2013/1/de
-fault/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></apps/applicati
-ons/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.
-pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr7.pfb></apps/applications/texlive/2013/1/default/2013/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr8.pfb></apps/applications/texlive/2013/1/
-default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></apps/applicat
-ions/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmti10.pfb></apps/applications/texlive/2013/1/default/2013/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></apps/applications/texlive/
-2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmu10.pfb>
-Output written on ipfinr.pdf (12 pages, 803456 bytes).
+msfonts/cm/cmr12.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr17.pfb></apps/applications/texlive/2013/1/de
+fault/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></apps/applicatio
+ns/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
+fb></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr8.pfb></apps/applications/texlive/2013/1/default/2013/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr9.pfb></apps/applications/texlive/2013/1/d
+efault/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></apps/applica
+tions/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i10.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmtt10.pfb></apps/applications/texlive/2013/1/default/2013/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmu10.pfb>
+Output written on ipfinr.pdf (13 pages, 804560 bytes).
 PDF statistics:
- 390 PDF objects out of 1000 (max. 8388607)
- 347 compressed objects within 4 object streams
- 84 named destinations out of 1000 (max. 500000)
- 229 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 451 PDF objects out of 1000 (max. 8388607)
+ 407 compressed objects within 5 object streams
+ 95 named destinations out of 1000 (max. 500000)
+ 237 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -2,60 +2,51 @@ This is BibTeX, Version 0.99d (TeX Live 2013)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ipfinr.aux
 The style file: model2-names.bst.bst
-I couldn't open database file /home/robin/Documents/powerstarrefs/Microsimulation-ipfinr.bib.bib
----line 127 of file ipfinr.aux
- : \bibdata{ipflib.bib,/home/robin/Documents/powerstarrefs/Microsimulation-ipfinr.bib
- :                                                                                   }
+White space in argument---line 132 of file ipfinr.aux
+ : \bibdata{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib,
+ :                                                                    /home/robin/Documents/powerstarrefs/Microsimulation.bib}
 I'm skipping whatever remains of this command
-Database file #1: ipflib.bib.bib
-Warning--I didn't find a database entry for "mcfadden2006testing"
-Warning--I didn't find a database entry for "Muller2010"
-Warning--I didn't find a database entry for "blien1998entropy"
-Warning--I didn't find a database entry for "Wong1992"
-Warning--I didn't find a database entry for "Norman1999a"
-Warning--I didn't find a database entry for "Ballas2005"
-Warning--I didn't find a database entry for "johnston1985geography"
-Warning--I didn't find a database entry for "Lovelace2013-trs"
+Database file #1: /nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib.bib
 Warning--I didn't find a database entry for ""
-You've used 21 entries,
+You've used 30 entries,
             2761 wiz_defined-function locations,
-            768 strings with 9252 characters,
-and the built_in function-call counts, 13546 in all, are:
-= -- 1112
-> -- 497
-< -- 18
-+ -- 190
-- -- 169
-* -- 1542
-:= -- 2023
-add.period$ -- 60
-call.type$ -- 21
-change.case$ -- 160
-chr.to.int$ -- 21
-cite$ -- 21
-duplicate$ -- 910
-empty$ -- 939
-format.name$ -- 248
-if$ -- 2515
+            804 strings with 10561 characters,
+and the built_in function-call counts, 18636 in all, are:
+= -- 1530
+> -- 667
+< -- 25
++ -- 256
+- -- 226
+* -- 2083
+:= -- 2809
+add.period$ -- 86
+call.type$ -- 30
+change.case$ -- 222
+chr.to.int$ -- 30
+cite$ -- 30
+duplicate$ -- 1271
+empty$ -- 1307
+format.name$ -- 326
+if$ -- 3461
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 190
-newline$ -- 112
-num.names$ -- 88
-pop$ -- 203
+missing$ -- 262
+newline$ -- 156
+num.names$ -- 124
+pop$ -- 285
 preamble$ -- 1
-purify$ -- 138
+purify$ -- 193
 quote$ -- 0
-skip$ -- 317
+skip$ -- 448
 stack$ -- 0
-substring$ -- 683
-swap$ -- 775
-text.length$ -- 5
+substring$ -- 911
+swap$ -- 1058
+text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 180
+type$ -- 258
 warning$ -- 0
-while$ -- 104
+while$ -- 145
 width$ -- 0
-write$ -- 302
+write$ -- 427
 (There was 1 error message)

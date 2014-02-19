@@ -633,3 +633,19 @@ url = {http://www.tandfonline.com/doi/abs/10.1111/j.0033-0124.1993.00317.x},
 volume = {45},
 year = {1993}
 }
+@article{Ballas2005c,
+author = {Ballas, Dimitris and Clarke, Graham and Dorling, Danny and Eyre, Heather and Thomas, Bethan and Rossiter, David},
+doi = {10.1002/psp.351},
+issn = {1544-8444},
+journal = {Population, Space and Place},
+keywords = {ballas,correspondence to,d,department of geography,population forecasting,sheffield s10 2tn,small area,small area microdata,spatial microsimulation,uk,university of sheffield,winter street},
+mendeley-groups = {Other/Included,Vul-meth,Microsimulation},
+month = jan,
+number = {1},
+pages = {13--34},
+title = {{SimBritain: a spatial microsimulation approach to population dynamics}},
+url = {http://doi.wiley.com/10.1002/psp.351},
+volume = {11},
+year = {2005}
+}
+

@@ -1,7 +1,7 @@
-### IPFinR a script for IPF in R, Robin Lovelace (2013)
+### IPFinR a script for IPF in R, Robin Lovelace (2013) - for "small area" example
 
 # initial conditions - start from IPF-performance-testing folder
-num.its = 3
+num.its <- 3
 # read-in data (ensure working directory set correctly)
 load("../../input-data/small-area-eg/ind.RData")  # read-in the survey dataset called 'ind'
 # read aggregate constraints. nrow of these data frames (areas) must be equal

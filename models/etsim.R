@@ -4,7 +4,7 @@
 ############################################
 
 # Initial conditions # start from IPF-performance-testing folder
-num.its = 3
+num.its <- 3
 # Read-in data (manually to start, will use scripts in future)
 c.names <- c("id", "age", "sex")
 ind <- c(       1, 59, "m",

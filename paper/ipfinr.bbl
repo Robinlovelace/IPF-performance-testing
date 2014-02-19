@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{30}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -40,6 +40,14 @@
   North American Meeting of the Regional Science Association, Philadelphia,
   USA}, pp. \bibinfo{pages}{19--22}.
 %Type = Article
+\bibitem[{Ballas et~al.(2006)Ballas, Clarke and Dewhurst}]{Ballas2006}
+\bibinfo{author}{Ballas, D.}, \bibinfo{author}{Clarke, G.P.},
+  \bibinfo{author}{Dewhurst, J.}, \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{{Modelling the Socio-economic Impacts of Major Job
+  Loss or Gain at the Local Level: a Spatial Microsimulation Framework}}.
+\newblock \bibinfo{journal}{Spatial Economic Analysis} \bibinfo{volume}{1},
+  \bibinfo{pages}{127--146}.
+%Type = Article
 \bibitem[{Birkin and Clarke(1988)}]{Birkin1988}
 \bibinfo{author}{Birkin, M.}, \bibinfo{author}{Clarke, M.},
   \bibinfo{year}{1988}.
@@ -56,6 +64,12 @@
 \newblock \bibinfo{publisher}{MIT Press}, \bibinfo{address}{Cambridge,
   Massachusettes}.
 %Type = Incollection
+\bibitem[{Blien and Graef(1998)}]{blien1998entropy}
+\bibinfo{author}{Blien, U.}, \bibinfo{author}{Graef, F.}, \bibinfo{year}{1998}.
+\newblock \bibinfo{title}{{Entropy optimizing methods for the estimation of
+  tables}}, in: \bibinfo{booktitle}{Classification, Data Analysis, and Data
+  Highways}. \bibinfo{publisher}{Springer}, pp. \bibinfo{pages}{3--15}.
+%Type = Incollection
 \bibitem[{Clarke and Harding(2013)}]{Clarke2013-concs}
 \bibinfo{author}{Clarke, G.}, \bibinfo{author}{Harding, A.},
   \bibinfo{year}{2013}.
@@ -64,6 +78,13 @@
   \bibinfo{booktitle}{Spatial Microsimulation: A Reference Guide for Users}.
   \bibinfo{publisher}{Springer}, \bibinfo{address}{Berlin, Heidelberg}.
   chapter~\bibinfo{chapter}{16}, pp. \bibinfo{pages}{259--273}.
+%Type = Article
+\bibitem[{Cullinan(2010)}]{Cullinan2010}
+\bibinfo{author}{Cullinan, J.}, \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{{Developing a Continuous Space Representation of a
+  Simulated Population}}.
+\newblock \bibinfo{journal}{Spatial Economic Analysis} \bibinfo{volume}{5},
+  \bibinfo{pages}{317--338}.
 %Type = Article
 \bibitem[{Edwards and Clarke(2009)}]{Edwards2009}
 \bibinfo{author}{Edwards, K.L.}, \bibinfo{author}{Clarke, G.P.},
@@ -81,6 +102,16 @@
 \newblock \bibinfo{journal}{The Annals of Mathematical Statistics}
   \bibinfo{volume}{41}, \bibinfo{pages}{907--917}.
 %Type = Article
+\bibitem[{Harland et~al.(2012)Harland, Heppenstall, Smith and
+  Birkin}]{harland2012}
+\bibinfo{author}{Harland, K.}, \bibinfo{author}{Heppenstall, A.},
+  \bibinfo{author}{Smith, D.}, \bibinfo{author}{Birkin, M.},
+  \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{{Creating Realistic Synthetic Populations at Varying
+  Spatial Scales: A Comparative Critique of Population Synthesis Techniques}}.
+\newblock \bibinfo{journal}{Journal of Artificial Societies and Social
+  Simulation} \bibinfo{volume}{15}, \bibinfo{pages}{1}.
+%Type = Article
 \bibitem[{Hermes and Poulsen(2012)}]{Hermes2012a}
 \bibinfo{author}{Hermes, K.}, \bibinfo{author}{Poulsen, M.},
   \bibinfo{year}{2012}.
@@ -88,14 +119,12 @@
   spatial microdata using reweighting and future directions}}.
 \newblock \bibinfo{journal}{Computers, Environment and Urban Systems}
   \bibinfo{volume}{36}, \bibinfo{pages}{281--290}.
-%Type = Article
-\bibitem[{Jirou\v{s}ek and Přeu\v{c}il(1995)}]{Jirousek1995}
-\bibinfo{author}{Jirou\v{s}ek, R.}, \bibinfo{author}{Přeu\v{c}il, S.},
-  \bibinfo{year}{1995}.
-\newblock \bibinfo{title}{{On the effective implementation of the iterative
-  proportional fitting procedure}}.
-\newblock \bibinfo{journal}{Computational Statistics \& Data Analysis}
-  \bibinfo{volume}{19}, \bibinfo{pages}{177--189}.
+%Type = Book
+\bibitem[{Johnston(1985)}]{johnston1985geography}
+\bibinfo{author}{Johnston, R.J.}, \bibinfo{year}{1985}.
+\newblock \bibinfo{title}{{The geography of English politics: the 1983 general
+  election}}.
+\newblock \bibinfo{publisher}{Croom Helm London}.
 %Type = Article
 \bibitem[{Johnston and Pattie(1993)}]{Johnston1993}
 \bibinfo{author}{Johnston, R.J.}, \bibinfo{author}{Pattie, C.J.},
@@ -105,15 +134,13 @@
 \newblock \bibinfo{journal}{The Professional Geographer} \bibinfo{volume}{45},
   \bibinfo{pages}{317--322}.
 %Type = Article
-\bibitem[{Kalantari et~al.(2008)Kalantari, Lari, Ricca and
-  Simeone}]{Kalantari2008}
-\bibinfo{author}{Kalantari, B.}, \bibinfo{author}{Lari, I.},
-  \bibinfo{author}{Ricca, F.}, \bibinfo{author}{Simeone, B.},
-  \bibinfo{year}{2008}.
-\newblock \bibinfo{title}{{On the complexity of general matrix scaling and
-  entropy minimization via the RAS algorithm}}.
-\newblock \bibinfo{journal}{Mathematical Programming} \bibinfo{volume}{112},
-  \bibinfo{pages}{371--401}.
+\bibitem[{Lovelace and Ballas(2013)}]{Lovelace2013-trs}
+\bibinfo{author}{Lovelace, R.}, \bibinfo{author}{Ballas, D.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{{‘Truncate, replicate, sample’: A method for
+  creating integer weights for spatial microsimulation}}.
+\newblock \bibinfo{journal}{Computers, Environment and Urban Systems}
+  \bibinfo{volume}{41}, \bibinfo{pages}{1--11}.
 %Type = Article
 \bibitem[{Lovelace et~al.(2014)Lovelace, Ballas and Watson}]{Lovelace2014-jtg}
 \bibinfo{author}{Lovelace, R.}, \bibinfo{author}{Ballas, D.},
@@ -122,6 +149,16 @@
   of commuter patterns: from individual to regional levels}}.
 \newblock \bibinfo{journal}{Journal of Transport Geography}
   \bibinfo{volume}{34}, \bibinfo{pages}{282--296}.
+%Type = Article
+\bibitem[{McFadden et~al.(2006)McFadden, Heiss, Jun and
+  Winter}]{mcfadden2006testing}
+\bibinfo{author}{McFadden, D.}, \bibinfo{author}{Heiss, F.},
+  \bibinfo{author}{Jun, B.h.}, \bibinfo{author}{Winter, J.},
+  \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{{On testing for independence in weighted contingency
+  tables}}.
+\newblock \bibinfo{journal}{Medium for Econometric Applications}
+  \bibinfo{volume}{14}, \bibinfo{pages}{11--18}.
 %Type = Book
 \bibitem[{Mitchell et~al.(2000)Mitchell, Shaw and Dorling}]{Mitchell2000}
 \bibinfo{author}{Mitchell, R.}, \bibinfo{author}{Shaw, M.},
@@ -130,11 +167,27 @@
   More Equal?}}
 \newblock \bibinfo{publisher}{Policy Press}, \bibinfo{address}{London}.
 %Type = Article
+\bibitem[{Morrissey et~al.(2013)Morrissey, O'donoghue and
+  Farrell}]{Morrissey2013a}
+\bibinfo{author}{Morrissey, K.}, \bibinfo{author}{O'donoghue, C.},
+  \bibinfo{author}{Farrell, N.}, \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{{The Local Impact of the Marine Sector in Ireland: A
+  Spatial Microsimulation Analysis}}.
+\newblock \bibinfo{journal}{Spatial Economic Analysis} \bibinfo{volume}{00},
+  \bibinfo{pages}{1--20}.
+%Type = Article
 \bibitem[{Mosteller(1968)}]{Mosteller1968}
 \bibinfo{author}{Mosteller, F.}, \bibinfo{year}{1968}.
 \newblock \bibinfo{title}{{Association and estimation in contingency tables}}.
 \newblock \bibinfo{journal}{Journal of the American Statistical Association}
   \bibinfo{volume}{63}, \bibinfo{pages}{1--28}.
+%Type = Techreport
+\bibitem[{Norman(1999)}]{Norman1999a}
+\bibinfo{author}{Norman, P.}, \bibinfo{year}{1999}.
+\newblock \bibinfo{title}{{Putting Iterative Proportional Fitting (IPF) on the
+  Researcher’s Desk}}.
+\newblock \bibinfo{type}{Technical Report} \bibinfo{number}{October}. School of
+  Geography, University of Leeds.
 %Type = Article
 \bibitem[{Pritchard and Miller(2012)}]{Pritchard2012}
 \bibinfo{author}{Pritchard, D.R.}, \bibinfo{author}{Miller, E.J.},
@@ -160,6 +213,14 @@
   estimates: iterative proportional fitting with standard software}}.
 \newblock \bibinfo{journal}{The Professional Geographer} \bibinfo{volume}{57},
   \bibinfo{pages}{222--234}.
+%Type = Article
+\bibitem[{Smith et~al.(2009)Smith, Clarke and Harland}]{Smith2009}
+\bibinfo{author}{Smith, D.M.}, \bibinfo{author}{Clarke, G.P.},
+  \bibinfo{author}{Harland, K.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{{Improving the synthetic data generation process in
+  spatial microsimulation models}}.
+\newblock \bibinfo{journal}{Environment and Planning A} \bibinfo{volume}{41},
+  \bibinfo{pages}{1251--1268}.
 %Type = Book
 \bibitem[{Tanton and Edwards(2013)}]{Tanton2013}
 \bibinfo{author}{Tanton, R.}, \bibinfo{author}{Edwards, K.},
@@ -185,5 +246,12 @@
   Microsimulation Approach}}.
 \newblock \bibinfo{journal}{Water and Environment Journal}
   \bibinfo{volume}{16}, \bibinfo{pages}{243--248}.
+%Type = Article
+\bibitem[{Wong(1992)}]{Wong1992}
+\bibinfo{author}{Wong, D.W.S.}, \bibinfo{year}{1992}.
+\newblock \bibinfo{title}{{The Reliability of Using the Iterative Proportional
+  Fitting Procedure}}.
+\newblock \bibinfo{journal}{The Professional Geographer} \bibinfo{volume}{44},
+  \bibinfo{pages}{340--348}.
 
 \end{thebibliography}

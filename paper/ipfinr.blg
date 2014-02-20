@@ -2,51 +2,51 @@ This is BibTeX, Version 0.99d (TeX Live 2013)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ipfinr.aux
 The style file: model2-names.bst.bst
-White space in argument---line 132 of file ipfinr.aux
+White space in argument---line 123 of file ipfinr.aux
  : \bibdata{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib,
  :                                                                    /home/robin/Documents/powerstarrefs/Microsimulation.bib}
 I'm skipping whatever remains of this command
 Database file #1: /nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib.bib
 Warning--I didn't find a database entry for ""
-You've used 30 entries,
+You've used 32 entries,
             2761 wiz_defined-function locations,
-            804 strings with 10561 characters,
-and the built_in function-call counts, 18636 in all, are:
-= -- 1530
-> -- 667
-< -- 25
-+ -- 256
-- -- 226
-* -- 2083
-:= -- 2809
-add.period$ -- 86
-call.type$ -- 30
-change.case$ -- 222
-chr.to.int$ -- 30
-cite$ -- 30
-duplicate$ -- 1271
-empty$ -- 1307
-format.name$ -- 326
-if$ -- 3461
+            818 strings with 10847 characters,
+and the built_in function-call counts, 19559 in all, are:
+= -- 1608
+> -- 687
+< -- 27
++ -- 264
+- -- 232
+* -- 2168
+:= -- 2958
+add.period$ -- 92
+call.type$ -- 32
+change.case$ -- 234
+chr.to.int$ -- 32
+cite$ -- 32
+duplicate$ -- 1342
+empty$ -- 1377
+format.name$ -- 334
+if$ -- 3631
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 262
-newline$ -- 156
-num.names$ -- 124
-pop$ -- 285
+missing$ -- 276
+newline$ -- 166
+num.names$ -- 132
+pop$ -- 300
 preamble$ -- 1
-purify$ -- 193
+purify$ -- 203
 quote$ -- 0
-skip$ -- 448
+skip$ -- 475
 stack$ -- 0
-substring$ -- 911
-swap$ -- 1058
+substring$ -- 952
+swap$ -- 1110
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 258
+type$ -- 276
 warning$ -- 0
-while$ -- 145
+while$ -- 153
 width$ -- 0
-write$ -- 427
+write$ -- 456
 (There was 1 error message)

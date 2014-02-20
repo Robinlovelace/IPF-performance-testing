@@ -81,19 +81,44 @@ JEL Code: C
 \end{abstract}
 
 \section{Notes for authors}
-Additonal papers to cite include...
+Additonal papers to cite include:
+\begin{itemize}
+ \item \citet{harland2012}
+\item \citet{Smith2009}
+\item \citet{Cullinan2010}
+\item 
+\end{itemize}
+
 
 \section{Introduction}
 The aggregation of survey data has a long history in the social sciences. 
-The most common form of 
-aggregation conducted by national statistical agencies collecting data about citizens 
-is 'flattening': converting data from `long' to `flat' form. This involves involves a) converting all 
+Generally this involves translating the raw data from a `long' format 
+(where each row represents an individual and each column a separate variable) 
+to a `wide' format (where each row represents a geographic area or other sub-group of 
+the total population and each column represents a variable value).
+This process of aggregation is performed in three steps:  a) conversion of all 
 variables into discrete categories (e.g.~an individual with an income of £13,000 per year
 would be allocated to band of £10,000 to £15,000 per year), b) assigning a column to each category and c) assigning 
-integer counts to cells in each column (Fig. 1). Each row in this aggregated form can 
-represent the entire dataset or subsets thereof. (Geographical aggregation – one row 
-per zone – is the most common form of aggregation, but any subsets, from social class, 
-time period or other \emph{cross-tablulations} of the dataset can be used).
+integer counts to cells in each column (Fig. 1).
+Frequently large national social survey datasets 
+such as censuses are \emph{only} available in the wide, geographically aggregated
+form, which is problematic for the analysis of spatial phenomena \citep{Openshaw1984,Lee2009}.
+
+Iterative proportional fitting (IPF) can help overcome these issues when used as
+a basis for \emph{spatial microsimulation}, which can be understood in simplistic terms
+as the reversal of geographic aggregation to approximate the original `long' dataset (ref). 
+ is a statistical procedure that enables the calculation of
+\emph{maximum likelihood} of values that are constrained by multiple variables. 
+IPF is a general purpose tool with multiple uses. In this paper we focus on its
+ability to \emph{disaggregate} the geographically aggregated data described above, 
+resulting in the generation of synthetic \emph{spatial microdata}
+--- a long table of individual-level data whereby each individual is also allocated to 
+a geographic zone.
+
+% Each row in this aggregated form can 
+% represent the entire dataset or subsets thereof. (Geographical aggregation – one row 
+% per zone – is the most common form of aggregation, but any subsets, from social class, 
+% time period or other \emph{cross-tablulations} of the dataset can be used).
 
 \subsection{IPF translates between `flat' and `long' data formats}
 The main advantage of `flat' data is that it can summarise information about a very large number of individuals
@@ -219,9 +244,6 @@ at the local level \citep{Ballas2006}.
 \item ...
 \item ...
 \end{itemize}
-
- 
-
 
 \section{IPF: theory and a worked example}
 Iterative Proportional Fitting has a long history in Statistics and the social
@@ -437,7 +459,7 @@ This should result in the following vector of new weights, for individuals 1 to 
 As before, the sum of the weights is equal to the population of the area (12).
 Notice also that after each iteration the fit between the marginal
 totals of $m$ and $s$
-improves. The total absolute error (TAE, see \cref{etae} below)
+improves. The total absolute error (TAE)
 from $m(1)$ to $m(2)$ improves from
 14 to 6 in \cref{t:m} and \cref{t:m2} above. TAE for $m(3)$ (not shown,
 but calculated by aggregating $w(3)$) improves even more, to 1.3.
@@ -475,7 +497,6 @@ appear in simulated areas. As described in the introduction, this is not ideal
 for certain applications. Integer weights allow the results of spatial
 microsimulation to be further processed using dynamic microsimulation and agent
 based modelling techniques \citep{Pritchard2012}.
-
 
 % A key benefit from a policy perspective is that
 % IPF and other spatial microsimultion techniques

@@ -1,4 +1,4 @@
-\begin{thebibliography}{30}
+\begin{thebibliography}{32}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -133,6 +133,13 @@
   Fitting Procedure}}.
 \newblock \bibinfo{journal}{The Professional Geographer} \bibinfo{volume}{45},
   \bibinfo{pages}{317--322}.
+%Type = Techreport
+\bibitem[{Lee(2009)}]{Lee2009}
+\bibinfo{author}{Lee, A.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{{Generating Synthetic Microdata from Published
+  Marginal Tables and Confidentialised Files}}.
+\newblock \bibinfo{type}{Technical Report}. Statistics New Zealand.
+  \bibinfo{address}{Wellington}.
 %Type = Article
 \bibitem[{Lovelace and Ballas(2013)}]{Lovelace2013-trs}
 \bibinfo{author}{Lovelace, R.}, \bibinfo{author}{Ballas, D.},
@@ -188,6 +195,13 @@
   Researcher’s Desk}}.
 \newblock \bibinfo{type}{Technical Report} \bibinfo{number}{October}. School of
   Geography, University of Leeds.
+%Type = Article
+\bibitem[{Openshaw(1984)}]{Openshaw1984}
+\bibinfo{author}{Openshaw, S.}, \bibinfo{year}{1984}.
+\newblock \bibinfo{title}{{Ecological fallacies and the analysis of areal
+  census data.}}
+\newblock \bibinfo{journal}{Environment \& planning A} \bibinfo{volume}{16},
+  \bibinfo{pages}{17--31}.
 %Type = Article
 \bibitem[{Pritchard and Miller(2012)}]{Pritchard2012}
 \bibinfo{author}{Pritchard, D.R.}, \bibinfo{author}{Miller, E.J.},

@@ -1,4 +1,4 @@
-\begin{thebibliography}{32}
+\begin{thebibliography}{35}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -78,6 +78,13 @@
   \bibinfo{booktitle}{Spatial Microsimulation: A Reference Guide for Users}.
   \bibinfo{publisher}{Springer}, \bibinfo{address}{Berlin, Heidelberg}.
   chapter~\bibinfo{chapter}{16}, pp. \bibinfo{pages}{259--273}.
+%Type = Article
+\bibitem[{Clarke and Holm(1987)}]{Holm1987}
+\bibinfo{author}{Clarke, M.}, \bibinfo{author}{Holm, E.}, \bibinfo{year}{1987}.
+\newblock \bibinfo{title}{{Microsimulation methods in spatial analysis and
+  planning}}.
+\newblock \bibinfo{journal}{Geografiska Annaler. Series B. Human Geography}
+  \bibinfo{volume}{69}, \bibinfo{pages}{145--164}.
 %Type = Article
 \bibitem[{Cullinan(2010)}]{Cullinan2010}
 \bibinfo{author}{Cullinan, J.}, \bibinfo{year}{2010}.
@@ -251,6 +258,18 @@
   smoking services}}.
 \newblock \bibinfo{journal}{Area} \bibinfo{volume}{40},
   \bibinfo{pages}{341--353}.
+%Type = Book
+\bibitem[{{Van Buuren}(2012)}]{van2012flexible}
+\bibinfo{author}{{Van Buuren}, S.}, \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{{Flexible imputation of missing data}}.
+\newblock \bibinfo{publisher}{CRC press}.
+%Type = Article
+\bibitem[{Whitworth(2012)}]{Whitworth2012}
+\bibinfo{author}{Whitworth, A.}, \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{{Local Inequality and Crime: Exploring how Variation
+  in the Scale of Inequality Measures Affects Relationships between Inequality
+  and Crime}}.
+\newblock \bibinfo{journal}{Urban Studies} .
 %Type = Article
 \bibitem[{Williamson et~al.(2002)Williamson, Mitchell and
   McDonald}]{Williamson2002}

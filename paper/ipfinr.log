@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.11.26)  20 FEB 2014 18:21
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.11.26)  21 FEB 2014 11:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -513,20 +513,20 @@ File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 
 {/apps/applications/texlive/2013/1/default/2013/texmf-var/fonts/map/pdftex/updm
 ap/pdftex.map}]
-<../figure/msim-schema.png, id=138, 597.73312pt x 845.40843pt>
+<../figure/msim-schema.png, id=155, 597.73312pt x 845.40843pt>
 File: ../figure/msim-schema.png Graphic file (type png)
 
 <use ../figure/msim-schema.png>
-Package pdftex.def Info: ../figure/msim-schema.png used on input line 127.
+Package pdftex.def Info: ../figure/msim-schema.png used on input line 131.
 (pdftex.def)             Requested size: 284.52756pt x 402.42456pt.
- [2 <../figure/msim-schema.png>]
+ [2 <../figure/msim-schema.png>] [3]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 173.
+(Font)              <7> on input line 333.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 173.
- [3] [4]
+(Font)              <5> on input line 333.
+ [4]
 [5]
-Underfull \hbox (badness 1466) in paragraph at lines 542--542
+Underfull \hbox (badness 1466) in paragraph at lines 563--563
 [][][]\OT1/cmr/m/n/8 This tu-to-rial is avail-able from Rpubs, a site ded-i-cat
 ed to pub-lish-ing R anal-y-ses that are re-pro-ducible. It
  []
@@ -535,51 +535,51 @@ ed to pub-lish-ing R anal-y-ses that are re-pro-ducible. It
 (/apps/applications/texlive/2013/1/default/2013/texmf-dist/tex/latex/ucs/data/u
 ni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
-) [8] <../figure/ipfinac.png, id=333, 569.0058pt x 426.6339pt>
+) [8] <../figure/ipfinac.png, id=352, 569.0058pt x 426.6339pt>
 File: ../figure/ipfinac.png Graphic file (type png)
 
 <use ../figure/ipfinac.png>
-Package pdftex.def Info: ../figure/ipfinac.png used on input line 763.
+Package pdftex.def Info: ../figure/ipfinac.png used on input line 784.
 (pdftex.def)             Requested size: 341.43306pt x 256.00183pt.
  [9] [10 <../figure/ipfinac.png (PNG copy)>]
-<../figure/corr-baseline.png, id=353, 509.905pt x 382.42876pt>
+<../figure/corr-baseline.png, id=372, 509.905pt x 382.42876pt>
 File: ../figure/corr-baseline.png Graphic file (type png)
 
 <use ../figure/corr-baseline.png>
-Package pdftex.def Info: ../figure/corr-baseline.png used on input line 852.
+Package pdftex.def Info: ../figure/corr-baseline.png used on input line 873.
 (pdftex.def)             Requested size: 170.71652pt x 128.04002pt.
 
-<../figure/weight-1-5-its.png, id=355, 578.16pt x 382.3083pt>
+<../figure/weight-1-5-its.png, id=374, 578.16pt x 382.3083pt>
 File: ../figure/weight-1-5-its.png Graphic file (type png)
 
 <use ../figure/weight-1-5-its.png>
-Package pdftex.def Info: ../figure/weight-1-5-its.png used on input line 881.
+Package pdftex.def Info: ../figure/weight-1-5-its.png used on input line 902.
 (pdftex.def)             Requested size: 341.43306pt x 225.76994pt.
 
-<../figure/weights-exp-54nice2.png, id=358, 569.0058pt x 284.5029pt>
+<../figure/weights-exp-54nice2.png, id=377, 569.0058pt x 284.5029pt>
 File: ../figure/weights-exp-54nice2.png Graphic file (type png)
 
 <use ../figure/weights-exp-54nice2.png>
 Package pdftex.def Info: ../figure/weights-exp-54nice2.png used on input line 9
-05.
+26.
 (pdftex.def)             Requested size: 341.43306pt x 170.71606pt.
  (./ipfinr.bbl [11 <../figure/corr-baseline.png>] [12 <../figure/weight-1-5-its
 .png (PNG copy)> <../figure/weights-exp-54nice2.png (PNG copy)>] [13])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 932.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 953.
  [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 932.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 953.
  (./ipfinr.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 932.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 932.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 953.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 953.
 Package rerunfilecheck Info: File `ipfinr.out' has not changed.
-(rerunfilecheck)             Checksum: 725A08252C2A2AF28E4B03CC5055EBBD;1726.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 932.
+(rerunfilecheck)             Checksum: 15B682DF0C0FDC91E4EF1C5F14DFA387;1803.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 953.
  ) 
 Here is how much of TeX's memory you used:
- 11724 strings out of 493308
- 180480 string characters out of 6127609
+ 11737 strings out of 493308
+ 180730 string characters out of 6127609
  308792 words of memory out of 5000000
- 14953 multiletter control sequences out of 15000+600000
+ 14963 multiletter control sequences out of 15000+600000
  14222 words of font info for 49 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  29i,11n,41p,626b,1267s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -605,10 +605,10 @@ tions/texlive/2013/1/default/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 i10.pfb></apps/applications/texlive/2013/1/default/2013/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmtt10.pfb></apps/applications/texlive/2013/1/default/2013/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmu10.pfb>
-Output written on ipfinr.pdf (14 pages, 893799 bytes).
+Output written on ipfinr.pdf (14 pages, 893195 bytes).
 PDF statistics:
- 461 PDF objects out of 1000 (max. 8388607)
- 415 compressed objects within 5 object streams
- 98 named destinations out of 1000 (max. 500000)
- 234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 480 PDF objects out of 1000 (max. 8388607)
+ 434 compressed objects within 5 object streams
+ 101 named destinations out of 1000 (max. 500000)
+ 242 words of extra memory for PDF output out of 10000 (max. 10000000)
 

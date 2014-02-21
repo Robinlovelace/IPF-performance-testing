@@ -93,68 +93,83 @@ Additonal papers to cite include:
 \section{Introduction}
 The aggregation of survey data has a long history in the social sciences. 
 Generally this involves translating the raw data from a `long' format 
-(where each row represents an individual and each column a separate variable) 
-to a `wide' format (where each row represents a geographic area or other sub-group of 
-the total population and each column represents a variable value).
-This process of aggregation is performed in three steps:  a) conversion of all 
+--- where each row represents an individual and each column a separate variable ---  
+to a `wide' format \citep[Chapter 9]{van2012flexible}. The wide data form 
+--- where each row represents a geographic area or other sub-group of 
+the total population and each column represents a variable value or bin (see \cref{fmsim-schema}) --- 
+generally occupies less disk space for storage but has some important disadvantages. 
+Data loss usually occurs when survey data is aggregated into the wide form, 
+especially when continuous variables are converted into discrete categories and 
+when not cross-tabulations, such as age/income, are not provided.
+
+The process of aggregation is performed in three steps:  a) conversion of all 
 variables into discrete categories (e.g.~an individual with an income of £13,000 per year
-would be allocated to band of £10,000 to £15,000 per year), b) assigning a column to each category and c) assigning 
+would be allocated to band of £10,000 to £15,000 per year), b) assigning a column to each category --- and in
+some cases each category combination --- and c) assigning 
 integer counts to cells in each column.
 Frequently large national social survey datasets 
 such as censuses are \emph{only} available in the wide, geographically aggregated
 form, which is problematic for the analysis of spatial phenomena \citep{Openshaw1984,Lee2009}.
 
-Iterative proportional fitting (IPF) can help overcome these issues when used as
-a basis for \emph{spatial microsimulation}, which can be understood in simplistic terms
-as the reversal of geographic aggregation to approximate the original `long' dataset (ref). 
-As illustrated in \cref{fmsim-schema}, the need for spatial microsimulation is driven by 
+Iterative proportional fitting (IPF) can help overcome these issues when used in
+\emph{spatial microsimulation}, which can be understood in simplistic terms
+as the reversal of geographic aggregation to approximate the original `long' dataset (\cref{fmsim-schema}). 
+As illustrated in this figure, the need for spatial microsimulation is driven by 
 the tendency of statistical agencies to make the raw georeferenced microdata generated 
-through large social surveys unnavailable to the research community: spatial microsimulation
-is also known as \emph{population synthesis}, especially in transport modelling, which 
-conveys its core function: to generate --- and then, in most cases, analyse ---
-long spatial microdata that approximates the raw spatial microdata collected during surveys.
- 
-IPF is a statistical procedure that enables the calculation of
-\emph{maximum likelihood} of values that are constrained by multiple variables. 
-IPF is a general purpose tool with multiple uses. In this paper we focus on its
-ability to \emph{disaggregate} the geographically aggregated data described above, 
-resulting in the generation of synthetic \emph{spatial microdata}
---- a long table of individual-level data whereby each individual is also allocated to 
-a geographic zone.
+through large social surveys unnavailable to the research community \citep{Lee2009}: 
+what geographers and regional scientists refer to as spatial microsimulation is
+generally known as \emph{population synthesis} in transport modelling, which 
+is and apt name: its core function is to simulate populations based on 
+imperfect data. Spatial microsimulation also refers to the wider approach which
+harnesses spatial microdata in the analysis stage \citep{Holm1987, Lovelace2014-jtg}.
+In this paper we focus on the former meaning, which is also known as \emph{static spatial microsimulation}
+\citep{Ballas2005c}.
+
 
 \begin{figure}
 \begin{center}
   \includegraphics[width=10cm]{msim-schema}
 \end{center}
-\label{fmsim-schema}
+
 \caption{Schema of iterative proportional fitting (IPF) and combinatorial optimisation
-in the wider context of the availability of different data formats and spatial microsimulation.}
+in the wider context of the availability of different data formats and spatial microsimulation. \label{fmsim-schema}}
 \end{figure}
+
+\subsection{What is IPF and why use it?} 
+
+IPF is a statistical procedure that enables the calculation of
+\emph{maximum likelihood} of values that are constrained by multiple variables. 
+IPF is a general purpose tool with multiple uses. In this paper we focus on its
+ability to \emph{disaggregate} the geographically aggregated data typically
+provided by national statistical agencies to simulate \emph{spatial microdata}
+(\cref{fmsim-schema}). But why would one want do this in the first place?
 
 % Each row in this aggregated form can 
 % represent the entire dataset or subsets thereof. (Geographical aggregation – one row 
 % per zone – is the most common form of aggregation, but any subsets, from social class, 
 % time period or other \emph{cross-tablulations} of the dataset can be used).
 
-The main advantage of `flat' data is that it can summarise information about a very large number of individuals
-in a small number of rows. Often, such flattened datasets are the only format in which 
-statistical agencies make large datasets (e.g. the National Census) available, 
-to save storage space, ease data analysis and ensure the anonymity and unidentifiability of survey respondents.
-The main disadvantage is that the process of flattening is almost always associated with data loss: we do 
-not know from a flat dataset if the hypothetical individual mentioned above earns \pounds10,000, \pounds15,000 or 
-anywhere in between. Also, when flattening is associated with geographical aggregation, there is usually
-a loss of geographical resolution: instead of knowing the person's full postcode from the full dataset, we 
-may only be able to pin them down to a relatively large administrative zone such as a Local Authority in the UK context
-in the flattened dataset. Finally, the cross-tabulations between the variables are generally during the process of 
-flattening.
+The main advantages of wide datasets are that they can summarise information about a very large number of individuals
+in a small number of rows, saving storage space, easing data analysis and, critically,
+ensuring the anonymity survey respondents.
+As alluded to above, the main disadvantage is that the process of aggregation
+is almost always associated with data loss: we do 
+not know from a wide dataset if the hypothetical individual earning \pounds13,000 is in fact on a salary of
+\pounds10,000, \pounds15,000 or 
+anywhere in between. Also, when aggregation is done by geographical zones --- as is usually the case --- there is 
+a loss of geographical resolution: instead of knowing person's precise home location from the full dataset, we 
+may only be able to pin them down to a relatively large administrative area such as a Local Authority. 
+Finally, the cross-tabulations between variables are generally during the process of 
+aggregation.
 % make bullet points???
 
-Both types of data representation are common in the physical sciences, although the raw data 
-is usually available in long-form. In the social sciences, by contrast, the long format is often unavailable. 
-As indicated above, this can be attributed to the long history of and confidentiality 
-issues surrounding officially collected survey data. National Census datasets --- in which characteristics of 
-every individual are recorded --- and some of the best datasets in social science are only available 
-in flat form, however, posing major challenges to researchers in the sciences. 
+Both types of data representation are common in the physical sciences, and the raw long 
+dataset is often available. In the social sciences, by contrast, the long format is often unavailable 
+due to the long history of and confidentiality 
+issues surrounding officially collected survey data. It worth emphasising that National Census datasets --- in which characteristics of 
+every individual are recorded and which constitute some of the best datasets in social science --- are usually only available 
+in wide form, however, posing major challenges to researchers in the sciences, posing problems to researchers 
+interested in intra-zone variability at the local level (e.g.~\citep{Whitworth2012}). 
 
 A related long-standing research problem especially prevalent in geography and regional science
 is the scale of analysis. There is often a trade-off between the quality and resolution 
@@ -162,33 +177,39 @@ of the data, which can result in a compromise between detail and accuracy of res
 \citep{ballas2003microsimulation-30-years}. A common scenario facing researchers investigating 
 a spatial problem is being presented with two datasets: one long aspatial 
 survey table where each row represents the characteristics of an individual --- such as
-age, sex, employment status and income --- and another of `flat', geographically aggregated 
-dataset containing count data for each category. 
+age, sex, employment status and income --- and another of wide, geographically aggregated 
+dataset containing count data for each category. IPF in spatial microsimulation tackles this
+problem by allocating weights to the individuals from the aspatial microdataset for each zone, 
+based on \emph{constraint variables} shared by both input datasets. It is these `linking variables'
+that enable IPF to converge on the weights that best represent how representative each individual is
+of each zone, as described in the next section.
 
-As presented in Fig. 1, flat datasets are
-are wider and shorter, containing multiple columns for each variable from the raw dataset.
-The loss of information about the linkages between
-the different variables is common, but not essential, in flat datasets. 
-The solution to this problem, however, makes the flat datasets even more unwieldy, as
-each new cross tabulation would add $nv1 \times nv2$ additional columns, where 
-$nv1$ and $nv2$ are the number of discrete categories in contained in the variables to be
-cross tabluted.\footnote{To 
-provide a concrete example, a cross-tabulation 
-of mode of travel to work by sex and social class would contain 540 (12 * 3 * 15) columns,
-due to the number of categories present in each variable. 
-Given that there are dozen of additional variables in any large census, this clearly become unwieldy.
-} % figure???
-The lack of cross tabulation is problematic because 
-in many cases information about the linkages between different variables is needed to 
-address policy-relevant questions. To pick one example related to 
-policies targeted at skilled unemployed young adults: how many unemployed people 
-reside in each geographical area who at the same time have a university degree, 
-are female and over 25 years old? This question is impossible to answer with a 
-geographically aggregated (flat) dataset.
+% could take this out...
+% As illustrated in \cref{fmsim-schema}, wide datasets are
+% are wider and shorter, containing multiple columns for each variable from the raw dataset,
+% causing loss of information about the linkages between different variables, their \emph{cross tabulations}.
+% The solution to this problem, however, makes the wide datasets even more unwieldy, as
+% each new cross-tabulated variable adds $nv \times ncol(X)$  \emph{more} columns to the 
+% wide dataset, where $nv$ is the number discrete categories in the new variable and $ncol(x)$
+% is the existing number of columns in the wide data 
+% table.\footnote{To 
+% provide a concrete example, a cross-tabulation 
+% of mode of travel to work by sex and social class would contain 540 (12 * 3 * 15) columns,
+% due to the number of categories present in each variable. 
+% Given that there are dozen of additional variables in any large census, this clearly becomes
+% rapidly unwieldy as more variables are added.
+% } % figure???
+% The lack of cross tabulation is problematic because 
+% in many cases information about the linkages between different variables is needed to 
+% address policy-relevant questions. To pick one example related to 
+% policies targeted at skilled unemployed young adults: how many unemployed people 
+% reside in each geographical area who at the same time have a university degree, 
+% are female and over 25 years old? This question is impossible to answer with a 
+% geographically aggregated (wide) dataset.
 
 \subsection{IPF in spatial microsimulation}
 Spatial microsimulation tackles the afforementioned problems associated 
-with the prevalent geographically aggregated flat data form by simulating
+with the prevalent geographically aggregated wide data form by simulating
 the individuals within each administrative zone. The most detailed output of this process of 
 spatial microsimulation is `spatial microdata', a long table of individuals with 
 associated attributes and weights for each zone (see \cref{t1} %???really
@@ -203,7 +224,7 @@ of storing spatial microdata taken from a single dataset is as a `weight matrix'
 % small area microdata 
 % by combining the small area data with national survey data. The result of this process 
 % of population synthesis (in its long % have we already defined long?
-%  form --- it can also be represented in a flat table of counts)
+%  form --- it can also be represented in a wide table of counts)
 %  is a table in which rows represent each 
 % individual in the study region, with an additional column indicating the area of residence (Table 1).
 
@@ -591,7 +612,7 @@ combination (e.g. 16-25 year old female in zone 001), with the x axis value corr
 to the number of individuals of that description in the input constraint table.
 The y value corresponds to the
 aggregated count of individuals in the same category in the aggregated
-(flat) representation of the spatial microdata output from the model. % have we defined spatial microdata?
+(wide) representation of the spatial microdata output from the model. % have we defined spatial microdata?
 This stage can be conducted either before or after \emph{integerisation}
 (more on this below). As taught in basic statistics courses, the closer the points to the
 1:1 (45 degree, assuming the axes have the same scale) line, the better the fit.

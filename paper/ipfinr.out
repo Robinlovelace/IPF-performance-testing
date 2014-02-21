@@ -1,26 +1,27 @@
 \BOOKMARK [1][-]{section.1}{Notes for authors}{}% 1
 \BOOKMARK [1][-]{section.2}{Introduction}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{IPF in spatial microsimulation}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Applications}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{IPF: theory and a worked example}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{IPF theory: a worked example}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Implementing IPF in R}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{Evaluation techniques}{}% 8
-\BOOKMARK [2][-]{subsection.4.1}{Scatter plots and Pearson's coefficient of correlation}{section.4}% 9
-\BOOKMARK [2][-]{subsection.4.2}{Standard error around identity \(SEI\)}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.3}{Total Absolute and Standardized Error \(TAE and SAE\)}{section.4}% 11
-\BOOKMARK [2][-]{subsection.4.4}{Z scores}{section.4}% 12
-\BOOKMARK [1][-]{section.5}{Input data}{}% 13
-\BOOKMARK [1][-]{section.6}{Method: model experiments}{}% 14
-\BOOKMARK [2][-]{subsection.6.1}{Baseline scenarios}{section.6}% 15
-\BOOKMARK [2][-]{subsection.6.2}{Constraints and iterations}{section.6}% 16
-\BOOKMARK [2][-]{subsection.6.3}{Initial weights}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.4}{Empty cells}{section.6}% 18
-\BOOKMARK [2][-]{subsection.6.5}{Integerisation}{section.6}% 19
-\BOOKMARK [1][-]{section.7}{Results}{}% 20
-\BOOKMARK [2][-]{subsection.7.1}{Baseline scenarios}{section.7}% 21
-\BOOKMARK [2][-]{subsection.7.2}{Constraints and iterations}{section.7}% 22
-\BOOKMARK [2][-]{subsection.7.3}{Initial weights}{section.7}% 23
-\BOOKMARK [2][-]{subsection.7.4}{Empty cells}{section.7}% 24
-\BOOKMARK [2][-]{subsection.7.5}{Integerisation}{section.7}% 25
-\BOOKMARK [1][-]{section.8}{Conclusions}{}% 26
+\BOOKMARK [2][-]{subsection.2.1}{What is IPF and why use it?}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{IPF in spatial microsimulation}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Applications}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{IPF: theory and a worked example}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{IPF theory: a worked example}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Implementing IPF in R}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Evaluation techniques}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Scatter plots and Pearson's coefficient of correlation}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Standard error around identity \(SEI\)}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.3}{Total Absolute and Standardized Error \(TAE and SAE\)}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.4}{Z scores}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Input data}{}% 14
+\BOOKMARK [1][-]{section.6}{Method: model experiments}{}% 15
+\BOOKMARK [2][-]{subsection.6.1}{Baseline scenarios}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.2}{Constraints and iterations}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.3}{Initial weights}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.4}{Empty cells}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.5}{Integerisation}{section.6}% 20
+\BOOKMARK [1][-]{section.7}{Results}{}% 21
+\BOOKMARK [2][-]{subsection.7.1}{Baseline scenarios}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.2}{Constraints and iterations}{section.7}% 23
+\BOOKMARK [2][-]{subsection.7.3}{Initial weights}{section.7}% 24
+\BOOKMARK [2][-]{subsection.7.4}{Empty cells}{section.7}% 25
+\BOOKMARK [2][-]{subsection.7.5}{Integerisation}{section.7}% 26
+\BOOKMARK [1][-]{section.8}{Conclusions}{}% 27

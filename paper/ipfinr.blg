@@ -1,52 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2013)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: ipfinr.aux
 The style file: model2-names.bst.bst
-White space in argument---line 129 of file ipfinr.aux
- : \bibdata{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib,
- :                                                                    /home/robin/Documents/powerstarrefs/Microsimulation.bib}
-I'm skipping whatever remains of this command
-Database file #1: /nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib.bib
+Database file #1: /home/robin/Documents/Microsimulation.bib.bib
 Warning--I didn't find a database entry for ""
-You've used 35 entries,
+Warning--empty pages in teh2003improving
+You've used 33 entries,
             2761 wiz_defined-function locations,
-            834 strings with 11280 characters,
-and the built_in function-call counts, 20958 in all, are:
-= -- 1723
-> -- 725
-< -- 30
-+ -- 279
-- -- 244
-* -- 2299
-:= -- 3185
-add.period$ -- 101
-call.type$ -- 35
-change.case$ -- 252
-chr.to.int$ -- 35
-cite$ -- 35
-duplicate$ -- 1443
-empty$ -- 1486
-format.name$ -- 353
-if$ -- 3892
+            813 strings with 11018 characters,
+and the built_in function-call counts, 19427 in all, are:
+= -- 1592
+> -- 673
+< -- 32
++ -- 259
+- -- 226
+* -- 2128
+:= -- 2963
+add.period$ -- 95
+call.type$ -- 33
+change.case$ -- 236
+chr.to.int$ -- 33
+cite$ -- 34
+duplicate$ -- 1349
+empty$ -- 1361
+format.name$ -- 335
+if$ -- 3592
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 295
-newline$ -- 181
-num.names$ -- 144
-pop$ -- 326
+missing$ -- 276
+newline$ -- 171
+num.names$ -- 136
+pop$ -- 313
 preamble$ -- 1
-purify$ -- 219
+purify$ -- 205
 quote$ -- 0
-skip$ -- 519
+skip$ -- 485
 stack$ -- 0
-substring$ -- 1010
-swap$ -- 1177
-text.length$ -- 7
+substring$ -- 891
+swap$ -- 1096
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 300
-warning$ -- 0
-while$ -- 164
+type$ -- 285
+warning$ -- 1
+while$ -- 149
 width$ -- 0
-write$ -- 496
-(There was 1 error message)
+write$ -- 467
+(There were 2 warnings)

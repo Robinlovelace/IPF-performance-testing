@@ -9,6 +9,10 @@
 \usepackage{bm}
 \usepackage{xcolor}
 \usepackage{multirow}
+\usepackage{booktabs}
+
+\usepackage{array}
+\newcolumntype{C}[1]{>{\arraybackslash}p{#1}}
 
 \usepackage{hyperref}
 \usepackage[capitalise]{cleveref}
@@ -50,29 +54,27 @@
 \maketitle
 
 \begin{abstract}
-Iterative Proportional Fitting (IPF)
+Iterative Proportional Fitting (IPF), also known as biproportional fitting or the RAS algorithm,
 is an established technique in Regional Science and
- has been used for a variety of purposes in the field, primary amongst these being 
+ has been used for a variety of purposes in the field. Primary amongst these has been
 the generation of small area microdata.  
 The technique is mature, widely used and relatively straight-forward
-yet there have been few studies focussed on evaluation of its performance. 
+yet there have been few studies focused on evaluation of its performance.
 An additional research problem is the tendency of 
 researchers to `start from scratch', resulting in a variety ad-hock implementations,
-with little evidence of the merits of differing approaches.
+with little evidence about the relative merits of differing approaches.
 Although IPF is well described mathematically, reproducible
-examples of the algorithm, written in modern programming language, are rare in the academic literature.
+examples of the algorithm, written in modern programming languages, are rare in the academic literature.
 These knowledge gaps mean that answers to methodological questions must be guessed:
-Under what conditions can a `perfect' 
-match be expected, and how can one test whether these conditions exist in the input datasets?  
+Under what conditions can conversion be expected?
 How many iterations should be used for any given application? 
-What is the impact of initial weights on the final results? 
-And what impact will integerisation have on accuracy?  
+And what are the impacts of initial weights and integerisation on the final result?
 This paper tackles such questions, using a systematic methodology 
 based on publicly available code and input data. 
 The results confirm IPF's status as robust and widely applicable 
 method for combining areal and individual-level data and demonstrate the importance
-of using various metrics of for determining its performace.
-We conclude with an agenda for future tests and offer more general guidance on how the 
+of using various metrics of for determining its performance.
+We conclude with an agenda for future tests and offer more general guidance on how
 the method can be optimised to maximise its utility for future research.
 
 Keywords: Iterative proportional fitting, spatial microsimulation, modelling
@@ -92,39 +94,47 @@ Additonal papers to cite include:
 
 \section{Introduction}
 The aggregation of survey data has a long history in the social sciences. 
-Generally this involves translating the raw data from a `long' format 
---- where each row represents an individual and each column a separate variable ---  
-to a `wide' format \citep[Chapter 9]{van2012flexible}. The wide data form 
---- where each row represents a geographic area or other sub-group of 
-the total population and each column represents a variable value or bin (see \cref{fmsim-schema}) --- 
+Generally this involves translating raw data from a `long' format
+--- the usual format of raw census data as it is digitised and entered into a database,
+where each row represents an individual and each column a separate variable ---
+to a `wide' data format \citep[Chapter 9]{van2012flexible}. The wide data form,
+where each row represents a geographic area or other sub-group of
+the total population and each column represents a variable value or bin (see \cref{fmsim-schema}), 
 generally occupies less disk space for storage but has some important disadvantages. 
-Data loss usually occurs when survey data is aggregated into the wide form, 
+Data loss usually occurs when georeferenced individual level survey data
+--- \emph{spatial microdata} --- is aggregated into the wide form,
 especially when continuous variables are converted into discrete categories and 
 when not cross-tabulations, such as age/income, are not provided.
-
-The process of aggregation is performed in three steps:  a) conversion of all 
+The process of aggregation is performed in three steps:
+\begin{enumerate}
+ \item conversion of all
 variables into discrete categories (e.g.~an individual with an income of £13,000 per year
-would be allocated to band of £10,000 to £15,000 per year), b) assigning a column to each category --- and in
-some cases each category combination --- and c) assigning 
-integer counts to cells in each column.
-Frequently large national social survey datasets 
+would be allocated to band of £10,000 to £15,000 per year)
+ \item assignment of a column to each unique category
+% --- and in some cases each category combination ---
+ \item assignment of
+integer counts to cells in each column to represent the number of people with each characteristic.
+\end{enumerate}
+Frequently, large national social survey datasets 
 such as censuses are \emph{only} available in the wide, geographically aggregated
-form, which is problematic for the analysis of spatial phenomena \citep{Openshaw1984,Lee2009}.
+form. This is problematic for the analysis of spatial phenomena \citep{Openshaw1984,Lee2009}.
+It is from this context of common forms of geographical data storage formats that this paper departs.
 
-Iterative proportional fitting (IPF) can help overcome these issues when used in
-\emph{spatial microsimulation}, which can be understood in simplistic terms
-as the reversal of geographic aggregation to approximate the original `long' dataset (\cref{fmsim-schema}). 
-As illustrated in this figure, the need for spatial microsimulation is driven by 
+Iterative proportional fitting (IPF) can help overcome the limitations of wide, geographically aggregated data
+sources when used in
+\emph{spatial microsimulation}. In simplistic terms IPF can be understood
+as the reversal of geographic aggregation described in points 1--3 above,
+to approximate the original `long' dataset (\cref{fmsim-schema}).
+Thus the need for spatial microsimulation is driven by
 the tendency of statistical agencies to make the raw georeferenced microdata generated 
-through large social surveys unnavailable to the research community \citep{Lee2009}: 
-what geographers and regional scientists refer to as spatial microsimulation is
+by large social surveys unavailable to the research community \citep{Lee2009}.
+In fact spatial microsimulation, the term favoured by geographers and regional scientists, is
 generally known as \emph{population synthesis} in transport modelling, which 
 is and apt name: its core function is to simulate populations based on 
-imperfect data. Spatial microsimulation also refers to the wider approach which
+imperfect data. Spatial microsimulation can also refer to a wider approach which
 harnesses spatial microdata in the analysis stage \citep{Holm1987, Lovelace2014-jtg}.
 In this paper we focus on the former meaning, which is also known as \emph{static spatial microsimulation}
 \citep{Ballas2005c}.
-
 
 \begin{figure}
 \begin{center}
@@ -138,38 +148,96 @@ in the wider context of the availability of different data formats and spatial m
 \subsection{What is IPF and why use it?} 
 
 IPF is a statistical procedure that enables the calculation of
-\emph{maximum likelihood} of values that are constrained by multiple variables. 
-IPF is a general purpose tool with multiple uses. In this paper we focus on its
+\emph{maximum likelihood} of cell values that are constrained by multiple marginal totals.
+Some confusion surrounds the procedure because it has multiple names:
+the `RAS algorithm', `biproportional fitting' and to a lesser extent
+`raking' have all been used to describe the procedure
+at different times and in different branches of academic research \citep{Lahr2004}.
+`Entropy maximisation' is a related technique, of which IPF is considered to be a
+subset \citep{Johnston1993,Rich2012}.\footnote{As an
+aside, IPF is considered by \citet{Rich2012} to be a particular
+efficient for of entropy maximisation: ``The popularity of the IPF is therefore mainly due to the fact that it provides a
+solution which is equivalent to that of the ME approaches, but attained in a much more
+computationally efficient way'' (p.~469).
+}
+Usage characteristics of these different terms are summarised in \cref{tterms}.
+
+\begin{table}[htbp]
+\caption{Usage characteristics of different terms for the IPF procedure, from the Scopus database}
+\begin{tabular}{lp{1.5cm}p{2.5cm}p{1.5cm}p{2.5cm}}
+\toprule
+Search term & N. citations & Commonest subject area & \% Since 2010 & \% Mentioning ``regional'' \\
+\midrule
+Entropy maximisation & 564 & Engineering & 30 & 9 \\
+``Iterative proportional fitting''  & 135 & Mathematics & 22\ & 16 \\
+``RAS Algorithm'' & 25 & Comp. science & 24 & 24 \\
+``Iterative proportional scaling'' & 15 & Mathematics & 27 & 0 \\
+Matrix raking & 12 & Engineering & 50 & 0 \\
+Biproportional estimation & 12 & Social sciences & 17 & 33 \\
+\bottomrule
+\end{tabular}
+\label{tterms}
+\end{table}
+
+Ambiguity in terminology surrounding the procedure has existed for a long time:
+when Michael Bacharach began using the term `biproportional' late 1960s, he did so with the
+following caveat: ``The `biproportional' terminology is not introduced in what
+would certainly be a futile attempt to dislodge `RAS', but to help to abstract the
+mathematical characteristics from the economic associations of the model'' \citep{bacharach1970biproportional}.
+The original formulation of the procedure is generally ascribed to \citet{Deming1940},
+who presented an iterative procedure for solving the problem of how to modify internal cell counts
+of census data in `wide' form, based on new marginal totals. Without repeating
+the rather involved mathematics of this discovery, it is worth quoting again from
+\citet{bacharach1970biproportional}, who provided as clear a description as any of the procedure
+in plain English: ``The method that Deming and Stephan suggested for
+computing a solution was to fit rows to the known row sums and columns to the known
+column sums by alternate [iterative] scalar multiplications of rows and columns of the
+base matrix'' (p.~4). The main purpose for revisiting and further developing the technique
+from Bacharach's perspective was to provide forecasts of the sectoral disaggregation of
+economic growth models for the British government. It was not until later
+(e.g.~\citealp{Holm1987}) that the procedure was rediscovered for geographic research.
+
+Thus IPF is a general purpose tool with multiple uses. In this paper we focus on its
 ability to \emph{disaggregate} the geographically aggregated data typically
-provided by national statistical agencies to simulate \emph{spatial microdata}
-(\cref{fmsim-schema}). But why would one want do this in the first place?
+provided by national statistical agencies to synthesis \emph{spatial microdata},
+as illustrated in \cref{fmsim-schema}. But why would one want do this in the first place?
 
 % Each row in this aggregated form can 
 % represent the entire dataset or subsets thereof. (Geographical aggregation – one row 
 % per zone – is the most common form of aggregation, but any subsets, from social class, 
 % time period or other \emph{cross-tablulations} of the dataset can be used).
 
-The main advantages of wide datasets are that they can summarise information about a very large number of individuals
-in a small number of rows, saving storage space, easing data analysis and, critically,
-ensuring the anonymity survey respondents.
-As alluded to above, the main disadvantage is that the process of aggregation
-is almost always associated with data loss: we do 
-not know from a wide dataset if the hypothetical individual earning \pounds13,000 is in fact on a salary of
+To answer this question, let us briefly consider the advantages and drawbacks of the ubiquitous wide
+data format. The main advantages of wide datasets are that they can summarise information about very many individuals
+in a relatively few rows, saving storage space, easing the analysis and, critically for policy makers,
+ensuring the anonymity survey respondents. But the process of aggregation
+used to create wide data
+is almost always associated with data loss, leading to the following disadvantages:
+\begin{itemize}
+ \item \emph{Binning of continuous variables:} we do
+not know from a wide dataset if the aforementioned person earning \pounds13,000 is in fact on a salary of
 \pounds10,000, \pounds15,000 or 
-anywhere in between. Also, when aggregation is done by geographical zones --- as is usually the case --- there is 
-a loss of geographical resolution: instead of knowing person's precise home location from the full dataset, we 
-may only be able to pin them down to a relatively large administrative area such as a Local Authority. 
-Finally, the cross-tabulations between variables are generally during the process of 
-aggregation.
+anywhere in between
+ \item \emph{Loss of geographical resolution:} when aggregation is done by geographical zones
+%  --- as is usually the case ---
+ spatial information is lost. Instead of knowing person's precise home location, from the full dataset, we
+may only be able to pin them down to a relatively large administrative area.
+ \item \emph{Loss of cross-tabulation}: during the process of
+aggregation the links between different variables, often expressed as `contingency tables',
+is usually lost. For example a female cyclist will be represented as additional units in the
+``cyclist'' and ``female'' categories, without knowledge of their interrelation.
+\end{itemize}
 % make bullet points???
 
-Both types of data representation are common in the physical sciences, and the raw long 
-dataset is often available. In the social sciences, by contrast, the long format is often unavailable 
+In the \emph{physical sciences} both data formats are common and the
+original long dataset is generally available. In the social sciences, by contrast, the long format is often unavailable
 due to the long history of and confidentiality 
-issues surrounding officially collected survey data. It worth emphasising that National Census datasets --- in which characteristics of 
-every individual are recorded and which constitute some of the best datasets in social science --- are usually only available 
-in wide form, however, posing major challenges to researchers in the sciences, posing problems to researchers 
-interested in intra-zone variability at the local level (e.g.~\citep{Whitworth2012}). 
+issues surrounding officially collected survey data.
+It is worth emphasising that National Census datasets --- in which characteristics of 
+every individual living in a state are recorded and which constitute some of the best datasets in social science ---
+are usually only available
+in wide form. This poses major challenges to researchers in the sciences who
+interested in intra-zone variability at the local level \citep{Whitworth2012,Lee2009}.
 
 A related long-standing research problem especially prevalent in geography and regional science
 is the scale of analysis. There is often a trade-off between the quality and resolution 
@@ -178,35 +246,38 @@ of the data, which can result in a compromise between detail and accuracy of res
 a spatial problem is being presented with two datasets: one long aspatial 
 survey table where each row represents the characteristics of an individual --- such as
 age, sex, employment status and income --- and another of wide, geographically aggregated 
-dataset containing count data for each category. IPF in spatial microsimulation tackles this
-problem by allocating weights to the individuals from the aspatial microdataset for each zone, 
-based on \emph{constraint variables} shared by both input datasets. 
+dataset containing count data for each category. IPF solves this problem when used in
+spatial microsimulation by proportionally assigning individuals to zones of which they
+are most representative.
+% It is these `linking variables'
+% that enable IPF to converge on the weights that best represent how representative each individual is
+% of each zone, as described in the next section.
 
 % could take this out...
-As illustrated in \cref{fmsim-schema}, wide datasets are
-are wider and shorter, containing multiple columns for each variable from the raw dataset,
-causing loss of information about the linkages between different variables, their \emph{cross tabulations}.
-The solution to this problem, however, makes the wide datasets even more unwieldy, as
-each new cross-tabulated variable adds $nv \times ncol(X)$  \emph{more} columns to the 
-wide dataset, where $nv$ is the number discrete categories in the new variable and $ncol(x)$
-is the existing number of columns in the wide data 
-table.\footnote{To 
-provide a concrete example, a cross-tabulation 
-of mode of travel to work by sex and social class would contain 540 (12 * 3 * 15) columns,
-due to the number of categories present in each variable. 
-Given that there are dozen of additional variables in any large census, this clearly becomes
-rapidly unwieldy as more variables are added.
-} % figure???
-The lack of cross tabulation is problematic because 
-in many cases information about the linkages between different variables is needed to 
-address policy-relevant questions. To pick one example related to 
-policies targeted at skilled unemployed young adults: how many unemployed people 
-reside in each geographical area who at the same time have a university degree, 
-are female and over 25 years old? This question is impossible to answer with a 
-geographically aggregated (wide) dataset.
+% As illustrated in \cref{fmsim-schema}, wide datasets are
+% are wider and shorter, containing multiple columns for each variable from the raw dataset,
+% causing loss of information about the linkages between different variables, their \emph{cross tabulations}.
+% The solution to this problem, however, makes the wide datasets even more unwieldy, as
+% each new cross-tabulated variable adds $nv \times ncol(X)$  \emph{more} columns to the 
+% wide dataset, where $nv$ is the number discrete categories in the new variable and $ncol(x)$
+% is the existing number of columns in the wide data 
+% table.\footnote{To 
+% provide a concrete example, a cross-tabulation 
+% of mode of travel to work by sex and social class would contain 540 (12 * 3 * 15) columns,
+% due to the number of categories present in each variable. 
+% Given that there are dozen of additional variables in any large census, this clearly becomes
+% rapidly unwieldy as more variables are added.
+% } % figure???
+% The lack of cross tabulation is problematic because 
+% in many cases information about the linkages between different variables is needed to 
+% address policy-relevant questions. To pick one example related to 
+% policies targeted at skilled unemployed young adults: how many unemployed people 
+% reside in each geographical area who at the same time have a university degree, 
+% are female and over 25 years old? This question is impossible to answer with a 
+% geographically aggregated (wide) dataset.
 
 \subsection{IPF in spatial microsimulation}
-Spatial microsimulation tackles the afforementioned problems associated 
+Spatial microsimulation tackles the aforementioned problems associated
 with the prevalent geographically aggregated wide data form by simulating
 the individuals within each administrative zone. The most detailed output of this process of 
 spatial microsimulation is `spatial microdata', a long table of individuals with 
@@ -228,8 +299,8 @@ of storing spatial microdata taken from a single dataset is as a `weight matrix'
 
 Representing the data in this form offers a number of advantages (Clarke and Holm, 1987). These include:
 \begin{itemize}
- \item The ability to investigate intra-zone variation (by analysing a the variable after subsetting 
-a single area from the data frame),and inter-zone variation in the same dataset.
+ \item The ability to investigate intra-zone variation (variation within each zone can be analysed
+ by subsetting a single area from the data frame).
 \item Cross-tabulations can be created for any combination of variables (e.g. age and employment status).
 \item The presentation of continuous variables such as income as real numbers, 
 rather than as categorical count data, in which there is always data loss.
@@ -252,15 +323,21 @@ with applications as diverse as the location of health services \citep{Tomintz20
 analysis of commuting \citep{Lovelace2014-jtg}.
 Various strategies for generating small area microdata are available,
 as described in recent overviews on the subject \citep{Tanton2013, Ballas2013-4policy-analysis, Hermes2012a}.
-However, it is not always clear which one is most appropriate,
-as highlighted in the conclusions of a recent Reference Guide to spatial microsimulation
+However, it is not always clear which one is most appropriate.
+There has been work testing \citep{Jirousek1995} and improving \citep{teh2003improving} 
+in abstract terms, but research focused on testing use the algorithm for spatial microsimulation.
+This research gap is highlighted in the conclusions of a recent Reference Guide to spatial microsimulation
 \citep[p~270]{Clarke2013-concs}:
 ``It would be desirable if the spatial microsimulation community were able to continue to
 analyse which of the various reweighting/synthetic reconstruction techniques is most accurate
 --- or to identify whether one approach is superior for some applications while another
 approach is to be preferred for other applications''.
-
-The longest-established and most straight-forward of these is Iterative Proportional Fitting (IPF), the performance of which is the subject of this paper...
+This paper rises to this challenge by systematically testing the IPF algorithm for spatial microsimulation.
+Before proceeding to the model experiments, we first
+provide a brief overview of the applications of IPF in regional science
+and outline the theory underlying the procedure based on a simple example. 
+% The longest-established and most straight-forward of
+% these is Iterative Proportional Fitting (IPF), the performance of which is the subject of this paper...
 
 \subsection{Applications}
 \textbf{Dimitris and Eveline: please fill in this section}
@@ -268,7 +345,7 @@ Applications of IPF include using it ...
 
 The application of greatest interest to regional scientists is as a method of 
 spatial microsimulation: generating individual level data allocated to specific zones...
-Papers that have used IPF in this context (or a subsitutable method such as simulated annealing)
+Papers that have used IPF in this context (or a substitutable method such as simulated annealing)
 have explored a range of regional economic problems that purely aggregate level analyses struggle to address.
 These include:
 \begin{itemize}
@@ -280,51 +357,66 @@ at the local level \citep{Ballas2006}.
 \end{itemize}
 
 \section{IPF: theory and a worked example}
-Iterative Proportional Fitting has a long history in Statistics and the social
-sciences (especially in Economics and Geography).
-In statistical language, IPF is used to estimate the values of internal
-cells in a cross-tabulated table to fit known margins.
-The method is also known as matrix raking or scaling,
-biproportional fitting, RAS, and entropy maximising.
-There are a number of texts discussing the method in a mathematical formal
-way in some detail (for example \citealp{Mosteller1968, Fienberg1970, Pritchard2012}).
-\citep{Birkin1988} provide a succinct presentation of the
-mathematics of IPF and their work is the foundation of
-the work presented here...% described in origin; rethink this...???
+% Iterative Proportional Fitting has a long history in Statistics and the social
+% sciences (especially in Economics and Geography).
+% In statistical language, IPF is used to estimate the values of internal
+% cells in a cross-tabulated table to fit known margins.
+% The method is also known as matrix raking or scaling,
+% biproportional fitting, RAS, and entropy maximising.
+% There are a number of texts discussing the method in a mathematical formal
+% way in some detail (for example \citealp{Mosteller1968, Fienberg1970, Pritchard2012}).
+% \citep{Birkin1988} provide a succinct presentation of the
+% mathematics of IPF and their work is the foundation of
+% the work presented here...% described in origin; rethink this...???
+% 
+\subsection{The IPF algorithm: a worked example} \label{s:theory}
+In many modelling texts there is a precedence of theory over
+application: the latter usually flows from the former.  
+As outlined in the previous section, the mathematics underlying IPF have
+been thoroughly demonstrated in research stemming back to the 1940s,
+yet \emph{practical} demonstrations, focused on making
+algorithm as accessible as possible to others,
+is lacking. \citet{Norman1999a} and
+and xxx exemplify their work with code snippets from an implementation
+of IPF in the proprietary software SPSS and reference to
+an Excel macro that is available on request, respectively.
+\citet{Williamson2007} also represents
+good practice in this regard, with a manual for running 
+combinatorial optimisation algorithms described in previous work.
+\citep{Ballas2005c} demonstrates IPF with a worked example
+to be calculated using mental arithmetic, but does not progress to
+illustrate how the examples are then implemented in computer code.
+% This section builds this work, first outlining an example that
+% can be completed in one's head before illustrating its implementation in code.
 
-\subsection{IPF theory: a worked example} \label{s:theory}
-In most modelling texts there is a strong precedence of theory over
-application: the latter usually flows from the former. The location 
-of this section after a description of the programming language
-R is therefore a little unconventional but there is a logic to this order. 
-Having demonstrated the power and flexibility of the programming language in
-which the model is written, the next stage is to analyse the task to which it
-is to be set. More importantly for reproducible research, this theory section
-is illustrated with a simple worked example that culminates in
-a question to the reader, to test his or her understanding.
+% Importantly for for reproducible research this theory section
+% is illustrated with a simple worked example that culminates in
+% a question to the reader, to test his or her understanding.
 
-IPF is a simple statistical procedure, ``in which cell counts in a contingency
+It is worth restating that IPF is a simple statistical procedure,
+``in which cell counts in a contingency
 table containing the sample observations are scaled to be consistent with
 various externally given population marginals'' \citep{mcfadden2006testing}. In
 other words, and in the context of \emph{spatial} microsimulation, IPF produces
 maximum likelihood estimates for the frequency with which people appear in
-different areas. The method is also known as `matrix raking' or the RAS
-algorithm, 
-% (\citealp{Birkin1988, Muller2010,Simpson2005, Kalantari2008, Jirousek1995})
- and has been described as one
-particular instance of a more general procedure of `entropy maximisation'
-\citep{Johnston1993, blien1998entropy}.
-The mathematical properties of IPF
-have been described in several papers
-(\citealp{Bishop1975, Fienberg1970, Birkin1988}).
-Illustrative examples of the procedure can be found in
-\citet{Saito1992}, \citet{Wong1992}
-and \citet{Norman1999a}. \citet{Wong1992} investigated the reliability of IPF
-and evaluated the importance of different factors influencing the its
-performance. Similar methodologies have since been employed by
-\citet{Mitchell2000}, \citet{Williamson2002} and
-Ballas et al.~\citeyearpar{Ballas2005c}
-to investigate a wide range of phenomena.
+different areas.
+% The method is also known as `matrix raking' or the RAS %%% may want to re-include at some point
+% algorithm, 
+% % (\citealp{Birkin1988, Muller2010,Simpson2005, Kalantari2008, Jirousek1995})
+%  and has been described as one
+% particular instance of a more general procedure of `entropy maximisation'
+% \citep{Johnston1993, blien1998entropy}.
+% The mathematical properties of IPF
+% have been described in several papers
+% (\citealp{Bishop1975, Fienberg1970, Birkin1988}).
+% Illustrative examples of the procedure can be found in
+% \citet{Saito1992}, \citet{Wong1992}
+% and \citet{Norman1999a}. \citet{Wong1992} investigated the reliability of IPF
+% and evaluated the importance of different factors influencing the its
+% performance. Similar methodologies have since been employed by
+% \citet{Mitchell2000}, \citet{Williamson2002} and
+% Ballas et al.~\citeyearpar{Ballas2005c}
+% to investigate a wide range of phenomena.
 
 To illustrate how IPF works in practice, a simplified example is described below.
 This is a modified version of a simpler demonstration from
@@ -588,7 +680,7 @@ case-by-case basis, and are mentioned in passing with a focus on general princip
 rather than specific advice. The methods are presented in ascending order of complexity
 and roughly descending order of frequency of use, ranging from Pearson's coefficient of
 correlation to entropy based measures. Before these methods are described, it is
-worth stating the the purpose of this section is not to find the `best' evaluation metric:
+worth stating the purpose of this section is not to find the `best' evaluation metric:
 each has advantages and disadvantages, the importance of which will vary depending on the
 nature of the research. A final point is that the use of a variety of techniques in this paper
 is of interest in itself. The high degree of correspondence between them (presented in \cref{cresults}),
@@ -724,7 +816,7 @@ A sample of these constraint variables is presented in \cref{t3} below. % aren't
 \end{table}
 
 The individual-level table that compliments these geographically aggregated count constraints 
-is taken from Understanding Society wave 1. These have been randomized to ensure anonymity
+is taken from Understanding Society wave 1. These have been randomised to ensure anonymity
 but they are still roughly representative of real data. The table consists of 1768 rows of 
 data and is stored in R’s own space-efficient filetype (see ``ind.RData'', which must be opened in 
 R to be viewed properly). As shown in \cref{t4} below, this consists of the same 3 
@@ -943,9 +1035,10 @@ These results suggest that initial weights have a limited impact on the results 
 
 
 \bibliographystyle{model2-names.bst}
-\bibliography{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib, /home/robin/Documents/powerstarrefs/Microsimulation.bib}
+\bibliography{/home/robin/Documents/Microsimulation.bib}
 %/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib  desktop.bib,
 % /home/robin/Documents/powerstarrefs/Microsimulation.bib
+% /nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib,
 
 
 \end{document}

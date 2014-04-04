@@ -1,3 +1,5 @@
+% Todo: consolidate two sets of tables for intro eg
+
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage{natbib}
@@ -122,7 +124,7 @@ It is from this context of common forms of geographical data storage formats tha
 
 Iterative proportional fitting (IPF) can help overcome the limitations of wide, geographically aggregated data
 sources when used in
-\emph{spatial microsimulation}. In simplistic terms IPF can be understood
+\emph{spatial microsimulation}. In simplistic terms spatial microsimulation can be understood
 as the reversal of geographic aggregation described in points 1--3 above,
 to approximate the original `long' dataset (\cref{fmsim-schema}).
 Thus the need for spatial microsimulation is driven by
@@ -281,7 +283,7 @@ Spatial microsimulation tackles the aforementioned problems associated
 with the prevalent geographically aggregated wide data form by simulating
 the individuals within each administrative zone. The most detailed output of this process of 
 spatial microsimulation is `spatial microdata', a long table of individuals with 
-associated attributes and weights for each zone (see \cref{t1} %???really
+associated attributes and weights for each zone (see \cref{t:w} %???really
  for a simple example). 
 Because these individuals correspond to observations in the survey dataset,
 the spatial microdata generated in this way, of any size and complexity,
@@ -356,7 +358,7 @@ at the local level \citep{Ballas2006}.
 \item ...
 \end{itemize}
 
-\section{IPF: theory and a worked example}
+% \section{IPF: theory and a worked example}
 % Iterative Proportional Fitting has a long history in Statistics and the social
 % sciences (especially in Economics and Geography).
 % In statistical language, IPF is used to estimate the values of internal
@@ -369,37 +371,45 @@ at the local level \citep{Ballas2006}.
 % mathematics of IPF and their work is the foundation of
 % the work presented here...% described in origin; rethink this...???
 % 
-\subsection{The IPF algorithm: a worked example} \label{s:theory}
+\section{The IPF algorithm: a worked example} \label{s:theory}
 In many modelling texts there is a precedence of theory over
 application: the latter usually flows from the former.  
 As outlined in the previous section, the mathematics underlying IPF have
 been thoroughly demonstrated in research stemming back to the 1940s,
 yet \emph{practical} demonstrations, focused on making
 algorithm as accessible as possible to others,
-is lacking. \citet{Norman1999a} and
-and xxx exemplify their work with code snippets from an implementation
+are comparatively rare. For this reason this section presents a
+simple worked example. The steps are, to the authors knowledge, presented in
+more detail than any previous work, to address the theory:practice balance and
+ensure accessibility to understanding of the method.
+
+That is not to say that reproducibility is completely absent in the field.
+\citet{Simpson2005} and \citet{Norman1999a}
+exemplify their work with code snippets from an implementation
 of IPF in the proprietary software SPSS and reference to
 an Excel macro that is available on request, respectively.
 \citet{Williamson2007} also represents
 good practice in this regard, with a manual for running 
-combinatorial optimisation algorithms described in previous work.
-\citep{Ballas2005c} demonstrates IPF with a worked example
+combinatorial optimisation algorithms described in previous work and
+\citep{Ballas2005c} demonstrate IPF with a worked example
 to be calculated using mental arithmetic, but does not progress to
 illustrate how the examples are then implemented in computer code.
-% This section builds this work, first outlining an example that
-% can be completed in one's head before illustrating its implementation in code.
+This section builds on and extends this work, by first outlining an example that
+can be completed using mental arithmetic alone before illustrating its
+implementation in code. %Have you implemented in R???
 
 % Importantly for for reproducible research this theory section
 % is illustrated with a simple worked example that culminates in
 % a question to the reader, to test his or her understanding.
 
-It is worth restating that IPF is a simple statistical procedure,
-``in which cell counts in a contingency
-table containing the sample observations are scaled to be consistent with
-various externally given population marginals'' \citep{mcfadden2006testing}. In
-other words, and in the context of \emph{spatial} microsimulation, IPF produces
-maximum likelihood estimates for the frequency with which people appear in
-different areas.
+% It is worth restating that IPF is a simple statistical procedure, % why???
+% ``in which cell counts in a contingency
+% table containing the sample observations are scaled to be consistent with
+% various externally given population marginals'' \citep{mcfadden2006testing}. In
+% other words, and in the context of \emph{spatial} microsimulation, IPF produces
+% maximum likelihood estimates for the frequency with which people appear in
+% different areas.
+
 % The method is also known as `matrix raking' or the RAS %%% may want to re-include at some point
 % algorithm, 
 % % (\citealp{Birkin1988, Muller2010,Simpson2005, Kalantari2008, Jirousek1995})
@@ -418,27 +428,26 @@ different areas.
 % Ballas et al.~\citeyearpar{Ballas2005c}
 % to investigate a wide range of phenomena.
 
-To illustrate how IPF works in practice, a simplified example is described below.
-This is a modified version of a simpler demonstration from
-\citet{Ballas2005c}.\footnote{In \citet{Ballas2005c}
-the interaction between the age and sex constraints are assumed to be known.
-(Their equivalent of \cref{t:s2} contains data for every cell,
-not question marks.) This results in IPF converging instantly.
-However, in Census data, such cross-tabulation is
-often absent, and IPF must converge over multiple constraints and
-iterations. This latter scenario is assumed in the worked example below. Other
-worked examples of the principles are provided in \citet[Appendix
-3]{johnston1985geography} (for entropy maximisation), \citet{Norman1999a} and
-\citet{Simpson2005} (using the proprietary statistical software SPSS).
-}
+% The example described below is a modified version
+% \citet{Ballas2005c}.\footnote{In \citet{Ballas2005c}
+% the interaction between the age and sex constraints are assumed to be known.
+% (Their equivalent of \cref{t:s2} contains data for every cell,
+% not question marks.) This results in IPF converging instantly.
+% However, in Census data, such cross-tabulation is
+% often absent, and IPF must converge over multiple constraints and
+% iterations. This latter scenario is assumed in the worked example below. Other
+% worked examples of the principles are provided in \citet[Appendix
+% 3]{johnston1985geography} (for entropy maximisation), \citet{Norman1999a} and
+% \citet{Simpson2005} (using the proprietary statistical software SPSS).
+% }
+
 Table \ref{t:w}  describes a
 hypothetical microdataset comprising 5 individuals, who are defined by two
-constraint variables, age and sex. Each has two categories.
+constraint variables, age and sex. 
 Table \ref{t:s} contains aggregated data
 for a hypothetical area, as it would be downloaded from census dissemination
 portal Casweb. \Cref{t:s2} illustrates this table in a different form,
-which shows our ignorance of interaction between age and sex.
-
+demonstrating the unknown links between age and sex.
 
 \begin{table}[h]
 \centering
@@ -450,11 +459,16 @@ illustrative purposes.}
 \toprule
 {Individual } & {Sex} & {Age-group} & {Weight} \\
 \midrule
-1 & Male & Over-50 & 1 \\
-2 & Male & Over-50 & 1 \\
-3 & {Male} & {Under-50} & \textbf{1} \\
-4 & Female & Over-50 & 1 \\
-5 & Female & Under-50 & 1 \\
+1 & Male & 59 & 1 \\
+2 & Male & 54 & 1 \\
+3 & {Male} & {35} & \textbf{1} \\
+4 & Female & 73 & 1 \\
+5 & Female & 49 & 1 \\
+% 1 & 59 & m \\
+% 2 & 54 & m \\
+% 3 & 35 & m \\
+% 4 & 73 & f \\
+% 5 & 49 & f \\
 \bottomrule
 \end{tabular}
 \label{t:w}
@@ -496,6 +510,8 @@ Marginal totals&  & \multicolumn{2}{c}{$j$} & \\
 Table \ref{t:m} presents the
 hypothetical microdata in aggregated form,
 that can be compared directly to Table \ref{t:s2}.
+Note that the integer variable age has been converted into
+a categorical variable in this step, a key stage in geographical aggregation.
 
 \begin{table}[htbp]
 \centering
@@ -744,39 +760,46 @@ Three input datasets form the basis of the scenarios tested in this paper,
 `simple', `small-area' and `sheffield'. Each consists of a set of aggregate
 constraints and corresponding individual-level survey tables.
 The latter are anonymous and have been `scrambled' to enable their
-publication on the internet. This enables the results to be replicated by others,
+publication online. This enables the results to be replicated by others,
 without breaching the user licenses of the data.
 To this end, all the input data (and code) used to generate the results reported
 in the paper are available online on the code-sharing site GitHub.
-The simplest scenario consists of 6 zones which must be populated by a
-sample survey dataset of only five individuals, constrained by two variables (age and sex).
+The simplest scenario consists of 6 zones which must be populated by the
+data presented in the previous section (see \cref{t:w}).
+% sample survey dataset of only five individuals, constrained by two variables (age and sex).
 This scenario is purely hypothetical and is used to represent the IPF procedure
 and the tests in the simplest possible terms. Its small size allows the entirety
-of the input data to be viewed in a couple of tables that fit on a single page
-(see \cref{t1} and \cref{t2}). As with all data used in this paper, these tables can be
+of the input data to be viewed in a couple of tables 
+(see \cref{t:w} and \cref{t2}, the first row of which is used
+to exemplify the method the previous section). As with all
+data used in this paper, these tables can be
 viewed and downloaded online.
 
-\begin{table}[htbp]
-\caption{Individual-level data for the simple scenario. The file, `vailable from the GitHub in the folder 
-`\href{https://github.com/Robinlovelace/IPF-performance-testing/tree/master/input-data/small-area-eg}{input-data}'} % where???
-\begin{center}
-\begin{tabular}{rrl}
-\toprule
-\multicolumn{1}{l}{Id} & \multicolumn{1}{l}{Age} & Sex \\
-\midrule
-1 & 59 & m \\
-2 & 54 & m \\
-3 & 35 & m \\
-4 & 73 & f \\
-5 & 49 & f \\
-\bottomrule
-\end{tabular}
-\end{center}
-\label{t1}
-\end{table}
+% \begin{table}[htbp]
+% \caption{Individual-level data for the simple scenario. The file, `vailable from
+% the GitHub in the folder
+% `\href{
+% https://github.com/Robinlovelace/IPF-performance-testing/tree/master/input-data/
+% small-area-eg}{input-data}'} % where???
+% \begin{center}
+% \begin{tabular}{rrl}
+% \toprule
+% \multicolumn{1}{l}{Id} & \multicolumn{1}{l}{Age} & Sex \\
+% \midrule
+% 1 & 59 & m \\
+% 2 & 54 & m \\
+% 3 & 35 & m \\
+% 4 & 73 & f \\
+% 5 & 49 & f \\
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \label{t1}
+% \end{table}
 
 \begin{table}[htbp]
-\caption{Geographically aggregated constraint variables for the simple scenario, also available online}
+\caption{Geographically aggregated constraint variables for the simple
+scenario.}
 \begin{center}
 \begin{tabular}{rrrrr}
 \toprule
@@ -797,10 +820,14 @@ viewed and downloaded online.
 
 The next smallest input dataset, and the most commonly used scenario in the paper, 
 is `small-area'. The area constraints consist of 24 Output Areas (the smallest 
-administrative geographical unit in the UK), with an average population of 184 people aged over 16. 
-Three files describe the number of hours worked, the marital status and the tenancy of these 
-individuals (although tenancy in fact counts houses, not people): the files can be accessed 
-from the hyperlinks embedded in digital versions of the previous sentence. 
+administrative unit in the UK), with an average adult population of 184.
+Three files describe the number of hours worked, the marital status and the
+tenancy of these 
+individuals (although tenancy in fact counts houses, not people): the files can
+be accessed from `small-area-eg', within the `input-data' folder of the online
+repository.\footnote{These datasets can be found here:
+https://github.com/Robinlovelace/IPF-performance-testing/tree/master/input-data/
+small-area-eg}
 % Add these
 A sample of these constraint variables is presented in \cref{t3} below. % aren't we putting ind. data 1st?
 
@@ -819,22 +846,22 @@ The individual-level table that compliments these geographically aggregated coun
 is taken from Understanding Society wave 1. These have been randomised to ensure anonymity
 but they are still roughly representative of real data. The table consists of 1768 rows of 
 data and is stored in R’s own space-efficient filetype (see ``ind.RData'', which must be opened in 
-R to be viewed properly). As shown in \cref{t4} below, this consists of the same 3 
-constraint variables as provided in \cref{t3} but at aggregate level, in addition to one 
-`target variable': monthly pre-tax income in pounds. 
+R). This individual level data consists of the same 3
+constraint variables as provided in \cref{t3} in addition
+to one `target variable': monthly pre-tax income in pounds stirling. 
 
-\begin{table}[htbp]
-\caption{Randomly selected sample of 5 individuals taken from the individual-level dataset.}
-\begin{center}
-\begin{tabular}{rrrrr}
-\toprule
-\bottomrule
-\end{tabular}
-\end{center}
-\label{t4}
-\end{table}
+% \begin{table}[htbp]
+% \caption{Randomly selected sample of 5 individuals taken from the individual-level dataset.}
+% \begin{center}
+% \begin{tabular}{rrrrr}
+% \toprule
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \label{t4}
+% \end{table}
 
-... More here on loading-up this data.
+% ... More here on loading-up this data.
 
 \section{Method: model experiments}
 \subsection{Baseline scenarios}
@@ -901,7 +928,7 @@ but with incrementally larger initial weights applied to a pre-determined set of
 Empty cells refer to cross-tabulations of individual-level 
 attributes that are not represented by any single individual 
 in the survey input data. An example of this would be if no female 
-in the 16 to 49 year age bracket were present in \cref{t1}. 
+in the 16 to 49 year age bracket were present in \cref{t:w}.
 The method used to find-out if empty cells exist is to first 
 select only individuals with unique characteristics 
 (in the narrow terms of the constraint variables --- of course every survey individual is unique). 
@@ -918,7 +945,7 @@ The question of which unique individual to remove is solved by random sampling.
 
 \subsection{Integerisation}
 This was the next variable that was altered, 
-following \citep{}. In the simplest scenario, the 
+following \citep{Lovelace2013-trs}. In the simplest scenario, the
 initial weight of a single individual was altered 
 repeatedly, in a controlled manner. The code enabling this model experiment 
 is contained in the folder `small-area-weights' (see `etsim.R'). 

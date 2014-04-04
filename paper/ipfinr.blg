@@ -2,47 +2,46 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: ipfinr.aux
 The style file: model2-names.bst.bst
 Database file #1: /home/robin/Documents/Microsimulation.bib.bib
-Warning--I didn't find a database entry for ""
 Warning--empty pages in teh2003improving
-You've used 33 entries,
+You've used 31 entries,
             2761 wiz_defined-function locations,
-            813 strings with 11018 characters,
-and the built_in function-call counts, 19427 in all, are:
-= -- 1592
-> -- 673
-< -- 32
-+ -- 259
-- -- 226
-* -- 2128
-:= -- 2963
-add.period$ -- 95
-call.type$ -- 33
-change.case$ -- 236
-chr.to.int$ -- 33
-cite$ -- 34
-duplicate$ -- 1349
-empty$ -- 1361
-format.name$ -- 335
-if$ -- 3592
+            802 strings with 10696 characters,
+and the built_in function-call counts, 18333 in all, are:
+= -- 1508
+> -- 629
+< -- 31
++ -- 242
+- -- 211
+* -- 2012
+:= -- 2789
+add.period$ -- 89
+call.type$ -- 31
+change.case$ -- 222
+chr.to.int$ -- 31
+cite$ -- 32
+duplicate$ -- 1275
+empty$ -- 1282
+format.name$ -- 316
+if$ -- 3391
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 276
-newline$ -- 171
-num.names$ -- 136
-pop$ -- 313
+missing$ -- 260
+newline$ -- 161
+num.names$ -- 128
+pop$ -- 293
 preamble$ -- 1
-purify$ -- 205
+purify$ -- 192
 quote$ -- 0
-skip$ -- 485
+skip$ -- 456
 stack$ -- 0
-substring$ -- 891
-swap$ -- 1096
+substring$ -- 850
+swap$ -- 1039
 text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 285
+type$ -- 270
 warning$ -- 1
-while$ -- 149
+while$ -- 141
 width$ -- 0
-write$ -- 467
-(There were 2 warnings)
+write$ -- 440
+(There was 1 warning)

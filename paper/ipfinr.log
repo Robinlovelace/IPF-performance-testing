@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.10.5)  15 MAR 2014 10:59
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.10.5)  31 MAR 2014 11:07
 entering extended mode
  %&-line parsing enabled.
 **ipfinr.tex
@@ -319,20 +319,20 @@ File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 ) (./ipfinr.aux)
 \openout1 = `ipfinr.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
 
 (/usr/share/texmf-texlive/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2003/11/29 Fixes to fontencodings LGR, T3
@@ -392,7 +392,7 @@ driver: pdftex
 \everyMPtoPDFconversion=\toks25
 )
 \c@lstlisting=\count120
-Package hyperref Info: Link coloring OFF on input line 52.
+Package hyperref Info: Link coloring OFF on input line 54.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -401,28 +401,28 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count121
 )
-LaTeX Info: Redefining \ref on input line 52.
-LaTeX Info: Redefining \pageref on input line 52.
+LaTeX Info: Redefining \ref on input line 54.
+LaTeX Info: Redefining \pageref on input line 54.
  (./ipfinr.out)
 (./ipfinr.out)
 \@outlinefile=\write4
 \openout4 = `ipfinr.out'.
 
 \AtBeginShipoutBox=\box31
-LaTeX Info: Redefining \ref on input line 52.
-LaTeX Info: Redefining \ref on input line 52.
+LaTeX Info: Redefining \ref on input line 54.
+LaTeX Info: Redefining \ref on input line 54.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 55.
+(Font)              <12> on input line 57.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 55.
+(Font)              <8> on input line 57.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 55.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 88.
+(Font)              <6> on input line 57.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 90.
  (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 88.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 90.
 
 (/usr/share/texmf-texlive/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2004/10/17 UCS: Unicode data U+0000..U+00FF
@@ -434,68 +434,67 @@ File: ../figure/msim-schema.png Graphic file (type png)
 
 <use ../figure/msim-schema.png>
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 157.
+(Font)              <7> on input line 159.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 157.
+(Font)              <5> on input line 159.
  [2 <../figure/msim-schema.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 169--169
+Underfull \hbox (badness 10000) in paragraph at lines 171--171
 []|\OT1/cmr/m/n/10 N. ci-ta-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--169
+Underfull \hbox (badness 10000) in paragraph at lines 171--171
 []|\OT1/cmr/m/n/10 Commonest
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--169
+Underfull \hbox (badness 10000) in paragraph at lines 171--171
 []|\OT1/cmr/m/n/10 % Since
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
 []|\OT1/cmr/m/n/10 % Men-tion-ing
  []
 
 
-Overfull \hbox (0.5781pt too wide) in paragraph at lines 182--199
+Overfull \hbox (0.5781pt too wide) in paragraph at lines 184--201
 []\OT1/cmr/m/n/10 Ambiguity in ter-mi-nol-ogy sur-round-ing the pro-ce-dure has
  ex-isted for a long time: when Michael Bacharach
  []
 
 [3] [4] [5] [6]
-Underfull \hbox (badness 1466) in paragraph at lines 653--653
+Underfull \hbox (badness 1466) in paragraph at lines 669--669
 [][][]\OT1/cmr/m/n/8 This tu-to-rial is avail-able from Rpubs, a site ded-i-cat
 ed to pub-lish-ing R anal-y-ses that are re-pro-ducible. It
  []
 
 [7] [8] (/usr/share/texmf-texlive/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2004/10/17 UCS: Unicode data U+2000..U+20FF
-) [9]
-<../figure/ipfinac.png, id=354, 569.0058pt x 426.6339pt>
+)
+<../figure/ipfinac.png, id=329, 569.0058pt x 426.6339pt>
 File: ../figure/ipfinac.png Graphic file (type png)
 
-<use ../figure/ipfinac.png> [10]
-<../figure/corr-baseline.png, id=367, 509.905pt x 382.42876pt>
+<use ../figure/ipfinac.png> [9] [10 <../figure/ipfinac.png (PNG copy)>]
+<../figure/corr-baseline.png, id=348, 509.905pt x 382.42876pt>
 File: ../figure/corr-baseline.png Graphic file (type png)
 
-<use ../figure/corr-baseline.png> [11 <../figure/ipfinac.png (PNG copy)> <../fi
-gure/corr-baseline.png (PNG copy)>]
-<../figure/weight-1-5-its.png, id=376, 578.16pt x 382.3083pt>
+<use ../figure/corr-baseline.png>
+<../figure/weight-1-5-its.png, id=350, 578.16pt x 382.3083pt>
 File: ../figure/weight-1-5-its.png Graphic file (type png)
 
-<use ../figure/weight-1-5-its.png>
-<../figure/weights-exp-54nice2.png, id=379, 569.0058pt x 284.5029pt>
+<use ../figure/weight-1-5-its.png> [11 <../figure/corr-baseline.png (PNG copy)>
+] <../figure/weights-exp-54nice2.png, id=364, 569.0058pt x 284.5029pt>
 File: ../figure/weights-exp-54nice2.png Graphic file (type png)
 
 <use ../figure/weights-exp-54nice2.png> (./ipfinr.bbl [12 <../figure/weight-1-5
--its.png (PNG copy)>] [13 <../figure/weights-exp-54nice2.png (PNG copy)>])
+-its.png (PNG copy)> <../figure/weights-exp-54nice2.png (PNG copy)>] [13])
 [14] (./ipfinr.aux) ) 
 Here is how much of TeX's memory you used:
- 10269 strings out of 495061
- 151687 string characters out of 1182621
- 285772 words of memory out of 3000000
- 13201 multiletter control sequences out of 15000+50000
+ 10257 strings out of 495061
+ 151445 string characters out of 1182621
+ 286772 words of memory out of 3000000
+ 13193 multiletter control sequences out of 15000+50000
  14222 words of font info for 49 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  38i,11n,41p,626b,1262s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -514,9 +513,9 @@ public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr
 /share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmu10.pfb>
-Output written on ipfinr.pdf (14 pages, 950132 bytes).
+Output written on ipfinr.pdf (14 pages, 945050 bytes).
 PDF statistics:
- 474 PDF objects out of 1000 (max. 8388607)
- 103 named destinations out of 1000 (max. 500000)
+ 457 PDF objects out of 1000 (max. 8388607)
+ 99 named destinations out of 1000 (max. 500000)
  234 words of extra memory for PDF output out of 10000 (max. 10000000)
 

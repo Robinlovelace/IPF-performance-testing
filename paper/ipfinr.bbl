@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{31}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -118,12 +118,6 @@
   proportional fitting procedure}}.
 \newblock \bibinfo{journal}{Computational Statistics \& Data Analysis}
   \bibinfo{volume}{19}, \bibinfo{pages}{177--189}.
-%Type = Book
-\bibitem[{Johnston(1985)}]{johnston1985geography}
-\bibinfo{author}{Johnston, R.J.}, \bibinfo{year}{1985}.
-\newblock \bibinfo{title}{{The geography of English politics: the 1983 general
-  election}}.
-\newblock \bibinfo{publisher}{Croom Helm London}.
 %Type = Article
 \bibitem[{Johnston and Pattie(1993)}]{Johnston1993}
 \bibinfo{author}{Johnston, R.J.}, \bibinfo{author}{Pattie, C.J.},
@@ -163,16 +157,6 @@
   of commuter patterns: from individual to regional levels}}.
 \newblock \bibinfo{journal}{Journal of Transport Geography}
   \bibinfo{volume}{34}, \bibinfo{pages}{282--296}.
-%Type = Article
-\bibitem[{McFadden et~al.(2006)McFadden, Heiss, Jun and
-  Winter}]{mcfadden2006testing}
-\bibinfo{author}{McFadden, D.}, \bibinfo{author}{Heiss, F.},
-  \bibinfo{author}{Jun, B.h.}, \bibinfo{author}{Winter, J.},
-  \bibinfo{year}{2006}.
-\newblock \bibinfo{title}{{On testing for independence in weighted contingency
-  tables}}.
-\newblock \bibinfo{journal}{Medium for Econometric Applications}
-  \bibinfo{volume}{14}, \bibinfo{pages}{11--18}.
 %Type = Article
 \bibitem[{Morrissey et~al.(2013)Morrissey, O'donoghue and
   Farrell}]{Morrissey2013a}

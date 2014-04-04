@@ -3,7 +3,14 @@ Testing the iterative proportional fitting procedure
 
 Introduction
 ----------
-This project will rigorously test static spatial microsimulation models in a range of conditions. We will begin with IPF-based approaches, as these are simple, deterministic and readily available. The project is open access: all the code and data sets used to conduct the testing can be downloaded and modified. We encourage others to fork the entire project using the command `git clone` for testing on home computers. 
+This project will test static spatial microsimulation models in a range of conditions. 
+We will begin with IPF-based approaches, as these are simple, deterministic and readily available. 
+The project is open access: all the code and data sets used to conduct the testing can be downloaded and modified. 
+We encourage others to fork the entire project using the command `git clone` for testing on home computers. 
+For people new to spatial microsimulation, there is an introductory tutorial avialable
+[on RPubs](http://rpubs.com/RobinLovelace/5089) as well as a more involved tutorial using example code 
+and data available from a paper hosted on [Elsevier](http://dx.doi.org/10.1016/j.compenvurbsys.2013.03.004) (as Supplementary data)
+and [arXiv](http://arxiv.org/abs/1303.5228).
 
 ### Research problem
 The research problem tackled is lack of rigorous and repeatable model evaluation and testing. Data and code used in published microsimulation research is not always publicly available. This can make it difficult for readers to reproduce results, test models in new ways and adapt the code for their own purposes. 

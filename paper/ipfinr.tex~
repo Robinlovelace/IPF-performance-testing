@@ -1,4 +1,5 @@
 % Todo: consolidate two sets of tables for intro eg
+% add small e.g. to tables, big summaryt +
 
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8x]{inputenc}
@@ -376,7 +377,7 @@ In many modelling texts there is a precedence of theory over
 application: the latter usually flows from the former.  
 As outlined in the previous section, the mathematics underlying IPF have
 been thoroughly demonstrated in research stemming back to the 1940s,
-yet \emph{practical} demonstrations, focused on making
+yet \emph{practical} demonstrations, focused on making the
 algorithm as accessible as possible to others,
 are comparatively rare. For this reason this section presents a
 simple worked example. The steps are, to the authors knowledge, presented in

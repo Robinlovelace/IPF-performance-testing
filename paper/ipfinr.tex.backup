@@ -1,4 +1,5 @@
 % Todo: consolidate two sets of tables for intro eg
+% add small e.g. to tables, big summaryt +
 
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8x]{inputenc}
@@ -376,32 +377,40 @@ In many modelling texts there is a precedence of theory over
 application: the latter usually flows from the former.  
 As outlined in the previous section, the mathematics underlying IPF have
 been thoroughly demonstrated in research stemming back to the 1940s,
-yet \emph{practical} demonstrations, focused on making
+yet \emph{practical} demonstrations, focused on making the
 algorithm as accessible as possible to others,
-is lacking. \citet{Simpson2005} and\citet{Norman1999a}
+are comparatively rare. For this reason this section presents a
+simple worked example. The steps are, to the authors knowledge, presented in
+more detail than any previous work, to address the theory:practice balance and
+ensure accessibility to understanding of the method.
+
+That is not to say that reproducibility is completely absent in the field.
+\citet{Simpson2005} and \citet{Norman1999a}
 exemplify their work with code snippets from an implementation
 of IPF in the proprietary software SPSS and reference to
 an Excel macro that is available on request, respectively.
 \citet{Williamson2007} also represents
 good practice in this regard, with a manual for running 
-combinatorial optimisation algorithms described in previous work.
-\citep{Ballas2005c} demonstrates IPF with a worked example
+combinatorial optimisation algorithms described in previous work and
+\citep{Ballas2005c} demonstrate IPF with a worked example
 to be calculated using mental arithmetic, but does not progress to
 illustrate how the examples are then implemented in computer code.
-% This section builds this work, first outlining an example that
-% can be completed in one's head before illustrating its implementation in code.
+This section builds on and extends this work, by first outlining an example that
+can be completed using mental arithmetic alone before illustrating its
+implementation in code. %Have you implemented in R???
 
 % Importantly for for reproducible research this theory section
 % is illustrated with a simple worked example that culminates in
 % a question to the reader, to test his or her understanding.
 
-It is worth restating that IPF is a simple statistical procedure,
-``in which cell counts in a contingency
-table containing the sample observations are scaled to be consistent with
-various externally given population marginals'' \citep{mcfadden2006testing}. In
-other words, and in the context of \emph{spatial} microsimulation, IPF produces
-maximum likelihood estimates for the frequency with which people appear in
-different areas.
+% It is worth restating that IPF is a simple statistical procedure, % why???
+% ``in which cell counts in a contingency
+% table containing the sample observations are scaled to be consistent with
+% various externally given population marginals'' \citep{mcfadden2006testing}. In
+% other words, and in the context of \emph{spatial} microsimulation, IPF produces
+% maximum likelihood estimates for the frequency with which people appear in
+% different areas.
+
 % The method is also known as `matrix raking' or the RAS %%% may want to re-include at some point
 % algorithm, 
 % % (\citealp{Birkin1988, Muller2010,Simpson2005, Kalantari2008, Jirousek1995})
@@ -420,19 +429,19 @@ different areas.
 % Ballas et al.~\citeyearpar{Ballas2005c}
 % to investigate a wide range of phenomena.
 
-To illustrate how IPF works in practice, a simplified example is described below.
-This is a modified version of a simpler demonstration from
-\citet{Ballas2005c}.\footnote{In \citet{Ballas2005c}
-the interaction between the age and sex constraints are assumed to be known.
-(Their equivalent of \cref{t:s2} contains data for every cell,
-not question marks.) This results in IPF converging instantly.
-However, in Census data, such cross-tabulation is
-often absent, and IPF must converge over multiple constraints and
-iterations. This latter scenario is assumed in the worked example below. Other
-worked examples of the principles are provided in \citet[Appendix
-3]{johnston1985geography} (for entropy maximisation), \citet{Norman1999a} and
-\citet{Simpson2005} (using the proprietary statistical software SPSS).
-}
+% The example described below is a modified version
+% \citet{Ballas2005c}.\footnote{In \citet{Ballas2005c}
+% the interaction between the age and sex constraints are assumed to be known.
+% (Their equivalent of \cref{t:s2} contains data for every cell,
+% not question marks.) This results in IPF converging instantly.
+% However, in Census data, such cross-tabulation is
+% often absent, and IPF must converge over multiple constraints and
+% iterations. This latter scenario is assumed in the worked example below. Other
+% worked examples of the principles are provided in \citet[Appendix
+% 3]{johnston1985geography} (for entropy maximisation), \citet{Norman1999a} and
+% \citet{Simpson2005} (using the proprietary statistical software SPSS).
+% }
+
 Table \ref{t:w}  describes a
 hypothetical microdataset comprising 5 individuals, who are defined by two
 constraint variables, age and sex. 

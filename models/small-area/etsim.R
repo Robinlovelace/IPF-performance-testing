@@ -2,7 +2,7 @@
 
 # initial conditions - start from IPF-performance-testing folder
 num.its <- 3
-# read-in data (ensure working directory set correctly)
+# read-in data (ensure working directory set to file location)
 load("../../input-data/small-area-eg/ind.RData")  # read-in the survey dataset called 'ind'
 # read aggregate constraints. nrow of these data frames (areas) must be equal
 source(file = "cons.R")  # call separate (data specific) script to read in data, for modularity

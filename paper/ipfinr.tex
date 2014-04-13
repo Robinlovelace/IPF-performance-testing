@@ -628,36 +628,43 @@ Marginal totals&  & \multicolumn{2}{c}{$i$} & \\
 \label{t:m2}
 \end{table}
 
-The above process, when applied to more categories (e.g. socio-economic class)
+The above process, when applied to more categories (e.g.~socio-economic class)
 and repeated iteratively until a satisfactory convergence occurs, results in a
 series of weighted microdatasets, one for each of the small areas being
 simulated. This allows for the estimation of variables whose values are not
-known at the local level (e.g. income) \citep{Ballas2005c}. An issue
+known at the local level (e.g.~income) \citep{Ballas2005c}. An issue
 with the results of IPF (absent from combinatorial optimisation methods),
 however, is that it results in non-integer weights: fractions of individuals
-appear in simulated areas. As described in the introduction, this is not ideal
-for certain applications. Integer weights allow the results of spatial
-microsimulation to be further processed using dynamic microsimulation and agent
-based modelling techniques \citep{Pritchard2012}.
+appear in simulated areas. This is not ideal
+for certain applications, leading to the development of strategies
+to 'integerise' the fractional weights illustrated in \cref{t:m2}.
+Methods for performing integerisation are discussed in
+\citep{Ballas2005c}, \citep{Pritchard2012} and, most recently
+in \citep{Lovelace2013-trs}, who benchmark and compare different procedures
+and conclude that their `truncate, replicate, sample' (TRS) is most accurate.
+Based on this last paper, we use the TRS methodology to explore the impacts
+of integerisation in this paper.
+% Integer weights allow the results of spatial
+% microsimulation to be further processed using dynamic microsimulation and agent
+% based modelling techniques.
 
 % A key benefit from a policy perspective is that
 % IPF and other spatial microsimultion techniques
 % can provide estimation of variables whose values are not
 % known at the local level (e.g. income).
-Spatial microsimulation can also provide insight into the likely
-distribution of individual level variables about which only
-geographically aggregated statistics have been made available.
-An issue
-with the results of IPF (absent from combinatorial optimisation methods),
-however, is that it results in non-integer weights: fractions of individuals
-appear in simulated areas.
+% Spatial microsimulation can also provide insight into the likely
+% distribution of individual level variables about which only
+% geographically aggregated statistics have been made available.
+% An issue
+% with the results of IPF (absent from combinatorial optimisation methods),
+% however, is that it results in non-integer weights: fractions of individuals
+% appear in simulated areas.
 
 \subsection{Implementing IPF in R} \label{simplementing}
 The above example is best undertaken by hand, probably with a pen and paper
 to gain an understanding of IPF, before the process is automated for 
 larger datasets. This section explains how the IPF
-algorithm described above is implemented in R, using a slightly more
-complex example
+algorithm described above is implemented in R.
 % This section is based on ``Spatial microsimulation in R: a
 % beginner’s guide to iterative proportional fitting (IPF)'', a tutorial
 % written to accompany a methods paper on integerisation

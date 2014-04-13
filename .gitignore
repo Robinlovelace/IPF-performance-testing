@@ -3,12 +3,13 @@
 .RData
 geo/
 old/
+*.aux
+*.blg
 *.out
 *.log
 *.bbl
 *.ggmapTem*
 *~
-*.pdf
 *.rtf
 *.docx
 *.odt

@@ -48,12 +48,12 @@ order=-1
 
 [item:ipfinr.tex]
 archive=true
-column=28
+column=44
 encoding=UTF-8
 highlight=LaTeX
-line=460
+line=1066
 mode=LaTeX
-open=false
+open=true
 order=0
 
 [item:ipflib.bib]
@@ -67,10 +67,10 @@ open=false
 order=-1
 
 [view-settings,view=0,item:ipfinr.tex]
-CursorColumn=28
-CursorLine=460
+CursorColumn=44
+CursorLine=1066
 JumpList=
-ViMarks=<,430,0,>,430,2,a,410,2,b,428,0,c,788,0,d,792,0,e,441,0
+ViMarks=<,430,0,>,430,2,a,410,2,b,428,0,c,788,0,d,792,0
 ViRegisterContents=T
 ViRegisterFlags=0
 ViRegisterNames=-

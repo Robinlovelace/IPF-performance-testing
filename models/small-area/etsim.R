@@ -3,9 +3,9 @@
 # initial conditions - start from IPF-performance-testing folder
 num.its <- 3
 # read-in data (ensure working directory set to file location)
-load("../../input-data/small-area-eg/ind.RData")  # read-in the survey dataset called 'ind'
+load("input-data/small-area-eg/ind.RData")  # read-in the survey dataset called 'ind'
 # read aggregate constraints. nrow of these data frames (areas) must be equal
-source(file = "cons.R")  # call separate (data specific) script to read in data, for modularity
+source(file = "models/small-area/cons.R")  # call separate (data specific) script to read in data, for modularity
 num.cons <- length(grep(pattern = "con[1-9]", x = ls()))  # calculate n. constraints (can set manually)
 
 sum(con1); sum(con2); sum(con3) # checking that totals add up
@@ -27,7 +27,7 @@ all.msim <- cbind(con1, con2, con3)
 start.time <- proc.time()  # for measuring model runtime
 
 # aggregate values - column for each category
-source("categorise.R")  # this script must be customised to input data
+source("models/small-area/categorise.R")  # this script must be customised to input data
 # check constraint totals - should be true
 sum(ind.cat[, 1:ncol(con1)]) == nrow(ind)  # is the number in each category correct
 sum(ind.cat[, ncol(con1) + 1:ncol(con2)]) == nrow(ind)
@@ -83,7 +83,7 @@ wf[, , , 1, 1] <- weights
 indf[, , , 1, 1] <- ind.agg
 # loop for multiple iterations (run e2.R repeatedly, saving each time)
 for (it in 2:num.its) {
-    source(file = "e2.R")
+    source(file = "models/small-area/e2.R")
     wf[, , , it, 1] <- weights
     indf[, , , it, 1] <- ind.agg
 }

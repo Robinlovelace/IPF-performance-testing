@@ -1,12 +1,11 @@
 ############################################
 #### IPFinR a script for IPF in R 
-#### Robin Lovelace (2013)
 ############################################
 
 # Initial conditions # start from IPF-performance-testing folder
 num.its <- 3
 # Read-in data (ensure working directory set correctly)
-load("../../input-data/sheffield/ind.RData")  # read-in the survey dataset called 'ind'
+load("input-data/sheffield/ind.RData")  # read-in the survey dataset called 'ind'
 # read aggregate constraints. nrow of these data frames (areas) must be equal 
 source(file="cons.R") # call separate (data specific) script to read in data, for modularity
 num.cons <- length(grep(pattern="con[1-9]", x=ls()))  # calculate n. constraints (can set manually)
@@ -28,6 +27,7 @@ con4 <- con4 * con.pop / rowSums(con4)
 
 sum(con1); sum(con2); sum(con3); sum(con4)
 con1[con1 == 0] <- con2[con2 == 0] <- con3[con3 == 0] <- con4[con4 == 0] <- 0.0001   
+# save new outputs at this stage for the FMF model
 # previous step avoids zero values (aren't any in this case...)
 
 category.labels <- c ("m16_19","m20_24","m25_34","m35_54","m55_60","m60_plus","f16_19","f20_24","f25_34","f35_54","f55_60","f60_plus"

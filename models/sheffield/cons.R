@@ -1,5 +1,5 @@
 ### Constraint Variables ###
-setwd("../../input-data/sheffield/")
+setwd("input-data/sheffield/")
 age.const <- read.csv("age-sex.csv", header=TRUE, sep=",")[103:173,]
 names(age.const) # Check names
 
@@ -116,4 +116,4 @@ con4 <- as.data.frame(con4)
 rm(list= ls()[!(ls() %in% c('con1', 'con2', 'con3', "con4", 
                             "num.its", "ind"))])
 
-setwd("../../models/sheffield/")
+setwd("models/sheffield/")

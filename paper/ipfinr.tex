@@ -932,15 +932,49 @@ weights was tested, by running the same model experiment several times,
 but with incrementally larger initial weights applied to a pre-determined set of individuals.
 
 \subsection{Empty cells} 
-Empty cells refer to cross-tabulations of individual-level 
+Empty cells refer to combinations individual-level 
 attributes that are not represented by any single individual 
 in the survey input data. An example of this would be if no female 
 in the 16 to 49 year age bracket were present in \cref{t:w}.
-The method used to find-out if empty cells exist is to first 
-select only individuals with unique characteristics 
-(in the narrow terms of the constraint variables --- of course every survey individual is unique). 
-The column totals of the categorical (binary, 0 or 1) form of this dataset are compared: 
-any categories with fewer than expected totals have missing cells. 
+Formalising the definition,
+survey dataset that contains empty cells may be said to be $incomplete$;
+a survey dataset with no empty cells is $complete$.
+
+No method for identifying whether or not empty cells exist in the
+individual-level dataset for spatial microsimulation has been previously published
+to the authors' knowledge. We therefore start from first principles.
+The number of different constraint variable permutations ($Nperm$) is defined by \cref{eqempty},
+where $n.cons$ is the total number of constraints and $n.cat_i$ is the number of categories
+within constraint $i$:
+
+\begin{equation}
+\displaystyle Nperm = \prod_{i = 1}^{n.cons} n.cat_{i} 
+\label{eqempty}
+\end{equation}
+
+To exemplify this equation, the number of permutations of constraints in the
+\emph{simple} example is 4: 2 categories in the sex variables multiplied by
+2 categories in the age variable. Clearly, $Nperm$ depends on how continuous variables
+are binned, the number of constraints and diversity within each constraint.
+Once we know the number of unique individuals (in terms of the constraint variables)
+in the survey ($Nuniq$), the test to check a dataset for empty cells is straightforward,
+based on \cref{eqempty}:
+
+\begin{equation}
+is.complete =
+\left\{
+	\begin{array}{ll}
+		TRUE  & \mbox{if } Nuniq = Nperm \\
+		FALSE & \mbox{if } Nuniq < Nperm
+	\end{array}
+\right\}
+\end{equation}
+
+% The method used to find-out if empty cells exist is to first 
+% select only individuals with unique characteristics 
+% (in the narrow terms of the constraint variables --- of course every survey individual is unique). 
+% The column totals of the categorical (binary, 0 or 1) form of this dataset are compared: 
+% any categories with fewer than expected totals have missing cells. 
 
 Once the presence of empty cells is determined in the baseline scenarios, the next 
 stage is to add or subtract empty cells by adding or subtracting individuals to the 
@@ -992,7 +1026,7 @@ in the census dataset, for each zone) to 0.9981. As illustrated in \cref{fnconsc
 the marginal improvement reduces from one iteration to the next: 
 at the end of iteration 2, the correlation has improved to 0.999978.   
 
-\begin{figure}
+\begin{figure}[b]
  \begin{center}
   \includegraphics[width=6cm]{corr-baseline}
  \end{center}

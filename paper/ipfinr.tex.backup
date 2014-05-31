@@ -927,35 +927,9 @@ for example can be seen in the script `etsim-reordered' online.
 \subsection{Initial weights}
 The impact of initial weights was tested in two ways: first, the impact
  of changing a sample of one or more initial weight values by a set 
-amount was explored. Second, the impact of gradually increasing the size of the initial 
+amount was explored. Second, the impact of of the size of the initial 
 weights was tested, by running the same model experiment several times, 
 but with incrementally larger initial weights applied to a pre-determined set of individuals.
-
-In the simplest scenario, the
-initial weight of a single individual was altered 
-repeatedly, in a controlled manner. The code enabling this model experiment 
-is contained in the folder `small-area-weights' (see `etsim.R'). 
-The number of different initial weights can be controlled by the 
-parameter `num.ws' which is set to 5 as an arbitrary default.
-Initial weights are set to k, a vector of length `num.ws' which
-are by default set as a function of `u' which is in term
-defined as the sequence 1:num.ws:
-
-\begin{lstlisting}
-k <- u/5 + 0.5 # initial weight of sample individuals for testing 
-\end{lstlisting}
-
-In this case the resultant weights are set to
- 0.7, 0.9, 1.1, 1.3 and 1.5 for each model experiment. 
-For factors of one million, for example, 
-the above would be replaced by \lstinline !k <- u * 10^6 yrm!. 
-To observe the impacts of altering the weights in this way
-the usual tests of model fit were conducted. In addition,
-the capacity of initial weights to influence an individual's 
-final weight/probability of selection was tested by tracing its
-weight into the future after each successive constraint and iteration. 
-This enabled plotting original vs simulated weights under a 
-range of conditions (\cref{cresults}).
 
 \subsection{Empty cells} 
 Empty cells refer to combinations individual-level 
@@ -1018,7 +992,7 @@ This means simply that the missing cells are defined as individuals with constra
 that are present in the complete dataset but absent from the input data. The theory
 to test for and identify empty cells described above is
 straightforward to implement in practice with R,
-using the commands \texttt{unique} and \verb %in% ~ respectively
+using the commands \texttt{uniq} and \verb %in% respectively
 (see the
 `\href{https://github.com/Robinlovelace/IPF-performance-testing/blob/master/models/small-area/empty-cells.R}{empty-cells.R}'
 script in the `model' folder of our code repository). 
@@ -1027,8 +1001,7 @@ To test the impact of empty cells on model results,
 an additional empty cell was added to the input dataset in each
 example.\footnote{In
 the ‘simple’ scenario, this simply involves removing a single individual from the 
-input data, which equates to deleting a single line of code (see
-\href{https://github.com/Robinlovelace/IPF-performance-testing/blob/master/models/simple/empty-cells.R}{`empty-cells.R'} in the
+input data, which equates to deleting a single line of code (see `empty-cells.R' in the
 `simple' folder to see this). } 
 Experiments in which empty cells were removed through the addition of
 individuals with attributes defined by \cref{eqmiss} were also conducted, and
@@ -1039,7 +1012,31 @@ The baseline scenarios were run using these modified inputs.
 
 \subsection{Integerisation}
 This was the next variable that was altered, 
-following \citep{Lovelace2013-trs}.
+following \citep{Lovelace2013-trs}. In the simplest scenario, the
+initial weight of a single individual was altered 
+repeatedly, in a controlled manner. The code enabling this model experiment 
+is contained in the folder `small-area-weights' (see `etsim.R'). 
+The number of different initial weights can be controlled by the 
+parameter `num.ws' which is set to 5 as an arbitrary default.
+Initial weights are set to k, a vector of length `num.ws' which
+are by default set as a function of `u' which is in term
+defined as the sequence 1:num.ws:
+
+\begin{lstlisting}
+k <- u/5 + 0.5 # initial weight of sample individuals for testing 
+\end{lstlisting}
+
+In this case the resultant weights are set to
+ 0.7, 0.9, 1.1, 1.3 and 1.5 for each model experiment. 
+For factors of one million, for example, 
+the above would be replaced by \lstinline !k <- u * 10^6 yrm!. 
+To observe the impacts of altering the weights in this way
+the usual tests of model fit were conducted. In addition,
+the capacity of initial weights to influence an individual's 
+final weight/probability of selection was tested by tracing its
+weight into the future after each successive constraint and iteration. 
+This enabled plotting original vs simulated weights under a 
+range of conditions (\cref{cresults}).
   
 
 \section{Results}

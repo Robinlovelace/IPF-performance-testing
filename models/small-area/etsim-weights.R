@@ -6,14 +6,15 @@
 
 # Initial conditions # start from IPF-performance-testing folder
 num.ws <- 1 # Number of different weights to test
-num.its <- 5
+num.its <- 3
 # Read-in data (ensure working directory set correctly)
 load("input-data/small-area-eg/ind.RData")  # read-in the survey dataset called 'ind'
 # read aggregate constraints. nrow of these data frames (areas) must be equal 
 source(file="models/small-area/cons.R") # call separate script to read in data, for modularity
 # calculate number of constraints (objects with names con1, con2 etc):
 num.cons <- length(grep(pattern="con[1-9]", x=ls())) 
-s.w <- sample(1:nrow(ind),1) # the individuals with altered start weights
+set.seed(88)
+s.w <- sample(1:nrow(ind),nrow(ind)/10) # the individuals with altered start weights
 # Checking that totals add up
 sum(con1)
 sum(con2)
@@ -51,10 +52,10 @@ all.msim <- cbind(con1
                   ,con3
                   #,con4 # add more if needed
                   )
+start.time <- proc.time() # for measuring model runtime
 
 for(u in 1:num.ws){
-  start.time <- proc.time() # for measuring model runtime
-  k <- u # initial weight of sample individuals for testing
+  k <- 1000 # u # initial weight of sample individuals for testing
 
 # aggregate values - column for each category
 source("models/small-area/categorise.R") # this script must be customised to input data

@@ -1,15 +1,16 @@
 # e2 - for etsim iteration 2, and beyond
 weights[,,num.cons+1] <- weights[,,num.cons+1] * weights[,,1] * weights[,,2] 
-ind.agg[,,1] <- ind.agg[,,num.cons+1]
+ind.agg[,,1] <- ind.agg[,,3]
 
 # re-weighting for constraint 1 via IPF 
 for (j in 1:nrow(all.msim)){
   for(i in 1:ncol(con1)){
-    weights[which(ind.cat[,i] == 1),j,1] <- con1[j,i] /ind.agg[j,i,1]}}
+    weights[which(ind.cat[,i] == 1),j,1] <- con1[j,i] / ind.agg[j,i,1]}}
 
 # convert con1 weights back into aggregates
 for (i in 1:nrow(all.msim)){
   ind.agg[i,,2]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1])}
+ind.agg[1,,2] - all.msim[1,] # should be zero
 
 # test results for first row - set values appropriate for analysis
 ind.agg[1,1:ncol(con1),2] - all.msim[1,1:ncol(con1)]

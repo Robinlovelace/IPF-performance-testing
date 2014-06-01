@@ -11,6 +11,7 @@ num.its <- 3 # how many iterations will we run?
 # alternatively, RStudio can set the working directory.
 # E.g. Session > Set working directory > To Source file location
 # The R will be able to 'see' the files to be loaded 
+setwd("models/simple/")
 list.files() # you should see age.csv and other input data here
 
 ind <- read.csv("ind.csv")
@@ -35,7 +36,7 @@ sum(ind.cat[,ncol(con1)+1:ncol(con2)]) == nrow(ind)
 
 # create weights in 3D matrix (individuals, areas, iteration)
 weights <- array(dim=c(nrow(ind),nrow(all.msim),num.cons+1)) 
-weights[,,num.cons+1][] <- 1 # sets initial weights to 1
+weights[,,num.cons+1] <- 1 # sets initial weights to 1
 ini.ws <- weights[,,num.cons+1]
 
 # convert survey data into aggregates to compare with census (3D matix)
@@ -61,6 +62,7 @@ for (j in 1:nrow(all.msim)){
   weights[which(ind.cat[,i] == 1),j,2] <- all.msim[j,i] /ind.agg[j,i,2]}}  
 for (i in 1:nrow(all.msim)){ # convert con2 back into aggregate
 ind.agg[i,,3]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * weights[,i,2])}
+round(ind.agg[1,,3] - all.msim[1,], 5) # should be zero
 
 # for multiple iterations
 wf <- array(dim=c(dim(weights), num.its, 1)) # array to store weights its, wei
@@ -76,6 +78,8 @@ source(file="e2.R")
 wf[,,,it,1] <- weights
 indf[,,,it,1] <- ind.agg
 }
+
+setwd("../../") # navigate back to root directory of project
 
 ############## The analysis part #############
 

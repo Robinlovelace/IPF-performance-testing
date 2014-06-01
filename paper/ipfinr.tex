@@ -873,15 +873,16 @@ to one `target variable': monthly pre-tax income in pounds stirling.
 \section{Method: model experiments}
 \subsection{Baseline scenarios}
 In order to perform a wide range of model experiments, 
-in which only one factor is altered at a time, it was necessary 
-to clearly define baseline scenarios. These are model runs with sensible 
-defaults, which can be referred back to as a reference point and re-used at 
-any point in the future. The baseline ‘simple’ scenario consists of 3 iterations, 
-leading to a total of 6 constraint-iteration permutations. The results of simplest 
-baseline scenario are shown in \cref{tblresults1}: 
-fit improves after every iteration and constraint  
-fit (except `p5', which reaches zero in the second iteration) --- $pcor$ continues to improve, 
-even though the printed value, to 6 decimal places, is indistinguishable from 1 after two complete iterations.
+in which only one factor is altered at a time, 
+baseline scenarios were created. These are model runs with sensible 
+defaults, reference points against which alternative runs are compared.
+The baseline scenarios consist of 3 iterations. In the ‘simple’ scenario (with 2 constraints), 
+there are 6 constraint-iteration permutations.
+\Cref{tblresults1} shows 
+fit improving with each step.\footnote{The exception is $p5$,
+which reaches zero in the second iteration. $pcor$ continues to improve, 
+even though the printed value, to 6 decimal places, is
+indistinguishable from 1 after two complete iterations.} (
 
 \begin{table}[htbp]
 \caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
@@ -918,11 +919,24 @@ from one constraint to the next (see the online `measures' table). % online???
 
 \subsection{Constraints and iterations}
 These were the simplest model experiments, requiring only
- the reporting of iterations that had already taken place,
- and re-arrangement of the IPF code such that constraints
- were applied in a different order than before. 
-The re-ordered code for the `small-area' scenario, 
-for example can be seen in the script `etsim-reordered' online.
+ the reporting of how the results changed with more or fewer
+iterations and re-arrangement of to apply constraints
+in a different order. 1, 3 and 10 are reported in the final
+results and `convergence graphs' were created to show how model
+fit improved from one iteration-constraint combination to the next.
+
+To alter the number of iterations used in each model, one simply
+changes the number in the following line of code (the default is 3):
+
+\begin{lstlisting}
+num.its <- 3
+\end{lstlisting}
+ 
+The code for running the constraints in a different order
+is saved in `etsim-reordered.R'.
+% where $x$ is a number representing the final constraint.
+% The order with the greatest impact on the results is reported
+% in the final results table.
 
 \subsection{Initial weights}
 The impact of initial weights was tested in two ways: first, the impact
@@ -934,8 +948,8 @@ but with incrementally larger initial weights applied to a pre-determined set of
 In the simplest scenario, the
 initial weight of a single individual was altered 
 repeatedly, in a controlled manner. The code enabling this model experiment 
-is contained in the folder `small-area-weights' (see `etsim.R'). 
-The number of different initial weights can be controlled by the 
+is contained in the file `etsim-weights.R'. 
+The number of different initial weight runs can be controlled by the 
 parameter `num.ws' which is set to 5 as an arbitrary default.
 Initial weights are set to k, a vector of length `num.ws' which
 are by default set as a function of `u' which is in term
@@ -957,7 +971,7 @@ weight into the future after each successive constraint and iteration.
 This enabled plotting original vs simulated weights under a 
 range of conditions (\cref{cresults}).
 
-\subsection{Empty cells} 
+\subsection{Empty cells} \label{smempty}
 Empty cells refer to combinations individual-level 
 attributes that are not represented by any single individual 
 in the survey input data. An example of this would be if no female 
@@ -1055,7 +1069,7 @@ in the census dataset, for each zone) to 0.9981. As illustrated in \cref{fnconsc
 the marginal improvement reduces from one iteration to the next: 
 at the end of iteration 2, the correlation has improved to 0.999978.   
 
-\begin{figure}[b]
+\begin{figure}[h]
  \begin{center}
   \includegraphics[width=6cm]{corr-baseline}
  \end{center}
@@ -1127,9 +1141,55 @@ These results suggest that initial weights have a limited impact on the results 
 \subsection{Empty cells}
 \subsection{Integerisation}
 
+\subsection{Summary of results}
+
+The impact of each model experiment on each of the three scenarios
+is summarised in \cref{tsum}.
+
+\begin{table}[h]
+\caption{Summary results of standard absolute error (SAE) between
+simulated and constraint data.} \label{tsum}
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Model test & Simple & Small area  & Sheffield \\
+\midrule
+\textbf{Baseline} &  & 0.018  & \\
+\midrule
+\textbf{Constraints and iterations} &  &  & \\
+1 iteration &  & 1.91 & \\
+5 iterations &  & 0.00001  & \\
+10 iterations &  & 0.000002  & \\
+Reordered constraints 		&  & 0.018 & \\ % it is worse, but only a little!
+\textbf{Initial weights} 	&  &  & \\
+10\% sample set to 10  		&  & 0.034  & \\
+10\% sample set to 1000 	&  & 0.998 & \\
+\midrule
+\textbf{Empty cells} 		&  &  & \\
+1 additional empty cell 	&  & 0.018  & \\
+10\% additional empty cells 	&  & 0.050  & \\
+No empty cells			&  & 0.005 & \\
+\midrule
+\textbf{Integerisation} 	&  &  & \\
+				&  &  & \\
+ &  &  & \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
 
 \section{Conclusions}
 
+In terms of empty cells, we have demonstrated a method for identifying
+whether they are present in the input data. More important for the spatial microsimulation
+community, we have shown for the first time (to our knowledge) that empty cells have a
+large adverse effect on model fit. The removal of empty cells greatly improved model fit.
+This finding shows that identifying and removing empty cells, as
+demonstrated in this paper and accomanying code, can substantially enhance the performance of
+spatial microsimulation models, in cases when many complex
+constraint variables are used and many empty cells are present.
+A direct recommendation from these findings is that researcher using spatial microsimulation
+test for missing cells, as defined in \cref{smempty}, before reweighting.
 
 \bibliographystyle{model2-names.bst}
 \bibliography{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib}

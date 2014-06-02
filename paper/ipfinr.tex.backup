@@ -971,7 +971,7 @@ weight into the future after each successive constraint and iteration.
 This enabled plotting original vs simulated weights under a 
 range of conditions (\cref{cresults}).
 
-\subsection{Empty cells} 
+\subsection{Empty cells} \label{smempty}
 Empty cells refer to combinations individual-level 
 attributes that are not represented by any single individual 
 in the survey input data. An example of this would be if no female 
@@ -1069,7 +1069,7 @@ in the census dataset, for each zone) to 0.9981. As illustrated in \cref{fnconsc
 the marginal improvement reduces from one iteration to the next: 
 at the end of iteration 2, the correlation has improved to 0.999978.   
 
-\begin{figure}[b]
+\begin{figure}[h]
  \begin{center}
   \includegraphics[width=6cm]{corr-baseline}
  \end{center}
@@ -1139,36 +1139,48 @@ seen. For individual 1, the impact of a 53\% difference in initial weights (from
 These results suggest that initial weights have a limited impact on the results of IPF, that declines rapidly with each iteration. 
 
 \subsection{Empty cells}
+
+There were found to be 0, 62 and xx empty cells in the simple, small-area and sheffield
+examples respectively, meaning that only the smallest input dataset was
+\emph{complete}. As expected, it was found that adding additional empty cells
+resulted in worse fit. The addition of new rows of data with attributes corresponding
+to the empty cells to the input dataset allowed the small-area and sheffield
+models to be re-run without empty cells. This resulted in substantial improvements in
+model fit that because relatively more important with each iteration: model
+runs with large numbers of empty cells reached minimum error values quickly, beyond
+which there was no improvement.
+
 \subsection{Integerisation}
 
 \subsection{Summary of results}
 
 The impact of each model experiment on each of the three scenarios
-is summarised in table x.
+is summarised in \cref{tsum}.
 
-\begin{table}
-\caption{Summary results of standard absolute error (SAE) between
-simulated and constraint data.}
+\begin{table}[h]
+\caption{Summary results of root mean square error (RMSE) between
+simulated and constraint data.} \label{tsum}
 \begin{center}
 \begin{tabular}{llll}
 \toprule
 Model test & Simple & Small area  & Sheffield \\
 \midrule
-\textbf{Baseline} &  & 0.018  & \\
+\textbf{Baseline} & 0.0001 & 0.018  & 25.5 \\
 \midrule
 \textbf{Constraints and iterations} &  &  & \\
-1 iteration &  & 1.91 & \\
-5 iterations &  & 0.00001  & \\
-10 iterations &  & 0.000002  & \\
-Reordered constraints & 0.018  &  & \\ % it is worse, but only a little!
-\textbf{Initial weights} &  &  & \\
-10\% sample set to 10  &  & 0.034  & \\
-10\% sample set to 1000 &  & 0.998 & \\
+1 iteration & 0.221 & 1.91 & 78.2 \\
+5 iterations & \textless 0.000001 & 0.00001  & 20.9 \\
+10 iterations & \textless 0.000001 & 0.000002  & 13.8 \\
+Reordered constraints 		& 0.0001  & 0.018 & 14.5 \\ % it is worse, but only a little!
+\midrule
+\textbf{Initial weights} 	&  &  & \\
+10\% sample set to 10  		& 0.0001 & 0.034  & 25.5\\
+10\% sample set to 1000 	& 0.0001 & 0.998 & 25.5 \\
 \midrule
 \textbf{Empty cells} 		&  &  & \\
-1 additional empty cell 	&  & 0.018  & \\
-10\% additional empty cells 	&  & 0.050  & \\
-No empty cells			&  & 0.005 & \\
+1 additional empty cell 	& 0.852 & 0.018  & 25.5 \\
+10\% additional empty cells 	& --- & 0.050  & 25.6 \\
+No empty cells			& --- & 0.005 & 1.24 \\
 \midrule
 \textbf{Integerisation} 	&  &  & \\
 				&  &  & \\
@@ -1182,12 +1194,20 @@ No empty cells			&  & 0.005 & \\
 
 In terms of empty cells, we have demonstrated a method for identifying
 whether they are present in the input data. More important for the spatial microsimulation
-community, we have shown, for the first time (to our knowledge) that empty cells have a
-large adverse effect on model fit. The removal of empty cells greatly improved fit
-The results show the importance of testing for empty cells in the input data before undertaking spatial microsimulation.
+community, we have shown for the first time (to our knowledge) that empty cells have a
+large adverse effect on model fit. The removal of empty cells greatly improved model fit.
+This finding shows that identifying and removing empty cells, as
+demonstrated in this paper and accomanying code, can substantially enhance the performance of
+spatial microsimulation models, in cases when many complex
+constraint variables are used and many empty cells are present.
+It is striking that in the most complex example (sheffield), the improvement in
+model fit from removing empty cells was far greater than that resulting from
+additional iterations.
+A direct recommendation from these findings is therefore that researchers should
+test for missing cells, as defined in \cref{smempty}, before reweighting. 
 
 \bibliographystyle{model2-names.bst}
-\bibliography{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib}
+\bibliography{/home/robin/Documents/powerstarrefs/Microsimulation.bib}
 %/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib  desktop.bib,
 % /home/robin/Documents/Microsimulation.bib,
 % /home/robin/Documents/powerstarrefs/Microsimulation.bib

@@ -1,59 +1,23 @@
 ############################################
-#### IPFinR a script for IPF in R 
+#### IPFinR a script for IPF in R
+#### Robin Lovelace (2013)
+#### run after etsim.R
 ############################################
 
 # Initial conditions # start from IPF-performance-testing folder
+num.ws <- 1 # Number of different weights to test
 num.its <- 3
-# Read-in data (ensure working directory set correctly)
-load("input-data/sheffield/ind.RData")  # read-in the survey dataset called 'ind'
-# read aggregate constraints. nrow of these data frames (areas) must be equal 
-source(file="models/sheffield/cons.R") # call separate (data specific) script to read in data, for modularity
-num.cons <- length(grep(pattern="con[1-9]", x=ls()))  # calculate n. constraints (can set manually)
-start.time <- proc.time()
-
-# Checking that totals add up
-sum(con1); sum(con2); sum(con3); sum(con4)
-
-all.msim <- cbind(con1 
-                  ,con2
-                  ,con3
-                  ,con4
-                  )
-
-con.pop <- rowSums(con2) 
-con1 <- con1 * con.pop / rowSums(con1)
-con2 <- con2 * con.pop / rowSums(con2) 
-con3 <- con3 * con.pop / rowSums(con3)
-con4 <- con4 * con.pop / rowSums(con4)
-
-sum(con1); sum(con2); sum(con3); sum(con4)
-con1[con1 == 0] <- con2[con2 == 0] <- con3[con3 == 0] <- con4[con4 == 0] <- 0.0001   
-# save new outputs at this stage for the FMF model
-# previous step avoids zero values (aren't any in this case...)
-
-category.labels <- c ("m16_19","m20_24","m25_34","m35_54","m55_60","m60_plus","f16_19","f20_24","f25_34","f35_54","f55_60","f60_plus"
-                      ,colnames(con2)
-                      ,colnames(con3)
-                      ,colnames(con4))
-all.msim <- cbind(con1 
-                  ,con2
-                  ,con3
-                  ,con4
-                  )
-# Aggregate values - column for each category
-source("models/sheffield/categorise.R")
-# Check constraint totals - should be true
-sum(ind.cat[,1:12]) == nrow(ind) # 12 age/sex categories
-sum(ind.cat[,13:23]) == nrow(ind) # 11 modes
-sum(ind.cat[,24:31]) == nrow(ind) # 8 distance classes
-sum(ind.cat[,32:40]) == nrow(ind) # 9 classes
-
-# Create weights 
 weights <- array(dim=c(nrow(ind),nrow(all.msim),num.cons+1)) 
 weights[,,num.cons+1] <- 1 # sets initial weights to 1
 ini.ws <- weights[,,num.cons+1]
 
-# Convert survey data into aggregates to compare with census
+set.seed(88)
+s.w <- sample(1:nrow(ind),nrow(ind)/10) # the individuals with altered start weights
+
+for(u in 1:num.ws){
+  k <- 1000 # u # initial weight of sample individuals for testing
+  weights[s.w,,4] <- k
+# aggregate values - column for each category
 ind.agg <- array(dim=c(nrow(all.msim),ncol(all.msim),num.cons+1))
 for (i in 1:nrow(all.msim)){
   ind.agg[i,,1]   <- colSums(ind.cat) * weights[1,i,num.cons+1]}
@@ -82,7 +46,7 @@ for (j in 1:nrow(all.msim)){
     weights[which(ind.cat[,i] == 1),j,3] <- all.msim[j,i] /ind.agg[j,i,3]}}
 for (i in 1:nrow(all.msim)){ # convert con3 back into aggregate
   ind.agg[i,,4]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * weights[,i,2] * 
-                                        weights[,i,3])}
+                               weights[,i,3])}
 # test the result
 ind.agg[1:3,20:25,4]
 all.msim[1:3,20:25]
@@ -93,7 +57,7 @@ for (j in 1:nrow(all.msim)){
     weights[which(ind.cat[,i] == 1),j,4] <- all.msim[j,i] /ind.agg[j,i,4]}}
 for (i in 1:nrow(all.msim)){ # convert con3 back into aggregate
   ind.agg[i,,num.cons+1]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * 
-                              weights[,i,2] * weights[,i,3] * weights[,i,4])}
+                                        weights[,i,2] * weights[,i,3] * weights[,i,4])}
 ind.agg[1:3,31:32,5]
 all.msim[1:3,31:32]
 
@@ -109,4 +73,5 @@ for(it in 2:num.its){
   wf[,,,it,1] <- weights
   indf[,,,it,1] <- ind.agg
 }
-proc.time() - start.time # Analysis - see analyis files
+}
+proc.time() - start.time 

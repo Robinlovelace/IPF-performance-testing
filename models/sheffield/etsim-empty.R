@@ -1,11 +1,11 @@
 ############################################
 #### IPFinR a script for IPF in R 
 ############################################
+# run after empty-cells.R or noempty.R
 
 # Initial conditions # start from IPF-performance-testing folder
 num.its <- 3
 # Read-in data (ensure working directory set correctly)
-load("input-data/sheffield/ind.RData")  # read-in the survey dataset called 'ind'
 # read aggregate constraints. nrow of these data frames (areas) must be equal 
 source(file="models/sheffield/cons.R") # call separate (data specific) script to read in data, for modularity
 num.cons <- length(grep(pattern="con[1-9]", x=ls()))  # calculate n. constraints (can set manually)
@@ -18,7 +18,7 @@ all.msim <- cbind(con1
                   ,con2
                   ,con3
                   ,con4
-                  )
+)
 
 con.pop <- rowSums(con2) 
 con1 <- con1 * con.pop / rowSums(con1)
@@ -39,7 +39,7 @@ all.msim <- cbind(con1
                   ,con2
                   ,con3
                   ,con4
-                  )
+)
 # Aggregate values - column for each category
 source("models/sheffield/categorise.R")
 # Check constraint totals - should be true
@@ -50,7 +50,7 @@ sum(ind.cat[,32:40]) == nrow(ind) # 9 classes
 
 # Create weights 
 weights <- array(dim=c(nrow(ind),nrow(all.msim),num.cons+1)) 
-weights[,,num.cons+1] <- 1 # sets initial weights to 1
+weights[,,num.cons+1][] <- 1 # sets initial weights to 1
 ini.ws <- weights[,,num.cons+1]
 
 # Convert survey data into aggregates to compare with census
@@ -82,7 +82,7 @@ for (j in 1:nrow(all.msim)){
     weights[which(ind.cat[,i] == 1),j,3] <- all.msim[j,i] /ind.agg[j,i,3]}}
 for (i in 1:nrow(all.msim)){ # convert con3 back into aggregate
   ind.agg[i,,4]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * weights[,i,2] * 
-                                        weights[,i,3])}
+                               weights[,i,3])}
 # test the result
 ind.agg[1:3,20:25,4]
 all.msim[1:3,20:25]
@@ -93,7 +93,7 @@ for (j in 1:nrow(all.msim)){
     weights[which(ind.cat[,i] == 1),j,4] <- all.msim[j,i] /ind.agg[j,i,4]}}
 for (i in 1:nrow(all.msim)){ # convert con3 back into aggregate
   ind.agg[i,,num.cons+1]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * 
-                              weights[,i,2] * weights[,i,3] * weights[,i,4])}
+                                        weights[,i,2] * weights[,i,3] * weights[,i,4])}
 ind.agg[1:3,31:32,5]
 all.msim[1:3,31:32]
 

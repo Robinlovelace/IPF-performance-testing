@@ -1,5 +1,17 @@
 # analysis.R - basic analysis file for analysing model output
+# z-score
+zscore <- function(a.v, g.v) {pij <- a.v/sum(a.v)
+                              rij <- g.v/sum(a.v)
+                              zm <- (rij-pij)/sqrt((pij * (1 - pij))/sum(a.v))
+                              sum(zm^2)}
+# percent >5% deviation
+perc.5 <- function(x, y){
+  length(which(abs(x - y) > x * 0.05 ))/length(x)
+}
 
+
+measures <- data.frame(pcor, tae, sae, rmse, zs, p5)
+measures
 a.v <- as.vector(as.matrix(all.msim)) # constraints in long form, for cor
 g.v <- as.vector(as.matrix(indf[,,1,1,1])) # particular version you want
 
@@ -32,20 +44,7 @@ measures
 plot(measures[2:6,c(1,2,4,5)])
 measures <- cbind(iteration, measures)
 measures
-write.csv(measures)
+# write.csv(measures)
 
-z-score
-zscore <- function(a.v, g.v) {pij <- a.v/sum(a.v)
-                              rij <- g.v/sum(a.v)
-                              zm <- (rij-pij)/sqrt((pij * (1 - pij))/sum(a.v))
-                              sum(zm^2)}
-zs <- zscore(a.v, g.v)
 
-percent >5% deviation
-perc.5 <- function(x, y){
-  length(which(abs(x - y) > x * 0.05 ))/length(x)
-}
-p5 <- perc.5(a.v, g.v)
-measures <- data.frame(pcor, tae, sae, rmse, zs, p5)
-measures
 

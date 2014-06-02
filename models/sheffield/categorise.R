@@ -39,15 +39,15 @@ ind.cat[which(ind$dis >= 60 ),30] <- 1
 ind.cat[which(ind$dis < 0 ),31] <- 1 
 
 # Including nssec
-ind.cat[which(ind$nssec == "large employers & higher management"),32] <- 1 
-ind.cat[which(ind$nssec == "higher professional"),33] <- 1
-ind.cat[which(ind$nssec == "lower management & professional"  ),34] <- 1 
-ind.cat[which(ind$nssec == "intermediate"),35] <- 1
-ind.cat[which(ind$nssec == "small employers & own account"),36] <- 1 
-ind.cat[which(ind$nssec == "lower supervisory & technical"),37] <- 1
-ind.cat[which(ind$nssec == "semi-routine"),38] <- 1 
-ind.cat[which(ind$nssec == "routine" ),39] <- 1
-ind.cat[which(ind$nssec == "Other" ),40] <- 1
+ind.cat[which(ind$nssec8 == "large employers & higher management"),32] <- 1 
+ind.cat[which(ind$nssec8 == "higher professional"),33] <- 1
+ind.cat[which(ind$nssec8 == "lower management & professional"  ),34] <- 1 
+ind.cat[which(ind$nssec8 == "intermediate"),35] <- 1
+ind.cat[which(ind$nssec8 == "small employers & own account"),36] <- 1 
+ind.cat[which(ind$nssec8 == "lower supervisory & technical"),37] <- 1
+ind.cat[which(ind$nssec8 == "semi-routine"),38] <- 1 
+ind.cat[which(ind$nssec8 == "routine" ),39] <- 1
+ind.cat[which(ind$nssec8 == "Other" ),40] <- 1
 
 # Polishing up
 ind.cat <- data.frame(ind.cat)

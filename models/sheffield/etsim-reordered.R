@@ -18,7 +18,7 @@ all.msim <- cbind(con1
                   ,con2
                   ,con3
                   ,con4
-                  )
+)
 
 con.pop <- rowSums(con2) 
 con1 <- con1 * con.pop / rowSums(con1)
@@ -39,7 +39,7 @@ all.msim <- cbind(con1
                   ,con2
                   ,con3
                   ,con4
-                  )
+)
 # Aggregate values - column for each category
 source("models/sheffield/categorise.R")
 # Check constraint totals - should be true
@@ -60,8 +60,8 @@ for (i in 1:nrow(all.msim)){
 
 # re-weighting for constraint 1 via IPF 
 for (j in 1:nrow(all.msim)){
-  for(i in 1:ncol(con1)){
-    weights[which(ind.cat[,i] == 1),j,1] <- con1[j,i] /ind.agg[j,i,1]}}
+  for(i in 1:ncol(con4) + ncol(con1) + ncol(con2) + ncol(con3)){
+    weights[which(ind.cat[,i] == 1),j,1] <- all.msim[j,i] /ind.agg[j,i,1]}}
 for (i in 1:nrow(all.msim)){ # convert con1 weights back into aggregates
   ind.agg[i,,2]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1])}
 # test the result
@@ -82,18 +82,18 @@ for (j in 1:nrow(all.msim)){
     weights[which(ind.cat[,i] == 1),j,3] <- all.msim[j,i] /ind.agg[j,i,3]}}
 for (i in 1:nrow(all.msim)){ # convert con3 back into aggregate
   ind.agg[i,,4]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * weights[,i,2] * 
-                                        weights[,i,3])}
+                               weights[,i,3])}
 # test the result
 ind.agg[1:3,20:25,4]
 all.msim[1:3,20:25]
 
 # fourth constraint
 for (j in 1:nrow(all.msim)){
-  for(i in 1:ncol(con4) + ncol(con1) + ncol(con2) + ncol(con3)){
-    weights[which(ind.cat[,i] == 1),j,4] <- all.msim[j,i] /ind.agg[j,i,4]}}
+  for(i in 1:ncol(con1)){
+    weights[which(ind.cat[,i] == 1),j,4] <- con1[j,i] /ind.agg[j,i,4]}}
 for (i in 1:nrow(all.msim)){ # convert con3 back into aggregate
   ind.agg[i,,num.cons+1]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * 
-                              weights[,i,2] * weights[,i,3] * weights[,i,4])}
+                                        weights[,i,2] * weights[,i,3] * weights[,i,4])}
 ind.agg[1:3,31:32,5]
 all.msim[1:3,31:32]
 
@@ -105,7 +105,7 @@ indf[,,,1,1] <- ind.agg
 
 # loop for multiple iterations (run e2.R repeatedly, saving each time)
 for(it in 2:num.its){
-  source(file="models/sheffield/e2.R")
+  source(file="models/sheffield/e2-reordered.R")
   wf[,,,it,1] <- weights
   indf[,,,it,1] <- ind.agg
 }

@@ -116,4 +116,4 @@ con4 <- as.data.frame(con4)
 rm(list= ls()[!(ls() %in% c('con1', 'con2', 'con3', "con4", 
                             "num.its", "ind"))])
 
-setwd("models/sheffield/")
+setwd("../../")

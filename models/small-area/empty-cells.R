@@ -33,6 +33,7 @@ nrow(unique(ind.cat))
 
 n.empty <- nrow(unique(all.combs)) -
 nrow(unique(ind.cat))
+n.empty # number of empty cells in the input dataset
 
 n.empty == 0 # is ind complete? (FALSE means it has empty cells)
 

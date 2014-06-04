@@ -428,7 +428,11 @@ to be calculated using mental arithmetic, but do not progress to
 illustrate how the examples are then implemented in computer code.
 This section builds on and extends this work, by first outlining an example that
 can be completed using mental arithmetic alone before illustrating its
-implementation in code. The  
+implementation in code. A comprehensive introduction to
+% the basic theory and practicalities of implementing IPF in R for spatial microsimulation
+this topic
+is provided in ``Introducing spatial microsimulation with R: a practical'' \citet{Lovelace2014-ismwr}. This section builds on the tutorial by providing
+context and a higher level description of the process.
 
  % Have you implemented in R???
 
@@ -474,7 +478,7 @@ implementation in code. The
 % 3]{johnston1985geography} (for entropy maximisation), \citet{Norman1999a} and
 % \citet{Simpson2005} (using the proprietary statistical software SPSS).
 % }
-
+We begin with some hypothetical data.
 Table \ref{t:w}  describes a
 hypothetical microdataset comprising 5 individuals, who are defined by two
 constraint variables, age and sex. 
@@ -482,8 +486,8 @@ Table \ref{t:s} contains aggregated data
 for a hypothetical area, as it might be downloaded from census dissemination
 portals such as Casweb. \Cref{t:s2} illustrates this table in a different form,
 demonstrating the unknown links between age and sex. The job of the IPF
-algorithm is to establish estimates for the unknown cells, which are both
-optimized and consistent with the known row and column marginal.
+algorithm is to establish estimates for the unknown cells, which are
+optimized to be consistent with the known row and column marginals.
 
 \begin{table}[h]
 \centering
@@ -774,9 +778,26 @@ available to us, we are obliged to evaluate our simulated populations by compari
 a number of aggregated tables derived from the synthetic data set with published
 census small-area statistics'' \citep[p.~178]{Voas2001}.
 The same reasoning is used to select evaluation methods here.
+
+\subsection{Descriptive statistics}
+
+Useful basic statistics to describe and compare datasets are 
+the mean, median and standard deviation of cell counts in the
+simulated and known aggregate-level database.
+These are useful `sanity checks': if the mean population across all zones or
+for a particular constraint differs greatly from expectations, there is clearly
+a problem. These summary statistics are dependent on the
+size of the dataset. To compare datasets of widely varying populations,
+dimensionless statistics can be used.
+The coefficient of variation, the ratio of the standard deviation to the mean is
+an example of a dimensionless statistic robust to population size.
+
+\subsection{Z-scores}
+
+A useful combined test is the Z-test, which compares both the means and the standard deviations of two datasets. When we would plot the distribution of the two datasets, and the mean indicates the height, and the standard deviation the width of the curve, then a z-test essentially calculates the overlap between the two distributions, and thus the probability of them being equal. In several MSM studies, the Z-test is used to compare the simulated results with the actual situation, but it is also useful to indicate the similarity of the input dataset and the actual situation. Since more similar input-data, is likely to result in better final (simulated) results as well.
  
 
-\subsection{Scatter plots and the coefficient of determination}
+\subsection{Scatter plots}
 A scatter plot of cell counts for each category for the original and simulated variables is
 a basic but very useful preliminary diagnostic tool in spatial microsimulation
 \citep{Ballas2005c,Edwards2009}.
@@ -795,6 +816,7 @@ This stage can be conducted either before or after \emph{integerisation}
 (more on this below). As taught in basic statistics courses, the closer the points to the
 1:1 (45 degree, assuming the axes have the same scale) line, the better the fit.
 
+\subsection{The coefficient of determination}
 The coefficient of determination (henceforth $R^2$) is the 
 square of the Pearson correlation coefficient for describing the
 extent to which one continuous variable explains another. $R^2$ is a quantitative
@@ -806,7 +828,10 @@ We would expect to see very high $R^2$ values for
 internal validation (the constraint) and a strong
 positive correlation between target variables that have been estimated and
 external datasets (e.g. income).
-% However, regression analysis does not give any information about the fit of the simulated data to the ‘ideal’ line (i.e. where y  =  x and the simulated data is the same as the actual data). Rather, R 2 expresses the fit of the data to the ‘best fit’ line through that data. That is, the coefficient of determination is providing information about precision, not accuracy (Edwards and Tanton, 2013).
+
+% A potential disadvantage of $R^2$ is that it provides no
+% information about the formula linking simulated data to the 
+% known constraints: it expresses absolute Rather, $R^2$ expresses the fit of the data to the ‘best fit’ line through that data. That is, the coefficient of determination is providing information about precision, not accuracy (Edwards and Tanton, 2013).
 
 % One way to do this is with a t test. With a spatial microsimulation model validation, the data are paired (given we are comparing simulated with actual data), thus an equal variance 2-tailed t test can be used to determine if there is any significant difference between the two datasets (i.e. simulated and actual). Thus, if the simulation is robust, we would expect to see no significant differences between the simulated and actual values for the input variables (and estimated/output variables, if known data are available). This enables the model accuracy to be assessed, as opposed to simply its precision.
 
@@ -825,8 +850,9 @@ of the errors. Also, this measure does not provide any information on whether an
  differences are statistically significant (Edwards and Tanton, 2013).
 
 \subsection{Z scores}
-Here, the evaluation mainly takes place at the cell level (for a single constraint in a single area).
-However, there should also be attention for the overall picture like spatial concentration.
+Z-scores apply to individual cells (for a single constraint in a single area).
+and also provide a global statistic on model fit \citep{Voas2001}.
+
 
 % Spatial indicators etc??? Add equations to above methods soooon
 

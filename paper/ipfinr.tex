@@ -720,7 +720,7 @@ algorithm described above can be implemented in R.
 % }
 
 \section{Evaluation techniques}
-
+% Add correlation matrix at end of links between these
 To verify the integrity of any model, it is necessary to compare its outputs
 with empirical observations or prior expectations gleaned from theory.
 The same principles apply to spatial microsimulation, which can be evaluated using
@@ -778,9 +778,22 @@ available to us, we are obliged to evaluate our simulated populations by compari
 a number of aggregated tables derived from the synthetic data set with published
 census small-area statistics'' \citep[p.~178]{Voas2001}.
 The same reasoning is used to select evaluation methods here.
+
+\subsection{Descriptive statistics}
+
+Useful basic statistics to describe and compare datasets are 
+the mean, median and standard deviation of cell counts in the
+simulated and known aggregate-level database.
+These are useful `sanity checks': if the mean population across all zones or
+for a particular constraint differs greatly from expectations, there is clearly
+a problem. These summary statistics are dependent on the
+size of the dataset. To compare datasets of widely varying populations,
+dimensionless statistics can be used.
+The coefficient of variation, the ratio of the standard deviation to the mean is
+an example of a dimensionless statistic robust to population size.
  
 
-\subsection{Scatter plots and the coefficient of determination}
+\subsection{Scatter plots}
 A scatter plot of cell counts for each category for the original and simulated variables is
 a basic but very useful preliminary diagnostic tool in spatial microsimulation
 \citep{Ballas2005c,Edwards2009}.
@@ -799,6 +812,7 @@ This stage can be conducted either before or after \emph{integerisation}
 (more on this below). As taught in basic statistics courses, the closer the points to the
 1:1 (45 degree, assuming the axes have the same scale) line, the better the fit.
 
+\subsection{The coefficient of determination}
 The coefficient of determination (henceforth $R^2$) is the 
 square of the Pearson correlation coefficient for describing the
 extent to which one continuous variable explains another. $R^2$ is a quantitative
@@ -810,7 +824,10 @@ We would expect to see very high $R^2$ values for
 internal validation (the constraint) and a strong
 positive correlation between target variables that have been estimated and
 external datasets (e.g. income).
-% However, regression analysis does not give any information about the fit of the simulated data to the ‘ideal’ line (i.e. where y  =  x and the simulated data is the same as the actual data). Rather, R 2 expresses the fit of the data to the ‘best fit’ line through that data. That is, the coefficient of determination is providing information about precision, not accuracy (Edwards and Tanton, 2013).
+
+% A potential disadvantage of $R^2$ is that it provides no
+% information about the formula linking simulated data to the 
+% known constraints: it expresses absolute Rather, $R^2$ expresses the fit of the data to the ‘best fit’ line through that data. That is, the coefficient of determination is providing information about precision, not accuracy (Edwards and Tanton, 2013).
 
 % One way to do this is with a t test. With a spatial microsimulation model validation, the data are paired (given we are comparing simulated with actual data), thus an equal variance 2-tailed t test can be used to determine if there is any significant difference between the two datasets (i.e. simulated and actual). Thus, if the simulation is robust, we would expect to see no significant differences between the simulated and actual values for the input variables (and estimated/output variables, if known data are available). This enables the model accuracy to be assessed, as opposed to simply its precision.
 
@@ -821,16 +838,24 @@ external datasets (e.g. income).
 % This estimate has been used in validation by both Ballas and Tanton (see Ballas et al. 2007; Tanton et al. 2011).
 
 \subsection{Total Absolute and Standardized Error (TAE and SAE)}
-The SAE addresses this issue by using the population size as the denominator,
- but generally, authors seem to use total population, rather than the population
-for that categorization of the variable, which may be
-deemed to understate the size
-of the errors. Also, this measure does not provide any information on whether any
- differences are statistically significant (Edwards and Tanton, 2013).
+Total absolute error (TAE) is the sum of the absolute (positive)
+discrepancies between the simulated
+and known population in an area. The standardized absolute error (SAE) is
+simply TAE divided by the total population. 
+An issue with SAE has been that, by using the total population as the
+denominator for TAE calculations on a subset of cells, the method
+can understate the size of the errors \citep{Edwards2009}.
+TAE provides no level of significance, so thresholds have been used.
+Clarke and Madden (2001) used an error threshold of 80 per cent of the
+areas with less than 20 per cent error (SAE \textless 0.20). % check!!!
+Smith et al. (2007) work with a model that simulates with diabetes and
+use an error threshold of 10\% (SAE \textless 0.1)
+in 90 per cent of the output areas. % really??? probably
 
 \subsection{Z scores}
-Here, the evaluation mainly takes place at the cell level (for a single constraint in a single area).
-However, there should also be attention for the overall picture like spatial concentration.
+Z-scores apply to individual cells (for a single constraint in a single area).
+and also provide a global statistic on model fit \citep{Voas2001}.
+
 
 % Spatial indicators etc??? Add equations to above methods soooon
 

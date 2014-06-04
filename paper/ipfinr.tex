@@ -49,7 +49,7 @@
 \graphicspath{{../figure/}}
 
 %opening
-\title{Evaluating the performance of Iterative Proportional Fitting for spatial microsimulation: new tests to optimise an established technique}
+\title{Evaluating the performance of Iterative Proportional Fitting for spatial microsimulation: new tests for an established technique}
 \author{Robin Lovelace}
 
 \begin{document}
@@ -386,7 +386,7 @@ in taxation and financial laws on European citizens \citep{sutherland2013euromod
 \item The use of spatial microsimulation in combination with
 spatial interaction and agent based models to simulated the spatial
 distribution and movement of student populations, which
-are not well represented in demographic models (\citep{Wu2010})
+are not well represented in demographic models \citep{Wu2010}.
 \end{itemize}
 
 % \section{IPF: theory and a worked example}
@@ -421,14 +421,20 @@ exemplify their work with code snippets from an implementation
 of IPF in the proprietary software SPSS and reference to
 an Excel macro that is available on request, respectively.
 \citet{Williamson2007} also represents
-good practice in this regard, with a manual for running 
-combinatorial optimisation algorithms described in previous work and
-\citep{Ballas2005c} demonstrate IPF with a worked example
-to be calculated using mental arithmetic, but does not progress to
+good practice, with a manual for running 
+combinatorial optimisation algorithms described in previous work.
+\citet{Ballas2005c} demonstrate IPF with a worked example
+to be calculated using mental arithmetic, but do not progress to
 illustrate how the examples are then implemented in computer code.
 This section builds on and extends this work, by first outlining an example that
 can be completed using mental arithmetic alone before illustrating its
-implementation in code. %Have you implemented in R???
+implementation in code. A comprehensive introduction to
+% the basic theory and practicalities of implementing IPF in R for spatial microsimulation
+this topic
+is provided in ``Introducing spatial microsimulation with R: a practical'' \citet{Lovelace2014-ismwr}. This section builds on the tutorial by providing
+context and a higher level description of the process.
+
+ % Have you implemented in R???
 
 % Importantly for for reproducible research this theory section
 % is illustrated with a simple worked example that culminates in
@@ -472,7 +478,7 @@ implementation in code. %Have you implemented in R???
 % 3]{johnston1985geography} (for entropy maximisation), \citet{Norman1999a} and
 % \citet{Simpson2005} (using the proprietary statistical software SPSS).
 % }
-
+We begin with some hypothetical data.
 Table \ref{t:w}  describes a
 hypothetical microdataset comprising 5 individuals, who are defined by two
 constraint variables, age and sex. 
@@ -480,8 +486,8 @@ Table \ref{t:s} contains aggregated data
 for a hypothetical area, as it might be downloaded from census dissemination
 portals such as Casweb. \Cref{t:s2} illustrates this table in a different form,
 demonstrating the unknown links between age and sex. The job of the IPF
-algorithm is to establish estimates for the unknown cells, which are both
-optimized and consistent with the known row and column marginal.
+algorithm is to establish estimates for the unknown cells, which are
+optimized to be consistent with the known row and column marginals.
 
 \begin{table}[h]
 \centering

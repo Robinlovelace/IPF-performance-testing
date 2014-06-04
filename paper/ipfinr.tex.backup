@@ -49,7 +49,7 @@
 \graphicspath{{../figure/}}
 
 %opening
-\title{Evaluating the performance of Iterative Proportional Fitting for spatial microsimulation: new tests to optimise an established technique}
+\title{Evaluating the performance of Iterative Proportional Fitting for spatial microsimulation: new tests for an established technique}
 \author{Robin Lovelace}
 
 \begin{document}
@@ -386,7 +386,7 @@ in taxation and financial laws on European citizens \citep{sutherland2013euromod
 \item The use of spatial microsimulation in combination with
 spatial interaction and agent based models to simulated the spatial
 distribution and movement of student populations, which
-are not well represented in demographic models (\citep{Wu2010})
+are not well represented in demographic models \citep{Wu2010}.
 \end{itemize}
 
 % \section{IPF: theory and a worked example}
@@ -406,7 +406,7 @@ are not well represented in demographic models (\citep{Wu2010})
 In most modelling texts there is a precedence of theory over
 application: the latter usually flows from the former
 (e.g.~\citealp{batty1976urban}).  
-As outlined in \cref{swhat}, however, the theory underlying IPF have
+As outlined in \cref{swhatis}, however, the theory underlying IPF have
 been thoroughly demonstrated in research stemming back to the 1940s.
 \emph{Practical} demonstrations, focused on making the
 algorithm as accessible as possible to others,
@@ -421,14 +421,16 @@ exemplify their work with code snippets from an implementation
 of IPF in the proprietary software SPSS and reference to
 an Excel macro that is available on request, respectively.
 \citet{Williamson2007} also represents
-good practice in this regard, with a manual for running 
-combinatorial optimisation algorithms described in previous work and
-\citep{Ballas2005c} demonstrate IPF with a worked example
-to be calculated using mental arithmetic, but does not progress to
+good practice, with a manual for running 
+combinatorial optimisation algorithms described in previous work.
+\citet{Ballas2005c} demonstrate IPF with a worked example
+to be calculated using mental arithmetic, but do not progress to
 illustrate how the examples are then implemented in computer code.
 This section builds on and extends this work, by first outlining an example that
 can be completed using mental arithmetic alone before illustrating its
-implementation in code. %Have you implemented in R???
+implementation in code. The  
+
+ % Have you implemented in R???
 
 % Importantly for for reproducible research this theory section
 % is illustrated with a simple worked example that culminates in
@@ -748,8 +750,8 @@ validation are heavily context dependent so should be decided on a
 case-by-case basis.
 External validation is thus mentioned in passing with a focus on general principles
 rather than specific advice. The methods are presented in ascending order of complexity
-and roughly descending order of frequency of use, ranging from Pearson's coefficient of
-correlation to entropy based measures. Before these methods are described, it is
+and roughly descending order of frequency of use, ranging from 
+the coefficient of determination ($R^2$) to entropy based measures. Before these methods are described, it is
 worth stating that the purpose of this section is not to find the `best' evaluation metric:
 each has advantages and disadvantages, the importance of which will vary depending on the
 nature of the research. The use of a variety of techniques in this paper
@@ -760,7 +762,7 @@ to establish relative levels of goodness of fit between
 different model configurations.
 
 The problem of internal validation
-(described as `evaluating model fit') was tackled in detail by \citet{Williamson2000}.
+(described as `evaluating model fit') was tackled in detail by \citet{Voas2001}.
 Chi-squared, Z-scores, absolute error and entropy-based methods
 were tested, with no clear `winner' other than the advocacy of
 methods that are robust, fast and easy to understand (absolute
@@ -770,11 +772,11 @@ the nature of available data:
 ``Precisely because a full set of raw census data is not
 available to us, we are obliged to evaluate our simulated populations by comparing
 a number of aggregated tables derived from the synthetic data set with published
-census small-area statistics'' \citep[p.~178]{Williamson2000}.
+census small-area statistics'' \citep[p.~178]{Voas2001}.
 The same reasoning is used to select evaluation methods here.
  
 
-\subsection{Scatter plots and Pearson's coefficient of correlation}
+\subsection{Scatter plots and the coefficient of determination}
 A scatter plot of cell counts for each category for the original and simulated variables is
 a basic but very useful preliminary diagnostic tool in spatial microsimulation
 \citep{Ballas2005c,Edwards2009}.
@@ -793,13 +795,15 @@ This stage can be conducted either before or after \emph{integerisation}
 (more on this below). As taught in basic statistics courses, the closer the points to the
 1:1 (45 degree, assuming the axes have the same scale) line, the better the fit.
 
-Pearson's coefficient of correlation (henceforth Pearson's $r^2$) is a quantitative
+The coefficient of determination (henceforth $R^2$) is the 
+square of the Pearson correlation coefficient for describing the
+extent to which one continuous variable explains another. $R^2$ is a quantitative
 indicator of how much deviation there is from this ideal 1:1 line. It varies from 0 to 1,
 and in this context reveals how closely the simulated values fit the actual (census) data.
-An $r$ value of 1 represents a perfect fit; an $r$ value close to zero suggests no correspondence
+An $R^2$ value of 1 represents a perfect fit; an $R^2$ value close to zero suggests no correspondence
 between then constraints and simulated outputs (i.e. that the model has failed).
-We would expect to see very high coefficient of determination for
-internal validation (the constraint) and strong
+We would expect to see very high $R^2$ values for
+internal validation (the constraint) and a strong
 positive correlation between target variables that have been estimated and
 external datasets (e.g. income).
 % However, regression analysis does not give any information about the fit of the simulated data to the ‘ideal’ line (i.e. where y  =  x and the simulated data is the same as the actual data). Rather, R 2 expresses the fit of the data to the ‘best fit’ line through that data. That is, the coefficient of determination is providing information about precision, not accuracy (Edwards and Tanton, 2013).
@@ -1124,21 +1128,19 @@ following \citep{Lovelace2013-trs}.
 \label{cresults}
 
 \subsection{Baseline scenarios}
-As expected from \cref{fipfinac} above, the correlation of 
-the baseline scenario improves over time, with each constraint 
-and from one iteration to the next. Through the course of the first 
-iteration, the correlation improves from 0.67 (the correlation between 
-the frequencies of variables in the survey dataset and their frequencies 
-in the census dataset, for each zone) to 0.9981. As illustrated in \cref{fnconscor}, 
+As expected from \cref{fipfinac} above, fit
+improves over time. This improvement generally happens for each constraint 
+and always from one iteration to the next. Through the course of the first 
+iteration, $R^2$ improves from 0.67 to 0.9981. As illustrated in \cref{fnconscor}, 
 the marginal improvement reduces from one iteration to the next: 
-at the end of iteration 2, the correlation has improved to 0.999978.   
+at the end of iteration 2, $R^2$ improved to 0.999978.   
 
 \begin{figure}[h]
  \begin{center}
   \includegraphics[width=6cm]{corr-baseline}
  \end{center}
 \caption{Improvement in goodness of fit with additional constraints and iterations, 
-as illustrated by $r$ values.}
+as illustrated by $R^2$ values.}
 \label{fnconscor}
 \end{figure}
 
@@ -1206,7 +1208,7 @@ These results suggest that initial weights have a limited impact on the results 
 
 There were found to be 0, 62 and 8,105 empty cells in the simple, small-area and sheffield
 examples respectively. Only the smallest input dataset was
-\emph{complete}. Due to the multiplying effect of more variables (\cref{e}),
+\emph{complete}. Due to the multiplying effect of more variables (\cref{eqempty}),
 $Nperm$ was found to be much larger in the complex models, with values rising from
 4 to 300 and 9504 for the increasingly complex test examples. 
 

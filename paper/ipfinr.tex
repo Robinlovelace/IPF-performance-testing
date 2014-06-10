@@ -368,8 +368,9 @@ Papers that have used IPF in this context (or a substitutable method such as sim
 have explored a range of regional economic problems that purely aggregate level analyses struggle to address.
 These include:
 \begin{itemize}
- \item Projecting the wider impacts individual and local impacts
-of major job losses from individual companies \citep{Ballas2006}.
+ \item Projecting the wider individual and local impacts
+of job losses and gains from the closure \citep{Ballas2006}
+or opening \citep{VanLeeuwen2010} of new businesses.
 \item Investigation of the local impacts of economic development
 in the marine energy sector in Ireland \citep{Morrissey2013a}.
 \item Estimation of the energy impacts of freight transport at the
@@ -431,7 +432,8 @@ can be completed using mental arithmetic alone before illustrating its
 implementation in code. A comprehensive introduction to
 % the basic theory and practicalities of implementing IPF in R for spatial microsimulation
 this topic
-is provided in ``Introducing spatial microsimulation with R: a practical'' \citet{Lovelace2014-ismwr}. This section builds on the tutorial by providing
+is provided in a tutorial entitled
+ ``Introducing spatial microsimulation with R: a practical'' \citep{lovelace2014introducing}. This section builds on the tutorial by providing
 context and a higher level description of the process.
 
  % Have you implemented in R???
@@ -721,13 +723,16 @@ algorithm described above can be implemented in R.
 
 \section{Evaluation techniques}
 % Add correlation matrix at end of links between these
+% Really should write a paper on this to update Voas2001 - not the place here
 To verify the integrity of any model, it is necessary to compare its outputs
 with empirical observations or prior expectations gleaned from theory.
 The same principles apply to spatial microsimulation, which can be evaluated using
 both \emph{internal} and \emph{external} validation methods \citep{Edwards2009}.
 \emph{Internal validation} is the process whereby
 the aggregate-level outputs of spatial microsimulation are compared with
-the input constraint variables.
+the input constraint variables. It is important to think carefully about
+evaluation metrics because results can vary depending on the measure used
+\citep{Voas2001}.
 
 Internal validation typically tackle such issues
 as ``do the simulated populations in each area
@@ -748,15 +753,44 @@ Both validation techniques are important in modelling exercises for reproducibil
 based on coding errors \citep{ormerod2009validation}.
 %... ?
 
-This section outlines the evaluation techniques that are commonly used in the
-field, with a strong focus on internal validation. The options for external
+For dynamic microsimulation scenarios,
+calculating the sampling variance (the variance
+in a certain statistic, usually the mean, across multiple samples)
+across multiple model runs
+is recommended to test if differences between different
+scenorios are statistically significant \citep{goedeme2013testing}.
+In static spatial
+microsimulation, sub-sampling
+from the individual level dataset or running stochastic processes
+many times are ways to generate such statistics for tests
+of significance. Yet these statistics will only apply to a small part
+of the modelling process and are unlikely to relate to
+the validity of the process overall \citep{Lovelace2013-trs}.
+
+This section briefly outlines the evaluation techniques
+used in this study for \emph{internal validation}
+of static spatial microsimulation models.
+% , in addition to a new implementation of
+% the S\o rensen-Dice coefficient for continuous variables. % Just making more work!!!
+The options for external
 validation are heavily context dependent so should be decided on a
 case-by-case basis.
-External validation is thus mentioned in passing with a focus on general principles
-rather than specific advice. The methods are presented in ascending order of complexity
+External validation is thus mentioned in the discussion,
+with a focus on general principles
+rather than specific advice. The three quantitative
+methods used in this study (and the visual method of scatter plots)
+are presented in ascending order of complexity
 and roughly descending order of frequency of use, ranging from 
-the coefficient of determination ($R^2$) to entropy based measures. Before these methods are described, it is
-worth stating that the purpose of this section is not to find the `best' evaluation metric:
+the coefficient of determination ($R^2$) through total and standardised
+absolute error ($TAE$ and $SAE$, respectively)
+% to the proportion of values deviating from the expected
+% value by a predefined amount ($P > 0.5$). The preferred metric
+to root mean squared error ($RMSE$).
+This latter option is our preferred metric, as described below.
+% The equations for each metric can be found in the associated references.
+
+Before these methods are described, it is
+worth stating that the purpose is not to find the `best' evaluation metric:
 each has advantages and disadvantages, the importance of which will vary depending on the
 nature of the research. The use of a variety of techniques in this paper
 is of interest in itself. The high degree of correspondence between them (presented in \cref{cresults}),
@@ -779,18 +813,18 @@ a number of aggregated tables derived from the synthetic data set with published
 census small-area statistics'' \citep[p.~178]{Voas2001}.
 The same reasoning is used to select evaluation methods here.
 
-\subsection{Descriptive statistics}
-
-Useful basic statistics to describe and compare datasets are 
-the mean, median and standard deviation of cell counts in the
-simulated and known aggregate-level database.
-These are useful `sanity checks': if the mean population across all zones or
-for a particular constraint differs greatly from expectations, there is clearly
-a problem. These summary statistics are dependent on the
-size of the dataset. To compare datasets of widely varying populations,
-dimensionless statistics can be used.
-The coefficient of variation, the ratio of the standard deviation to the mean is
-an example of a dimensionless statistic robust to population size.
+% \subsection{Descriptive statistics}
+% 
+% Useful basic statistics to describe and compare datasets are 
+% the mean, median and standard deviation of cell counts in the
+% simulated and known aggregate-level database.
+% These are useful `sanity checks': if the mean population across all zones or
+% for a particular constraint differs greatly from expectations, there is clearly
+% a problem. These summary statistics are dependent on the
+% size of the dataset. To compare datasets of widely varying populations,
+% dimensionless statistics can be used.
+% The coefficient of variation, the ratio of the standard deviation to the mean is
+% an example of a dimensionless statistic robust to population size.
  
 
 \subsection{Scatter plots}
@@ -815,10 +849,14 @@ This stage can be conducted either before or after \emph{integerisation}
 \subsection{The coefficient of determination}
 The coefficient of determination (henceforth $R^2$) is the 
 square of the Pearson correlation coefficient for describing the
-extent to which one continuous variable explains another. $R^2$ is a quantitative
-indicator of how much deviation there is from this ideal 1:1 line. It varies from 0 to 1,
-and in this context reveals how closely the simulated values fit the actual (census) data.
-An $R^2$ value of 1 represents a perfect fit; an $R^2$ value close to zero suggests no correspondence
+extent to which one continuous variable explains another.
+$R^2$ is a quantitative
+indicator of how much deviation there is from this ideal
+1:1 line. It varies from 0 to 1,
+and in this context reveals how closely the 
+simulated values fit the actual (census) data.
+An $R^2$ value of 1 represents a perfect fit; an $R^2$ value
+close to zero suggests no correspondence
 between then constraints and simulated outputs (i.e. that the model has failed).
 We would expect to see very high $R^2$ values for
 internal validation (the constraint) and a strong
@@ -846,18 +884,57 @@ An issue with SAE has been that, by using the total population as the
 denominator for TAE calculations on a subset of cells, the method
 can understate the size of the errors \citep{Edwards2009}.
 TAE provides no level of significance, so thresholds have been used.
-Clarke and Madden (2001) used an error threshold of 80 per cent of the
+\citet{clarke2001regional} used an error threshold of 80 per cent of the
 areas with less than 20 per cent error (SAE \textless 0.20). % check!!!
-Smith et al. (2007) work with a model that simulates with diabetes and
+\citet{smith2007simhealth} work with a model that simulates with diabetes and
 use an error threshold of 10\% (SAE \textless 0.1)
 in 90 per cent of the output areas. % really??? probably
 
-\subsection{Z scores}
-Z-scores apply to individual cells (for a single constraint in a single area).
-and also provide a global statistic on model fit \citep{Voas2001}.
+% \subsection{The modified Z-score}
+% The Z-statistic is a commonly
+% used measure, reporting the number of standard deviations
+% a value is from the mean.
+% In this work we report $zm$, a modified version to the Z-score
+% metric that is robust to very small expected cell values
+% \citep{Williamson1998}.
+% Z-scores apply to individual cells (for a single constraint in a single area).
+% and also provide a global statistic on model fit ($Zm$), defined
+% as the sum of all $zm^2$ values \citep{Voas2001}.
+% The measure of
+% fit has the advantage of taking into account absolute, rather than just
+% relative, differences between simulated and observed cell count:
+% \begin{equation}
+%  Zm_{ij} = (r_{ij} - p_{ij}) \Bigg/ \left(\frac{p_{ij}(1 -
+% p_{ij}))}{\sum\limits_{ij}U_{ij}}\right)^{1/2}
+% \end{equation}
+% 
+% where
+% 
+% \begin{center}
+% \begin{math}
+%   p_{ij} = \frac{U_{ij}}{\sum\limits_{ij}U_{ij}} \qquad and \qquad r_{ij} =
+% \frac{T_{ij}}{\sum\limits_{ij}U_{ij}}
+% \end{math}
+% \end{center}
+% 
+% To use the modified Z-statistic as a measure of overall model fit, one simply
+% sums the squares of $zm$ to calculate $Z{m}^{2}$. This measure can handle
+% observed cell counts below 5, which chi-squared tests cannot \citep{Voas2001}.
 
+% \subsection{Proportion of values deviating from expectations $E > 5\%$}
+% The proportion of values which fall beyond 5\% of the actual values is a simple
+% metric of the quality of the fit.
+% It focusses on the proportion of values which are close to expected, rather than
+% the overall fit, so is robust to outliers.
+% The $E > 5\%$ metric implies that getting a perfect fit is not
+% the aim, and penalises relationships that have a large number of moderate outliers,
+% rather than a few very large outliers. The precise
+% definition of 'outlier' is somewhat arbitrary (one could just as well use 1\%).
 
 % Spatial indicators etc??? Add equations to above methods soooon
+
+\subsection{Root mean square error}
+$RMSE$ is our preferred evaluation metric in this study because...
 
 \section{Input data}
 Three input datasets form the basis of the scenarios tested in this paper,
@@ -1309,6 +1386,36 @@ test for missing cells, as defined in \cref{smempty}, before reweighting.
 
 \bibliographystyle{model2-names.bst}
 \bibliography{/nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib}
+
+% \section{Appendix: Formulae for evaluation techniques and additional results}
+% 
+% The symbols used for values in these equations follows, to the
+% extent possible, the most common usage found in the literature.
+% Thus $T_{ij}$ and $U_{ij}$ represent the simulated and observed
+% cell counts for category $i$ in zone $j$. Additional symbols are
+% described as and when they appear in the formulae.
+% 
+% 
+% \subsection{Modified Z-Scores}
+% 
+% The modified Z-score ($Zm$) was described by \citet{Williamson1998}
+% and is defined as follows:
+%  
+% \begin{equation}
+%  Zm_{ij} = (r_{ij} - p_{ij}) \Bigg/ \left(\frac{p_{ij}(1 -
+% p_{ij}))}{\sum\limits_{ij}U_{ij}}\right)^{1/2}
+% \end{equation}
+% 
+% where
+% 
+% \begin{center}
+% \begin{math}
+%   p_{ij} = \frac{U_{ij}}{\sum\limits_{ij}U_{ij}} \qquad and \qquad r_{ij} =
+% \frac{T_{ij}}{\sum\limits_{ij}U_{ij}}
+% \end{math}
+% \end{center}
+
+
 
 %/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib  desktop.bib,
 % /home/robin/Documents/Microsimulation.bib,

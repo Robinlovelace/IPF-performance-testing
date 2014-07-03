@@ -59,8 +59,8 @@
 \begin{abstract}
 Iterative Proportional Fitting (IPF), also known as biproportional fitting or the RAS algorithm,
 is an established technique in Regional Science and
- has been used for a variety of purposes in the field. Primary amongst these has been
-the generation of small area microdata.  
+has been used for a variety of purposes in the field. Primary amongst these has been
+the the use of IPF in static spatial microsimulation models for the generation of small area microdata.  
 The technique is mature, widely used and relatively straight-forward
 yet there have been few studies focused on evaluation of its performance.
 An additional research problem is the tendency of 
@@ -77,7 +77,7 @@ based on publicly available code and input data.
 The results confirm IPF's status as robust and widely applicable 
 method for combining areal and individual-level data and demonstrate the importance
 of using various metrics of for determining its performance.
-We conclude with an agenda for future tests and offer more general guidance on how
+The paper also sets an agenda for future tests and offers more general guidance on how
 the method can be optimised to maximise its utility for future research.
 
 Keywords: Iterative proportional fitting, spatial microsimulation, modelling
@@ -90,8 +90,6 @@ Additonal papers to cite include:
 \begin{itemize}
  \item \citet{harland2012}
 \item \citet{Smith2009}
-\item \citet{Cullinan2010}
-\item 
 \end{itemize}
 
 
@@ -99,21 +97,22 @@ Additonal papers to cite include:
 Surveys of the composition, attitudes and behavior of individual
 respondents constitute a ubiquitous empirical basis of social science research.
 The aggregation of survey data of this type also has a long history.
-Generally this involves translating raw data from a `long' format
---- the usual format of raw census data as it is digitised and entered into a database,
-where each row represents an individual and each column a separate variable ---
-to a `wide' data format \citep[Chapter 9]{van2012flexible}. In the wide form,
+Generally this involves translating raw data from a `long' or `microdata' format
+--- as survey information is entered into a database,
+one individual at a time ---
+to a `wide' data format \citep{van2012flexible}. In the wide form,
 each row represents a geographic area or other sub-group of
 the total population and each column represents a
-variable value or bin (see \cref{fmsim-schema}). The wide data form is useful because
-it can summarise a huge amount of information
-in relatively little computer disk space, but has some important disadvantages. 
-Information loss usually occurs when georeferenced individual level survey data
---- \emph{spatial microdata} --- is aggregated into the wide form. This
-problem is exacerbated when continuous variables
-are converted into discrete categories and 
-when not cross-tabulations, such as age/income, are not provided.
-The process of aggregation is performed in three steps:
+variable value or bin (see \cref{fmsim-schema}). This transformation to a
+`wide' (or geographically aggregated) form
+ is typically carried out in order to preserve confidentiality,
+ensuring that no individual can be identified at the small
+area level \citep{dale1993census}. Wide data
+is advantageous computationally, as it can represent information about millions of individuals
+in relatively little computer disk space. An additional benefit from the
+perspective of spatial analysis is that the wide data form is
+generally easy to load into geographical information systems (GIS).
+The process of aggregation is performed in three steps:  % commented out as it's not amazing
 \begin{enumerate}
  \item conversion of all
 variables into discrete categories (e.g.~an individual with an income of £13,000 per year
@@ -123,12 +122,57 @@ would be allocated to band of £10,000 to £15,000 per year)
  \item assignment of
 integer counts to cells in each column to represent the number of people with each characteristic.
 \end{enumerate}
-Frequently, large national social survey datasets 
-such as censuses are \emph{only} available in the wide, geographically aggregated
-form. This is problematic for the analysis of spatial phenomena \citep{Openshaw1984,Lee2009}.
-It is from this context of common forms of geographical data storage formats that this paper departs.
 
-Iterative proportional fitting (IPF) can help overcome the limitations of wide, geographically aggregated data
+The process of aggregation, represented in above bullet points,
+has some important disadvantages, however. It is these disadvantages,
+summarised in the next paragraph, that spatial microsimulation and small
+area estimation seek to address.\footnote{There
+is a great deal of overlap between methods for spatial microsimulation and
+small area estimation (the terms are sometimes used 
+interchangeably). It is useful
+to have two terms, however. Small
+area estimation seeks to estimate summary statistics for a variable whose
+geographical distribution is unknown, sometimes via a spatial microdataset. With spatial
+microsimulation, on the other hand, the emphasis is on generating and analysing
+spatial microdata.}
+Both combine national social survey microdata
+(such as the Understanding Society panel dataset UK) with small area census data.
+A number of techniques are available, including
+deterministic reweighting \citep{Birkin1989a},
+genetic algorithms and simulated annealing \citep{Williamson1998}
+as well as approaches based on linear regression \citep{Harding2011}.
+It is an active field of development with on-going refinements
+(e.g.~\citep{Lovelace2013-trs,Pritchard2012}) and debates
+about which approaches are most suited in different situations
+\citep{harland2012,Hermes2012a,Smith2009,whitworth2013evaluations,whitworth2013evaluations,Williamson2013}
+
+These methods are important because large national social survey datasets 
+such as censuses are often \emph{only} available in the wide, geographically aggregated
+form. Information loss occurs when georeferenced individual level survey data
+--- \emph{spatial microdata} --- is aggregated in this way. This
+problem is exacerbated when continuous variables
+are converted into discrete categories and 
+when not cross-tabulations, such as age/income, are not provided, as is often the case.
+Geographically aggregated datasets are
+problematic for the analysis of spatial phenomena \citep{Openshaw1984}
+and can prevent analysis of the interdependencies individual and household variables
+at the local level \citep{Lee2009}.
+In an effort to address the drawbacks associated with this lack of microdata,
+Samples of Anonymised Records (SARs) were released from the 1991 Census
+\citep{dale1993census,middleton1995samples} and this was followed by similar SARs releases in 2001 and 2011.
+Nevertheless, the SARs are not suitable for intra-city and neighbourhood level
+analysis, as the smallest geographical level at which such microdata are publicly
+available is the Local Authority, to preserve confidentiality.
+There has been discussion ways to further disaggregate the geography
+of the SARs, with due emphasis on risks to confidentiality \citep{Tranmer2005case4}.
+Furthermore, there are many policy relevant variables (e.g.~income and wealth, social attitudes)
+that are not collected by censuses of population, making them unavailable at the small area level.
+Geographers and regional scientists have addressed this data paucity through the development
+and application of small area estimation methods \citep{Ballas2005c,Hermes2012a}.
+% It is from this context of common forms of geographical data storage formats that this paper departs.
+
+Iterative proportional fitting (IPF) can help overcome the limitations of wide,
+ geographically aggregated data
 sources when used in
 \emph{spatial microsimulation}. In simplistic terms spatial microsimulation can be understood
 as the reversal of geographic aggregation described in points 1--3 above,

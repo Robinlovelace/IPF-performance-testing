@@ -85,14 +85,6 @@ Keywords: Iterative proportional fitting, spatial microsimulation, modelling
 JEL Code: C
 \end{abstract}
 
-\section{Notes for authors}
-Additonal papers to cite include:
-\begin{itemize}
- \item \citet{harland2012}
-\item \citet{Smith2009}
-\end{itemize}
-
-
 \section{Introduction}
 Surveys of the composition, attitudes and behavior of individual
 respondents constitute a ubiquitous empirical basis of social science research.
@@ -144,7 +136,7 @@ as well as approaches based on linear regression \citep{Harding2011}.
 It is an active field of development with on-going refinements
 (e.g.~\citep{Lovelace2013-trs,Pritchard2012}) and debates
 about which approaches are most suited in different situations
-\citep{harland2012,Hermes2012a,Smith2009,whitworth2013evaluations,whitworth2013evaluations,Williamson2013}
+\citep{harland2012,Hermes2012a,Smith2009,whitworth2013evaluations,Williamson2013}
 
 These methods are important because large national social survey datasets 
 such as censuses are often \emph{only} available in the wide, geographically aggregated
@@ -400,10 +392,10 @@ and outline the theory underlying the procedure based on a simple example.
 
 \subsection{Applications}
 % \textbf{Dimitris and Eveline: please fill in this section}
-Applications of IPF include using it ...
+% Applications of IPF include using it ...
 
-The application of greatest interest to social scientists and others working
-with `ecological' data \citep{Openshaw1984}, however is as a method of
+The application of greatest interest to social scientists, and others working
+with `ecological' data \citep{Openshaw1984}, is as a method of
 generating spatial microdata: individual level data allocated to zones.
 %  IPF enables the generation
 % individual level data allocated to specific zones: the creation of
@@ -847,7 +839,7 @@ The problem of internal validation
 (described as `evaluating model fit') was tackled in detail by \citet{Voas2001}.
 Chi-squared, Z-scores, absolute error and entropy-based methods
 were tested, with no clear `winner' other than the advocacy of
-methods that are robust, fast and easy to understand (absolute
+methods that are robust, fast and easy to understand (standardized absolute
 error measures match these criteria well).
 The selection of evaluation methods is determined by
 the nature of available data:
@@ -855,7 +847,8 @@ the nature of available data:
 available to us, we are obliged to evaluate our simulated populations by comparing
 a number of aggregated tables derived from the synthetic data set with published
 census small-area statistics'' \citep[p.~178]{Voas2001}.
-The same reasoning is used to select evaluation methods here.
+A remaining issue is that the results of many evaluation metrics vary depending
+on the areal units used, hence advocacy of `scale free' metrics (e.g.~\citep{Malleson2012}).
 
 % \subsection{Descriptive statistics}
 % 
@@ -902,10 +895,14 @@ simulated values fit the actual (census) data.
 An $R^2$ value of 1 represents a perfect fit; an $R^2$ value
 close to zero suggests no correspondence
 between then constraints and simulated outputs (i.e. that the model has failed).
-We would expect to see very high $R^2$ values for
+We would expect to see $R^2$ values approaching 1 for
 internal validation (the constraint) and a strong
 positive correlation between target variables that have been estimated and
-external datasets (e.g. income).
+external datasets (e.g. income). A major limitation of $R^2$ is that
+it takes no account of \emph{additive} or \emph{proportional} differences
+between estimated and observed values, meaning that it ignores systematic
+bias \citep{Legates1999GOF}. This limitation is less relevant for spatial microsimulation results
+because they are generally population-constrained. 
 
 % A potential disadvantage of $R^2$ is that it provides no
 % information about the formula linking simulated data to the 
@@ -924,15 +921,16 @@ Total absolute error (TAE) is the sum of the absolute (positive)
 discrepancies between the simulated
 and known population in an area. The standardized absolute error (SAE) is
 simply TAE divided by the total population. 
-An issue with SAE has been that, by using the total population as the
-denominator for TAE calculations on a subset of cells, the method
-can understate the size of the errors \citep{Edwards2009}.
 TAE provides no level of significance, so thresholds have been used.
 \citet{clarke2001regional} used an error threshold of 80 per cent of the
 areas with less than 20 per cent error (SAE \textless 0.20). % check!!!
 \citet{smith2007simhealth} work with a model that simulates with diabetes and
 use an error threshold of 10\% (SAE \textless 0.1)
 in 90 per cent of the output areas. % really??? probably
+Due to its widespread use, simplicity and scale-free nature --- allowing the fit
+for scenarios 1, 2 and 3 to be compared --- SAE is our preferred
+metric in this study, although we also calculated the root mean square error
+for each test.
 
 % \subsection{The modified Z-score}
 % The Z-statistic is a commonly
@@ -978,7 +976,15 @@ in 90 per cent of the output areas. % really??? probably
 % Spatial indicators etc??? Add equations to above methods soooon
 
 \subsection{Root mean square error}
-$RMSE$ is our preferred evaluation metric in this study because...
+Root mean square error ($RMSE$) and to a lesser extent mean absolute error (MAE)
+have been frequently
+used in both social and physical sciences as a metric of model fit
+\citep{Legates1999GOF,Ngo2012}. %!!! equations
+The former has the benefit of being widely used and understood, but is
+influenced by the mean value in each zone. Research research in climate model
+evaluation suggests that the lesser known but simpler $MAE$ metric is preferable
+to $RMSE$ in many ways \citep{Willmott2005}. Therefore both metrics are presented
+in this paper.
 
 \section{Input data}
 Three input datasets form the basis of the scenarios tested in this paper,
@@ -1239,10 +1245,10 @@ stage is to identify which individuals are missing from the individual-level inp
 dataset ($Ind$) --- the combination of attributes that no individual in $Ind$ has.
 To do this, we created an algorithm to generate the the complete input dataset ($Ind.complete$).
 The `missing' individuals, needed to be added to make $Ind$ complete can be defined
-in terms of set theory by \cref{eqmiss}:
+in terms of set theory \citep{goldrei1996classic} by \cref{eqmiss}:
 
 \begin{equation}
- Ind.missing = Ind.complete\setminus Ind
+ Ind.missing = Ind.complete\setminus Ind = \{x \in Ind.complet : x \not \in Ind \}
 \label{eqmiss}
 \end{equation}
 
@@ -1279,9 +1285,12 @@ following \citep{Lovelace2013-trs}.
 
 \subsection{Baseline scenarios}
 As expected from \cref{fipfinac} above, fit
-improves over time. This improvement generally happens for each constraint 
-and always from one iteration to the next. Through the course of the first 
-iteration, $R^2$ improves from 0.67 to 0.9981. As illustrated in \cref{fnconscor}, 
+improved with additional iterations.
+This improvement generally happened for each constraint 
+and always from one iteration to the next in every scenario.
+Through the course of the first 
+iteration in the \emph{simple} senario, $R^2$ improved
+from 0.67 to 0.9981. As illustrated in \cref{fnconscor}, 
 the marginal improvement reduces from one iteration to the next: 
 at the end of iteration 2, $R^2$ improved to 0.999978.   
 
@@ -1302,7 +1311,7 @@ required to reach a very close fit between the census
  After four iterations, the result in R is indistinguishable from 1,
  with its default accuracy of 7 decimal places. 
 The decay in the rate of improvement with additional 
-iterations and constraints was found to super-exponential. 
+iterations and constraints was found to be super-exponential. 
 
 \subsection{Initial weights}
 It was found that initial weights had little impact on the overall simulation. 

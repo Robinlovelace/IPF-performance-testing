@@ -38,10 +38,10 @@ order=-1
 
 [item:ipfinr.tex]
 archive=true
-column=30
+column=13
 encoding=UTF-8
 highlight=LaTeX
-line=123
+line=1316
 mode=LaTeX
 open=true
 order=0
@@ -57,5 +57,5 @@ open=false
 order=-1
 
 [view-settings,view=0,item:ipfinr.tex]
-CursorColumn=30
-CursorLine=123
+CursorColumn=13
+CursorLine=1316

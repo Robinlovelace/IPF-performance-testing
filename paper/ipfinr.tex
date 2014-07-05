@@ -1087,7 +1087,7 @@ to one `target variable': monthly pre-tax income in pounds stirling.
 % \begin{tabular}{rrrrr}
 % \toprule
 % \bottomrule
-% \end{tabular}
+% \end{tabular}\	
 % \end{center}
 % \label{t4}
 % \end{table}
@@ -1100,7 +1100,7 @@ In order to perform a wide range of model experiments,
 in which only one factor is altered at a time, 
 baseline scenarios were created. These are model runs with sensible 
 defaults, reference points against which alternative runs are compared.
-The baseline scenarios consist of 3 iterations. In the ‘simple’ scenario (with 2 constraints), 
+The baseline scenarios consist of 3 iterations. In the `simple' scenario (with 2 constraints), 
 there are 6 constraint-iteration permutations.
 \Cref{tblresults1} shows 
 fit improving with each step.\footnote{The exception is $p5$,
@@ -1217,7 +1217,7 @@ within constraint $i$:
 \end{equation}
 
 To exemplify this equation, the number of permutations of constraints in the
-\emph{simple} example is 4: 2 categories in the sex variables multiplied by
+`simple' example is 4: 2 categories in the sex variables multiplied by
 2 categories in the age variable. Clearly, $Nperm$ depends on how continuous variables
 are binned, the number of constraints and diversity within each constraint.
 Once we know the number of unique individuals (in terms of the constraint variables)
@@ -1284,15 +1284,20 @@ following \citep{Lovelace2013-trs}.
 \label{cresults}
 
 \subsection{Baseline scenarios}
+
+
+In terms of TAE and SAE, the same trend apparent
+
+\subsection{Constraints and iterations}
 As expected from \cref{fipfinac} above, fit
-improved with additional iterations.
+improved with each iteration.
 This improvement generally happened for each constraint 
 and always from one iteration to the next in every scenario.
 Through the course of the first 
-iteration in the \emph{simple} senario, $R^2$ improved
+iteration in the `simple' senario, for example, $R^2$ improved
 from 0.67 to 0.9981. As illustrated in \cref{fnconscor}, 
-the marginal improvement reduces from one iteration to the next: 
-at the end of iteration 2, $R^2$ improved to 0.999978.   
+the rate of improvement in model fit plateaus after the first iterate: 
+at the end of iteration 2 in the simple scenarios, $R^2$ had improved to 0.999978.   
 
 \begin{figure}[h]
  \begin{center}
@@ -1303,15 +1308,13 @@ as illustrated by $R^2$ values.}
 \label{fnconscor}
 \end{figure}
 
-\subsection{Constraints and iterations}
-As illustrated above, the number of iterations 
-required to reach a very close fit between the census
- and simulated data is very low, with rapid reductions in
- the marginal accuracy return on additional computing power.
- After four iterations, the result in R is indistinguishable from 1,
- with its default accuracy of 7 decimal places. 
-The decay in the rate of improvement with additional 
-iterations and constraints was found to be super-exponential. 
+Rapid reductions in the accuracy improvement from
+additional computation were observed in each scenario, as illustrated
+by the falling percentage change in TAE in \cref{tciterations}.
+After four iterations, in the `simple' scenarios,
+the fit is near perfect, with an $R^2$ value indistinguishable from one
+to 7 decimal places. The decay in the rate of improvement with additional 
+iterations is super-exponential. 
 
 \subsection{Initial weights}
 It was found that initial weights had little impact on the overall simulation. 

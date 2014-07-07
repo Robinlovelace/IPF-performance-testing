@@ -1095,7 +1095,7 @@ to one `target variable': monthly pre-tax income in pounds stirling.
 % ... More here on loading-up this data.
 
 \section{Method: model experiments}
-\subsection{Baseline conditions} \label{smbase}
+\subsection{Baseline scenarios}
 In order to perform a wide range of model experiments, 
 in which only one factor is altered at a time, 
 baseline scenarios were created. These are model runs with sensible 
@@ -1106,16 +1106,40 @@ there are 6 constraint-iteration permutations.
 fit improving with each step.\footnote{The exception is $p5$,
 which reaches zero in the second iteration. $pcor$ continues to improve, 
 even though the printed value, to 6 decimal places, is
-indistinguishable from 1 after two complete iterations.}
+indistinguishable from 1 after two complete iterations.} (
 
-The main characteristics of the baseline model for each scenario area
-presented in \cref{tbase} 
-
-
+\begin{table}[htbp]
+\caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+\bottomrule
+\end{tabular}
+\end{center}
+\label{tblresults1}
+\end{table}
 
 The baseline `small-area' scenario consists of three
  iterations of IPF, in which all three constraints were 
-used. 
+used. The results for all 9 constraint-iteration permutations 
+of this baseline scenario are illustrated in \cref{fipfinac} and %??? ref
+in the online `measures' table. These results show that IPF successfully 
+brings the simulated cell counts in-line with the census after each constraint 
+is applied and that the fit improves with each iteration (only two iterations are 
+shown here, as the fit improves very little beyond two, and to avoid clutter).
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=12cm]{ipfinac}
+ \end{center}
+\caption{IPF in action: simulated vs census zone counts for the small-area baseline scenario after each constraint (columns) and iteration (rows).}
+\label{fipfinac}
+\end{figure}
+
+The baseline `Sheffield' scenario consists of the same basic set-up, 
+but with 4 constraints. As before, the results show convergence 
+towards better model fit, although the fit does not always improve 
+from one constraint to the next (see the online `measures' table). % online???
 
 \subsection{Constraints and iterations}
 These were the simplest model experiments, requiring only
@@ -1259,27 +1283,10 @@ following \citep{Lovelace2013-trs}.
 \section{Results}
 \label{cresults}
 
-\subsection{Baseline results}
+\subsection{Baseline scenarios}
 
-After only 3 complete iterations under the baseline conditions
-set out in \cref{smbase}, the final weights in each scenario
-converged towards a final result.
 
-The baseline `Sheffield' scenario consists of the same basic set-up, 
-but with 4 constraints. As before, the results show convergence 
-towards better model fit, although the fit did not always improve 
-from one constraint to the next (see the online `measures' table). % online???
-
-\begin{table}[htbp]
-\caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
-\begin{center}
-\begin{tabular}{rrrrr}
-\toprule
-\bottomrule
-\end{tabular}
-\end{center}
-\label{tblresults1}
-\end{table}
+In terms of TAE and SAE, the same trend apparent
 
 \subsection{Constraints and iterations}
 As expected from \cref{fipfinac} above, fit
@@ -1299,21 +1306,6 @@ at the end of iteration 2 in the simple scenarios, $R^2$ had improved to 0.99997
 \caption{Improvement in goodness of fit with additional constraints and iterations, 
 as illustrated by $R^2$ values.}
 \label{fnconscor}
-\end{figure}
-
-The results for the first 6 constraint-iteration permutations 
-of this baseline scenario are illustrated in \cref{fipfinac} and %??? ref
-in the online `measures' table. These results show that IPF successfully 
-took the simulated cell counts in-line with the census after each constraint 
-and that the fit improves with each iteration (only two iterations are 
-shown here, as the fit improves very little beyond two).
-
-\begin{figure}
- \begin{center}
-  \includegraphics[width=12cm]{ipfinac}
- \end{center}
-\caption{IPF in action: simulated vs census zone counts for the small-area baseline scenario after each constraint (columns) and iteration (rows).}
-\label{fipfinac}
 \end{figure}
 
 Rapid reductions in the accuracy improvement from

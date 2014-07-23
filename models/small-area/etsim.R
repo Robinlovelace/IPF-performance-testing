@@ -76,7 +76,7 @@ for (i in 1:nrow(all.msim)) {
         weights[, i, 1] * weights[, i, 2] * weights[, i, 3])
 }
 # for multiple iterations
-wf <- array(dim = c(dim(weights), num.its, 1))  # array to store weights its, wei
+wf <- array(dim = c(dim(weights), num.its, 1))  # array to store weights its, weights
 indf <- array(dim = c(dim(ind.agg), num.its, 1))
 wf[, , , 1, 1] <- weights
 indf[, , , 1, 1] <- ind.agg

@@ -1,4 +1,7 @@
 % Todo: consolidate two sets of tables for intro eg
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL /nfs/foe-fs-01_users/georl/Dropbox/txt-backups/ipfinr-b4-eveline-June5th2014.tex   Thu Jun  5 00:12:34 2014
+%DIF ADD ipfinr.tex                                                                         Tue Jun 10 18:08:11 2014
 % add small e.g. to tables, big summaryt +
 
 \documentclass[a4paper,10pt]{article}
@@ -51,6 +54,30 @@
 %opening
 \title{Evaluating the performance of Iterative Proportional Fitting for spatial microsimulation: new tests for an established technique}
 \author{Robin Lovelace}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
 
@@ -59,8 +86,8 @@
 \begin{abstract}
 Iterative Proportional Fitting (IPF), also known as biproportional fitting or the RAS algorithm,
 is an established technique in Regional Science and
-has been used for a variety of purposes in the field. Primary amongst these has been
-the the use of IPF in static spatial microsimulation models for the generation of small area microdata.  
+ has been used for a variety of purposes in the field. Primary amongst these has been
+the generation of small area microdata.  
 The technique is mature, widely used and relatively straight-forward
 yet there have been few studies focused on evaluation of its performance.
 An additional research problem is the tendency of 
@@ -77,7 +104,7 @@ based on publicly available code and input data.
 The results confirm IPF's status as robust and widely applicable 
 method for combining areal and individual-level data and demonstrate the importance
 of using various metrics of for determining its performance.
-The paper also sets an agenda for future tests and offers more general guidance on how
+We conclude with an agenda for future tests and offer more general guidance on how
 the method can be optimised to maximise its utility for future research.
 
 Keywords: Iterative proportional fitting, spatial microsimulation, modelling
@@ -85,26 +112,35 @@ Keywords: Iterative proportional fitting, spatial microsimulation, modelling
 JEL Code: C
 \end{abstract}
 
+\section{Notes for authors}
+Additonal papers to cite include:
+\begin{itemize}
+ \item \citet{harland2012}
+\item \citet{Smith2009}
+\item \citet{Cullinan2010}
+\item 
+\end{itemize}
+
+
 \section{Introduction}
 Surveys of the composition, attitudes and behavior of individual
 respondents constitute a ubiquitous empirical basis of social science research.
 The aggregation of survey data of this type also has a long history.
-Generally this involves translating raw data from a `long' or `microdata' format
---- as survey information is entered into a database,
-one individual at a time ---
-to a `wide' data format \citep{van2012flexible}. In the wide form,
+Generally this involves translating raw data from a `long' format
+--- the usual format of raw census data as it is digitised and entered into a database,
+where each row represents an individual and each column a separate variable ---
+to a `wide' data format \citep[Chapter 9]{van2012flexible}. In the wide form,
 each row represents a geographic area or other sub-group of
 the total population and each column represents a
-variable value or bin (see \cref{fmsim-schema}). This transformation to a
-`wide' (or geographically aggregated) form
- is typically carried out in order to preserve confidentiality,
-ensuring that no individual can be identified at the small
-area level \citep{dale1993census}. Wide data
-is advantageous computationally, as it can represent information about millions of individuals
-in relatively little computer disk space. An additional benefit from the
-perspective of spatial analysis is that the wide data form is
-generally easy to load into geographical information systems (GIS).
-The process of aggregation is performed in three steps:  % commented out as it's not amazing
+variable value or bin (see \cref{fmsim-schema}). The wide data form is useful because
+it can summarise a huge amount of information
+in relatively little computer disk space, but has some important disadvantages. 
+Information loss usually occurs when georeferenced individual level survey data
+--- \emph{spatial microdata} --- is aggregated into the wide form. This
+problem is exacerbated when continuous variables
+are converted into discrete categories and 
+when not cross-tabulations, such as age/income, are not provided.
+The process of aggregation is performed in three steps:
 \begin{enumerate}
  \item conversion of all
 variables into discrete categories (e.g.~an individual with an income of £13,000 per year
@@ -114,57 +150,12 @@ would be allocated to band of £10,000 to £15,000 per year)
  \item assignment of
 integer counts to cells in each column to represent the number of people with each characteristic.
 \end{enumerate}
+Frequently, large national social survey datasets 
+such as censuses are \emph{only} available in the wide, geographically aggregated
+form. This is problematic for the analysis of spatial phenomena \citep{Openshaw1984,Lee2009}.
+It is from this context of common forms of geographical data storage formats that this paper departs.
 
-The process of aggregation, represented in above bullet points,
-has some important disadvantages, however. It is these disadvantages,
-summarised in the next paragraph, that spatial microsimulation and small
-area estimation seek to address.\footnote{There
-is a great deal of overlap between methods for spatial microsimulation and
-small area estimation (the terms are sometimes used 
-interchangeably). It is useful
-to have two terms, however. Small
-area estimation seeks to estimate summary statistics for a variable whose
-geographical distribution is unknown, sometimes via a spatial microdataset. With spatial
-microsimulation, on the other hand, the emphasis is on generating and analysing
-spatial microdata.}
-Both combine national social survey microdata
-(such as the Understanding Society panel dataset UK) with small area census data.
-A number of techniques are available, including
-deterministic reweighting \citep{Birkin1989a},
-genetic algorithms and simulated annealing \citep{Williamson1998}
-as well as approaches based on linear regression \citep{Harding2011}.
-It is an active field of development with on-going refinements
-(e.g.~\citep{Lovelace2013-trs,Pritchard2012}) and debates
-about which approaches are most suited in different situations
-\citep{harland2012,Hermes2012a,Smith2009,whitworth2013evaluations,Williamson2013}
-
-These methods are important because large national social survey datasets 
-such as censuses are often \emph{only} available in the wide, geographically aggregated
-form. Information loss occurs when georeferenced individual level survey data
---- \emph{spatial microdata} --- is aggregated in this way. This
-problem is exacerbated when continuous variables
-are converted into discrete categories and 
-when not cross-tabulations, such as age/income, are not provided, as is often the case.
-Geographically aggregated datasets are
-problematic for the analysis of spatial phenomena \citep{Openshaw1984}
-and can prevent analysis of the interdependencies individual and household variables
-at the local level \citep{Lee2009}.
-In an effort to address the drawbacks associated with this lack of microdata,
-Samples of Anonymised Records (SARs) were released from the 1991 Census
-\citep{dale1993census,middleton1995samples} and this was followed by similar SARs releases in 2001 and 2011.
-Nevertheless, the SARs are not suitable for intra-city and neighbourhood level
-analysis, as the smallest geographical level at which such microdata are publicly
-available is the Local Authority, to preserve confidentiality.
-There has been discussion ways to further disaggregate the geography
-of the SARs, with due emphasis on risks to confidentiality \citep{Tranmer2005case4}.
-Furthermore, there are many policy relevant variables (e.g.~income and wealth, social attitudes)
-that are not collected by censuses of population, making them unavailable at the small area level.
-Geographers and regional scientists have addressed this data paucity through the development
-and application of small area estimation methods \citep{Ballas2005c,Hermes2012a}.
-% It is from this context of common forms of geographical data storage formats that this paper departs.
-
-Iterative proportional fitting (IPF) can help overcome the limitations of wide,
- geographically aggregated data
+Iterative proportional fitting (IPF) can help overcome the limitations of wide, geographically aggregated data
 sources when used in
 \emph{spatial microsimulation}. In simplistic terms spatial microsimulation can be understood
 as the reversal of geographic aggregation described in points 1--3 above,
@@ -329,7 +320,7 @@ are most representative.
 Spatial microsimulation tackles the aforementioned problems associated
 with the prevalent geographically aggregated wide data form by simulating
 the individuals within each administrative zone. The most detailed output of this process of 
-spatial microsimulation is \emph{synthetic spatial microdata}, a long table of individuals with 
+spatial microsimulation is `spatial microdata', a long table of individuals with 
 associated attributes and weights for each zone (see \cref{t:w} %???really
  for a simple example). 
 Because these individuals correspond to observations in the survey dataset,
@@ -337,10 +328,7 @@ the spatial microdata generated in this way, of any size and complexity,
 can be stored with only 3 columns: person identification number (ID), 
 zone and weight. Weights are critical to spatial microdata generated in this way, as they 
 determine how representative each individual is of each zone. Thus, an even more compact way 
-of storing synthetic spatial microdata taken from a single dataset is as a `weight matrix',
-provided the original individual-level dataset is available, to recover individuals'
-attributes.
-the . 
+of storing spatial microdata taken from a single dataset is as a `weight matrix' (table 2). 
 % the same dataset can be stored using only two variables:  
 % small area microdata 
 % by combining the small area data with national survey data. The result of this process 
@@ -349,8 +337,7 @@ the .
 %  is a table in which rows represent each 
 % individual in the study region, with an additional column indicating the area of residence (Table 1).
 
-Representing the data in this form offers a number of advantages
-(Clarke and Holm, 1987). These include:
+Representing the data in this form offers a number of advantages (Clarke and Holm, 1987). These include:
 \begin{itemize}
  \item The ability to investigate intra-zone variation (variation within each zone can be analysed
  by subsetting a single area from the data frame).
@@ -367,74 +354,76 @@ For example individual behaviour could simulate traffic, migration or the geogra
 % extent to which the national dataset is representative of the zones in the study area.
 
 These benefits have not gone unnoticed by the spatial modelling community.
-Spatial microsimulation is now considered by some to be more than a methodology:
-it can be considered as a research field in its
-own right, with a growing body of literature, methods and software tools \citep{Tanton2013}.
+Spatial microsimulation is now more than a methodology, and
+can be considered as a research field in its
+own right, with a growing body of literature, methods and results \citep{Tanton2013}.
 In tandem with these methodological developments, a growing number of applied studies
-take advantage of the possibilities opened up by spatial microdata.
-Applications are diverse, including the following:
-% Papers that have used IPF in this context (or a substitutable method such as simulated annealing)
-% have explored a range of regional economic problems that purely aggregate level analyses struggle to address.
-% These include:
-\begin{itemize}
- \item Projecting the wider individual and local impacts
-of job losses and gains from the closure \citep{Ballas2006}
-or opening \citep{VanLeeuwen2010} of new businesses.
-\item A model of the housing market, where outputs
-for a spatial microsimulation model were used as an input into
-an agent based model to assess the likely outcome of urban regenation
-interventions \citep{jordan2011agent}.
-\item Inequalities between individuals and zones in educational opportunities
-and attainment \citep{Kavroudakis2012}.
-\item Analysis of commuting patterns and the distributional impacts
-of new transport policies \citep{Lovelace2014-jtg}
-\item Investigation of the local impacts of economic development
-in the marine energy sector in Ireland \citep{Morrissey2013a}.
-\item EUROMOD, a model for analysing the impact of changes
-in taxation and financial laws on European citizens \citep{sutherland2013euromod}.
-\item Evidence to support the optimal location of health services based
-on estimates of individual level behaviour and obesity rates \citep{Tomintz2008,Clarke2010-valid}.
-\item The use of spatial microsimulation in combination with
-spatial interaction and agent based models to simulated the spatial
-distribution and movement of student populations \citep{Wu2010}.
-\item Estimation of the energy impacts of freight transport at the
-national level, by using spatial microsimulation alongside
-a spatial interaction model \citep{Zuo2013a}.
-\end{itemize}
-
-Various strategies for generating the synthetic spatial microdata used
-in such studies are available,
-as described in recent overviews on the subject
-\citep{Tanton2013, Ballas2013-4policy-analysis, Hermes2012a}.
-However, it is not always clear which is most appropriate in different situations.
-There has been work testing % \citep{Jirousek1995}
-and improving model results \citep{teh2003improving}, yet research focused on
-systematically and transparently testing
-the underlying algorithms for generating synthetic spatial microdata is
-limited \citep{harland2012}.
-This research gap, addressed in this paper, is highlighted 
-in the conclusions of a recent Reference Guide to spatial microsimulation
+has emerged to take advantage of the new possibilities opened up by such small area individual-level data,
+with applications as diverse as the location of health services \citep{Tomintz2008} to the
+analysis of commuting \citep{Lovelace2014-jtg}.
+Various strategies for generating small area microdata are available,
+as described in recent overviews on the subject \citep{Tanton2013, Ballas2013-4policy-analysis, Hermes2012a}.
+However, it is not always clear which one is most appropriate.
+There has been work testing
+% \citep{Jirousek1995}
+ and improving \citep{teh2003improving} 
+in abstract terms, but research focused on testing use the algorithm for spatial microsimulation is limited.
+This research gap is highlighted in the conclusions of a recent Reference Guide to spatial microsimulation
 \citep[p~270]{Clarke2013-concs}:
 ``It would be desirable if the spatial microsimulation community were able to continue to
 analyse which of the various reweighting/synthetic reconstruction techniques is most accurate
 --- or to identify whether one approach is superior for some applications while another
 approach is to be preferred for other applications''.
-% Before proceeding to the model experiments, we
-% provide a brief overview of the applications of IPF in regional science
-% and outline the theory underlying the procedure based on a simple example. 
+This paper rises to this challenge by systematically testing the IPF algorithm for spatial microsimulation.
+Before proceeding to the model experiments, we first
+provide a brief overview of the applications of IPF in regional science
+and outline the theory underlying the procedure based on a simple example. 
 % The longest-established and most straight-forward of
 % these is Iterative Proportional Fitting (IPF), the performance of which is the subject of this paper...
 
-% \subsection{Applications}
+\subsection{Applications}
 % \textbf{Dimitris and Eveline: please fill in this section}
-% Applications of IPF include using it ...
+Applications of IPF include using it ...
 
-% The application of greatest interest to social scientists, and others working %!!! re-include
-% with `ecological' data \citep{Openshaw1984}, is as a method of
-% generating spatial microdata: individual level data allocated to zones.
+The application of greatest interest to social scientists and others working
+with `ecological' data \citep{Openshaw1984}, however is as a method of
+generating spatial microdata: individual level data allocated to zones.
 %  IPF enables the generation
 % individual level data allocated to specific zones: the creation of
 % \emph{spatial microdata}.
+Papers that have used IPF in this context (or a substitutable method such as simulated annealing)
+have explored a range of regional economic problems that purely aggregate level analyses struggle to address.
+These include:
+\begin{itemize}
+ \item Projecting the wider \DIFdelbegin \DIFdel{impacts }\DIFdelend individual and local impacts
+of \DIFdelbegin \DIFdel{major job losses from individual companies \mbox{%DIFAUXCMD
+\citep{Ballas2006}
+}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{job losses and gains from the closure \mbox{%DIFAUXCMD
+\citep{Ballas2006}
+}%DIFAUXCMD
+or opening \mbox{%DIFAUXCMD
+\citep{VanLeeuwen2010}
+}%DIFAUXCMD
+of new businesses}\DIFaddend .
+\item Investigation of the local impacts of economic development
+in the marine energy sector in Ireland \citep{Morrissey2013a}.
+\item Estimation of the energy impacts of freight transport at the
+national level, by using spatial microsimulation alongside
+a spatial interaction model \citep{Zuo2013a}.
+\item Inequalities between individuals and zones in educational opportunities
+and attainment \citep{Kavroudakis2012}.
+\item A model of the housing market, where outputs
+for a spatial microsimulation model were used as an input into
+an agent based model to assess the likely outcome of urban regenation
+interventions \citep{jordan2011agent}.
+\item EUROMOD, a model for analysing the impact of changes
+in taxation and financial laws on European citizens \citep{sutherland2013euromod}.
+\item The use of spatial microsimulation in combination with
+spatial interaction and agent based models to simulated the spatial
+distribution and movement of student populations, which
+are not well represented in demographic models \citep{Wu2010}.
+\end{itemize}
 
 % \section{IPF: theory and a worked example}
 % Iterative Proportional Fitting has a long history in Statistics and the social
@@ -455,14 +444,12 @@ application: the latter usually flows from the former
 (e.g.~\citealp{batty1976urban}).  
 As outlined in \cref{swhatis}, however, the theory underlying IPF have
 been thoroughly demonstrated in research stemming back to the 1940s.
-\emph{Practical} demonstrations
-% , focused on making the algorithm as accessible as possible to others,
-are comparatively rare.
-
-% This section presents a
-% simple worked example. The steps are presented in detail
-% to allow readers to follow the method, address the theory:practice balance and
-% ensure accessibility to understanding of the method.
+\emph{Practical} demonstrations, focused on making the
+algorithm as accessible as possible to others,
+are comparatively rare. For this reason this section presents a
+simple worked example. The steps are, to the authors knowledge, presented in
+more detail than any previous work, to address the theory:practice balance and
+ensure accessibility to understanding of the method.
 
 That is not to say that reproducibility is completely absent in the field.
 \citet{Simpson2005} and \citet{Norman1999a}
@@ -479,9 +466,17 @@ This section builds on and extends this work, by first outlining an example that
 can be completed using mental arithmetic alone before illustrating its
 implementation in code. A comprehensive introduction to
 % the basic theory and practicalities of implementing IPF in R for spatial microsimulation
-this topic is provided in a tutorial entitled
- ``Introducing spatial microsimulation with R: a practical'' \citep{lovelace2014introducing}. This section builds on the tutorial by providing
+this topic
+is provided in \DIFaddbegin \DIFadd{a tutorial entitled
+ }\DIFaddend ``Introducing spatial microsimulation with R: a practical'' \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\citet{Lovelace2014-ismwr}
+}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\citep{lovelace2014introducing}
+}%DIFAUXCMD
+}\DIFaddend . This section builds on the tutorial by providing
 context and a higher level description of the process.
+
  % Have you implemented in R???
 
 % Importantly for for reproducible research this theory section
@@ -768,17 +763,24 @@ algorithm described above can be implemented in R.
 % }
 
 \section{Evaluation techniques}
-% Add correlation matrix at end of links between these
-% Really should write a paper on this to update Voas2001 - not the place here
+\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend %DIF >  Add correlation matrix at end of links between these
+%DIF >  Really should write a paper on this to update Voas2001 - not the place here
 To verify the integrity of any model, it is necessary to compare its outputs
 with empirical observations or prior expectations gleaned from theory.
 The same principles apply to spatial microsimulation, which can be evaluated using
 both \emph{internal} and \emph{external} validation methods \citep{Edwards2009}.
 \emph{Internal validation} is the process whereby
 the aggregate-level outputs of spatial microsimulation are compared with
-the input constraint variables. It is important to think carefully about
+the input constraint variables. \DIFaddbegin \DIFadd{It is important to think carefully about
 evaluation metrics because results can vary depending on the measure used
-\citep{Voas2001}.
+\mbox{%DIFAUXCMD
+\citep{Voas2001}
+}%DIFAUXCMD
+.
+}\DIFaddend 
 
 Internal validation typically tackle such issues
 as ``do the simulated populations in each area
@@ -799,44 +801,55 @@ Both validation techniques are important in modelling exercises for reproducibil
 based on coding errors \citep{ormerod2009validation}.
 %... ?
 
-For dynamic microsimulation scenarios,
+\DIFdelbegin \DIFdel{This section }\DIFdelend \DIFaddbegin \DIFadd{For dynamic microsimulation scenarios,
 calculating the sampling variance (the variance
 in a certain statistic, usually the mean, across multiple samples)
 across multiple model runs
 is recommended to test if differences between different
-scenorios are statistically significant \citep{goedeme2013testing}.
+scenorios are statistically significant \mbox{%DIFAUXCMD
+\citep{goedeme2013testing}
+}%DIFAUXCMD
+.
 In static spatial
 microsimulation, sub-sampling
 from the individual level dataset or running stochastic processes
 many times are ways to generate such statistics for tests
 of significance. Yet these statistics will only apply to a small part
 of the modelling process and are unlikely to relate to
-the validity of the process overall \citep{Lovelace2013-trs}.
+the validity of the process overall \mbox{%DIFAUXCMD
+\citep{Lovelace2013-trs}
+}%DIFAUXCMD
+.
+}
 
-This section briefly outlines the evaluation techniques
-used in this study for \emph{internal validation}
-of static spatial microsimulation models.
-% , in addition to a new implementation of
-% the S\o rensen-Dice coefficient for continuous variables. % Just making more work!!!
-The options for external
+\DIFadd{This section briefly }\DIFaddend outlines the evaluation techniques
+\DIFdelbegin \DIFdel{that are commonly used in the
+field, with a strong focus on internal validation.
+}\DIFdelend \DIFaddbegin \DIFadd{used in this study for }\emph{\DIFadd{internal validation}}
+\DIFadd{of static spatial microsimulation models.
+%DIF >  , in addition to a new implementation of
+%DIF >  the S\o rensen-Dice coefficient for continuous variables. % Just making more work!!!
+}\DIFaddend The options for external
 validation are heavily context dependent so should be decided on a
 case-by-case basis.
-External validation is thus mentioned in the discussion,
-with a focus on general principles
-rather than specific advice. The three quantitative
+External validation is thus mentioned in \DIFdelbegin \DIFdel{passing }\DIFdelend \DIFaddbegin \DIFadd{the discussion,
+}\DIFaddend with a focus on general principles
+rather than specific advice. The \DIFdelbegin \DIFdel{methods }\DIFdelend \DIFaddbegin \DIFadd{three quantitative
 methods used in this study (and the visual method of scatter plots)
-are presented in ascending order of complexity
+}\DIFaddend are presented in ascending order of complexity
 and roughly descending order of frequency of use, ranging from 
-the coefficient of determination ($R^2$) through total and standardised
+the coefficient of determination ($R^2$) \DIFdelbegin \DIFdel{to entropy based measures.
+}\DIFdelend \DIFaddbegin \DIFadd{through total and standardised
 absolute error ($TAE$ and $SAE$, respectively)
-% to the proportion of values deviating from the expected
-% value by a predefined amount ($P > 0.5$). The preferred metric
+%DIF >  to the proportion of values deviating from the expected
+%DIF >  value by a predefined amount ($P > 0.5$). The preferred metric
 to root mean squared error ($RMSE$).
 This latter option is our preferred metric, as described below.
-% The equations for each metric can be found in the associated references.
+%DIF >  The equations for each metric can be found in the associated references.
+}
 
-Before these methods are described, it is
-worth stating that the purpose is not to find the `best' evaluation metric:
+\DIFaddend Before these methods are described, it is
+worth stating that the purpose \DIFdelbegin \DIFdel{of this section }\DIFdelend is not to find the `best' evaluation metric:
 each has advantages and disadvantages, the importance of which will vary depending on the
 nature of the research. The use of a variety of techniques in this paper
 is of interest in itself. The high degree of correspondence between them (presented in \cref{cresults}),
@@ -849,7 +862,7 @@ The problem of internal validation
 (described as `evaluating model fit') was tackled in detail by \citet{Voas2001}.
 Chi-squared, Z-scores, absolute error and entropy-based methods
 were tested, with no clear `winner' other than the advocacy of
-methods that are robust, fast and easy to understand (standardized absolute
+methods that are robust, fast and easy to understand (absolute
 error measures match these criteria well).
 The selection of evaluation methods is determined by
 the nature of available data:
@@ -857,24 +870,24 @@ the nature of available data:
 available to us, we are obliged to evaluate our simulated populations by comparing
 a number of aggregated tables derived from the synthetic data set with published
 census small-area statistics'' \citep[p.~178]{Voas2001}.
-A remaining issue is that the results of many evaluation metrics vary depending
-on the areal units used, hence advocacy of `scale free' metrics (e.g.~\citep{Malleson2012}).
+The same reasoning is used to select evaluation methods here.
 
-% \subsection{Descriptive statistics}
-% 
-% Useful basic statistics to describe and compare datasets are 
-% the mean, median and standard deviation of cell counts in the
-% simulated and known aggregate-level database.
-% These are useful `sanity checks': if the mean population across all zones or
-% for a particular constraint differs greatly from expectations, there is clearly
-% a problem. These summary statistics are dependent on the
-% size of the dataset. To compare datasets of widely varying populations,
-% dimensionless statistics can be used.
-% The coefficient of variation, the ratio of the standard deviation to the mean is
-% an example of a dimensionless statistic robust to population size.
- 
+%DIF >  \subsection{Descriptive statistics}
+%DIF >  
+%DIF >  Useful basic statistics to describe and compare datasets are 
+%DIF >  the mean, median and standard deviation of cell counts in the
+%DIF >  simulated and known aggregate-level database.
+%DIF >  These are useful `sanity checks': if the mean population across all zones or
+%DIF >  for a particular constraint differs greatly from expectations, there is clearly
+%DIF >  a problem. These summary statistics are dependent on the
+%DIF >  size of the dataset. To compare datasets of widely varying populations,
+%DIF >  dimensionless statistics can be used.
+%DIF >  The coefficient of variation, the ratio of the standard deviation to the mean is
+%DIF >  an example of a dimensionless statistic robust to population size.
+ \DIFaddbegin 
 
-\subsection{Scatter plots}
+
+\DIFaddend \subsection{Scatter plots\DIFdelbegin \DIFdel{and the coefficient of determination}\DIFdelend }
 A scatter plot of cell counts for each category for the original and simulated variables is
 a basic but very useful preliminary diagnostic tool in spatial microsimulation
 \citep{Ballas2005c,Edwards2009}.
@@ -893,8 +906,8 @@ This stage can be conducted either before or after \emph{integerisation}
 (more on this below). As taught in basic statistics courses, the closer the points to the
 1:1 (45 degree, assuming the axes have the same scale) line, the better the fit.
 
-\subsection{The coefficient of determination}
-The coefficient of determination (henceforth $R^2$) is the 
+\DIFaddbegin \subsection{\DIFadd{The coefficient of determination}}
+\DIFaddend The coefficient of determination (henceforth $R^2$) is the 
 square of the Pearson correlation coefficient for describing the
 extent to which one continuous variable explains another.
 $R^2$ is a quantitative
@@ -905,20 +918,18 @@ simulated values fit the actual (census) data.
 An $R^2$ value of 1 represents a perfect fit; an $R^2$ value
 close to zero suggests no correspondence
 between then constraints and simulated outputs (i.e. that the model has failed).
-We would expect to see $R^2$ values approaching 1 for
+We would expect to see very high $R^2$ values for
 internal validation (the constraint) and a strong
 positive correlation between target variables that have been estimated and
-external datasets (e.g. income). A major limitation of $R^2$ is that
-it takes no account of \emph{additive} or \emph{proportional} differences
-between estimated and observed values, meaning that it ignores systematic
-bias \citep{Legates1999GOF}. This limitation is less relevant for spatial microsimulation results
-because they are generally population-constrained. 
+external datasets (e.g. income).
+%DIF <  However, regression analysis does not give any information about the fit of the simulated data to the ‘ideal’ line (i.e. where y  =  x and the simulated data is the same as the actual data). Rather, R 2 expresses the fit of the data to the ‘best fit’ line through that data. That is, the coefficient of determination is providing information about precision, not accuracy (Edwards and Tanton, 2013).
 
-% A potential disadvantage of $R^2$ is that it provides no
-% information about the formula linking simulated data to the 
-% known constraints: it expresses absolute Rather, $R^2$ expresses the fit of the data to the ‘best fit’ line through that data. That is, the coefficient of determination is providing information about precision, not accuracy (Edwards and Tanton, 2013).
+%DIF >  A potential disadvantage of $R^2$ is that it provides no
+%DIF >  information about the formula linking simulated data to the 
+%DIF >  known constraints: it expresses absolute Rather, $R^2$ expresses the fit of the data to the ‘best fit’ line through that data. That is, the coefficient of determination is providing information about precision, not accuracy (Edwards and Tanton, 2013).
+\DIFaddbegin 
 
-% One way to do this is with a t test. With a spatial microsimulation model validation, the data are paired (given we are comparing simulated with actual data), thus an equal variance 2-tailed t test can be used to determine if there is any significant difference between the two datasets (i.e. simulated and actual). Thus, if the simulation is robust, we would expect to see no significant differences between the simulated and actual values for the input variables (and estimated/output variables, if known data are available). This enables the model accuracy to be assessed, as opposed to simply its precision.
+\DIFaddend % One way to do this is with a t test. With a spatial microsimulation model validation, the data are paired (given we are comparing simulated with actual data), thus an equal variance 2-tailed t test can be used to determine if there is any significant difference between the two datasets (i.e. simulated and actual). Thus, if the simulation is robust, we would expect to see no significant differences between the simulated and actual values for the input variables (and estimated/output variables, if known data are available). This enables the model accuracy to be assessed, as opposed to simply its precision.
 
 % \subsection{Standard error around identity (SEI)}
 % here SEI is the standard error around identity, y are the estimated values for
@@ -927,76 +938,88 @@ because they are generally population-constrained.
 % This estimate has been used in validation by both Ballas and Tanton (see Ballas et al. 2007; Tanton et al. 2011).
 
 \subsection{Total Absolute and Standardized Error (TAE and SAE)}
-Total absolute error (TAE) is the sum of the absolute (positive)
+\DIFdelbegin \DIFdel{The SAE addresses this issue }\DIFdelend \DIFaddbegin \DIFadd{Total absolute error (TAE) is the sum of the absolute (positive)
 discrepancies between the simulated
 and known population in an area. The standardized absolute error (SAE) is
 simply TAE divided by the total population. 
+An issue with SAE has been that, }\DIFaddend by using the \DIFdelbegin \DIFdel{population size }\DIFdelend \DIFaddbegin \DIFadd{total population }\DIFaddend as the
+denominator \DIFdelbegin \DIFdel{,
+ but generally, authors seem to use total population, rather than the population
+for that categorization of the variable, which may be
+deemed to }\DIFdelend \DIFaddbegin \DIFadd{for TAE calculations on a subset of cells, the method
+can }\DIFaddend understate the size of the errors \DIFdelbegin \DIFdel{. Also, this measure does not provide any information on whether any
+ differences are statistically significant (Edwards and Tanton, 2013).
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\citep{Edwards2009}
+}%DIFAUXCMD
+.
 TAE provides no level of significance, so thresholds have been used.
-\citet{clarke2001regional} used an error threshold of 80 per cent of the
-areas with less than 20 per cent error (SAE \textless 0.20). % check!!!
-\citet{smith2007simhealth} work with a model that simulates with diabetes and
+\mbox{%DIFAUXCMD
+\citet{clarke2001regional}
+}%DIFAUXCMD
+used an error threshold of 80 per cent of the
+areas with less than 20 per cent error (SAE \textless 0.20). %DIF >  check!!!
+\mbox{%DIFAUXCMD
+\citet{smith2007simhealth}
+}%DIFAUXCMD
+work with a model that simulates with diabetes and
 use an error threshold of 10\% (SAE \textless 0.1)
-in 90 per cent of the output areas. % really??? probably
-Due to its widespread use, simplicity and scale-free nature --- allowing the fit
-for scenarios 1, 2 and 3 to be compared --- SAE is our preferred
-metric in this study, although we also calculated the root mean square error
-for each test.
+in 90 per cent of the output areas. %DIF >  really??? probably
+}\DIFaddend 
 
-% \subsection{The modified Z-score}
-% The Z-statistic is a commonly
-% used measure, reporting the number of standard deviations
-% a value is from the mean.
-% In this work we report $zm$, a modified version to the Z-score
-% metric that is robust to very small expected cell values
-% \citep{Williamson1998}.
-% Z-scores apply to individual cells (for a single constraint in a single area).
-% and also provide a global statistic on model fit ($Zm$), defined
-% as the sum of all $zm^2$ values \citep{Voas2001}.
-% The measure of
-% fit has the advantage of taking into account absolute, rather than just
-% relative, differences between simulated and observed cell count:
-% \begin{equation}
-%  Zm_{ij} = (r_{ij} - p_{ij}) \Bigg/ \left(\frac{p_{ij}(1 -
-% p_{ij}))}{\sum\limits_{ij}U_{ij}}\right)^{1/2}
-% \end{equation}
-% 
-% where
-% 
-% \begin{center}
-% \begin{math}
-%   p_{ij} = \frac{U_{ij}}{\sum\limits_{ij}U_{ij}} \qquad and \qquad r_{ij} =
-% \frac{T_{ij}}{\sum\limits_{ij}U_{ij}}
-% \end{math}
-% \end{center}
-% 
-% To use the modified Z-statistic as a measure of overall model fit, one simply
-% sums the squares of $zm$ to calculate $Z{m}^{2}$. This measure can handle
-% observed cell counts below 5, which chi-squared tests cannot \citep{Voas2001}.
+\DIFdelbegin \subsection{\DIFdel{Z scores}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdel{Here, the
+evaluation mainly takes place at the cell level (for a single constraint in a single area). However, there should also be attention for the overall picture like spatial concentration. }\DIFdelend %DIF >  \subsection{The modified Z-score}
+%DIF >  The Z-statistic is a commonly
+%DIF >  used measure, reporting the number of standard deviations
+%DIF >  a value is from the mean.
+%DIF >  In this work we report $zm$, a modified version to the Z-score
+%DIF >  metric that is robust to very small expected cell values
+%DIF >  \citep{Williamson1998}.
+%DIF >  Z-scores apply to individual cells (for a single constraint in a single area).
+%DIF >  and also provide a global statistic on model fit ($Zm$), defined
+%DIF >  as the sum of all $zm^2$ values \citep{Voas2001}.
+%DIF >  The measure of
+%DIF >  fit has the advantage of taking into account absolute, rather than just
+%DIF >  relative, differences between simulated and observed cell count:
+%DIF >  \begin{equation}
+%DIF >   Zm_{ij} = (r_{ij} - p_{ij}) \Bigg/ \left(\frac{p_{ij}(1 -
+%DIF >  p_{ij}))}{\sum\limits_{ij}U_{ij}}\right)^{1/2}
+%DIF >  \end{equation}
+%DIF >  
+%DIF >  where
+%DIF >  
+%DIF >  \begin{center}
+%DIF >  \begin{math}
+%DIF >    p_{ij} = \frac{U_{ij}}{\sum\limits_{ij}U_{ij}} \qquad and \qquad r_{ij} =
+%DIF >  \frac{T_{ij}}{\sum\limits_{ij}U_{ij}}
+%DIF >  \end{math}
+%DIF >  \end{center}
+%DIF >  
+%DIF >  To use the modified Z-statistic as a measure of overall model fit, one simply
+%DIF >  sums the squares of $zm$ to calculate $Z{m}^{2}$. This measure can handle
+%DIF >  observed cell counts below 5, which chi-squared tests cannot \citep{Voas2001}.
 
-% \subsection{Proportion of values deviating from expectations $E > 5\%$}
-% The proportion of values which fall beyond 5\% of the actual values is a simple
-% metric of the quality of the fit.
-% It focusses on the proportion of values which are close to expected, rather than
-% the overall fit, so is robust to outliers.
-% The $E > 5\%$ metric implies that getting a perfect fit is not
-% the aim, and penalises relationships that have a large number of moderate outliers,
-% rather than a few very large outliers. The precise
-% definition of 'outlier' is somewhat arbitrary (one could just as well use 1\%).
+%DIF >  \subsection{Proportion of values deviating from expectations $E > 5\%$}
+%DIF >  The proportion of values which fall beyond 5\% of the actual values is a simple
+%DIF >  metric of the quality of the fit.
+%DIF >  It focusses on the proportion of values which are close to expected, rather than
+%DIF >  the overall fit, so is robust to outliers.
+%DIF >  The $E > 5\%$ metric implies that getting a perfect fit is not
+%DIF >  the aim, and penalises relationships that have a large number of moderate outliers,
+%DIF >  rather than a few very large outliers. The precise
+%DIF >  definition of 'outlier' is somewhat arbitrary (one could just as well use 1\%).
+\DIFaddbegin 
 
-% Spatial indicators etc??? Add equations to above methods soooon
+\DIFaddend % Spatial indicators etc??? Add equations to above methods soooon
 
-\subsection{Root mean square error}
-Root mean square error ($RMSE$) and to a lesser extent mean absolute error (MAE)
-have been frequently
-used in both social and physical sciences as a metric of model fit
-\citep{Legates1999GOF,Ngo2012}. %!!! equations
-The former has the benefit of being widely used and understood, but is
-influenced by the mean value in each zone. Research research in climate model
-evaluation suggests that the lesser known but simpler $MAE$ metric is preferable
-to $RMSE$ in many ways \citep{Willmott2005}. Therefore both metrics are presented
-in this paper.
+\DIFaddbegin \subsection{\DIFadd{Root mean square error}}
+\DIFadd{$RMSE$ is our preferred evaluation metric in this study because...
+}
 
-\section{Input data}
+\DIFaddend \section{Input data}
 Three input datasets form the basis of the scenarios tested in this paper,
 `simple', `small-area' and `sheffield'. Each consists of a set of aggregate
 constraints and corresponding individual-level survey tables.
@@ -1069,29 +1092,27 @@ be accessed from `small-area-eg', within the `input-data' folder of the online
 repository.\footnote{These datasets can be found here:
 https://github.com/Robinlovelace/IPF-performance-testing/tree/master/input-data/
 small-area-eg}
-% Add these!!!
-% A sample of these constraint variables is presented in \cref{t3} below. % aren't we putting ind. data 1st?
-% 
-% \begin{table}[htbp]
-% \caption{Sample of constraint variables from the first 5 rows of the small-area-eg input dataset.}
-% \begin{center}
-% \begin{tabular}{rrrrr}
-% \toprule
-% \bottomrule
-% \end{tabular}
-% \end{center}
-% \label{t3}
-% \end{table}
+% Add these
+A sample of these constraint variables is presented in \cref{t3} below. % aren't we putting ind. data 1st?
+
+\begin{table}[htbp]
+\caption{Sample of constraint variables from the first 5 rows of the small-area-eg input dataset.}
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+\bottomrule
+\end{tabular}
+\end{center}
+\label{t3}
+\end{table}
 
 The individual-level table that compliments these geographically aggregated count constraints 
 is taken from Understanding Society wave 1. These have been randomised to ensure anonymity
 but they are still roughly representative of real data. The table consists of 1768 rows of 
 data and is stored in R’s own space-efficient filetype (see ``ind.RData'', which must be opened in 
-R).
-
-% This individual level data consists of the same 3 % re-add this!!!
-% constraint variables as provided in \cref{t3} in addition
-% to one `target variable': monthly pre-tax income in pounds stirling. 
+R). This individual level data consists of the same 3
+constraint variables as provided in \cref{t3} in addition
+to one `target variable': monthly pre-tax income in pounds stirling. 
 
 % \begin{table}[htbp]
 % \caption{Randomly selected sample of 5 individuals taken from the individual-level dataset.}
@@ -1099,7 +1120,7 @@ R).
 % \begin{tabular}{rrrrr}
 % \toprule
 % \bottomrule
-% \end{tabular}\	
+% \end{tabular}
 % \end{center}
 % \label{t4}
 % \end{table}
@@ -1107,50 +1128,55 @@ R).
 % ... More here on loading-up this data.
 
 \section{Method: model experiments}
-\subsection{Baseline conditions} \label{smbase}
+\subsection{Baseline scenarios}
 In order to perform a wide range of model experiments, 
 in which only one factor is altered at a time, 
 baseline scenarios were created. These are model runs with sensible 
-defaults and act as reference points against which alternative runs are compared.
-The baseline scenarios consist of 3 iterations. In the `simple' scenario (with 2 constraints), 
+defaults, reference points against which alternative runs are compared.
+The baseline scenarios consist of 3 iterations. In the ‘simple’ scenario (with 2 constraints), 
 there are 6 constraint-iteration permutations.
 \Cref{tblresults1} shows 
 fit improving with each step.\footnote{The exception is $p5$,
-which reaches zero in the second iteration. $pcor$ continues to improve however, 
+which reaches zero in the second iteration. $pcor$ continues to improve, 
 even though the printed value, to 6 decimal places, is
-indistinguishable from 1 after two complete iterations.}
-
-The main characteristics of the baseline model for each scenario area
-presented in \cref{tbase}. The meaning of each of the attributes in the
-row names of will be explained later in this section.
+indistinguishable from 1 after two complete iterations.} (
 
 \begin{table}[htbp]
-\caption{Characteristics of the baseline model run for each scenario.}
+\caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
 \begin{center}
-\begin{tabular}{lrrr}
+\begin{tabular}{rrrrr}
 \toprule
-Scenario & \multicolumn{1}{l}{Simple} & \multicolumn{1}{l}{Small area} & \multicolumn{1}{l}{Sheffield} \\
-\midrule
-N. constraints & 2 & 3 & 4 \\
-N. zones & 6 & 24 & 71 \\
-Av. individuals/zone & 10 & 184 & 3225 \\
-Microdataset size & 5 & 1768 & 4933 \\
-Average weight & 1.3 & 0.1 & 0.65 \\
-\% empty cells & 0\% & 21\% & 85\% \\
 \bottomrule
 \end{tabular}
-\label{tbase}
 \end{center}
+\label{tblresults1}
 \end{table}
 
+The baseline `small-area' scenario consists of three
+ iterations of IPF, in which all three constraints were 
+used. The results for all 9 constraint-iteration permutations 
+of this baseline scenario are illustrated in \cref{fipfinac} and %??? ref
+in the online `measures' table. These results show that IPF successfully 
+brings the simulated cell counts in-line with the census after each constraint 
+is applied and that the fit improves with each iteration (only two iterations are 
+shown here, as the fit improves very little beyond two, and to avoid clutter).
 
-% The baseline `small-area' scenario consists of three
-% iterations of IPF, in which all three constraints were
-% used. 
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=12cm]{ipfinac}
+ \end{center}
+\caption{IPF in action: simulated vs census zone counts for the small-area baseline scenario after each constraint (columns) and iteration (rows).}
+\label{fipfinac}
+\end{figure}
+
+The baseline `Sheffield' scenario consists of the same basic set-up, 
+but with 4 constraints. As before, the results show convergence 
+towards better model fit, although the fit does not always improve 
+from one constraint to the next (see the online `measures' table). % online???
 
 \subsection{Constraints and iterations}
 These were the simplest model experiments, requiring only
-the reporting of how the results changed with more or fewer
+ the reporting of how the results changed with more or fewer
 iterations and re-arrangement of to apply constraints
 in a different order. 1, 3 and 10 are reported in the final
 results and `convergence graphs' were created to show how model
@@ -1162,7 +1188,7 @@ changes the number in the following line of code (the default is 3):
 \begin{lstlisting}
 num.its <- 3
 \end{lstlisting}
- 
+
 The code for running the constraints in a different order
 is saved in `etsim-reordered.R'.
 % where $x$ is a number representing the final constraint.
@@ -1171,7 +1197,7 @@ is saved in `etsim-reordered.R'.
 
 \subsection{Initial weights}
 The impact of initial weights was tested in two ways: first, the impact
-of changing a sample of one or more initial weight values by a set
+ of changing a sample of one or more initial weight values by a set 
 amount was explored. Second, the impact of gradually increasing the size of the initial 
 weights was tested, by running the same model experiment several times, 
 but with incrementally larger initial weights applied to a pre-determined set of individuals.
@@ -1224,7 +1250,7 @@ within constraint $i$:
 \end{equation}
 
 To exemplify this equation, the number of permutations of constraints in the
-`simple' example is 4: 2 categories in the sex variables multiplied by
+\emph{simple} example is 4: 2 categories in the sex variables multiplied by
 2 categories in the age variable. Clearly, $Nperm$ depends on how continuous variables
 are binned, the number of constraints and diversity within each constraint.
 Once we know the number of unique individuals (in terms of the constraint variables)
@@ -1252,10 +1278,10 @@ stage is to identify which individuals are missing from the individual-level inp
 dataset ($Ind$) --- the combination of attributes that no individual in $Ind$ has.
 To do this, we created an algorithm to generate the the complete input dataset ($Ind.complete$).
 The `missing' individuals, needed to be added to make $Ind$ complete can be defined
-in terms of set theory \citep{goldrei1996classic} by \cref{eqmiss}:
+in terms of set theory by \cref{eqmiss}:
 
 \begin{equation}
- Ind.missing = Ind.complete\setminus Ind = \{x \in Ind.complet : x \not \in Ind \}
+ Ind.missing = Ind.complete\setminus Ind
 \label{eqmiss}
 \end{equation}
 
@@ -1280,56 +1306,23 @@ individuals with attributes defined by \cref{eqmiss} were also conducted, and
 the model fit was compared with the baseline scenarios.
 The baseline scenarios were run using these modified inputs.
 
-\subsection{Integerisation} \label{sintm}
-Integerisation is the process of converting the fractional weights produced by
-IPF into whole numbers. It is necessary for some applications, including the
-analysis of intra-zone variability and statistical analyses of intra-zone variation
-such as the generation of Gini indices of income for each zone.
 
-A number of methods for integerisation have been developed,
-including deterministic and probabilistic approaches \citep{Ballas2005c}.
-We used modified R implementations of two probabilistic methods
---- `truncate replicate sample' and `proportional probabilities' --- reported
-in \citep{Lovelace2013-trs} and the supplementary information associated with this
-paper \citep{Lovelace-2013-supp}, as these were found to perform better in terms of final
-population counts and accuracy than the deterministic approaches.
-  
+
+\subsection{Integerisation}
+This was the next variable that was altered, 
+following \citep{Lovelace2013-trs}.
+
 
 \section{Results}
 \label{cresults}
 
-\subsection{Baseline results}
-
-After only 3 complete iterations under the baseline conditions
-set out in \cref{smbase}, the final weights in each scenario
-converged towards a final result.
-
-The baseline `Sheffield' scenario consists of the same basic set-up, 
-but with 4 constraints. As before, the results show convergence 
-towards better model fit, although the fit did not always improve 
-from one constraint to the next (see the online `measures' table). % online???
-
-\begin{table}[htbp]
-\caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
-\begin{center}
-\begin{tabular}{rrrrr}
-\toprule
-\bottomrule
-\end{tabular}
-\end{center}
-\label{tblresults1}
-\end{table}
-
-\subsection{Constraints and iterations}
+\subsection{Baseline scenarios}
 As expected from \cref{fipfinac} above, fit
-improved with each iteration.
-This improvement generally happened for each constraint 
-and always from one iteration to the next in every scenario.
-Through the course of the first 
-iteration in the `simple' senario, for example, $R^2$ improved
-from 0.67 to 0.9981. As illustrated in \cref{fnconscor}, 
-the rate of improvement in model fit plateaus after the first iterate: 
-at the end of iteration 2 in the simple scenarios, $R^2$ had improved to 0.999978.   
+improves over time. This improvement generally happens for each constraint 
+and always from one iteration to the next. Through the course of the first 
+iteration, $R^2$ improves from 0.67 to 0.9981. As illustrated in \cref{fnconscor}, 
+the marginal improvement reduces from one iteration to the next: 
+at the end of iteration 2, $R^2$ improved to 0.999978.   
 
 \begin{figure}[h]
  \begin{center}
@@ -1340,28 +1333,15 @@ as illustrated by $R^2$ values.}
 \label{fnconscor}
 \end{figure}
 
-The results for the first 6 constraint-iteration permutations 
-of this baseline scenario are illustrated in \cref{fipfinac} and %??? ref
-in the online `measures' table. These results show that IPF successfully 
-took the simulated cell counts in-line with the census after each constraint 
-and that the fit improves with each iteration (only two iterations are 
-shown here, as the fit improves very little beyond two).
-
-\begin{figure}
- \begin{center}
-  \includegraphics[width=12cm]{ipfinac}
- \end{center}
-\caption{IPF in action: simulated vs census zone counts for the small-area baseline scenario after each constraint (columns) and iteration (rows).}
-\label{fipfinac}
-\end{figure}
-
-Rapid reductions in the accuracy improvement from
-additional computation were observed in each scenario, as illustrated
-by the falling percentage change in TAE in \cref{fipfinac}.
-After four iterations, in the `simple' scenarios,
-the fit is near perfect, with an $R^2$ value indistinguishable from one
-to 7 decimal places. The decay in the rate of improvement with additional 
-iterations is super-exponential. 
+\subsection{Constraints and iterations}
+As illustrated above, the number of iterations 
+required to reach a very close fit between the census
+ and simulated data is very low, with rapid reductions in
+ the marginal accuracy return on additional computing power.
+ After four iterations, the result in R is indistinguishable from 1,
+ with its default accuracy of 7 decimal places. 
+The decay in the rate of improvement with additional 
+iterations and constraints was found to super-exponential. 
 
 \subsection{Initial weights}
 It was found that initial weights had little impact on the overall simulation. 
@@ -1433,30 +1413,10 @@ which there was no improvement.
 
 \subsection{Integerisation}
 
-After passing the the final weights through the integerisation algorithms mentioned
-in \cref{sintm}, the weight matrices were of identical dimension and total population as
-before. It was found that, compared with the baseline scenarios, that integerisation
-had a negative impact on model fit.
-
-For the `simple' and `small area' scenarios, the impact of integerisation was proportionally
-large, greater than the impact of any other changes. For the more complex Sheffield example,
-by contrast, the impact was moderate, increasing RMSE by around 20\%.
-
 \subsection{Summary of results}
 
 The impact of each model experiment on each of the three scenarios
-is summarised in \cref{tsum}. It is notable that the variable with the
-greatest impact on model fit varied from one scenario to the next,
-implying that the optimisation of IPF for spatial microsimulation is
-context-specific. Changes that had the greatest positive impact on model
-fit were additional iterations for the simpler scenarios and the removal of
-empty cells from the input microdata for the more complex `Sheffield' scenario.
-
-Likewise, the greatest negative impact on model fit was due to the same variable
-for the simpler scenarios: integerisation. For the `Sheffield' example, the
-use of only one complete iteration instead of 3 or more had the most damaging impact,
-highlighting the importance of multiple iterations of IPF for more complex
-spatial microsimulation models.
+is summarised in \cref{tsum}.
 
 \begin{table}[h]
 \caption{Summary results of root mean square error (RMSE) between
@@ -1484,127 +1444,68 @@ Reordered constraints 		& 0.0001  & 0.018 & 14.5 \\ % it is worse, but only a li
 No empty cells			& --- & 0.005 & 1.24 \\
 \midrule
 \textbf{Integerisation} 	&  &  & \\
-TRS integerisation		& 0.577 & 3.68  & 29.9 \\
+TRS integerisation				& 0.577 & 3.68  & 29.9 \\
 Proportional probabilities & 1.29 & 3.91 & 30.0 \\
 \bottomrule
 \end{tabular}
 \end{center}
 \end{table}
 
-
-
 \section{Conclusions}
-In this paper we have systematically reviewed and tested modifications to the
-design of the IPF algorithm to generate spatial microdata. This is the first time
-to our knowledge that such tests have been performed in a consistent and reproducible
-manner, that will allow others in to community to cross-check the results and enable
-further model testing. The model experiments conducted involved changing one of the
-following variables at a time:
 
-\begin{itemize}
- \item Order of constraints and number of iterations.
- \item Modification of initial weights.
- \item Addition and removal of `empty cells'.
- \item Interisation of the fractional weights using a couple of probabilistic methods.
-\end{itemize}
-
-
-Some of the variables altered
-
-In every case, the direction of change in model fit was as expected, confirming
-prior expectations about the influence of model set-up on performance. The finding
-that the initial weights have very little influence on the final result, particularly
-after multiple iterations of IPF, is new and relevant to the spatial microsimulation
-community. This finding all but precludes the modification of initial weights as
-a method for altering IPF's performance and suggests that research time would be
-best focused on other variables in the model run, notably that of empty cells.
-
-The problem of empty cells has received little attention in the literature and
-this paper presents both the theory and methodology demonstrating why they are important
-(\cref{smempty}). We have demonstrated a method for identifying
-whether empty cells are present in the input data. More important for the spatial microsimulation
+In terms of empty cells, we have demonstrated a method for identifying
+whether they are present in the input data. More important for the spatial microsimulation
 community, we have shown for the first time (to our knowledge) that empty cells have a
-large adverse effect on model fit.
-
-We conclude that the removal of empty cells can greatly improve model fit,
-especially for complex scenarios, where it can have the single greatest positive impact
-on model fit out of the variables modified in this paper.
-The identification and removal of empty cells, as
-demonstrated in this paper and accompanying code, can substantially enhance the performance of
-spatial microsimulation models yet appears to be rarely used.
-On potential downside of removing empty cells is that it involves adding fictitious
-new individuals to the input microdata. This could potentially cause problems if the
-purpose of spatial microsimulation is small area estimation, where the
-value of target variables (e.g.~income) must be set, based on imperfect information.
-Another potential problem caused by removal of empty cells is that it could
-lead to the creation of impossible combinations of variables such as car drivers under
-the age of 16, if applied indiscriminately.
-
-Despite these concerns, our finding that empty cells has a large impact on model
-results is robust across all scenarios and should be taken seriously in future research.
+large adverse effect on model fit. The removal of empty cells greatly improved model fit.
+This finding shows that identifying and removing empty cells, as
+demonstrated in this paper and accomanying code, can substantially enhance the performance of
+spatial microsimulation models, in cases when many complex
+constraint variables are used and many empty cells are present.
+It is striking that in the most complex example (sheffield), the improvement in
+model fit from removing empty cells was far greater than that resulting from
+additional iterations.
 A direct recommendation from these findings is therefore that researchers should
-test for missing cells, as defined in \cref{smempty}, before reweighting.
-
-There are many opportunities for further research raised by this paper.
-There is clearly a need for further model testing in the area of spatial microsimulation,
-and IPF is only one of several options available. Research questions raised include:
-What are the impacts of additional variables affecting the performance of IPF?
-What are the interactions between different variables --- e.g. what is the
-combined impact of altering the number of empty cells \emph{and} number of
-iterations simultaneously? Can change in one variable reduce the need for
-change in another?
-
-Moreover, there are broader questions raised by this research about validation
-of models that are used for policy making. \citet{Scarborough2009} highlight the
-paucity of evaluation studies of model based local estimates of heart disease,
-even when these estimates were being widely used by the medical profession for
-decision making. In this wider context our study has only scratched the surface,
-providing insight into the impact of a number of variables on the internal fit of
-one particular method for producing such small area estimates. Clearly there is
-much else to do. Based on the preceding literature review, it would seem that
-continued model testing and external validation are critical to the use of spatial
-microsimulation in academia and decision making based on imperfect information.
-This paper has provided new insights into the important factors affecting model
-fit using IPF. Its potentially more important
-wider contribution is to demonstrate the importance of
-systematic model testing and evaluation to ensure that spatial microsimulation
-models are serving the aims of researchers and society at large, and not vice versa.
+test for missing cells, as defined in \cref{smempty}, before reweighting. 
 
 \bibliographystyle{model2-names.bst}
 \bibliography{/home/robin/Documents/Microsimulation.bib}
+\DIFaddbegin 
+
+%DIF >  \section{Appendix: Formulae for evaluation techniques and additional results}
+%DIF >  
+%DIF >  The symbols used for values in these equations follows, to the
+%DIF >  extent possible, the most common usage found in the literature.
+%DIF >  Thus $T_{ij}$ and $U_{ij}$ represent the simulated and observed
+%DIF >  cell counts for category $i$ in zone $j$. Additional symbols are
+%DIF >  described as and when they appear in the formulae.
+%DIF >  
+%DIF >  
+%DIF >  \subsection{Modified Z-Scores}
+%DIF >  
+%DIF >  The modified Z-score ($Zm$) was described by \citet{Williamson1998}
+%DIF >  and is defined as follows:
+%DIF >   
+%DIF >  \begin{equation}
+%DIF >   Zm_{ij} = (r_{ij} - p_{ij}) \Bigg/ \left(\frac{p_{ij}(1 -
+%DIF >  p_{ij}))}{\sum\limits_{ij}U_{ij}}\right)^{1/2}
+%DIF >  \end{equation}
+%DIF >  
+%DIF >  where
+%DIF >  
+%DIF >  \begin{center}
+%DIF >  \begin{math}
+%DIF >    p_{ij} = \frac{U_{ij}}{\sum\limits_{ij}U_{ij}} \qquad and \qquad r_{ij} =
+%DIF >  \frac{T_{ij}}{\sum\limits_{ij}U_{ij}}
+%DIF >  \end{math}
+%DIF >  \end{center}
+\DIFaddend 
+
+
 
 %/nfs/foe-fs-01_users/georl/repos/IPF-performance-testing/paper/ipflib.bib  desktop.bib,
 % /home/robin/Documents/Microsimulation.bib,
 % /home/robin/Documents/powerstarrefs/Microsimulation.bib
 % /nfs/foe-fs-01_users/georl/Documents/Microsimulation.bib,
-
-% \section{Appendix: Formulae for evaluation techniques and additional results}
-% 
-% The symbols used for values in these equations follows, to the
-% extent possible, the most common usage found in the literature.
-% Thus $T_{ij}$ and $U_{ij}$ represent the simulated and observed
-% cell counts for category $i$ in zone $j$. Additional symbols are
-% described as and when they appear in the formulae.
-% 
-% 
-% \subsection{Modified Z-Scores}
-% 
-% The modified Z-score ($Zm$) was described by \citet{Williamson1998}
-% and is defined as follows:
-%  
-% \begin{equation}
-%  Zm_{ij} = (r_{ij} - p_{ij}) \Bigg/ \left(\frac{p_{ij}(1 -
-% p_{ij}))}{\sum\limits_{ij}U_{ij}}\right)^{1/2}
-% \end{equation}
-% 
-% where
-% 
-% \begin{center}
-% \begin{math}
-%   p_{ij} = \frac{U_{ij}}{\sum\limits_{ij}U_{ij}} \qquad and \qquad r_{ij} =
-% \frac{T_{ij}}{\sum\limits_{ij}U_{ij}}
-% \end{math}
-% \end{center}
 
 
 \end{document}

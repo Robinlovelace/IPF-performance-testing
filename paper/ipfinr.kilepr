@@ -48,12 +48,12 @@ order=-1
 
 [item:ipfinr.tex]
 archive=true
-column=10
+column=27
 encoding=UTF-8
 highlight=LaTeX
-line=1479
+line=1325
 mode=LaTeX
-open=false
+open=true
 order=0
 
 [item:ipflib.bib]
@@ -67,7 +67,7 @@ open=false
 order=-1
 
 [view-settings,view=0,item:ipfinr.tex]
-CursorColumn=10
-CursorLine=1479
+CursorColumn=27
+CursorLine=1325
 JumpList=
 ViMarks=

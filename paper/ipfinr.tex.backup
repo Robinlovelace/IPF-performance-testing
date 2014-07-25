@@ -104,14 +104,14 @@ is advantageous computationally, as it can represent information about millions 
 in relatively little computer disk space. An additional benefit from the
 perspective of spatial analysis is that the wide data form is
 generally easy to load into geographical information systems (GIS).
-The process of aggregation is performed in three steps:  % commented out as it's not amazing
+The process of aggregation is generally performed in three steps:  % commented out as it's not amazing
 \begin{enumerate}
- \item conversion of all
+ \item Conversion of
 variables into discrete categories (e.g.~an individual with an income of £13,000 per year
-would be allocated to band of £10,000 to £15,000 per year)
- \item assignment of a column to each unique category
+would be allocated to band of £10,000 to £15,000 per year).
+ \item Assignment of a column to each unique category.
 % --- and in some cases each category combination ---
- \item assignment of
+ \item Assignment of
 integer counts to cells in each column to represent the number of people with each characteristic.
 \end{enumerate}
 
@@ -129,12 +129,12 @@ microsimulation, on the other hand, the emphasis is on generating and analysing
 spatial microdata.}
 Both combine national social survey microdata
 (such as the Understanding Society panel dataset UK) with small area census data.
-A number of techniques are available, including
-deterministic reweighting \citep{Birkin1989a},
+A number of techniques are available --- see \citet{tanton2014review} for a recent review ---
+including deterministic reweighting \citep{Birkin1989a},
 genetic algorithms and simulated annealing \citep{Williamson1998}
 as well as approaches based on linear regression \citep{Harding2011}.
 It is an active field of development with on-going refinements
-(e.g.~\citep{Lovelace2013-trs,Pritchard2012}) and debates
+(e.g.~\citealp{Lovelace2013-trs,Pritchard2012}) and debates
 about which approaches are most suited in different situations
 \citep{harland2012,Hermes2012a,Smith2009,whitworth2013evaluations,Williamson2013}
 
@@ -144,7 +144,7 @@ form. Information loss occurs when georeferenced individual level survey data
 --- \emph{spatial microdata} --- is aggregated in this way. This
 problem is exacerbated when continuous variables
 are converted into discrete categories and 
-when not cross-tabulations, such as age/income, are not provided, as is often the case.
+cross-tabulations, such as age/income, are not provided. This is often the case.
 Geographically aggregated datasets are
 problematic for the analysis of spatial phenomena \citep{Openshaw1984}
 and can prevent analysis of the interdependencies individual and household variables
@@ -155,10 +155,11 @@ Samples of Anonymised Records (SARs) were released from the 1991 Census
 Nevertheless, the SARs are not suitable for intra-city and neighbourhood level
 analysis, as the smallest geographical level at which such microdata are publicly
 available is the Local Authority, to preserve confidentiality.
-There has been discussion ways to further disaggregate the geography
+There has been discussion of ways to further disaggregate the geography
 of the SARs, with due emphasis on risks to confidentiality \citep{Tranmer2005case4}.
 Furthermore, there are many policy relevant variables (e.g.~income and wealth, social attitudes)
-that are not collected by censuses of population, making them unavailable at the small area level.
+that are not collected by the Census in many countries, making the these variables
+unavailable at the small area level.
 Geographers and regional scientists have addressed this data paucity through the development
 and application of small area estimation methods \citep{Ballas2005c,Hermes2012a}.
 % It is from this context of common forms of geographical data storage formats that this paper departs.
@@ -280,7 +281,7 @@ is usually lost. For example a female cyclist may be represented as additional u
 
 In the \emph{physical sciences} both data formats are common and the
 original long dataset is generally available. In the social sciences, by contrast, the long format is often unavailable
-due to the long history of and confidentiality 
+due to the long history of confidentiality
 issues surrounding officially collected survey data.
 It is worth emphasising that National Census datasets --- in which characteristics of 
 every individual living in a state are recorded and which constitute some of the best datasets in social science ---
@@ -340,7 +341,6 @@ determine how representative each individual is of each zone. Thus, an even more
 of storing synthetic spatial microdata taken from a single dataset is as a `weight matrix',
 provided the original individual-level dataset is available, to recover individuals'
 attributes.
-the . 
 % the same dataset can be stored using only two variables:  
 % small area microdata 
 % by combining the small area data with national survey data. The result of this process 
@@ -750,11 +750,11 @@ integerisation in this paper.
 % however, is that it results in non-integer weights: fractions of individuals
 % appear in simulated areas.
 
-\subsection{Implementing IPF in R} \label{simplementing}
-The above example is best undertaken by hand, probably with a pen and paper
-to gain an understanding of IPF, before the process is automated for 
-larger datasets. This section explains how the IPF
-algorithm described above can be implemented in R.
+% \subsection{Implementing IPF in R} \label{simplementing}
+% The above example is best undertaken by hand, probably with a pen and paper
+% to gain an understanding of IPF, before the process is automated for 
+% larger datasets. This section explains how the IPF
+% algorithm described above can be implemented in R.
 % This section is based on ``Spatial microsimulation in R: a
 % beginner’s guide to iterative proportional fitting (IPF)'', a tutorial
 % written to accompany a methods paper on integerisation
@@ -858,7 +858,7 @@ available to us, we are obliged to evaluate our simulated populations by compari
 a number of aggregated tables derived from the synthetic data set with published
 census small-area statistics'' \citep[p.~178]{Voas2001}.
 A remaining issue is that the results of many evaluation metrics vary depending
-on the areal units used, hence advocacy of `scale free' metrics (e.g.~\citep{Malleson2012}).
+on the areal units used, hence advocacy of `scale free' metrics \citep{Malleson2012}.
 
 % \subsection{Descriptive statistics}
 % 
@@ -1069,27 +1069,29 @@ be accessed from `small-area-eg', within the `input-data' folder of the online
 repository.\footnote{These datasets can be found here:
 https://github.com/Robinlovelace/IPF-performance-testing/tree/master/input-data/
 small-area-eg}
-% Add these
-A sample of these constraint variables is presented in \cref{t3} below. % aren't we putting ind. data 1st?
-
-\begin{table}[htbp]
-\caption{Sample of constraint variables from the first 5 rows of the small-area-eg input dataset.}
-\begin{center}
-\begin{tabular}{rrrrr}
-\toprule
-\bottomrule
-\end{tabular}
-\end{center}
-\label{t3}
-\end{table}
+% Add these!!!
+% A sample of these constraint variables is presented in \cref{t3} below. % aren't we putting ind. data 1st?
+% 
+% \begin{table}[htbp]
+% \caption{Sample of constraint variables from the first 5 rows of the small-area-eg input dataset.}
+% \begin{center}
+% \begin{tabular}{rrrrr}
+% \toprule
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \label{t3}
+% \end{table}
 
 The individual-level table that compliments these geographically aggregated count constraints 
 is taken from Understanding Society wave 1. These have been randomised to ensure anonymity
 but they are still roughly representative of real data. The table consists of 1768 rows of 
 data and is stored in R’s own space-efficient filetype (see ``ind.RData'', which must be opened in 
-R). This individual level data consists of the same 3
-constraint variables as provided in \cref{t3} in addition
-to one `target variable': monthly pre-tax income in pounds stirling. 
+R).
+
+% This individual level data consists of the same 3 % re-add this!!!
+% constraint variables as provided in \cref{t3} in addition
+% to one `target variable': monthly pre-tax income in pounds stirling. 
 
 % \begin{table}[htbp]
 % \caption{Randomly selected sample of 5 individuals taken from the individual-level dataset.}
@@ -1124,17 +1126,21 @@ row names of will be explained later in this section.
 
 \begin{table}[htbp]
 \caption{Characteristics of the baseline model run for each scenario.}
+\begin{center}
 \begin{tabular}{lrrr}
-
+\toprule
 Scenario & \multicolumn{1}{l}{Simple} & \multicolumn{1}{l}{Small area} & \multicolumn{1}{l}{Sheffield} \\
+\midrule
 N. constraints & 2 & 3 & 4 \\
 N. zones & 6 & 24 & 71 \\
 Av. individuals/zone & 10 & 184 & 3225 \\
 Microdataset size & 5 & 1768 & 4933 \\
 Average weight & 1.3 & 0.1 & 0.65 \\
 \% empty cells & 0\% & 21\% & 85\% \\
+\bottomrule
 \end{tabular}
-\label{}
+\label{tbase}
+\end{center}
 \end{table}
 
 
@@ -1351,7 +1357,7 @@ shown here, as the fit improves very little beyond two).
 
 Rapid reductions in the accuracy improvement from
 additional computation were observed in each scenario, as illustrated
-by the falling percentage change in TAE in \cref{tciterations}.
+by the falling percentage change in TAE in \cref{fipfinac}.
 After four iterations, in the `simple' scenarios,
 the fit is near perfect, with an $R^2$ value indistinguishable from one
 to 7 decimal places. The decay in the rate of improvement with additional 
@@ -1515,7 +1521,7 @@ best focused on other variables in the model run, notably that of empty cells.
 
 The problem of empty cells has received little attention in the literature and
 this paper presents both the theory and methodology demonstrating why they are important
-(\cref{sempty}). We have demonstrated a method for identifying
+(\cref{smempty}). We have demonstrated a method for identifying
 whether empty cells are present in the input data. More important for the spatial microsimulation
 community, we have shown for the first time (to our knowledge) that empty cells have a
 large adverse effect on model fit.
@@ -1543,8 +1549,26 @@ There are many opportunities for further research raised by this paper.
 There is clearly a need for further model testing in the area of spatial microsimulation,
 and IPF is only one of several options available. Research questions raised include:
 What are the impacts of additional variables affecting the performance of IPF?
-What are the interactions between different variables --- e.g. altering
+What are the interactions between different variables --- e.g. what is the
+combined impact of altering the number of empty cells \emph{and} number of
+iterations simultaneously? Can change in one variable reduce the need for
+change in another?
 
+Moreover, there are broader questions raised by this research about validation
+of models that are used for policy making. \citet{Scarborough2009} highlight the
+paucity of evaluation studies of model based local estimates of heart disease,
+even when these estimates were being widely used by the medical profession for
+decision making. In this wider context our study has only scratched the surface,
+providing insight into the impact of a number of variables on the internal fit of
+one particular method for producing such small area estimates. Clearly there is
+much else to do. Based on the preceding literature review, it would seem that
+continued model testing and external validation are critical to the use of spatial
+microsimulation in academia and decision making based on imperfect information.
+This paper has provided new insights into the important factors affecting model
+fit using IPF. Its potentially more important
+wider contribution is to demonstrate the importance of
+systematic model testing and evaluation to ensure that spatial microsimulation
+models are serving the aims of researchers and society at large, and not vice versa.
 
 \bibliographystyle{model2-names.bst}
 \bibliography{/home/robin/Documents/Microsimulation.bib}

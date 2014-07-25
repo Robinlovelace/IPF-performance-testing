@@ -104,14 +104,14 @@ is advantageous computationally, as it can represent information about millions 
 in relatively little computer disk space. An additional benefit from the
 perspective of spatial analysis is that the wide data form is
 generally easy to load into geographical information systems (GIS).
-The process of aggregation is performed in three steps:  % commented out as it's not amazing
+The process of aggregation is generally performed in three steps:  % commented out as it's not amazing
 \begin{enumerate}
- \item conversion of all
+ \item Conversion of
 variables into discrete categories (e.g.~an individual with an income of £13,000 per year
-would be allocated to band of £10,000 to £15,000 per year)
- \item assignment of a column to each unique category
+would be allocated to band of £10,000 to £15,000 per year).
+ \item Assignment of a column to each unique category.
 % --- and in some cases each category combination ---
- \item assignment of
+ \item Assignment of
 integer counts to cells in each column to represent the number of people with each characteristic.
 \end{enumerate}
 
@@ -129,12 +129,12 @@ microsimulation, on the other hand, the emphasis is on generating and analysing
 spatial microdata.}
 Both combine national social survey microdata
 (such as the Understanding Society panel dataset UK) with small area census data.
-A number of techniques are available, including
-deterministic reweighting \citep{Birkin1989a},
+A number of techniques are available --- see \citet{tanton2014review} for a recent review ---
+including deterministic reweighting \citep{Birkin1989a},
 genetic algorithms and simulated annealing \citep{Williamson1998}
 as well as approaches based on linear regression \citep{Harding2011}.
 It is an active field of development with on-going refinements
-(e.g.~\citep{Lovelace2013-trs,Pritchard2012}) and debates
+(e.g.~\citealp{Lovelace2013-trs,Pritchard2012}) and debates
 about which approaches are most suited in different situations
 \citep{harland2012,Hermes2012a,Smith2009,whitworth2013evaluations,Williamson2013}
 
@@ -144,7 +144,7 @@ form. Information loss occurs when georeferenced individual level survey data
 --- \emph{spatial microdata} --- is aggregated in this way. This
 problem is exacerbated when continuous variables
 are converted into discrete categories and 
-when not cross-tabulations, such as age/income, are not provided, as is often the case.
+cross-tabulations, such as age/income, are not provided. This is often the case.
 Geographically aggregated datasets are
 problematic for the analysis of spatial phenomena \citep{Openshaw1984}
 and can prevent analysis of the interdependencies individual and household variables
@@ -155,10 +155,11 @@ Samples of Anonymised Records (SARs) were released from the 1991 Census
 Nevertheless, the SARs are not suitable for intra-city and neighbourhood level
 analysis, as the smallest geographical level at which such microdata are publicly
 available is the Local Authority, to preserve confidentiality.
-There has been discussion ways to further disaggregate the geography
+There has been discussion of ways to further disaggregate the geography
 of the SARs, with due emphasis on risks to confidentiality \citep{Tranmer2005case4}.
 Furthermore, there are many policy relevant variables (e.g.~income and wealth, social attitudes)
-that are not collected by censuses of population, making them unavailable at the small area level.
+that are not collected by the Census in many countries, making the these variables
+unavailable at the small area level.
 Geographers and regional scientists have addressed this data paucity through the development
 and application of small area estimation methods \citep{Ballas2005c,Hermes2012a}.
 % It is from this context of common forms of geographical data storage formats that this paper departs.
@@ -280,7 +281,7 @@ is usually lost. For example a female cyclist may be represented as additional u
 
 In the \emph{physical sciences} both data formats are common and the
 original long dataset is generally available. In the social sciences, by contrast, the long format is often unavailable
-due to the long history of and confidentiality 
+due to the long history of confidentiality
 issues surrounding officially collected survey data.
 It is worth emphasising that National Census datasets --- in which characteristics of 
 every individual living in a state are recorded and which constitute some of the best datasets in social science ---
@@ -340,7 +341,6 @@ determine how representative each individual is of each zone. Thus, an even more
 of storing synthetic spatial microdata taken from a single dataset is as a `weight matrix',
 provided the original individual-level dataset is available, to recover individuals'
 attributes.
-the . 
 % the same dataset can be stored using only two variables:  
 % small area microdata 
 % by combining the small area data with national survey data. The result of this process 
@@ -750,11 +750,11 @@ integerisation in this paper.
 % however, is that it results in non-integer weights: fractions of individuals
 % appear in simulated areas.
 
-\subsection{Implementing IPF in R} \label{simplementing}
-The above example is best undertaken by hand, probably with a pen and paper
-to gain an understanding of IPF, before the process is automated for 
-larger datasets. This section explains how the IPF
-algorithm described above can be implemented in R.
+% \subsection{Implementing IPF in R} \label{simplementing}
+% The above example is best undertaken by hand, probably with a pen and paper
+% to gain an understanding of IPF, before the process is automated for 
+% larger datasets. This section explains how the IPF
+% algorithm described above can be implemented in R.
 % This section is based on ``Spatial microsimulation in R: a
 % beginner’s guide to iterative proportional fitting (IPF)'', a tutorial
 % written to accompany a methods paper on integerisation
@@ -831,7 +831,7 @@ the coefficient of determination ($R^2$) through total and standardised
 absolute error ($TAE$ and $SAE$, respectively)
 % to the proportion of values deviating from the expected
 % value by a predefined amount ($P > 0.5$). The preferred metric
-to root mean squared error ($RMSE$).
+to root mean squared error (RMSE).
 This latter option is our preferred metric, as described below.
 % The equations for each metric can be found in the associated references.
 
@@ -858,7 +858,7 @@ available to us, we are obliged to evaluate our simulated populations by compari
 a number of aggregated tables derived from the synthetic data set with published
 census small-area statistics'' \citep[p.~178]{Voas2001}.
 A remaining issue is that the results of many evaluation metrics vary depending
-on the areal units used, hence advocacy of `scale free' metrics (e.g.~\citep{Malleson2012}).
+on the areal units used, hence advocacy of `scale free' metrics \citep{Malleson2012}	.
 
 % \subsection{Descriptive statistics}
 % 
@@ -986,14 +986,14 @@ for each test.
 % Spatial indicators etc??? Add equations to above methods soooon
 
 \subsection{Root mean square error}
-Root mean square error ($RMSE$) and to a lesser extent mean absolute error (MAE)
+Root mean square error (RMSE) and to a lesser extent mean absolute error (MAE)
 have been frequently
 used in both social and physical sciences as a metric of model fit
 \citep{Legates1999GOF,Ngo2012}. %!!! equations
 The former has the benefit of being widely used and understood, but is
 influenced by the mean value in each zone. Research research in climate model
 evaluation suggests that the lesser known but simpler $MAE$ metric is preferable
-to $RMSE$ in many ways \citep{Willmott2005}. Therefore both metrics are presented
+to RMSE in many ways \citep{Willmott2005}. Therefore both metrics are presented
 in this paper.
 
 \section{Input data}
@@ -1012,7 +1012,7 @@ This scenario is purely hypothetical and is used to represent the IPF procedure
 and the tests in the simplest possible terms. Its small size allows the entirety
 of the input data to be viewed in a couple of tables 
 (see \cref{t:w} and \cref{t2}, the first row of which is used
-to exemplify the method the previous section). As with all
+to exemplify the method). As with all
 data used in this paper, these tables can be
 viewed and downloaded online.
 
@@ -1114,7 +1114,8 @@ baseline scenarios were created. These are model runs with sensible
 defaults and act as reference points against which alternative runs are compared.
 The baseline scenarios consist of 3 iterations. In the `simple' scenario (with 2 constraints), 
 there are 6 constraint-iteration permutations.
-\Cref{tblresults1} shows 
+% \Cref{tblresults1} shows !!! removed as table 10 is absent!
+The
 fit improving with each step.\footnote{The exception is $p5$,
 which reaches zero in the second iteration. $pcor$ continues to improve however, 
 even though the printed value, to 6 decimal places, is
@@ -1165,9 +1166,9 @@ num.its <- 3
  
 The code for running the constraints in a different order
 is saved in `etsim-reordered.R'.
-% where $x$ is a number representing the final constraint.
-% The order with the greatest impact on the results is reported
-% in the final results table.
+In this script file, the order in which constraints ran was systematically altered.
+The order with the greatest impact on the results is reported
+in the final results table (\cref{tsum}).
 
 \subsection{Initial weights}
 The impact of initial weights was tested in two ways: first, the impact
@@ -1203,7 +1204,7 @@ This enabled plotting original vs simulated weights under a
 range of conditions (\cref{cresults}).
 
 \subsection{Empty cells} \label{smempty}
-Empty cells refer to combinations individual-level 
+Empty cells refer to combinations of individual-level 
 attributes that are not represented by any single individual 
 in the survey input data. An example of this would be if no female 
 in the 16 to 49 year age bracket were present in \cref{t:w}.
@@ -1307,28 +1308,29 @@ converged towards a final result.
 The baseline `Sheffield' scenario consists of the same basic set-up, 
 but with 4 constraints. As before, the results show convergence 
 towards better model fit, although the fit did not always improve 
-from one constraint to the next (see the online `measures' table). % online???
+from one constraint to the next.
+% (see the online `measures' table). % online???
 
-\begin{table}[htbp]
-\caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
-\begin{center}
-\begin{tabular}{rrrrr}
-\toprule
-\bottomrule
-\end{tabular}
-\end{center}
-\label{tblresults1}
-\end{table}
+% \begin{table}[htbp]
+% \caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
+% \begin{center}
+% \begin{tabular}{rrrrr}
+% \toprule
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \label{tblresults1}
+% \end{table}
 
 \subsection{Constraints and iterations}
-As expected from \cref{fipfinac} above, fit
+As shown in \cref{fnconscor}, fit
 improved with each iteration.
 This improvement generally happened for each constraint 
-and always from one iteration to the next in every scenario.
+and always from one iteration to the next.
 Through the course of the first 
 iteration in the `simple' senario, for example, $R^2$ improved
-from 0.67 to 0.9981. As illustrated in \cref{fnconscor}, 
-the rate of improvement in model fit plateaus after the first iterate: 
+from 0.67 to 0.9981. There is a clear tendency for the rate of improvement
+in model fit to drop with subsequent computation after the first iteration: 
 at the end of iteration 2 in the simple scenarios, $R^2$ had improved to 0.999978.   
 
 \begin{figure}[h]
@@ -1357,7 +1359,7 @@ shown here, as the fit improves very little beyond two).
 
 Rapid reductions in the accuracy improvement from
 additional computation were observed in each scenario, as illustrated
-by the falling percentage change in TAE in \cref{fipfinac}.
+by the rapid alignment of zone/constraints to the 1:1 line in \cref{fipfinac}.
 After four iterations, in the `simple' scenarios,
 the fit is near perfect, with an $R^2$ value indistinguishable from one
 to 7 decimal places. The decay in the rate of improvement with additional 
@@ -1509,8 +1511,7 @@ following variables at a time:
 \end{itemize}
 
 
-Some of the variables altered
-
+% Some of the variables altered !!!
 In every case, the direction of change in model fit was as expected, confirming
 prior expectations about the influence of model set-up on performance. The finding
 that the initial weights have very little influence on the final result, particularly

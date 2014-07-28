@@ -39,9 +39,8 @@ for(i in 1:num.its){
 }
 options(digits = 5)
 
-measures
+measures$iteration <- iteration
 plot(measures[2:6,c(1,2,4,5)])
 plot(measures$iteration, measures$tae)
-measures <- cbind(iteration, measures)
 measures
 write.csv(measures, "measures.csv")

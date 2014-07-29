@@ -1,36 +1,22 @@
 ############################################
-#### Searching for a faster IPF implementation
-
-A <- matrix(c(1,0,0, 1,0,0, 0,1,0, 0,1,0, 0,0,1), nrow=3)
-x <- rgamma(ncol(A), 10, 1/100)
-y <- A %*% x
-x0 <- x * rgamma(length(x), 10, 10)
-ans <- ipfp(y, A, x0, full=TRUE)
-print(ans)
-print(x)
-
-lapply(list(A, y, x0), FUN = class)
-lapply(list(A, y, x0), FUN = typeof)
-
-A <- matrix(as.numeric(unlist(ind.cat)), nrow = nrow(ind.cat))
-typeof(A) 
-y <- c(8, 4, 6, 6)
-x0 <- c(2, 2, 2, 2)
-ans <- ipfp(y, A, x0, full=TRUE)
+#### IPFinR a script for IPF in R 
+#### Robin Lovelace (2013)
+############################################
 
 # Initial conditions # start from IPF-performance-testing folder
 num.its <- 3
-# Read-in new data frame - with nrow = nper
+# Read-in data (manually to start, will use scripts in future)
 c.names <- c("id", "age", "sex")
-ind <- c(       1, 59, "m", 
+ind <- c(       1, 59, "m",
                 3, 35, "m", 
                 4, 73, "f", 
                 5, 49, "f")
-
 ind <- matrix(ind, nrow = 4, byrow = T) # Convert long data into matrix, by row
 ind <- data.frame(ind) # Convert this into a dataframe
 names(ind) <- c.names # Add correct column names
 ind$age <- as.numeric(levels(ind$age)[ind$age]) # Age is a numeric variable
+
+ind # Show the data frame in R
 
 # Read in the data in constraints
 category.labels <- c("16-49", "50+",  "m", "f") # Age, and sex constraints
@@ -46,21 +32,39 @@ all.msim <- data.frame(all.msim) # Convert this into a dataframe
 names(all.msim) <- category.labels # Add labels
 con1 <- all.msim[,1:2] ; con2 <- all.msim[,3:4]
 
-num.cons <- length(grep(pattern="con[1-9]", x=ls()))  # calculate n. constraints
-all.msim <- cbind(con1
+num.cons <- length(grep(pattern="con[1-9]", x=ls()))  # calculate n. constraints (can set manually)
+
+# Checking that totals add up
+sum(con1)
+sum(con2)
+# sum(con3) # add more if need's be
+
+all.msim <- cbind(con1 # usually constraints added separately; added here for illustration
                   ,con2
+                  #,con3
+                  #,con4 # add more constraints here if needed
                   )
 
+# setting totals to sum(con2) - as totals do not add up (unnecessary here as they do...)
 con.pop <- rowSums(con2) 
 con1 <- con1 * con.pop / rowSums(con1)
 con2 <- con2 * con.pop / rowSums(con2)
+# con3 <- con3 * con.pop / rowSums(con3)
+con.pop
+all.msim
 
+sum(con1) == sum(con2) # check populations are equal
+# zero vallues to 0.0001
 con1[con1 == 0] <- 0.0001; con2[con2 == 0] <- 0.0001 #; con3[con3 == 0] <- 0.0001   
 
 # setting-up reweighting data
 category.labels <- names(all.msim) # should be correct from cons.R
 all.mim.orig <- all.msim # save original (un-adjusted) constraints
-all.msim <- cbind(con1 ,con2)
+all.msim <- cbind(con1 
+                  ,con2
+                  #,con3
+                  #,con4 # add more if needed
+                  )
 
 start.time <- proc.time() # for measuring model runtime
 # aggregate values - column for each category
@@ -84,9 +88,7 @@ ind.agg # look at what we've created - n. individuals replicated throughout
 # re-weighting for constraint 1 via IPF 
 for (j in 1:nrow(all.msim)){
   for(i in 1:ncol(con1)){
- weights[which(ind.cat[,i] == 1),j,1] <- con1[j,i] /ind.agg[j,i,1]}
- ipfp(weights)
-}
+ weights[which(ind.cat[,i] == 1),j,1] <- con1[j,i] /ind.agg[j,i,1]}}
 for (i in 1:nrow(all.msim)){ # convert con1 weights back into aggregates
   ind.agg[i,,2]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1])}
 
@@ -115,7 +117,7 @@ indf[,,,1,1] <- ind.agg
 
 # loop for multiple iterations (run e2.R repeatedly, saving each time)
 for(it in 2:num.its){
-source(file="e2.R")
+source(file="models/simple/e2.R")
 wf[,,,it,1] <- weights
 indf[,,,it,1] <- ind.agg
 }

@@ -58,10 +58,12 @@
 
 \begin{abstract}
 Iterative Proportional Fitting (IPF), also known as biproportional fitting or the RAS algorithm,
-is an established technique in Regional Science and
-has been used for a variety of purposes in the field. Primary amongst these has been
-the the use of IPF in static spatial microsimulation models for the generation of small area microdata.  
-The technique is mature, widely used and relatively straight-forward
+is an established technique and
+is used in a variety of applications across the social sciences. Primary amongst these
+for urban modelling has been its use in
+static spatial microsimulation to generate small are microdata --- individual
+level data allocated to administrative zones.
+The technique is mature, widely used and relatively straight-forward,
 yet there have been few studies focused on evaluation of its performance.
 An additional research problem is the tendency of 
 researchers to `start from scratch', resulting in a variety ad-hoc implementations,
@@ -86,7 +88,7 @@ JEL Code: C
 \end{abstract}
 
 \section{Introduction}
-Surveys of the composition, attitudes and behavior of individual
+Surveys of the composition, attitudes and behaviour of individual
 respondents constitute a ubiquitous empirical basis of social science research.
 The aggregation of survey data of this type also has a long history.
 Generally this involves translating raw data from a `long' or `microdata' format
@@ -99,7 +101,7 @@ variable value or bin (see \cref{fmsim-schema}). This transformation to a
 `wide' (or geographically aggregated) form
  is typically carried out in order to preserve confidentiality,
 ensuring that no individual can be identified at the small
-area level \citep{dale1993census}. Wide data
+area level \citep{marsh1993}. Wide data
 is advantageous computationally, as it can represent information about millions of individuals
 in relatively little computer disk space. An additional benefit from the
 perspective of spatial analysis is that the wide data form is
@@ -151,7 +153,7 @@ and can prevent analysis of the interdependencies individual and household varia
 at the local level \citep{Lee2009}.
 In an effort to address the drawbacks associated with this lack of microdata,
 Samples of Anonymised Records (SARs) were released from the 1991 Census
-\citep{dale1993census,middleton1995samples} and this was followed by similar SARs releases in 2001 and 2011.
+\citep{marsh1993,middleton1995samples} and this was followed by similar SARs releases in 2001 and 2011.
 Nevertheless, the SARs are not suitable for intra-city and neighbourhood level
 analysis, as the smallest geographical level at which such microdata are publicly
 available is the Local Authority, to preserve confidentiality.
@@ -831,7 +833,7 @@ the coefficient of determination ($R^2$) through total and standardised
 absolute error ($TAE$ and $SAE$, respectively)
 % to the proportion of values deviating from the expected
 % value by a predefined amount ($P > 0.5$). The preferred metric
-to root mean squared error ($RMSE$).
+to root mean squared error (RMSE).
 This latter option is our preferred metric, as described below.
 % The equations for each metric can be found in the associated references.
 
@@ -858,7 +860,7 @@ available to us, we are obliged to evaluate our simulated populations by compari
 a number of aggregated tables derived from the synthetic data set with published
 census small-area statistics'' \citep[p.~178]{Voas2001}.
 A remaining issue is that the results of many evaluation metrics vary depending
-on the areal units used, hence advocacy of `scale free' metrics \citep{Malleson2012}.
+on the areal units used, hence advocacy of `scale free' metrics \citep{Malleson2012}	.
 
 % \subsection{Descriptive statistics}
 % 
@@ -986,14 +988,14 @@ for each test.
 % Spatial indicators etc??? Add equations to above methods soooon
 
 \subsection{Root mean square error}
-Root mean square error ($RMSE$) and to a lesser extent mean absolute error (MAE)
+Root mean square error (RMSE) and to a lesser extent mean absolute error (MAE)
 have been frequently
 used in both social and physical sciences as a metric of model fit
 \citep{Legates1999GOF,Ngo2012}. %!!! equations
 The former has the benefit of being widely used and understood, but is
 influenced by the mean value in each zone. Research research in climate model
 evaluation suggests that the lesser known but simpler $MAE$ metric is preferable
-to $RMSE$ in many ways \citep{Willmott2005}. Therefore both metrics are presented
+to RMSE in many ways \citep{Willmott2005}. Therefore both metrics are presented
 in this paper.
 
 \section{Input data}
@@ -1012,7 +1014,7 @@ This scenario is purely hypothetical and is used to represent the IPF procedure
 and the tests in the simplest possible terms. Its small size allows the entirety
 of the input data to be viewed in a couple of tables 
 (see \cref{t:w} and \cref{t2}, the first row of which is used
-to exemplify the method the previous section). As with all
+to exemplify the method). As with all
 data used in this paper, these tables can be
 viewed and downloaded online.
 
@@ -1114,7 +1116,8 @@ baseline scenarios were created. These are model runs with sensible
 defaults and act as reference points against which alternative runs are compared.
 The baseline scenarios consist of 3 iterations. In the `simple' scenario (with 2 constraints), 
 there are 6 constraint-iteration permutations.
-\Cref{tblresults1} shows 
+% \Cref{tblresults1} shows !!! removed as table 10 is absent!
+The
 fit improving with each step.\footnote{The exception is $p5$,
 which reaches zero in the second iteration. $pcor$ continues to improve however, 
 even though the printed value, to 6 decimal places, is
@@ -1165,9 +1168,9 @@ num.its <- 3
  
 The code for running the constraints in a different order
 is saved in `etsim-reordered.R'.
-% where $x$ is a number representing the final constraint.
-% The order with the greatest impact on the results is reported
-% in the final results table.
+In this script file, the order in which constraints ran was systematically altered.
+The order with the greatest impact on the results is reported
+in the final results table (\cref{tsum}).
 
 \subsection{Initial weights}
 The impact of initial weights was tested in two ways: first, the impact
@@ -1203,7 +1206,7 @@ This enabled plotting original vs simulated weights under a
 range of conditions (\cref{cresults}).
 
 \subsection{Empty cells} \label{smempty}
-Empty cells refer to combinations individual-level 
+Empty cells refer to combinations of individual-level 
 attributes that are not represented by any single individual 
 in the survey input data. An example of this would be if no female 
 in the 16 to 49 year age bracket were present in \cref{t:w}.
@@ -1307,28 +1310,29 @@ converged towards a final result.
 The baseline `Sheffield' scenario consists of the same basic set-up, 
 but with 4 constraints. As before, the results show convergence 
 towards better model fit, although the fit did not always improve 
-from one constraint to the next (see the online `measures' table). % online???
+from one constraint to the next.
+% (see the online `measures' table). % online???
 
-\begin{table}[htbp]
-\caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
-\begin{center}
-\begin{tabular}{rrrrr}
-\toprule
-\bottomrule
-\end{tabular}
-\end{center}
-\label{tblresults1}
-\end{table}
+% \begin{table}[htbp]
+% \caption{Results for the baseline `simple' scenario. Generated through by the ‘analysis’ script, and available as a .csv file online.}
+% \begin{center}
+% \begin{tabular}{rrrrr}
+% \toprule
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \label{tblresults1}
+% \end{table}
 
 \subsection{Constraints and iterations}
-As expected from \cref{fipfinac} above, fit
+As shown in \cref{fnconscor}, fit
 improved with each iteration.
 This improvement generally happened for each constraint 
-and always from one iteration to the next in every scenario.
+and always from one iteration to the next.
 Through the course of the first 
 iteration in the `simple' senario, for example, $R^2$ improved
-from 0.67 to 0.9981. As illustrated in \cref{fnconscor}, 
-the rate of improvement in model fit plateaus after the first iterate: 
+from 0.67 to 0.9981. There is a clear tendency for the rate of improvement
+in model fit to drop with subsequent computation after the first iteration: 
 at the end of iteration 2 in the simple scenarios, $R^2$ had improved to 0.999978.   
 
 \begin{figure}[h]
@@ -1357,7 +1361,7 @@ shown here, as the fit improves very little beyond two).
 
 Rapid reductions in the accuracy improvement from
 additional computation were observed in each scenario, as illustrated
-by the falling percentage change in TAE in \cref{fipfinac}.
+by the rapid alignment of zone/constraints to the 1:1 line in \cref{fipfinac}.
 After four iterations, in the `simple' scenarios,
 the fit is near perfect, with an $R^2$ value indistinguishable from one
 to 7 decimal places. The decay in the rate of improvement with additional 
@@ -1509,8 +1513,7 @@ following variables at a time:
 \end{itemize}
 
 
-Some of the variables altered
-
+% Some of the variables altered !!!
 In every case, the direction of change in model fit was as expected, confirming
 prior expectations about the influence of model set-up on performance. The finding
 that the initial weights have very little influence on the final result, particularly

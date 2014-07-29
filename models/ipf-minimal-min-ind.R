@@ -4,12 +4,11 @@ num.its <- 10 # iterations
 
 # Read-in data (manually to start, will use scripts in future)
 c.names <- c("id", "age", "sex")
-ind <- c(       1, "50+", "m",
-                2, "50+", "m", 
-                3, "16-49", "m", 
+ind <- c(       1, "50+", "m", 
+                3, "16-49", "m", # removed superfluous individual
                 4, "50+", "f", 
                 5, "16-49", "f")
-ind <- matrix(ind, nrow = 5, byrow = T) # Convert long data into matrix, by row
+ind <- matrix(ind, nrow = 4, byrow = T) # Convert long data into matrix, by row
 ind <- data.frame(ind) # Convert this into a dataframe
 names(ind) <- c.names # Add correct column names
 
@@ -60,7 +59,7 @@ indf[,,,1,1] <- ind.agg
 
 # loop for multiple iterations (run e2.R repeatedly, saving each time)
 for(it in 2:num.its){
-source(file="models/simple/e2.R")
+source(file="e2.R")
 wf[,,,it,1] <- weights
 indf[,,,it,1] <- ind.agg
 }

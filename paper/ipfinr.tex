@@ -59,11 +59,11 @@
 \begin{abstract}
 Iterative Proportional Fitting (IPF), also known as biproportional fitting or the RAS algorithm,
 is an established technique and
-is used in a variety of geographical applications. Primary amongst these has been
-has been used in a variety of geographical applications. Primary amongst these has been
-static spatial microsimulation for the generation of small area microdata --- individual
-level data allocated to small administrative zones.
-The technique is mature, widely used and relatively straight-forward
+is used in a variety of applications across the social sciences. Primary amongst these
+for urban modelling has been its use in
+static spatial microsimulation to generate small are microdata --- individual
+level data allocated to administrative zones.
+The technique is mature, widely used and relatively straight-forward,
 yet there have been few studies focused on evaluation of its performance.
 An additional research problem is the tendency of 
 researchers to `start from scratch', resulting in a variety ad-hoc implementations,
@@ -88,24 +88,28 @@ JEL Code: C
 \end{abstract}
 
 \section{Introduction}
-Surveys of the composition, attitudes and behavior of individual
+Surveys of the composition, attitudes and behaviour of individual
 respondents constitute a ubiquitous empirical basis of social science research.
 The aggregation of survey data of this type also has a long history.
 Generally this involves translating raw data from a `long' or `microdata' format
 --- as survey information is entered into a database,
 one individual at a time ---
-to a `wide' data format \citep{van2012flexible}. In the wide form,
-each row represents a geographic area or other sub-group of
-the total population and each column represents a
-variable value or bin (see \cref{fmsim-schema}). This transformation to a
-`wide' (or geographically aggregated) form
- is typically carried out in order to preserve confidentiality,
-ensuring that no individual can be identified at the small
-area level \citep{marsh1993}. Wide data
-is advantageous computationally, as it can represent information about millions of individuals
-in relatively little computer disk space. An additional benefit from the
-perspective of spatial analysis is that the wide data form is
-generally easy to load into geographical information systems (GIS).
+to a `wide' data format \citep{van2012flexible}. In wide or `areal' datasets,
+each row represents a contiguous and mutually exclusive geographic area
+containing a subset of the total population; each column represents a
+variable value or bin (\citealp{Openshaw1983}; see \cref{fmsim-schema}).
+The transformation from `long' to `wide' is typically carried out
+for the following reasons:
+\begin{itemize}
+ \item To preserve anonymity of participants \citep{Lee2009,marsh1993}.
+ \item To ease storage and retrieval of information ---
+ aggregate-level datasets can represent information about millions of individuals
+in relatively little computer disk space.
+ \item To ease the loading, visualisation and
+ analysis of official data geographical information systems (GIS).
+\end{itemize}
+
+
 The process of aggregation is generally performed in three steps:  % commented out as it's not amazing
 \begin{enumerate}
  \item Conversion of
@@ -149,7 +153,7 @@ are converted into discrete categories and
 cross-tabulations, such as age/income, are not provided. This is often the case.
 Geographically aggregated datasets are
 problematic for the analysis of spatial phenomena \citep{Openshaw1984}
-and can prevent analysis of the interdependencies individual and household variables
+and can prevent analysis of the interdependencies between individual and household variables
 at the local level \citep{Lee2009}.
 In an effort to address the drawbacks associated with this lack of microdata,
 Samples of Anonymised Records (SARs) were released from the 1991 Census
@@ -208,7 +212,8 @@ at different times and in different branches of academic research \citep{Lahr200
 subset \citep{Johnston1993,Rich2012}.\footnote{As an
 aside, IPF is considered by \citet{Rich2012} to be a particular
 efficient for of entropy maximisation: ``The popularity of the IPF is therefore mainly due to the fact that it provides a
-solution which is equivalent to that of the ME approaches, but attained in a much more
+solution which is equivalent to that of the ME [maximum entropy]
+approaches, but attained in a much more
 computationally efficient way'' (p.~469).
 }
 Usage characteristics of these different terms are summarised in \cref{tterms}.
@@ -355,7 +360,7 @@ Representing the data in this form offers a number of advantages
 (Clarke and Holm, 1987). These include:
 \begin{itemize}
  \item The ability to investigate intra-zone variation (variation within each zone can be analysed
- by subsetting a single area from the data frame).
+ by sub-setting a single area from the data frame).
 \item Cross-tabulations can be created for any combination of variables (e.g. age and employment status).
 \item The presentation of continuous variables such as income as real numbers, 
 rather than as categorical count data, in which there is always data loss.
@@ -534,7 +539,11 @@ hypothetical microdataset comprising 5 individuals, who are defined by two
 constraint variables, age and sex. 
 Table \ref{t:s} contains aggregated data
 for a hypothetical area, as it might be downloaded from census dissemination
-portals such as Casweb. \Cref{t:s2} illustrates this table in a different form,
+portals such as Casweb.\footnote{Casweb
+    (\href{http://casweb.mimas.ac.uk/}{casweb.mimas.ac.uk/})
+is an online portal for academics and other researchers to
+gain access to the UK's official census data in geographically
+aggregated form.} \Cref{t:s2} illustrates this table in a different form,
 demonstrating the unknown links between age and sex. The job of the IPF
 algorithm is to establish estimates for the unknown cells, which are
 optimized to be consistent with the known row and column marginals.
@@ -782,7 +791,7 @@ the input constraint variables. It is important to think carefully about
 evaluation metrics because results can vary depending on the measure used
 \citep{Voas2001}.
 
-Internal validation typically tackle such issues
+Internal validation typically tackles such issues
 as ``do the simulated populations in each area
 microdata match the total populations implied by the constrain variables?''
 and ``what is the level of correspondence between the cell values of different
@@ -913,7 +922,8 @@ positive correlation between target variables that have been estimated and
 external datasets (e.g. income). A major limitation of $R^2$ is that
 it takes no account of \emph{additive} or \emph{proportional} differences
 between estimated and observed values, meaning that it ignores systematic
-bias \citep{Legates1999GOF}. This limitation is less relevant for spatial microsimulation results
+bias (see \citealp{Legates1999GOF} for detail).
+This limitation is less relevant for spatial microsimulation results
 because they are generally population-constrained. 
 
 % A potential disadvantage of $R^2$ is that it provides no
@@ -1085,7 +1095,7 @@ small-area-eg}
 % \label{t3}
 % \end{table}
 
-The individual-level table that compliments these geographically aggregated count constraints 
+The individual-level table that complements these geographically aggregated count constraints 
 is taken from Understanding Society wave 1. These have been randomised to ensure anonymity
 but they are still roughly representative of real data. The table consists of 1768 rows of 
 data and is stored in R’s own space-efficient filetype (see ``ind.RData'', which must be opened in 
@@ -1118,7 +1128,7 @@ The baseline scenarios consist of 3 iterations. In the `simple' scenario (with 2
 there are 6 constraint-iteration permutations.
 % \Cref{tblresults1} shows !!! removed as table 10 is absent!
 The
-fit improving with each step.\footnote{The exception is $p5$,
+fit improves with each step.\footnote{The exception is $p5$,
 which reaches zero in the second iteration. $pcor$ continues to improve however, 
 even though the printed value, to 6 decimal places, is
 indistinguishable from 1 after two complete iterations.}
@@ -1155,7 +1165,9 @@ Average weight & 1.3 & 0.1 & 0.65 \\
 These were the simplest model experiments, requiring only
 the reporting of how the results changed with more or fewer
 iterations and re-arrangement of to apply constraints
-in a different order. 1, 3 and 10 are reported in the final
+in a different order. 1, 3 and 10 iteration (up to 20 are
+reported in the literature, but we found no difference in the
+results beyond 10) are reported in the final
 results and `convergence graphs' were created to show how model
 fit improved from one iteration-constraint combination to the next.
 

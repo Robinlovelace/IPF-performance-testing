@@ -38,12 +38,12 @@ ReadWrite=true
 
 [item:../../../Documents/Microsimulation.bib]
 archive=true
-column=19
+column=16
 encoding=UTF-8
 highlight=BibTeX
 line=8
 mode=BibTeX
-open=true
+open=false
 order=1
 
 [item:ipfinr.kilepr]
@@ -58,10 +58,10 @@ order=-1
 
 [item:ipfinr.tex]
 archive=true
-column=0
+column=71
 encoding=UTF-8
 highlight=LaTeX
-line=103
+line=97
 mode=LaTeX
 open=true
 order=0
@@ -77,13 +77,13 @@ open=false
 order=-1
 
 [view-settings,view=0,item:../../../Documents/Microsimulation.bib]
-CursorColumn=19
+CursorColumn=16
 CursorLine=8
 JumpList=
 ViMarks=
 
 [view-settings,view=0,item:ipfinr.tex]
-CursorColumn=0
-CursorLine=103
+CursorColumn=71
+CursorLine=97
 JumpList=
 ViMarks=

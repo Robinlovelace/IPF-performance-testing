@@ -1,7 +1,9 @@
 
 
 # Microbenchmarking speed testing of aggregation functions ####################
-# Run this after "ipf-minimal-ipfp.R" in models/simple/"
+# Run this after "etsim.R" and "etsim-ipfp.R" in models/simple/"
+source("models/simple/etsim.R")
+source("models/simple/etsim-ipfp.R")
 
 # test that the results of the two operations are the same...
 ind_agg_ipf == t(apply(weights_ipf, MARGIN = 2, FUN = function(x) colSums(x * ind.cat)))
@@ -18,4 +20,3 @@ time_agg_methods <- microbenchmark(agg_method_loop(), agg_method_apply)
 print(time_agg_methods)[1,3] / print(time_agg_methods)[2,3]
 # apply method is 5 orders of magnitude faster than for method!
 
-# alternate re-aggregation strategy

@@ -2,6 +2,7 @@
 start_time <- Sys.time()
 
 # Read-in data (manually to start, will use scripts in future)
+num.its <- 10
 c.names <- c("id", "age", "sex")
 ind <- c(       1, "50+", "m",
                 2, "50+", "m", 
@@ -50,7 +51,7 @@ x0 <- rep(1, nrow(ind))
 # find weights for all areas
 for(i in 1:ncol(weights_ipf)){
   y <- as.numeric(all.msim[i,]) # the constraint vector to be emulated
-  weights_ipf[,i] <- ipfp(y, A, x0, verbose = F)
+  weights_ipf[,i] <- ipfp(y, A, x0, verbose = F, maxit = num.its)
 }
 
 # re-aggregate to aggregate level
@@ -64,7 +65,7 @@ for(i in 1:ncol(weights_ipf)){
 ind_agg_ipf <- t(apply(weights_ipf, MARGIN = 2, FUN = function(x) colSums(x * ind.cat)))
 
 (time_taken_ipf <- Sys.time() - start_time )
-as.numeric(time_taken) / as.numeric(time_taken_ipf) # compare with basic etsim code
+# as.numeric(time_taken) / as.numeric(time_taken_ipf) # compare with basic etsim code
 
 ## Comparison of result from R code and ipfp implementation
 # ind_agg_ipf[1,]

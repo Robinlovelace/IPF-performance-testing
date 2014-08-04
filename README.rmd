@@ -44,15 +44,51 @@ This is the current list of priorities, and will be updated as the project progr
   * The use of cross-tabulated vs uni-variate categories (where available)
 * Evaluate the results using quantitative methods
 
-RMarkdown
-=======
-It is recommended that the initial analysis is written in RMarkdown language (as this introductory page is): it is lightweight, fast to type and, most importantly, allows R commands to be embedded and compiled within the text. For example, let us plot a simple polynomial:
+Modifying model runs
+----------------------------
+
+For systematic model experiments, only one variable in the model
+set-up should be altered at a time.
+
+To alter the number of iterations used in each model, one simply changes the
+number in the following line of code (the default is 3) in the script files in
+the 'models' folder:
 
 ```{r}
-x = 1:10
-x2 = x^2 - 0.1 * x^3 
-plot(x, x2)
+num.its <- 3
 ```
+
+The code for running the constraints in a different order is saved in ‘etsim-reordered.R’. In this script file, the order in which constraints ran was systematically altered.
+
+The code enabling weights to be altered is contained in the file
+`etsim-weights.R`. The number of different initial weight runs can be controlled
+by the parameter num.ws, which is set to 5 as an arbitrary default. Initial
+weights are set to k, a vector of length num.ws which are by default set as a
+function of u which is in term defined as the sequence `1:num.ws:k <- u/5 +
+0.5`. In this case the
+resultant weights are set to 0.7, 0.9, 1.1, 1.3 and 1.5 for each model
+experiment. For factors of one million, for example, the above would be replaced
+by `k <- u * 10^6`.
+
+In a similar way, any of the input parameters in the models can be changed.
+The variable changed in a specific script should be clear from its name.
+'etsim-int*' script files, for example, demonstrate the impact of integerisation
+on overall model performance.
+
+
+<!--RMarkdown-->
+<!--=======-->
+<!--It is recommended that the initial analysis is written in RMarkdown language (as this introductory page is): it is lightweight, fast to type and, most importantly, allows R commands to be embedded and compiled within the text. For example, let us plot a simple polynomial:-->
+
+
+<!--```r-->
+<!--x = 1:10-->
+<!--x2 = x^2 - 0.1 * x^3-->
+<!--plot(x, x2)-->
+<!--```-->
+
+<!--![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1.png) -->
+
 
 
 

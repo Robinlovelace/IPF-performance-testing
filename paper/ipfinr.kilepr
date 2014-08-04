@@ -26,16 +26,6 @@ Indentation Mode=normal
 Mode=BibTeX
 ReadWrite=false
 
-[document-settings,item:dif.tex]
-Bookmarks=
-Encoding=UTF-8
-FoldedColumns=
-FoldedLines=
-Highlighting=LaTeX
-Indentation Mode=normal
-Mode=LaTeX
-ReadWrite=true
-
 [document-settings,item:ipfinr.tex]
 Bookmarks=
 Encoding=UTF-8
@@ -56,16 +46,6 @@ mode=BibTeX
 open=false
 order=1
 
-[item:dif.tex]
-archive=true
-column=0
-encoding=UTF-8
-highlight=LaTeX
-line=1312
-mode=LaTeX
-open=false
-order=-1
-
 [item:ipfinr.kilepr]
 archive=true
 column=1
@@ -78,10 +58,10 @@ order=-1
 
 [item:ipfinr.tex]
 archive=true
-column=25
+column=80
 encoding=UTF-8
 highlight=LaTeX
-line=1586
+line=1468
 mode=LaTeX
 open=true
 order=0
@@ -102,14 +82,8 @@ CursorLine=8
 JumpList=
 ViMarks=
 
-[view-settings,view=0,item:dif.tex]
-CursorColumn=0
-CursorLine=1312
-JumpList=
-ViMarks=
-
 [view-settings,view=0,item:ipfinr.tex]
-CursorColumn=25
-CursorLine=1586
+CursorColumn=80
+CursorLine=1468
 JumpList=
 ViMarks=

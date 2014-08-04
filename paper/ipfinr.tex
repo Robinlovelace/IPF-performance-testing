@@ -1318,11 +1318,12 @@ population counts and accuracy than the deterministic approaches.
 \subsection{Computational efficiency}
 The code-base used for the model runs used throughout this paper is based,
 loosely on that provided in the Supplementary Information of
-\citet{Lovelace2013-trs}. This implementation is written purely in R,
+\citet{Lovelace2013-trs}. This implementation was written purely in R,
 a vector based language, and contains many `for' loops, which are generally best
 avoided for speed-critical applications. R was not designed for speed, but has
 interfaces to lower level languages when computational efficiency --- the amount
-of information processed per unit time --- is a priority \citep{wickham2014adv}.
+of information processed per unit time --- is a priority \citep{wickham2014adv,Matloff-R}.
+
 In an effort to increase the computational efficiency of R, experiments were
 conducted in which the IPF algorithm was conducted in C, a low-level programming
 language which is notoriously fast via the recently published
@@ -1331,6 +1332,9 @@ hosted on the Comprehensive R Archive Network (CRAN) website
 and is available to download. See
 \href{http://cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}{cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}
 for the package's documentation.}
+For each scenario in the Supplementary Information, there is a file titled `etsim-ipfp.R',
+which performs the same steps as the baseline `etsim.R' model run, but using the C interface
+of the \emph{ipfp} package.
 The results of these experiments for
 different scenarios and different numbers of iterations are presented in section
 \cref{sspeedr}.
@@ -1496,10 +1500,11 @@ are not linear: the relative speed improvements increase with the both the
 number of iterations and the size of the input datasets to be processed.
 
 This suggests two things: firstly, that other parts of the R code
-that could be optimised for speed improvements\footnote{`For' loops
-    are notoriously slow in R \citep{Matloff-R}, so their removal from
-    the code could
-    probably further increase the speed of execution.}
+that could be optimised for speed improvements
+% \footnote{`For' loops
+%     are notoriously slow in R \citep{Matloff-R}, so their removal from
+%     the code could
+%     probably further increase the speed of execution.}
 and, secondly, that even greater speed improvements could be seen
 with larger and more complex model runs.
 
@@ -1513,8 +1518,8 @@ with larger and more complex model runs.
     relative speed improvement of the C implementation in each case.}
 \begin{tabular}{lrrrrrr}
 \toprule
-Iterations & \multicolumn{ 2}{l}{3 iterations} & \multicolumn{1}{l}{Improvement} & \multicolumn{ 2}{c}{10 iterations} & \multicolumn{1}{l}{Improvement} \\ 
-\midrule Scenario & \multicolumn{1}{l}{Baseline} & \multicolumn{1}{l}{ipfp} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{Baseline} & \multicolumn{1}{l}{ipfp} & \multicolumn{1}{l}{} \\ 
+Iterations $\rightarrow$ & \multicolumn{ 3}{c}{3 iterations} & \multicolumn{ 3}{c}{10 iterations} \\
+\midrule Scenario & \multicolumn{1}{l}{Baseline} & \multicolumn{1}{l}{ipfp} & \multicolumn{1}{l}{Improvement} & \multicolumn{1}{l}{Baseline} & \multicolumn{1}{l}{ipfp} & \multicolumn{1}{l}{Improvement} \\
 \midrule
 Simple & 73 & 8 & 9.1 & 231 & 8 & 28.9 \\ 
 Small-area & 3548 & 204 & 17.4 & 10760 & 288 & 37.4 \\ 

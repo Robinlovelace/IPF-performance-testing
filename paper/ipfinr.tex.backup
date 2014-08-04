@@ -69,16 +69,21 @@ algorithm, written in modern programming languages, are rare in the academic
 literature. Therefore, there is  a tendency of researchers to `start from
 scratch', resulting in a variety ad-hoc implementations and little evidence about the relative merits of differing approaches.
 These knowledge gaps mean that answers to methodological questions must be guessed:
-Under what conditions can convergence be expected?
-How many iterations should be used for any given application? 
-And what are the impacts of initial weights and `integerisation' on the final result?
+% Under what conditions can convergence be expected?
+% How many iterations should be used for any given application? 
+What impacts do initial weights have on the final result?
+How can one identify `empty cells' in the input dataset
+and how do they influence model fit? Can the IPF procedure
+be made more computationally efficient?
 This paper tackles such questions, using a systematic methodology 
 based on publicly available code and input data. 
 The results confirm IPF's status as robust and widely applicable 
 method for combining areal and individual-level data and demonstrate the importance
 of using various metrics of for determining its performance.
-The paper also sets an agenda for future tests and offers more general guidance on how
-the method can be implemented to maximise its utility for future research.
+The paper also sets an agenda for future tests
+% and offers more general guidance on how
+% the method can be implemented
+to further optimise IPF for applied research.
 
 Keywords: Iterative proportional fitting, spatial microsimulation, modelling
 
@@ -1317,7 +1322,8 @@ loosely on that provided in the Supplementary Information of
 a vector based language, and contains many `for' loops, which are generally best
 avoided for speed-critical applications. R was not designed for speed, but has
 interfaces to lower level languages when computational efficiency --- the amount
-of information processed per unit time --- is a priority \citep{wickham2014adv}.
+of information processed per unit time --- is a priority \citep{wickham2014adv,Matloff-R}.
+
 In an effort to increase the computational efficiency of R, experiments were
 conducted in which the IPF algorithm was conducted in C, a low-level programming
 language which is notoriously fast via the recently published
@@ -1326,6 +1332,9 @@ hosted on the Comprehensive R Archive Network (CRAN) website
 and is available to download. See
 \href{http://cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}{cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}
 for the package's documentation.}
+For each scenario in the Supplementary Information, there is a file titled `etsim-ipfp.R',
+which performs the same steps as the baseline `etsim.R' model run, but using the C interface
+of the \emph{ipfp} package.
 The results of these experiments for
 different scenarios and different numbers of iterations are presented in section
 \cref{sspeedr}.
@@ -1461,7 +1470,7 @@ As expected, it was found that adding additional empty cells
 resulted in worse model fit, but only slightly worse fit if few empty
 cells (1 additional empty cell to 10\% non-empty cells) were added.
 The addition of new rows of data with attributes corresponding
-to the empty cells to the input dataset allowed the small-area and sheffield
+to the empty cells to the input dataset allowed the `small-area' and `Sheffield'
 models to be re-run without empty cells. This resulted in substantial improvements in
 model fit that became relatively more important with each iteration: model
 runs with large numbers of empty cells reached minimum error values quickly, beyond
@@ -1491,10 +1500,11 @@ are not linear: the relative speed improvements increase with the both the
 number of iterations and the size of the input datasets to be processed.
 
 This suggests two things: firstly, that other parts of the R code
-that could be optimised for speed improvements\footnote{`For' loops
-    are notoriously slow in R \citep{Matloff-R}, so their removal from
-    the code could
-    probably further increase the speed of execution.}
+that could be optimised for speed improvements
+% \footnote{`For' loops
+%     are notoriously slow in R \citep{Matloff-R}, so their removal from
+%     the code could
+%     probably further increase the speed of execution.}
 and, secondly, that even greater speed improvements could be seen
 with larger and more complex model runs.
 
@@ -1638,7 +1648,15 @@ models or with limited computational resources is that the speed of spatial micr
 algorithms can vary greatly depending on the method's implementation. The implementation
 of the IPF procedure in a low-level language via the recently published ipfp package
 yielded execution times dozens of times faster than the original R implementation of
-the code, with no impact on model fit. This highlights the importance of software selection
+the code. The speed benefit of this low-level implementation rose with additional iterations
+and model complexity, suggesting that the method of implementation may be more important than
+the number of model runs for ensuring fast code. Regarding the optimal number of iterations,
+no conclusive answer is provided by the results. However, it is clear that
+the marginal benefits of additional iterations decline rapidly: we conclude that 10 iterations
+should be sufficient for complete convergence in most cases.
+In any case, the number of iterations becomes much less important
+for the timing of IPF if a low-level implementation is used.
+This finding highlights the importance of software selection
 and code implementation when working on implementations designed to work on large datasets.
 
 There are many opportunities for further research raised by this paper.

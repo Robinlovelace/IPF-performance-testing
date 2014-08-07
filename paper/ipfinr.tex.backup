@@ -13,6 +13,7 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{placeins}
 
 \usepackage{array}
 \newcolumntype{C}[1]{>{\arraybackslash}p{#1}}
@@ -66,26 +67,24 @@ level data allocated to administrative zones.
 The technique is mature, widely used and relatively straight-forward.
 Although IPF is well described mathematically, reproducible examples of the
 algorithm, written in modern programming languages, are rare in the academic
-literature. Therefore, there is  a tendency of researchers to `start from
+literature. Therefore, there is  a tendency for researchers to `start from
 scratch', resulting in a variety ad-hoc implementations and little evidence about the relative merits of differing approaches.
 These knowledge gaps mean that answers to methodological questions must be guessed:
 % Under what conditions can convergence be expected?
 % How many iterations should be used for any given application? 
-What impacts do initial weights have on the final result?
-How can `empty cells' be identified and
+What impact can initial weights have on the final result?
+How can `empty cells' be identified
 and how do they influence model fit? Can IPF
 be made more computationally efficient?
 This paper tackles such questions, using a systematic methodology 
 based on publicly available code and data.
-The results demonstrate the sensitivity of IPF to a range of
-initial conditions and illustrate the importance
-of considering the nature of input data, such as the presence of
-`empty cells', before undertakin
-of using various metrics of for determining its performance.
-The paper also sets an agenda for future tests
+The results demonstrate the sensitivity of the results to
+initial conditions, notably to `empty cells', and the
+importance of software choices for IPF's computational efficiency.
+The paper concludes by proposing an agenda for robust and reproducible future tests
 % and offers more general guidance on how
 % the method can be implemented
-to further optimise IPF for applied research.
+for IPF and other methodologies used in spatial microsimulation.
 
 Keywords: Iterative proportional fitting, spatial microsimulation, modelling
 
@@ -160,7 +159,7 @@ A number of techniques are available --- see \citet{tanton2014review} for a rece
 including deterministic reweighting \citep{Birkin1989a},
 genetic algorithms and simulated annealing \citep{Williamson1998}
 as well as approaches based on linear regression \citep{Harding2011}.
-It is an active field of development with on-going refinements
+It is an active field of development with ongoing refinements
 (e.g.~\citealp{Lovelace2013-trs,Pritchard2012}) and debates
 about which approaches are most suited in different situations
 \citep{harland2012,Hermes2012a,Smith2009,whitworth2013evaluations,Williamson2013}
@@ -206,7 +205,7 @@ In abstract terms, IPF is a procedure for assigning values to \emph{internal cel
 based on known marginal totals in a multidimensional matrix \citep{Cleave1995}.
 More practically, this enables the calculation of the
 \emph{maximum likelihood} estimate of the presence of
-given individuals individuals in specific zones.
+given individuals in specific zones.
 Some confusion surrounds the procedure because it has multiple names:
 the `RAS algorithm', `biproportional fitting' and to a lesser extent
 `raking' have all been used to describe the procedure
@@ -222,7 +221,8 @@ computationally efficient way'' (p.~469).
 Usage characteristics of these different terms are summarised in \cref{tterms}.
 
 \begin{table}[htbp]
-\caption{Usage characteristics of different terms for the IPF procedure, from the Scopus database}
+\caption{Usage characteristics of different terms for the IPF procedure, from the Scopus database.}
+\begin{center}
 \begin{tabular}{lp{1.5cm}p{2.5cm}p{1.5cm}p{2.5cm}}
 \toprule
 Search term & N. citations & Commonest subject area & \% Since 2010 & \% Mentioning ``regional'' \\
@@ -235,6 +235,7 @@ Matrix raking & 12 & Engineering & 50 & 0 \\
 Biproportional estimation & 12 & Social sciences & 17 & 33 \\
 \bottomrule
 \end{tabular}
+\end{center}
 \label{tterms}
 \end{table}
 
@@ -351,10 +352,11 @@ Because these individuals correspond to observations in the survey dataset,
 the spatial microdata generated in this way, of any size and complexity,
 can be stored with only three columns: person identification number (ID),
 zone and weight. Weights are critical to spatial microdata generated in this way, as they 
-determine how representative each individual is of each zone. Thus, an even more compact way 
-of storing synthetic spatial microdata taken from a single dataset is as a `weight matrix',
-provided the original individual-level dataset is available, to recover individuals'
-attributes.
+determine how representative each individual is of each zone.
+Synthetic spatial microdata taken from a single dataset can therefore be
+stored in a more compact way: a `weight matrix' is a matrix with rows representing
+individuals and columns geographic zones. The internal cells reflect how reflective each
+individual is of each zone.
 % the same dataset can be stored using only two variables:  
 % small area microdata 
 % by combining the small area data with national survey data. The result of this process 
@@ -551,12 +553,13 @@ demonstrating the unknown links between age and sex. The job of the IPF
 algorithm is to establish estimates for the unknown cells, which are
 optimized to be consistent with the known row and column marginals.
 
-\begin{table}[h]
+\begin{table}[!h]
 \centering
 \caption[A hypothetical input microdata set]{A
 hypothetical input microdata set (the original
 weights set to one). The bold value is used subsequently for
 illustrative purposes.}
+\begin{center}
 \begin{tabular}{llll}
 \toprule
 {Individual } & {Sex} & {Age} & {Weight} \\
@@ -573,14 +576,15 @@ illustrative purposes.}
 % 5 & 49 & f \\
 \bottomrule
 \end{tabular}
+\end{center}
 \label{t:w}
 \end{table}
 \vspace{1cm}
 
 
-\begin{table}[htbp]
-\centering
+\begin{table}[!htbp]
 \caption{Hypothetical small area constraints data ($s$).}
+\begin{center}
 \begin{tabular}{cllll}
 \toprule
 Constraint $\Rightarrow$ & \multicolumn{2}{c}{$i$}& \multicolumn{2}{c}{$j$}\\
@@ -589,15 +593,16 @@ Area $\Downarrow$  & Under-50 & Over-50 &  Male & Female\\
 1  & 8 & 4 & 6 & 6\\
 \bottomrule
 \end{tabular}
+\end{center}
 \label{t:s}
 \end{table}
 \vspace{1cm}
 
-\begin{table}[htbp]
-\centering
+\begin{table}[!htbp]
 \caption[Small area constraints expressed as marginal totals]{Small
 area constraints expressed as marginal totals, and the cell
 values to be estimated.}
+\begin{center}
 \begin{tabular}{cllll}\toprule
 Marginal totals&  & \multicolumn{2}{c}{$j$} & \\
 & Age/sex & Male & Female & T\\ \midrule
@@ -607,23 +612,34 @@ Marginal totals&  & \multicolumn{2}{c}{$j$} & \\
 \bottomrule
 \end{tabular}
 \label{t:s2}
+\end{center}
 \end{table}
+
+\FloatBarrier
 
 Table \ref{t:m} presents the
 hypothetical microdata in aggregated form,
 that can be compared directly to Table \ref{t:s2}.
 Note that the integer variable age has been converted into
 a categorical variable in this step, a key stage in geographical aggregation.
+Using these data it is possible to readjust the weights of the hypothetical
+individuals, so that their sum adds up to the totals given in Table
+\ref{t:s2} (12). In particular, the weights can be readjusted by multiplying them by
+the marginal totals, originally taken from
+Table \ref{t:s} and then divided by the respective marginal total in \ref{t:m}.
+Because the total for each small-area constraint is 12, this must be
+done one constraint at a time. This
+is expressed, for a given area and a given constraint ($i$, age in this case)
+in \cref{eq:ipf}.
 
-\begin{table}[htbp]
-\centering
+\begin{table}[!htbp]
 \caption[The aggregated results of the weighted
-microdata set]{The aggregated results of the weighted
+microdata set]{Aggregated results of the weighted
 microdata set ($m(1)$).
 Note, these values depend on the
 weights allocated in Table \ref{t:w} and therefore
- change after each iteration}
-
+ change after each iteration.}
+\begin{center}
 \begin{tabular}{cllll}\toprule
 Marginal totals&  & \multicolumn{2}{c}{$j$} & \\
 & Age/sex & Male & Female & T\\ \midrule
@@ -632,24 +648,16 @@ Marginal totals&  & \multicolumn{2}{c}{$j$} & \\
 & T & 3 & 2 &5\\
 \bottomrule
 \end{tabular}
+\end{center}
 \label{t:m}
 \end{table}
-
-Using these data it is possible to readjust the weights of the hypothetical
-individuals, so that their sum adds up to the totals given in Table
-\ref{t:s2} (12). In particular, the weights can be readjusted by multiplying them by
-the marginal totals, originally taken from
-Table \ref{t:s} and then divided by the respective marginal total in \ref{t:m}.
-Because the total for each small-area constraint is 12, this must be
-done one constraint at a time. This
-can be expressed, for a given area and a given constraint ($i$
-or age in this case), as follows:
 
 \begin{equation}
 w(n+1)_{ij} = \frac{w(n)_{ij} \times sT_{i}}{mT(n)_{i}}
 \label{eq:ipf}
 \end{equation}
-where $w(n+1)_{ij}$ is the new weight for individuals with characteristics $i$
+
+In \cref{eq:ipf}, $w(n+1)_{ij}$ is the new weight for individuals with characteristics $i$
 (age, in this case), and $j$ (sex),  $w(n)_{ij}$ is the original
 weight for individuals with these characteristics, $sT_{i}$ is element
 marginal total of the small area constraint, $s$
@@ -659,15 +667,16 @@ microdata, $m$ (Table \ref{t:m}). $n$ represents the iteration number.
 Although the marginal totals of $s$ are known, its cell values
 are unknown. Thus, IPF estimates the interaction (or cross-tabulation)
 between constraint variables.
-(Follow the emboldened values in the tables
-to see how the new weight of individual 3 is calculated for the sex constraint.)
+Follow the emboldened values in the Tables \ref{t:w} to \ref{t:new-weights}
+to see how the new weight of individual 3 is calculated for the sex constraint.
 Table \ref{t:new-weights} illustrates the weights that result. Notice that the
 sum of the weights is equal to the total population, from the constraint variables.
 
 \begin{table}[htbp]
-\centering
 \caption{Reweighting the hypothetical microdataset in order to fit
 Table \ref{t:s}.}
+
+\begin{center}
 \begin{tabular}{lllll}
 \toprule
 {Individual} & {Sex} & {age-group} & {Weight} &
@@ -680,8 +689,11 @@ Table \ref{t:s}.}
 5 & Female & Under-50 & 1 & $1 \times 8/2 = 4$ \\
 \bottomrule
 \end{tabular}
+\end{center}
 \label{t:new-weights}
 \end{table}
+
+\FloatBarrier
 
 After the individual level data have been re-aggregated (\cref{t:m2}),
 the next stage is to repeat \cref{eq:ipf} for the age constraint to generate a
@@ -699,6 +711,9 @@ results in the following vector of new weights, for individuals 1 to 5:
 %  w(3) = (\frac{6}{5}, \frac{?}{?}, \frac{18}{5}, \frac{?}{?}, \frac{9}{2})
   w(3) = (\frac{6}{5}, \frac{6}{5}, \frac{18}{5}, \frac{3}{2}, \frac{9}{2})
 \end{equation}
+
+\FloatBarrier
+
 As before, the sum of the weights is equal to the population of the area (12).
 Notice also that after each iteration the fit between the marginal
 totals of $m$ and $s$
@@ -1329,7 +1344,7 @@ of information processed per unit time --- is a priority \citep{wickham2014adv,M
 In an effort to increase the computational efficiency of R, experiments were
 conducted in which the IPF algorithm was conducted in C, a low-level programming
 language which is notoriously fast via the recently published
-\emph{ipfp} package.\footnote{This package is
+\textbf{ipfp} package.\footnote{This package is
 hosted on the Comprehensive R Archive Network (CRAN) website
 and is available to download. See
 \href{http://cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}{cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}
@@ -1511,17 +1526,16 @@ and, secondly, that even greater speed improvements could be seen
 with larger and more complex model runs.
 
 \begin{table}[htbp]
+\caption{Time taken for different spatial microsimulation models to run in microseconds, comparing
+    R and C implementations code. 
+    3 (left hand columns) and 10 (right hand columns) iterations were tested for each.
+    `Improvement' represents the
+    relative speed improvement of the C implementation, via the \textbf{ipfp} package.}
     \begin{center}
-\caption{Time taken for different spatial microsimulation models to run, using
-    the baseline versions of each scenario (written in pure R) and C
-    implementations of the same model runs. Implementations with
-    3 (left hand columns) and 10 (right hand columns) were tested for each
-    scenario. The `Improvement' columns represent the
-    relative speed improvement of the C implementation in each case.}
 \begin{tabular}{lrrrrrr}
 \toprule
-Iterations $\rightarrow$ & \multicolumn{ 3}{c}{3 iterations} & \multicolumn{ 3}{c}{10 iterations} \\
-\midrule Scenario & \multicolumn{1}{l}{Baseline} & \multicolumn{1}{l}{ipfp} & \multicolumn{1}{l}{Improvement} & \multicolumn{1}{l}{Baseline} & \multicolumn{1}{l}{ipfp} & \multicolumn{1}{l}{Improvement} \\
+ & \multicolumn{ 3}{c}{3 iterations} & \multicolumn{ 3}{c}{10 iterations} \\
+ Scenario & \multicolumn{1}{l}{R code} & \multicolumn{1}{l}{C code (ipfp)} & \multicolumn{1}{l}{Improvement} & \multicolumn{1}{l}{R code} & \multicolumn{1}{l}{C code (ipfp)} & \multicolumn{1}{l}{Improvement} \\
 \midrule
 Simple & 73 & 8 & 9.1 & 231 & 8 & 28.9 \\ 
 Small-area & 3548 & 204 & 17.4 & 10760 & 288 & 37.4 \\ 
@@ -1549,12 +1563,17 @@ highlighting the importance of multiple iterations of IPF for more complex
 spatial microsimulation models.
 
 Substantial improvements in execution speed have been demonstrated using a lower-level
-implementation of the IPF algorithm than has been used in previous research. Assuming
-computational efficiency benefits continue to increase with more complex datasets,
-as observed in \cref{tspeed} and that further efficiency improvements
-are possible, it is conceivable that
-code more than 100 times faster than a recent
-implementation of IPF \citep{Lovelace2013-trs} could be developed.
+implementation of the IPF algorithm than has been used in previous research.
+% New - thanks DL
+If computational efficiency continues to increase,
+the code could run 100 times faster than current implementations
+on larger datasets (see \cref{tspeed}).
+% Assuming % old
+% computational efficiency benefits continue to increase with more complex datasets,
+% as observed in \cref{tspeed} and that further efficiency improvements
+% are possible, it is conceivable that
+% code more than 100 times faster than a recent
+% implementation of IPF \citep{Lovelace2013-trs} could be developed.
 
 \begin{table}[h]
 \caption{Summary results of root mean square error (RMSE) between
@@ -1593,9 +1612,10 @@ Proportional probabilities & 1.29 & 3.91 & 30.0 \\
 
 \section{Conclusions}
 In this paper we have systematically reviewed and tested modifications to the
-design of the IPF algorithm to generate spatial microdata. This is the first time
+implementation of the IPF algorithm for spatial microsimulation --- i.e. the creation
+of spatial microdata. This is the first time
 to our knowledge that such tests have been performed in a consistent and reproducible
-manner, that will allow others in to community to cross-check the results and enable
+manner, that will allow others to cross-check the results and facilitate
 further model testing. The model experiments conducted involved changing one of the
 following variables at a time:
 
@@ -1614,10 +1634,11 @@ that the initial weights have very little influence on the final result, particu
 after multiple iterations of IPF, is new and relevant to the spatial microsimulation
 community. This finding all but precludes the modification of initial weights as
 a method for altering IPF's performance and suggests that research time would be
-best focused on other variables in the model run, notably that of empty cells.
+best focused on other variables, notably empty cells.
 
-An important contribution of this paper is a systematic analysis of the influence
-of empty cells on the results of spatial microsimulation model runs.
+An important contribution of this paper is its analysis of the influence
+of empty cells --- individuals absent in the individual-level dataset but
+implied by the geographically aggregated constraints.
 The issue has received little attention in the literature and
 this paper covers new ground both in terms of the theory and methodology demonstrating their importance
 (\cref{smempty}). The demonstration of methods for identifying
@@ -1648,7 +1669,7 @@ test for missing cells, as defined in \cref{smempty}, before reweighting.
 The most useful finding for future researchers dealing with very large spatial microsimulation
 models or with limited computational resources is that the speed of spatial microsimulation
 algorithms can vary greatly depending on the method's implementation. The implementation
-of the IPF procedure in a low-level language via the recently published ipfp package
+of the IPF procedure in a low-level language via the recently published \textbf{ipfp} package
 yielded execution times dozens of times faster than the original R implementation of
 the code. The speed benefit of this low-level implementation rose with additional iterations
 and model complexity, suggesting that the method of implementation may be more important than
@@ -1659,7 +1680,7 @@ should be sufficient for complete convergence in most cases.
 In any case, the number of iterations becomes much less important
 for the timing of IPF if a low-level implementation is used.
 This finding highlights the importance of software selection
-and code implementation when working on implementations designed to work on large datasets.
+and code design when working on large datasets.
 
 There are many opportunities for further research raised by this paper.
 There is clearly a need for further model testing in the area of spatial microsimulation overall,
@@ -1681,13 +1702,14 @@ providing insight into the impact of a number of variables on the internal fit o
 one particular method for producing such small area estimates. Clearly there is
 much else to do. Based the previous literature, it seems that
 continued model testing and external validation are critical to the use of spatial
-microsimulation in academia and decision making based on imperfect information.
+microsimulation in academia and for decision making.
 This paper has provided robust and reproducible new insights into the important factors affecting model
-fit using IPF. Its potentially more important
-wider contribution is to demonstrate the importance of
-systematic model testing and evaluation. Continued testing and methodological advance
-will help ensure that spatial microsimulation
-models are serving the aims of researchers and society at large, and not vice versa.
+fit using IPF and computational efficiency. Potentially more important is the
+wider contribution: an illustration of systematic model testing and evaluation, which
+could be applied to many other procedures currently taken for granted in the social sciences.
+% In the field of spatial microsimulation, further testing and methodological advance
+% will help ensure that the
+% models are  researchers who use them and society at large.
 
 \bibliographystyle{model2-names.bst}
 \bibliography{/home/robin/Documents/Microsimulation.bib}

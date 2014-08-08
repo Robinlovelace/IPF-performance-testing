@@ -1026,15 +1026,17 @@ root procedure.  The former has the benefit of being widely used and understood,
 but is
 influenced by the mean value in each zone. Recent research in climate model
 evaluation suggests that the lesser known but simpler $MAE$ metric is preferable
-to RMSE in many ways \citep{Willmott2005}. Therefore both metrics are presented
-in this paper.
+to RMSE in many ways \citep{Willmott2005}.
+% Therefore both metrics are presented in this paper.
+We use the RMSE error in the final results as this is a widely understood and
+applied method with a proven track record in the social sciences.
 
 \section{Input data}
 The size and complexity of input data have a strong
 influence on the results of spatial microsimulation models.
 Especially important are the
 number of constraint variables and categories.
-It is important to test the method in a range of settings.
+We wanted to test the method under a range of conditions.
 Therefore, three unrelated scenarios, each with their own input datasets
 were used. These are referred to as `simple', `small-area' and
 `sheffield'. Each consists of a set of aggregate constraints and corresponding
@@ -1639,21 +1641,19 @@ community. This finding all but precludes the modification of initial weights as
 a method for altering IPF's performance and suggests that research time would be
 best focused on other variables, notably empty cells.
 
-An important contribution of this paper is its analysis of the influence
+A new contribution of this paper is its analysis
 of empty cells --- individuals absent in the individual-level dataset but
 implied by the geographically aggregated constraints.
-The issue has received little attention in the literature and
-this paper covers new ground both in terms of the theory and methodology demonstrating their importance
-(\cref{smempty}). The demonstration of methods for identifying
-whether empty cells are present in the input data should be of use to future researchers.
-This is also the first time (to our knowledge) that empty cells have been shown to have
+The methods presented in \cref{smempty} should enable others to
+identify empty cells in their input datasets and use this knowledge to
+explain model fit or to identify synthetic individuals to add.
+This is the first time, to our knowledge, that empty cells have been shown to have
 large adverse effect on model fit compared with other variables in model design.
 
-The removal of empty cells greatly improved model fit,
+The removal of empty cells greatly improved fit,
 especially for complex scenarios. This straightforward change had
-the single greatest positive impact on the results.
-We therefore conclude that the identification and removal of empty cells, as
-demonstrated in this paper and accompanying code, can substantially enhance the performance of
+the single greatest positive impact on the results, leading to the 
+conclusion that removing empty cells can substantially enhance the performance of
 spatial microsimulation models, especially those with many constraint variables and relatively
 small input input datasets.
 On the other hand, a potential downside of removing empty cells is that it involves adding fictitious
@@ -1664,26 +1664,26 @@ Another potential problem caused by removal of empty cells that must be avoided 
 the creation of impossible combinations of variables such as car drivers under
 the age of 16.
 
-Despite these concerns, our finding that empty cells has a large impact on model
-results is robust across all scenarios and should be taken seriously in future research.
-A direct recommendation from these findings is therefore that researchers should
-test for missing cells, as defined in \cref{smempty}, before reweighting.
+% Despite these concerns, our finding that empty cells has a large impact on model % waffle!
+% results is robust across all scenarios and should be taken seriously in future research.
+% A direct recommendation from these findings is therefore that researchers should
+% test for missing cells, as defined in \cref{smempty}, before reweighting.
 
-The most useful finding for future researchers dealing with very large spatial microsimulation
-models or with limited computational resources is that the speed of spatial microsimulation
-algorithms can vary greatly depending on the method's implementation. The implementation
+The most useful practical finding for future researchers dealing with large spatial microsimulation
+models and limited computational resources is likely to relate to computational efficiency.
+The implementation
 of the IPF procedure in a low-level language via the recently published \textbf{ipfp} package
-yielded execution times dozens of times faster than the original R implementation of
-the code. The speed benefit of this low-level implementation rose with additional iterations
-and model complexity, suggesting that the method of implementation may be more important than
-the number of model runs for ensuring fast code. Regarding the optimal number of iterations,
-no conclusive answer is provided by the results. However, it is clear that
+yielded execution times dozens of times faster than the original R implementation.
+The speed benefit of this low-level implementation rose with additional iterations
+and model complexity, suggesting that the method of implementation may be more influential than
+the number of iterations. Regarding the optimal number of iterations,
+there is no magic number identified in this research. However, it is clear that
 the marginal benefits of additional iterations decline rapidly: we conclude that 10 iterations
 should be sufficient for complete convergence in most cases.
-In any case, the number of iterations becomes much less important
-for the timing of IPF if a low-level implementation is used.
-This finding highlights the importance of software selection
-and code design when working on large datasets.
+% In any case, the number of iterations becomes much less important
+% for the timing of IPF if a low-level implementation is used.
+% This finding highlights the importance of software selection
+% and code design when working on large datasets.
 
 There are many opportunities for further research raised by this paper.
 There is clearly a need for further model testing in the area of spatial microsimulation overall,
@@ -1703,13 +1703,14 @@ even when these estimates were being widely used by the medical profession for
 decision making. In this wider context our study has only scratched the surface,
 providing insight into the impact of a number of variables on the internal fit of
 one particular method for producing such small area estimates. Clearly there is
-much else to do. Based the previous literature, it seems that
-continued model testing and external validation are critical to the use of spatial
-microsimulation in academia and for decision making.
-This paper has provided robust and reproducible new insights into the important factors affecting model
-fit using IPF and computational efficiency. Potentially more important is the
-wider contribution: an illustration of systematic model testing and evaluation, which
-could be applied to many other procedures currently taken for granted in the social sciences.
+much else to do. The existing literature called
+for increased model testing and validation in spatial
+microsimulation.
+This paper has responded, by providing reproducible insights into the factors affecting model
+fit and computational efficiency. The
+wider contribution is an illustration of the utility of model testing:
+similar tests applied to other widely used procedures may also yield surprising results,
+with potential benefits for method design across the social sciences.
 % In the field of spatial microsimulation, further testing and methodological advance
 % will help ensure that the
 % models are  researchers who use them and society at large.

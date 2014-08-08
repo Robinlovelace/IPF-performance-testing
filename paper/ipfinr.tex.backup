@@ -1026,15 +1026,17 @@ root procedure.  The former has the benefit of being widely used and understood,
 but is
 influenced by the mean value in each zone. Recent research in climate model
 evaluation suggests that the lesser known but simpler $MAE$ metric is preferable
-to RMSE in many ways \citep{Willmott2005}. Therefore both metrics are presented
-in this paper.
+to RMSE in many ways \citep{Willmott2005}.
+% Therefore both metrics are presented in this paper.
+We use the RMSE error in the final results as this is a widely understood and
+applied method with a proven track record in the social sciences.
 
 \section{Input data}
 The size and complexity of input data have a strong
 influence on the results of spatial microsimulation models.
 Especially important are the
 number of constraint variables and categories.
-It is important to test the method in a range of settings.
+We wanted to test the method under a range of conditions.
 Therefore, three unrelated scenarios, each with their own input datasets
 were used. These are referred to as `simple', `small-area' and
 `sheffield'. Each consists of a set of aggregate constraints and corresponding
@@ -1333,25 +1335,26 @@ population counts and accuracy than the deterministic approaches.
   
 
 \subsection{Computational efficiency}
-The code-base used for the model runs used throughout this paper is based,
-loosely on that provided in the Supplementary Information of
+The code used for the model runs used throughout this paper is based,
+with a few modifications, on that provided in the Supplementary Information of
 \citet{Lovelace2013-trs}. This implementation was written purely in R,
 a vector based language, and contains many `for' loops, which are generally best
 avoided for speed-critical applications. R was not designed for speed, but has
-interfaces to lower level languages when computational efficiency --- the amount
-of information processed per unit time --- is a priority \citep{wickham2014adv,Matloff-R}.
+interfaces to lower level languages \citep{Matloff-R}. Programmers can
+take advantages of these interfaces when efficiency --- the amount
+of information processed per unit time --- is a priority \citep{wickham2014adv}.
 
-In an effort to increase the computational efficiency of R, experiments were
+To increase the computational efficiency of R, experiments were
 conducted in which the IPF algorithm was conducted in C, a low-level programming
-language which is notoriously fast via the recently published
+language, via the recently published
 \textbf{ipfp} package.\footnote{This package is
 hosted on the Comprehensive R Archive Network (CRAN) website
 and is available to download. See
 \href{http://cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}{cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}
 for the package's documentation.}
 For each scenario in the Supplementary Information, there is a file titled `etsim-ipfp.R',
-which performs the same steps as the baseline `etsim.R' model run, but using the C interface
-of the \emph{ipfp} package.
+which performs the same steps as the baseline `etsim.R' model run, but using the
+\verb ipfp() ~ function of the \textbf{ipfp} package.
 The results of these experiments for
 different scenarios and different numbers of iterations are presented in section
 \cref{sspeedr}.
@@ -1506,24 +1509,26 @@ by contrast, the impact was moderate, increasing RMSE by around 20\%.
 
 \subsection{Computational efficiency} \label{sspeedr}
 
-The code efficiency
-results of performing IPF in the low-level C implementation, compared with
-the pure R implementation, are shown in \cref{tspeed}. This shows that running
+The times taken to perform IPF in the original R code and the new
+low-level C implementation are compared in \cref{tspeed}. This shows that running
 the repetitive part of the modelling in a low-level language can have
-substantial speed benefits --- a more than 10 fold improvement in speed for
-all but the simplest model run with the fewest iterations. It is clear from
-\cref{tspeed} that the computational efficiency benefits of running IPF in C
+substantial speed benefits --- more than 10 fold improvements were found for
+all but the simplest model runs with the fewest iterations. 
+\Cref{tspeed} shows that the computational efficiency benefits of running IPF in C
 are not linear: the relative speed improvements increase with the both the
-number of iterations and the size of the input datasets to be processed.
+number of iterations and the size of the input datasets.
 
-This suggests two things: firstly, that other parts of the R code
-that could be optimised for speed improvements
+This suggests two things:
+\begin{itemize}
+ \item Other parts of the R code used in both the `pure R' and C implementations via \textbf{ipfp}
+ could be optimised for speed improvements.
+ \item Greater speed improvements could be seen with larger and more complex model runs.
+\end{itemize}
+
 % \footnote{`For' loops
 %     are notoriously slow in R \citep{Matloff-R}, so their removal from
 %     the code could
 %     probably further increase the speed of execution.}
-and, secondly, that even greater speed improvements could be seen
-with larger and more complex model runs.
 
 \begin{table}[htbp]
 \caption{Time taken for different spatial microsimulation models to run in microseconds, comparing

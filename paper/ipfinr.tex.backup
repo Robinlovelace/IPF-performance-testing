@@ -1,5 +1,6 @@
 % Todo: consolidate two sets of tables for intro eg
 % add small e.g. to tables, big summaryt +
+% Search for !!! and TODO symbols after review
 
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8x]{inputenc}
@@ -221,11 +222,14 @@ computationally efficient way'' (p.~469).
 Usage characteristics of these different terms are summarised in \cref{tterms}.
 
 \begin{table}[htbp]
-\caption{Usage characteristics of different terms for the IPF procedure, from the Scopus database.}
+\caption{Usage characteristics of different terms for the IPF procedure, from the Scopus database.
+The percentages refer to the proportion of each search term used to refer to IPF in different
+subsets of the database: articles published since 2010 and mentioning ``regional'', respectively.}
+
 \begin{center}
 \begin{tabular}{lp{1.5cm}p{2.5cm}p{1.5cm}p{2.5cm}}
 \toprule
-Search term & N. citations & Commonest subject area & \% Since 2010 & \% Mentioning ``regional'' \\
+Search term & N. citations & Commonest subject area & \% since 2010 & \% mentioning ``regional'' \\
 \midrule
 Entropy maximisation & 564 & Engineering & 30 & 9 \\
 ``Iterative proportional fitting''  & 135 & Mathematics & 22\ & 16 \\
@@ -1114,7 +1118,7 @@ tenancy of these
 individuals (although tenancy in fact counts houses, not people): the files can
 be accessed from `small-area-eg', within the `input-data' folder of the online
 repository.\footnote{These datasets can be found in the `input-data'
-subdirectory of the \href{http://tinyurl.com/lgw6zev}{supplementary data}.}
+sub-directory of the \href{http://tinyurl.com/lgw6zev}{Supplementary Information}.}
 % Add these!!!
 % A sample of these constraint variables is presented in \cref{t3} below. % aren't we putting ind. data 1st?
 % 
@@ -1170,8 +1174,8 @@ even though the printed value, to 6 decimal places, is
 indistinguishable from 1 after two complete iterations.}
 
 The main characteristics of the baseline model for each scenario area
-presented in \cref{tbase}. The meaning of each of the attributes in the
-row names of will be explained later in this section.
+presented in \cref{tbase}. The meaning of the
+row names of \cref{tbase} should become clear throughout this section.
 
 \begin{table}[htbp]
 \caption{Characteristics of the baseline model run for each scenario.}
@@ -1199,15 +1203,15 @@ Average weight & 1.3 & 0.1 & 0.65 \\
 
 \subsection{Constraints and iterations}
 These were the simplest model experiments, requiring only
-the reporting of how the results changed with more or fewer
-iterations and re-arrangement of to apply constraints
-in a different order. 1, 3 and 10 iteration (up to 20 are
+additional iterations and re-arrangement of the order
+in which constraints were applied. 1, 3 and 10 iteration (up to 20 are
 reported in the literature, but we found no difference in the
 results beyond 10) are reported in the final
-results and `convergence graphs' were created to show how model
-fit improved from one iteration-constraint combination to the next.\footnote{For
+results.\footnote{For
 an explanation of how to modify model parameters, see the `README.md' text
-file in the \href{http://tinyurl.com/lgw6zev}{supplementary data}}.
+file in the \href{http://tinyurl.com/lgw6zev}{Supplementary Information}.}
+% and `convergence graphs' were created to show how model % !!! really should add this after review!!! %TODO
+% fit improved from one iteration-constraint combination to the next.
 %
 %To alter the number of iterations used in each model, one simply
 %changes the number in the following line of code (the default is 3):
@@ -1219,7 +1223,7 @@ file in the \href{http://tinyurl.com/lgw6zev}{supplementary data}}.
 %The code for running the constraints in a different order
 %is saved in `etsim-reordered.R'.
 %In this script file, the order in which constraints ran was systematically altered.
-The order with the greatest impact on the results is reported
+The order with the greatest impact on the results is the one reported
 in the final results table (\cref{tsum}).
 
 \subsection{Initial weights}
@@ -1328,7 +1332,7 @@ such as the generation of Gini indices of income for each zone.
 A number of methods for integerisation have been developed,
 including deterministic and probabilistic approaches \citep{Ballas2005c}.
 We used modified R implementations of two probabilistic methods
---- `truncate replicate sample' and `proportional probabilities' --- reported
+--- `truncate replicate sample' (TRS) and `proportional probabilities' --- reported
 in \citep{Lovelace2013-trs} and the supplementary information associated with this
 paper \citep{Lovelace-2013-supp}, as these were found to perform better in terms of final
 population counts and accuracy than the deterministic approaches.
@@ -1336,7 +1340,7 @@ population counts and accuracy than the deterministic approaches.
 
 \subsection{Computational efficiency}
 The code used for the model runs used throughout this paper is based,
-with a few modifications, on that provided in the Supplementary Information of
+with a few modifications, on that provided in the \href{http://tinyurl.com/lgw6zev}{Supplementary Information} of
 \citet{Lovelace2013-trs}. This implementation was written purely in R,
 a vector based language, and contains many `for' loops, which are generally best
 avoided for speed-critical applications. R was not designed for speed, but has
@@ -1352,7 +1356,7 @@ hosted on the Comprehensive R Archive Network (CRAN) website
 and is available to download. See
 \href{http://cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}{cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}
 for the package's documentation.}
-For each scenario in the Supplementary Information, there is a file titled `etsim-ipfp.R',
+For each scenario in the \href{http://tinyurl.com/lgw6zev}{Supplementary Information}, there is a file titled `etsim-ipfp.R',
 which performs the same steps as the baseline `etsim.R' model run, but using the
 \verb ipfp() ~ function of the \textbf{ipfp} package.
 The results of these experiments for
@@ -1480,8 +1484,8 @@ These results suggest that initial weights have a limited impact on the results 
 
 \subsection{Empty cells}
 
-There were found to be 0, 62 and 8,105 empty cells in the simple, small-area and sheffield
-examples respectively. Only the smallest input dataset was
+There were found to be 62 and 8,105 empty cells in the `small-area' and `Sheffield'
+baseline scenarios, respectively. Only the smallest input dataset was
 \emph{complete}. Due to the multiplying effect of more variables (\cref{eqempty}),
 $Nperm$ was found to be much larger in the complex models, with values rising from
 4 to 300 and 9504 for the increasingly complex test examples. 
@@ -1502,7 +1506,6 @@ After passing the final weights through the integerisation algorithms mentioned
 in \cref{sintm}, the weight matrices were of identical dimension and total population as
 before. It was found that, compared with the baseline scenarios, that integerisation
 had a negative impact on model fit.
-
 For the `simple' and `small area' scenarios, the impact of integerisation was proportionally
 large, greater than the impact of any other changes. For the more complex Sheffield example,
 by contrast, the impact was moderate, increasing RMSE by around 20\%.
@@ -1562,10 +1565,10 @@ fit were additional iterations for the simpler scenarios and the removal of
 empty cells from the input microdata for the more complex `Sheffield' scenario.
 
 Likewise, the greatest negative impact on model fit was due to the same variable
-for the simpler scenarios: integerisation. For the `Sheffield' example, the
-use of only one complete iteration instead of 3 or more had the most damaging impact,
-highlighting the importance of multiple iterations of IPF for more complex
-spatial microsimulation models.
+for the simpler scenarios: integerisation. For `Sheffield', the
+use of only one complete iteration (not shown in \cref{tsum})
+instead of 3 or more had the a more damaging impact than any of those presented,
+highlighting the importance of performing multiple iterations of IPF.
 
 Substantial improvements in execution speed have been demonstrated using a lower-level
 implementation of the IPF algorithm than has been used in previous research.
@@ -1613,8 +1616,6 @@ Proportional probabilities & 1.29 & 3.91 & 30.0 \\
 \end{center}
 \end{table}
 
-
-
 \section{Conclusions}
 In this paper we have systematically reviewed and tested modifications to the
 implementation of the IPF algorithm for spatial microsimulation --- i.e. the creation
@@ -1628,34 +1629,33 @@ following variables at a time:
  \item Order of constraints and number of iterations.
  \item Modification of initial weights.
  \item Addition and removal of `empty cells'.
- \item Integerisation of the fractional weights using a couple of probabilistic methods.
+ \item Integerisation of the fractional weights using a couple of probabilistic methods ---
+ `TRS' and `proportional probabilities'.
  \item The language in which the main IPF algorithm is undertaken, from R to C.
 \end{itemize}
 
 % Some of the variables altered !!!
 In every case, the direction of change was as expected, confirming
 prior expectations about the influence of model set-up on performance. The finding
-that the initial weights have very little influence on the final result, particularly
+that the initial weights have very little influence on the results, particularly
 after multiple iterations of IPF, is new and relevant to the spatial microsimulation
 community. This finding all but precludes the modification of initial weights as
 a method for altering IPF's performance and suggests that research time would be
 best focused on other variables, notably empty cells.
 
-An important contribution of this paper is its analysis of the influence
+A new contribution of this paper is its analysis
 of empty cells --- individuals absent in the individual-level dataset but
 implied by the geographically aggregated constraints.
-The issue has received little attention in the literature and
-this paper covers new ground both in terms of the theory and methodology demonstrating their importance
-(\cref{smempty}). The demonstration of methods for identifying
-whether empty cells are present in the input data should be of use to future researchers.
-This is also the first time (to our knowledge) that empty cells have been shown to have
+The methods presented in \cref{smempty} should enable others to
+identify empty cells in their input datasets and use this knowledge to
+explain model fit or to identify synthetic individuals to add.
+This is the first time, to our knowledge, that empty cells have been shown to have
 large adverse effect on model fit compared with other variables in model design.
 
-The removal of empty cells greatly improved model fit,
+The removal of empty cells greatly improved fit,
 especially for complex scenarios. This straightforward change had
-the single greatest positive impact on the results.
-We therefore conclude that the identification and removal of empty cells, as
-demonstrated in this paper and accompanying code, can substantially enhance the performance of
+the single greatest positive impact on the results, leading to the 
+conclusion that removing empty cells can substantially enhance the performance of
 spatial microsimulation models, especially those with many constraint variables and relatively
 small input input datasets.
 On the other hand, a potential downside of removing empty cells is that it involves adding fictitious
@@ -1666,26 +1666,26 @@ Another potential problem caused by removal of empty cells that must be avoided 
 the creation of impossible combinations of variables such as car drivers under
 the age of 16.
 
-Despite these concerns, our finding that empty cells has a large impact on model
-results is robust across all scenarios and should be taken seriously in future research.
-A direct recommendation from these findings is therefore that researchers should
-test for missing cells, as defined in \cref{smempty}, before reweighting.
+% Despite these concerns, our finding that empty cells has a large impact on model % waffle!
+% results is robust across all scenarios and should be taken seriously in future research.
+% A direct recommendation from these findings is therefore that researchers should
+% test for missing cells, as defined in \cref{smempty}, before reweighting.
 
-The most useful finding for future researchers dealing with very large spatial microsimulation
-models or with limited computational resources is that the speed of spatial microsimulation
-algorithms can vary greatly depending on the method's implementation. The implementation
+The most useful practical finding for future researchers dealing with large spatial microsimulation
+models and limited computational resources is likely to relate to computational efficiency.
+The implementation
 of the IPF procedure in a low-level language via the recently published \textbf{ipfp} package
-yielded execution times dozens of times faster than the original R implementation of
-the code. The speed benefit of this low-level implementation rose with additional iterations
-and model complexity, suggesting that the method of implementation may be more important than
-the number of model runs for ensuring fast code. Regarding the optimal number of iterations,
-no conclusive answer is provided by the results. However, it is clear that
+yielded execution times dozens of times faster than the original R implementation.
+The speed benefit of this low-level implementation rose with additional iterations
+and model complexity, suggesting that the method of implementation may be more influential than
+the number of iterations. Regarding the optimal number of iterations,
+there is no magic number identified in this research. However, it is clear that
 the marginal benefits of additional iterations decline rapidly: we conclude that 10 iterations
 should be sufficient for complete convergence in most cases.
-In any case, the number of iterations becomes much less important
-for the timing of IPF if a low-level implementation is used.
-This finding highlights the importance of software selection
-and code design when working on large datasets.
+% In any case, the number of iterations becomes much less important
+% for the timing of IPF if a low-level implementation is used.
+% This finding highlights the importance of software selection
+% and code design when working on large datasets.
 
 There are many opportunities for further research raised by this paper.
 There is clearly a need for further model testing in the area of spatial microsimulation overall,
@@ -1698,20 +1698,33 @@ iterations simultaneously? Can change in one variable reduce the need for
 change in another? What are the opportunities for further improvements in computational efficiency
 of the code?
 
-Moreover, there are broader questions raised by this research about validation
+Moreover, there are broader questions raised by this research concerning the validation
 of models that are used for policy making. \citet{Scarborough2009} highlight the
-paucity of evaluation studies of model based local estimates of heart disease,
+paucity of evaluation studies of model-based local estimates of heart disease,
 even when these estimates were being widely used by the medical profession for
-decision making. In this wider context our study has only scratched the surface,
-providing insight into the impact of a number of variables on the internal fit of
-one particular method for producing such small area estimates. Clearly there is
-much else to do. Based the previous literature, it seems that
-continued model testing and external validation are critical to the use of spatial
-microsimulation in academia and for decision making.
-This paper has provided robust and reproducible new insights into the important factors affecting model
-fit using IPF and computational efficiency. Potentially more important is the
-wider contribution: an illustration of systematic model testing and evaluation, which
-could be applied to many other procedures currently taken for granted in the social sciences.
+decision making. We contend that such issues, with real-world consequences, are exacerbated
+by a lack of reproducibility, model evaluation and testing
+across spatial microsimulation research. The paper's methods --- supplied in
+the \href{http://tinyurl.com/lgw6zev}{Supplementary Information} ---
+and reproducible results
+address these issues, providing new insight into the likely impacts of different
+variables on the performance of the IPF procedure. There is however much further
+work to be done, including research into external validation, handling of very
+large datasets, and grouping output microdata into household units.
+
+% The findings encourage such work and 
+% provide a basis for such tests and a baseline for new test procedures.
+% 
+% The existing literature called
+% for increased model testing and validation in spatial
+% microsimulation.
+% 
+% It is in this wider context that our study has clarified
+% understandings of the impact of a number of variables on the internal fit of
+% one particular method for producing such small area estimates. There is however further work to be done in the area.
+% The wider contribution is an illustration of the utility of model testing:
+% similar tests applied to other widely used procedures may also yield surprising results,
+% with potential benefits for method design across the social sciences.
 % In the field of spatial microsimulation, further testing and methodological advance
 % will help ensure that the
 % models are  researchers who use them and society at large.

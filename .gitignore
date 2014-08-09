@@ -1,3 +1,4 @@
+*.kilepr
 .Rproj.user
 .Rhistory
 .RData

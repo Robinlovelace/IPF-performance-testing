@@ -15,6 +15,7 @@
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{placeins}
+% \usepackage[affil-it]{authblk}
 
 \usepackage{array}
 \newcolumntype{C}[1]{>{\arraybackslash}p{#1}}
@@ -52,7 +53,22 @@
 
 %opening
 \title{Evaluating the performance of Iterative Proportional Fitting for spatial microsimulation: new tests for an established technique}
-% \author{Robin Lovelace}
+
+% \author{Robin Lovelace*}
+% \author{Mark Birkin}
+% \author{Dimitris Ballas}
+% \author{Eveline van Leeuwen}
+% 
+% \affil{*School of Geography,
+% University of Leeds, Leeds,
+% LS2 9JT,
+% United Kingdom}
+
+% \address{}
+%% \address[label2]{<address>}
+
+% \author{}
+
 
 \begin{document}
 
@@ -127,25 +143,41 @@ Geographically aggregated datasets are problematic for the
 analysis of spatial phenomena \citep{Openshaw1984} and can prevent the analysis of
 the interdependencies between individual and household variables
 at the local level \citep{Lee2009}. In an effort to address the drawbacks associated with this lack of microdata,
-Samples of Anonymised Records (SARs) were released from the 1991 Census
-\citep{marsh1993,middleton1995samples} and this was followed by similar SARs releases in 2001 and 2011.
-Nevertheless, the SARs are not suitable for intra-city and neighbourhood level
-analysis, as the smallest geographical level at which such microdata are publicly
-available is the Local Authority, to preserve confidentiality.
+statistical authorities in many countries have made available samples of individual-level data,
+usually with carefully designed measures to prevent identification of individuals.
+\citet{Prada2011} provide an insightful discussion of this subject from the perspective
+of the publication of `public use microdata samples' PUMS in the USA, where the
+``benefits of data dissemination are potentially enormous'' (p.~1) but where
+there is little consensus about the right balance right `tolerance to risk'
+of individuals being identified.
+In the UK, to take another example, a 2\% Sample of Anonymised
+Records (SARs) taken from the 1991 Census was released to academic researchers
+\citep{marsh1993,middleton1995samples}. This has been followed by similar SARs releases in 2001
+and 2011.
+Due to increased ability to to store, process and transfer such `big microdata',
+alongside increasing awareness of its potential benefits for public policy making,
+\citet{ruggles2014big} suggests that researchers ``will soon have [access to] individual-level
+information about entire populations or large samples covering most of the world’s population with
+multiple observations at high geographic resolution'' (p.~297). Indeed, the mass collection
+and analysis of individual-level information from mobile phones and other sources
+is already a reality in some sectors.
+
+Nevertheless, most official microdatasets, such as the SARs and the PUMS,
+are not suitable for local and neighbourhood level
+analysis due to the low level of geographic resolution allocated to each
+individual to preserve confidentiality.
 There has been discussion of ways to further disaggregate the geography
-of the SARs, with due emphasis on risks to confidentiality \citep{Tranmer2005case4}.
+of such microdata, with due emphasis on risks to confidentiality \citep{Tranmer2005case4}.
 Furthermore, there are many policy relevant variables (e.g.~income and wealth,
-social attitudes) that are not collected by the Census in many countries,
-making these variables
-unavailable at the small area level.
-
-
+social attitudes) that are not collected by the Census at all in many countries,
+making these variables unavailable at the small area level and increasing the incentives
+to produce local level estimates.
 
 % It is these disadvantages that spatial microsimulation and small
 % area estimation seek to address.
 One way geographers and regional scientists have addressed
 these data issues and lack of small area information is through the development
-and application of the overlapping methods of small area estimation and
+and application of the methods of small area estimation and
 spatial microsimulation \citep{Ballas2005c,Hermes2012a}.\footnote{There
 is a great deal of overlap between methods for spatial microsimulation and
 small area estimation (the terms are sometimes used
@@ -215,7 +247,7 @@ at different times and in different branches of academic research \citep{Lahr200
 `Entropy maximisation' is a related technique, of which IPF is considered to be a
 subset \citep{Johnston1993,Rich2012}.\footnote{As an
 aside, IPF is considered by \citet{Rich2012} to be a particular
-efficient for of entropy maximisation: ``The popularity of the IPF is therefore mainly due to the fact that it provides a
+efficient form of entropy maximisation: ``The popularity of the IPF is therefore mainly due to the fact that it provides a
 solution which is equivalent to that of the ME [maximum entropy]
 approaches, but attained in a much more
 computationally efficient way'' (p.~469).
@@ -760,9 +792,12 @@ to 'integerise' the fractional weights illustrated in \cref{t:m2}.
 Methods for performing integerisation are discussed in
 \citep{Ballas2005c}, \citep{Pritchard2012} and, most recently
 in \citep{Lovelace2013-trs}, who
-systematically benchmarked and compare different procedures.
-It was found that the `truncate, replicate, sample' (TRS)
-and `proportional probabilities' methods were most accurate.
+systematically benchmarked and compared different procedures.
+It was found that the probabilistic `truncate, replicate, sample' (TRS)
+and `proportional probabilities' methods --- which use repeat sampling
+on the raw weights and non-repeat sampling (whereby a selected individual
+cannot be selected again) of the truncated weights, respectively ---
+were most accurate.
 These methods are therefore used to test the impact of
 integerisation in this paper.
 % Based on this last paper, we use the TRS methodology to explore the impacts
@@ -880,7 +915,7 @@ different model configurations.
 
 The problem of internal validation
 (described as `evaluating model fit') was tackled in detail by \citet{Voas2001}.
-Chi-squared, Z-scores, absolute error and entropy-based methods
+The Chi-squared statistic, Z-scores, absolute error and entropy-based methods
 were tested, with no clear `winner' other than the advocacy of
 methods that are robust, fast and easy to understand (standardized absolute
 error measures match these criteria well).
@@ -923,7 +958,10 @@ The y value corresponds to the
 aggregated count of individuals in the same category in the aggregated
 (wide) representation of the spatial microdata output from the model. % have we defined spatial microdata?
 This stage can be undertaken either before or after \emph{integerisation}
-(more on this below). As taught in basic statistics courses, the closer the points to the
+(more on this below).
+% As taught in basic statistics courses, % changed to suggested line below, by MB
+As is typical in such circumstances,
+the closer the points to the
 1:1 (45 degree, assuming the axes have the same scale) line, the better the fit.
 
 \subsection{The coefficient of determination}

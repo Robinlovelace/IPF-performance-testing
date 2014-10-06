@@ -3,7 +3,7 @@
 #### Robin Lovelace (2013)
 ############################################
 start_time <- Sys.time()
-num.its <- 10 # how many iterations will we run?
+num.its <- 3 # how many iterations will we run?
 
 # Loading the data: Ensure R is in the right working directory 
 # (input-data/simple or models/simple). Check this by entering getwd()

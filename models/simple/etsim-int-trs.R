@@ -114,7 +114,7 @@ set.seed(0) # Include this line to ensure repeatable results
 
 # Sample individuals based on their proportional probabilities
 for (i in 1:nrow(all.msim)){
-  if(max(f[,i]) == 0) f[which.max(fw[,i]),i] <- 1 # ensures model will run in case max(i5.w5 < 1) thanks to Eveline van Leeuwen
+  if(max(f[,i]) == 0) f[which.max(fw[,i]),i] <- 1 # ensures model will run
   ints[[i]] <- rep(which(fw[,i] > 0), f[,i])
   s <- sample(which(fw[,i] > 0), size = sum(con1[i,]) - sum(f[,i]) , # sample using decimal weights to 'top up' selection
               prob=d[,i], replace = F) 

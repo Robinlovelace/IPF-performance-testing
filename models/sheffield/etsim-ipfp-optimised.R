@@ -37,6 +37,7 @@ category.labels <- c ("m16_19","m20_24","m25_34","m35_54","m55_60","m60_plus","f
                       ,colnames(con2)
                       ,colnames(con3)
                       ,colnames(con4))
+
 all.msim <- cbind(con1 
                   ,con2
                   ,con3

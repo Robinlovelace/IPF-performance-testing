@@ -52,7 +52,21 @@
 
 %opening
 \title{Evaluating the performance of Iterative Proportional Fitting for spatial microsimulation: new tests for an established technique}
-% \author{Robin Lovelace}
+
+\author{Robin Lovelace}
+\author{Mark Birkin}
+\author{Dimitris Ballas}
+\author{Eveline van Leeuwen}
+
+\address{School of Geography,
+University of Leeds, Leeds,
+LS2 9JT,
+United Kingdom}
+%% \address[label2]{<address>}
+
+\author{}
+
+\address{}
 
 \begin{document}
 
@@ -69,7 +83,8 @@ The technique is mature, widely used and relatively straight-forward.
 Although IPF is well described mathematically, reproducible examples of the
 algorithm, written in modern programming languages, are rare in the academic
 literature. Therefore, there is  a tendency for researchers to `start from
-scratch', resulting in a variety ad-hoc implementations and little evidence about the relative merits of differing approaches.
+scratch', resulting in a variety of
+ad hoc implementations and little evidence about the relative merits of differing approaches.
 These knowledge gaps mean that answers to methodological questions must be guessed:
 % Under what conditions can convergence be expected?
 % How many iterations should be used for any given application? 
@@ -126,25 +141,41 @@ Geographically aggregated datasets are problematic for the
 analysis of spatial phenomena \citep{Openshaw1984} and can prevent the analysis of
 the interdependencies between individual and household variables
 at the local level \citep{Lee2009}. In an effort to address the drawbacks associated with this lack of microdata,
-Samples of Anonymised Records (SARs) were released from the 1991 Census
-\citep{marsh1993,middleton1995samples} and this was followed by similar SARs releases in 2001 and 2011.
-Nevertheless, the SARs are not suitable for intra-city and neighbourhood level
-analysis, as the smallest geographical level at which such microdata are publicly
-available is the Local Authority, to preserve confidentiality.
+statistical authorities in many countries have made available samples of individual-level data,
+usually with carefully designed measures to prevent identification of individuals.
+\citet{Prada2011} provide an insightful discussion of this subject from the perspective
+of the publication of `public use microdata samples' PUMS in the USA, where the
+``benefits of data dissemination are potentially enormous'' (p.~1) but where
+there is little consensus about the right balance right `tolerance to risk'
+of individuals being identified.
+In the UK, to take another example, a 2\% Sample of Anonymised
+Records (SARs) taken from the 1991 Census was released to academic researchers
+\citep{marsh1993,middleton1995samples}. This has been followed by similar SARs releases in 2001
+and 2011.
+Due to increased ability to to store, process and transfer such `big microdata',
+alongside increasing awareness of its potential benefits for public policy making,
+\citet{ruggles2014big} suggests that researchers ``will soon have [access to] individual-level
+information about entire populations or large samples covering most of the world’s population with
+multiple observations at high geographic resolution'' (p.~297). Indeed, the mass collection
+and analysis of individual-level information from mobile phones and other sources
+is already a reality in some sectors.
+
+Nevertheless, most official microdatasets, such as the SARs and the PUMS,
+are not suitable for local and neighbourhood level
+analysis due to the low level of geographic resolution allocated to each
+individual to preserve confidentiality.
 There has been discussion of ways to further disaggregate the geography
-of the SARs, with due emphasis on risks to confidentiality \citep{Tranmer2005case4}.
+of such microdata, with due emphasis on risks to confidentiality \citep{Tranmer2005case4}.
 Furthermore, there are many policy relevant variables (e.g.~income and wealth,
-social attitudes) that are not collected by the Census in many countries,
-making the these variables
-unavailable at the small area level.
-
-
+social attitudes) that are not collected by the Census at all in many countries,
+making these variables unavailable at the small area level and increasing the incentives
+to produce local level estimates.
 
 % It is these disadvantages that spatial microsimulation and small
 % area estimation seek to address.
 One way geographers and regional scientists have addressed
 these data issues and lack of small area information is through the development
-and application of the overlapping methods of small area estimation and
+and application of the methods of small area estimation and
 spatial microsimulation \citep{Ballas2005c,Hermes2012a}.\footnote{There
 is a great deal of overlap between methods for spatial microsimulation and
 small area estimation (the terms are sometimes used
@@ -214,7 +245,7 @@ at different times and in different branches of academic research \citep{Lahr200
 `Entropy maximisation' is a related technique, of which IPF is considered to be a
 subset \citep{Johnston1993,Rich2012}.\footnote{As an
 aside, IPF is considered by \citet{Rich2012} to be a particular
-efficient for of entropy maximisation: ``The popularity of the IPF is therefore mainly due to the fact that it provides a
+efficient form of entropy maximisation: ``The popularity of the IPF is therefore mainly due to the fact that it provides a
 solution which is equivalent to that of the ME [maximum entropy]
 approaches, but attained in a much more
 computationally efficient way'' (p.~469).
@@ -408,8 +439,7 @@ of new transport policies \citep{Lovelace2014-jtg}.
 \citep{Hynes2009,van2013determinants}.
 \item Investigation of the local impacts of economic development
 in the marine energy sector \citep{Morrissey2013a}.
-\item The impact of changes
-in taxation and financial laws on European citizens \citep{sutherland2013euromod}.
+\item The socio-spatial impacts of changes in taxation policy \citep{campbell2013spatial}.
 \item The optimal location of health services based
 on estimates of individual level behaviour and obesity rates \citep{Tomintz2008,Clarke2010-valid}.
 \item The use of spatial microsimulation in combination with
@@ -760,9 +790,12 @@ to 'integerise' the fractional weights illustrated in \cref{t:m2}.
 Methods for performing integerisation are discussed in
 \citep{Ballas2005c}, \citep{Pritchard2012} and, most recently
 in \citep{Lovelace2013-trs}, who
-systematically benchmarked and compare different procedures.
-It was found that the `truncate, replicate, sample' (TRS)
-and `proportional probabilities' methods were most accurate.
+systematically benchmarked and compared different procedures.
+It was found that the probabilistic `truncate, replicate, sample' (TRS)
+and `proportional probabilities' methods --- which use repeat sampling
+on the raw weights and non-repeat sampling (whereby a selected individual
+cannot be selected again) of the truncated weights, respectively ---
+were most accurate.
 These methods are therefore used to test the impact of
 integerisation in this paper.
 % Based on this last paper, we use the TRS methodology to explore the impacts
@@ -880,7 +913,7 @@ different model configurations.
 
 The problem of internal validation
 (described as `evaluating model fit') was tackled in detail by \citet{Voas2001}.
-Chi-squared, Z-scores, absolute error and entropy-based methods
+The Chi-squared statistic, Z-scores, absolute error and entropy-based methods
 were tested, with no clear `winner' other than the advocacy of
 methods that are robust, fast and easy to understand (standardized absolute
 error measures match these criteria well).
@@ -922,8 +955,11 @@ to the number of individuals of that description in the input constraint table.
 The y value corresponds to the
 aggregated count of individuals in the same category in the aggregated
 (wide) representation of the spatial microdata output from the model. % have we defined spatial microdata?
-This stage can be conducted either before or after \emph{integerisation}
-(more on this below). As taught in basic statistics courses, the closer the points to the
+This stage can be undertaken either before or after \emph{integerisation}
+(more on this below).
+% As taught in basic statistics courses, % changed to suggested line below, by MB
+As is typical in such circumstances,
+the closer the points to the
 1:1 (45 degree, assuming the axes have the same scale) line, the better the fit.
 
 \subsection{The coefficient of determination}
@@ -1294,7 +1330,7 @@ is.complete =
 Once the presence of empty cells is determined in the baseline scenarios, the next 
 stage is to identify which individuals are missing from the individual-level input
 dataset ($Ind$) --- the combination of attributes that no individual in $Ind$ has.
-To do this, we created an algorithm to generate the the complete input dataset ($Ind.complete$).
+To do this, we created an algorithm to generate the complete input dataset ($Ind.complete$).
 The `missing' individuals, needed to be added to make $Ind$ complete can be defined
 in terms of set theory \citep{goldrei1996classic} by \cref{eqmiss}:
 
@@ -1333,14 +1369,14 @@ A number of methods for integerisation have been developed,
 including deterministic and probabilistic approaches \citep{Ballas2005c}.
 We used modified R implementations of two probabilistic methods
 --- `truncate replicate sample' (TRS) and `proportional probabilities' --- reported
-in \citep{Lovelace2013-trs} and the supplementary information associated with this
+in \citep{Lovelace2013-trs} and the Supplementary Information associated with this
 paper \citep{Lovelace-2013-supp}, as these were found to perform better in terms of final
 population counts and accuracy than the deterministic approaches.
   
 
 \subsection{Computational efficiency}
-The code used for the model runs used throughout this paper is based,
-with a few modifications, on that provided in the \href{http://tinyurl.com/lgw6zev}{Supplementary Information} of
+The code used for the model runs used throughout this paper is based
+on that provided in the Supplementary Information of
 \citet{Lovelace2013-trs}. This implementation was written purely in R,
 a vector based language, and contains many `for' loops, which are generally best
 avoided for speed-critical applications. R was not designed for speed, but has
@@ -1349,11 +1385,11 @@ take advantages of these interfaces when efficiency --- the amount
 of information processed per unit time --- is a priority \citep{wickham2014adv}.
 
 To increase the computational efficiency of R, experiments were
-conducted in which the IPF algorithm was conducted in C, a low-level programming
-language, via the recently published
-\textbf{ipfp} package.\footnote{This package is
+conducted using the recently published (July 2014)
+\textbf{ipfp} package, which implements IPF in the low-level C programming
+language.\footnote{This package is
 hosted on the Comprehensive R Archive Network (CRAN) website
-and is available to download. See
+and is available to download under the terms of the open source Apache License. See
 \href{http://cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}{cran.us.r-project.org/web/packages/ipfp/ipfp.pdf}
 for the package's documentation.}
 For each scenario in the \href{http://tinyurl.com/lgw6zev}{Supplementary Information}, there is a file titled `etsim-ipfp.R',
@@ -1371,7 +1407,6 @@ different scenarios and different numbers of iterations are presented in section
 After only 3 complete iterations under the baseline conditions
 set out in \cref{smbase}, the final weights in each scenario
 converged towards a final result.
-
 The baseline `Sheffield' scenario consists of the same basic set-up, 
 but with 4 constraints. As before, the results show convergence 
 towards better model fit, although the fit did not always improve 
@@ -1589,7 +1624,7 @@ simulated and constraint data.} \label{tsum}
 \begin{center}
 \begin{tabular}{llll}
 \toprule
-Model test & Simple & Small area  & Sheffield \\
+Test scenario & Simple & Small area  & Sheffield \\
 \midrule
 \textbf{Baseline} & 0.0001 & 0.018  & 25.5 \\
 \midrule
@@ -1631,7 +1666,7 @@ following variables at a time:
  \item Addition and removal of `empty cells'.
  \item Integerisation of the fractional weights using a couple of probabilistic methods ---
  `TRS' and `proportional probabilities'.
- \item The language in which the main IPF algorithm is undertaken, from R to C.
+ \item The language in which the main IPF algorithm is undertaken, from R to C via the \textbf{ipfp} package.
 \end{itemize}
 
 % Some of the variables altered !!!
@@ -1688,7 +1723,7 @@ should be sufficient for complete convergence in most cases.
 % and code design when working on large datasets.
 
 There are many opportunities for further research raised by this paper.
-There is clearly a need for further model testing in the area of spatial microsimulation overall,
+There is clearly a need for further testing in the area of spatial microsimulation overall,
 and we have demonstrated this for the established IPF method. Research questions
 raised relating to IPF specifically include:
 What are the impacts of constraining by additional variables affecting the performance of IPF?

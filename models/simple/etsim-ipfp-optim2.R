@@ -27,32 +27,23 @@ all.msim <- matrix(all.msim, ncol = 4, byrow = T) # Convert long data into matri
 ind.cat <- data.frame(cbind(model.matrix(~ind$age - 1), 
   model.matrix(~ind$sex - 1)[,c(2,1)]))
 names(ind.cat) <- category.labels
+ind.agg <- all.msim
+ind.agg[] <- NA
 
-# create weights in 3D matrix (individuals, areas, iteration)
-weights_ipf <- array(data = 1, dim=c(nrow(ind),nrow(all.msim)) )
+## Subsetting the ind variable
+code <- do.call(paste, c(ind.cat, sep = ""))
+codeU <- code[!duplicated(code)]
+ind.cat.u <- ind.cat[!duplicated(code), ]
 
-# ind.test <- apply(weights[,,num.cons+1], MARGIN = 2, FUN = function(x) x * colSums(ind.cat))
-
-# library(ipfp)
-
-## Preliminary tests of the ipfp algorithm
-A <- t(ind.cat) # the constraint matrix for ipfp
-# y <- as.numeric(all.msim[1,]) # the constraint vector to be emulated
-x0 <- rep(1, nrow(ind))
-# 
-# res_ipf <- ipfp(y, A, x0) # approaching the solution for zone 1
-# sum(res_ipf)
-# source("models/etsim.R")
-# i = 1 # which  iteration dow you want to use?
-# res_manual <- weights[,i,num.cons + 1] * weights[,i,1] * weights[,i,2]
-# res_ipf - res_manual # close fit between ipf solution and manual solution
-# res_ipf - wf[,1,4,3,1] 
+A <- t(ind.cat.u) # the constraint matrix for ipfp
+x0 <- rep(1, nrow(ind.cat.u))
 
 # find weights for all areas
 library(ipfp)
-for(i in 1:ncol(weights_ipf)){
+for(i in 1:nrow(all.msim)){
   y <- as.numeric(all.msim[i,]) # the constraint vector to be emulated
-  weights_ipf[,i] <- ipfp(y, A, x0, verbose = F, maxit = num.its)
+  w <- ipfp(y, A, x0, verbose = F, maxit = num.its) ## got to here!!!
+  ind.agg[i,] <- colSums()
 }
 
 # re-aggregate to aggregate level

@@ -37,18 +37,18 @@ This is the current list of priorities, and will be updated as the project progr
   * The use of cross-tabulated vs uni-variate categories (where available)
 * Evaluate the results using quantitative methods
 
-RMarkdown
-=======
-It is recommended that the initial analysis is written in RMarkdown language (as this introductory page is): it is lightweight, fast to type and, most importantly, allows R commands to be embedded and compiled within the text. For example, let us plot a simple polynomial:
+<!--RMarkdown-->
+<!--=======-->
+<!--It is recommended that the initial analysis is written in RMarkdown language (as this introductory page is): it is lightweight, fast to type and, most importantly, allows R commands to be embedded and compiled within the text. For example, let us plot a simple polynomial:-->
 
 
-```r
-x = 1:10
-x2 = x^2 - 0.1 * x^3
-plot(x, x2)
-```
+<!--```r-->
+<!--x = 1:10-->
+<!--x2 = x^2 - 0.1 * x^3-->
+<!--plot(x, x2)-->
+<!--```-->
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1.png) 
+<!--![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1.png) -->
 
 
 

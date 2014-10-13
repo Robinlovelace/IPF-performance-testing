@@ -1,6 +1,8 @@
 ############################################
 #### IPFinR a script for IPF in R 
 ############################################
+library(dplyr)
+library(ipfp)
 
 # Initial conditions # start from IPF-performance-testing folder
 num.its <- 10
@@ -35,6 +37,7 @@ category.labels <- c ("m16_19","m20_24","m25_34","m35_54","m55_60","m60_plus","f
                       ,colnames(con2)
                       ,colnames(con3)
                       ,colnames(con4))
+
 all.msim <- cbind(con1 
                   ,con2
                   ,con3
@@ -48,6 +51,21 @@ sum(ind.cat[,13:23]) == nrow(ind) # 11 modes
 sum(ind.cat[,24:31]) == nrow(ind) # 8 distance classes
 sum(ind.cat[,32:40]) == nrow(ind) # 9 classes
 
+ind.cat.orig <- ind.cat # save original
+ind.cat.p <- do.call(paste0, c(ind.cat))
+ind.cat.p <- data.frame(u = ind.cat.p)
+ind.cat <- ind.cat[!duplicated(ind.cat.p),]
+ind.cat.p2 <- do.call(paste0, c(ind.cat))
+ind.cat.p2 <- data.frame(u = ind.cat.p2)
+ind.cat.p[1:10,]
+ind.cat.p2[1:10,]
+
+ind.t <- data.frame(table(ind.cat.p))
+names(ind.t)[1] <- "u"
+ind.t <- merge(ind.cat.p2, ind.t, by = "u", sort = F)
+head(ind.t)
+head(ind.cat.p2)
+
 # Create weights 
 weights <- array(dim=c(nrow(ind),nrow(all.msim),num.cons+1)) 
 weights[,,num.cons+1] <- 1 # sets initial weights to 1
@@ -58,55 +76,32 @@ ind.agg <- array(dim=c(nrow(all.msim),ncol(all.msim),num.cons+1))
 for (i in 1:nrow(all.msim)){
   ind.agg[i,,1]   <- colSums(ind.cat) * weights[1,i,num.cons+1]}
 
-# re-weighting for constraint 1 via IPF 
-for (j in 1:nrow(all.msim)){
-  for(i in 1:ncol(con1)){
-    weights[which(ind.cat[,i] == 1),j,1] <- con1[j,i] /ind.agg[j,i,1]}}
-for (i in 1:nrow(all.msim)){ # convert con1 weights back into aggregates
-  ind.agg[i,,2]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1])}
-# test the result
-ind.agg[1:3,1:15,2]
-all.msim[1:3,1:15]
+A <- t(ind.cat) # the constraint matrix for ipfp
+x0 <- rep(1, nrow(ind.cat)) / ind.t$Freq
 
-# second constraint
-for (j in 1:nrow(all.msim)){
-  for(i in 1:ncol(con2) + ncol(con1)){
-    weights[which(ind.cat[,i] == 1),j,2] <- all.msim[j,i] /ind.agg[j,i,2]}}  
-for (i in 1:nrow(all.msim)){ # convert con2 back into aggregate
-  ind.agg[i,,3]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * weights[,i,2])}
-ind.agg[1:3,1:15,3]
-all.msim[1:3,1:15]
-# third constraint
-for (j in 1:nrow(all.msim)){
-  for(i in 1:ncol(con3) + ncol(con1) + ncol(con2)){
-    weights[which(ind.cat[,i] == 1),j,3] <- all.msim[j,i] /ind.agg[j,i,3]}}
-for (i in 1:nrow(all.msim)){ # convert con3 back into aggregate
-  ind.agg[i,,4]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * weights[,i,2] * 
-                                        weights[,i,3])}
-# test the result
-ind.agg[1:3,20:25,4]
-all.msim[1:3,20:25]
+# create weights in 3D matrix (individuals, areas, iteration)
+# weights_ipf <- array(data = 1, dim=c(nrow(ind.cat),nrow(all.msim)) )
 
-# fourth constraint
-for (j in 1:nrow(all.msim)){
-  for(i in 1:ncol(con4) + ncol(con1) + ncol(con2) + ncol(con3)){
-    weights[which(ind.cat[,i] == 1),j,4] <- all.msim[j,i] /ind.agg[j,i,4]}}
-for (i in 1:nrow(all.msim)){ # convert con3 back into aggregate
-  ind.agg[i,,num.cons+1]   <- colSums(ind.cat * weights[,i,num.cons+1] * weights[,i,1] * 
-                              weights[,i,2] * weights[,i,3] * weights[,i,4])}
-ind.agg[1:3,31:32,5]
-all.msim[1:3,31:32]
+ind_agg_ipf <- all.msim
 
-# for multiple iterations
-wf <- array(dim=c(dim(weights), num.its, 1)) # array to store weights its, wei
-indf <- array(dim=c(dim(ind.agg), num.its, 1))
-wf[,,,1,1] <- weights 
-indf[,,,1,1] <- ind.agg
-
-# loop for multiple iterations (run e2.R repeatedly, saving each time)
-for(it in 2:num.its){
-  source(file="models/sheffield/e2.R")
-  wf[,,,it,1] <- weights
-  indf[,,,it,1] <- ind.agg
+for(i in 1:nrow(all.msim)){
+  y <- as.numeric(all.msim[i,]) # the constraint vector to be emulated
+  weights_ipf <- ipfp(y, A, x0, verbose = F, maxit = num.its)
+  # analysis of the weights to extract true weight
+#   summary(weights_ipf)
+#   sum(weights_ipf) # correct total weight
+  ind.t$w <- weights_ipf / ind.t$Freq 
+  w_final <- inner_join(ind.cat.p, ind.t)$w
+#   summary(w_final)
+#   sum(w_final)
+  ind_agg_ipf[i, ] <- colSums(w_final * ind.cat.orig)  
 }
+
+all.msim[1:2,1:5]
+ind_agg_ipf[1:2,1:5]
+cor(as.vector(as.matrix(ind_agg_ipf[2,])), as.vector(as.matrix(all.msim[1,])))
+# cor(as.vector(as.matrix(all.msim)), as.vector(as.matrix(indf[,,4,it,1])))
+# cor(as.vector(ind_agg_ipf), as.vector(as.matrix(indf[,,4,it,1])))
+
+
 proc.time() - start.time # Analysis - see analyis files

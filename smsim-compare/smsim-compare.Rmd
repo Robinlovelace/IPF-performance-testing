@@ -8,7 +8,7 @@ output: word_document
 Aim: to compare the performance of different methods and software
 products for generating spatial microdata.
 
-## Abstract
+## Introduction
 
 Model testing has been a recurring topic in the field of microsimulation. Voas and Williamson (2000) tested a range of combinatorial optimisation approaches for the generation of spatial microdata. Rahman et al. (2010) compared a range of reweighting techniques. Most recently, Harland et al. (2012) tested a number of approaches including deterministic reweighting and simulated annealing. Each study provides useful resources to the microsimulation community, by highlighting options available and suggesting which solutions may be best for particular applications. This paper returns to the issue of model testing based on three factors: 1) evolution of new software and methods; 2) the need for more transparent, systematic and reproducible tests; and 3) the need to implement tests under a wider range of conditions. Microsimulation models are diverse and constantly evolving, so the paper focusses on methods for model testing rather than just results. Example datasets and code will be provided, allowing the test results presented in the paper to be reproduced. Iterative Proportional Fitting, simulated annealing and genetic algorithm approaches to static spatial microsimulation will be tested based on the publicly available individual-level ‘2011 Teaching File’ (ONS, 2014). The results will provide insights about model setup for optimal results of deterministic and probabilistic approaches and facilitate future benchmarking of alternative, perhaps more sophisticated, methods.
 
@@ -35,4 +35,18 @@ small area level. It is a self-reported likert index from 1 ("very good") to 5
 ind <- read.csv("data-big/2011 Census Microdata Teaching File.csv")
 summary(ind)
 ```
+
+### Data preparation Processing 
+
+Used only population base 1, "Usual resident" to ensure compatibility with
+the constraint tables, which are usually based on usual residents. Even after
+this, there were still 74 individuals with a Health status of -9.
+
+The categories were recoded...
+
+## Method
+
+## Results
+
+## Conclusions
 

@@ -4,7 +4,7 @@
 ############################################
 
 # Initial conditions # start from IPF-performance-testing folder
-num.its <- 3
+num.its <- 10
 # Read-in data (manually to start, will use scripts in future)
 c.names <- c("id", "age", "sex")
 ind <- c(       1, 59, "m",
@@ -63,13 +63,11 @@ category.labels <- names(all.msim) # should be correct from cons.R
 all.mim.orig <- all.msim # save original (un-adjusted) constraints
 all.msim <- cbind(con1 
                   ,con2
-                  #,con3
-                  #,con4 # add more if needed
                   )
 
-start.time <- proc.time() # for measuring model runtime
+start.time <- Sys.time() # for measuring model runtime
 # aggregate values - column for each category
-source("categorise.R") # this script must be customised to input data
+source("models/simple/categorise.R") # this script must be customised to input data
 # check constraint totals - should be true
 sum(ind.cat[,1:ncol(con1)]) == nrow(ind) # is the number in each category correct
 sum(ind.cat[,ncol(con1)+1:ncol(con2)]) == nrow(ind) 
@@ -118,11 +116,11 @@ indf[,,,1,1] <- ind.agg
 
 # loop for multiple iterations (run e2.R repeatedly, saving each time)
 for(it in 2:num.its){
-source(file="e2.R")
+source(file="models/simple/e2.R")
 wf[,,,it,1] <- weights
 indf[,,,it,1] <- ind.agg
 }
-proc.time() - start.time 
+(time_taken <- Sys.time() - start.time) # time taken to run script
 
 # Analysis - in general, see analyis files
 a.v <- as.vector(as.matrix(all.msim)) # constraints in long form, for cor

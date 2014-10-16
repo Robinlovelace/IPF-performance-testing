@@ -14,11 +14,13 @@ source("functions.R")
 # Data preparation
 ind_agg <- cons # create aggregated estimated outputs (same dims and cons)
 cons <- apply(cons, 2, as.numeric)
-cons <- cons[1:20, ] # start with small version of the constraints - e.g. 1:10 for ten zones
+cons <- cons[1:4, ] # start with small version of the constraints - e.g. 1:10 for ten zones
 ind_cat <- data.frame(ind_cat) # get ind_cat into right form
 
 umat <- umat_count_dplyr(ind_cat) # create unique version of ind_cat
 head(umat$u[1:5]) # check output
+head(umat$u)
+indu <- umat$u[-(1:2)]
 
 # Input for ipfp
 library(ipfp)
@@ -30,6 +32,10 @@ w <- ipfp(cons[i, ], A, x0, maxit = 20) # ipfp on 1st constraint
 summary(w)
 weights <- w / umat$u$n # to go from per category to per person weights
 weights <- weights[rep(1:nrow(umat$u), times = umat$u$n)] # final weights
+cor(colSums(weights * ind_cat), cons[1, ])
+ind_test <- indu[rep(row.names(umat$u), umat$u$n),] # we've returned full circle to the correct population
+head(ind_test[1:10])
+colSums(ind_test) - colSums(ind_cat) # getting the right results!
 
 # Generate weights for all zones in cons
 weights <- apply(cons, 1, function(x) ipfp(x, A, x0, maxit = 20))
@@ -52,9 +58,8 @@ for(i in 1:nrow(umat$u)){
 }
 
 ind_agg_test <- colSums(ind_cat[index, ])
-cor(cons[1,], ind_agg_test)
+cor(cons[1,], ind_agg_test) # very good fit
 cor(cons[1,], colSums(ind_cat)) # new method is tested and working
-
 
 # Generate final output using for loop over all zones - new method
 ids <- as.list(rep(NA, nrow(cons)))
@@ -70,7 +75,7 @@ for(j in 1:nrow(cons)){
   ids[[j]] <- index
   ind_agg <- rbind(ind_agg, colSums(ind_cat[index, ]))
 }
-head(ind_agg)
+plot(colSums(ind_agg), colSums(cons))
 cor(as.numeric(as.matrix(ind_agg)), as.numeric(as.matrix(cons)))
 # cor > 0.999: not bad
 

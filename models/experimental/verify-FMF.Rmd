@@ -1,0 +1,67 @@
+---
+title: "Verifying FMF model outputs"
+output: word_document
+---
+
+```{r, echo=FALSE}
+# setwd("../../") # only run this in 'knit' mode - sets wd correctly
+```
+
+
+# Loading the data
+
+The 1 Gb file was first loaded. To make this manageable, it was shortened to
+100,000 individuals. This is OK because the list contains the entirety of
+the population in one zone, then the next, in order.
+
+```{r, eval=FALSE}
+ids <- read.csv("data-big/final-pop-stephen/RL1_population.csv")
+head(ids)
+ids <- ids[1:50000,]
+ids$X.PersonID <- as.factor(ids$X.PersonID)
+
+# load model matrix individual data
+ind_catid <- cbind(X.PersonID = as.character(ind$PersonID), ind_cat)
+ind_catid$X.PersonID <- as.factor(ind_catid$X.PersonID)
+
+save(ind_catid, ids, cons, file = "~/repos/IPF-performance-testing/models/experimental/test-fmf.RData")
+```
+
+# Preparing the individual-level data
+
+The next stage is to add 'id' classes to the pre-saved individual-level data.
+Checks were undertaken to ensure that the same IDs were present in the
+individual-level data loaded previously.
+
+```{r}
+load("~/repos/IPF-performance-testing/models/experimental/test-fmf.RData")
+head(ind_catid[1:5])
+
+library(dplyr)
+ids_all <- inner_join(ids, ind_catid)
+summary(ids_all) # test to see the join has worked 
+```
+
+The `join` function above added all the attribute data for the individuals
+(in 'model matrix' form, consisting of a column for each category, for ease
+of counting). This allows the fit between the constraints and the aggregated
+versions of the spatial microdata to be tested. We don't aggregate the
+entire dataset, we aggregate by zone.
+
+# Grouping the microdataset by zone
+
+```{r}
+ags <- aggregate(ids_all[-(1:2)], by = list(ids_all$ZoneID), FUN = sum)
+head(ags)
+head(rowSums(ags[-1]), 10)
+head(rowSums(cons), 10)
+ag <- ags[1:6, -1]
+
+cor(as.numeric(as.matrix(ag)), as.numeric(as.matrix(cons[1:6, ])), )
+colSums(ag[,1:6]) # Number of divorced, married, single and widowed from FMF
+colSums(ag[,1:6]) - colSums(cons[1:6,1:6])
+```
+
+The above demonstrates the perfect fit attained between
+the aggregated spatial microdata and the constraint tables.
+

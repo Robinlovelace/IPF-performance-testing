@@ -1,13 +1,41 @@
+# Set your working directory to IPF-performance-testing
+work_dir <- "D:/user/IPF-performance-testing-master/" 
+setwd(work_dir)
 # loading the SARS file
-ind <- read.csv("data-big/uk-sars/2011 Census Microdata Teaching File.csv")
+ind <- read.csv("2011 Census Microdata Teaching File.csv")
 summary(ind)
 
 # Convert to model.matrix form
 head(ind)
-cat_age <- model.matrix(~ ind$QS103 - 1)
+
 cat_mar <- model.matrix(~ ind$LC1107 - 1)
+# is this in the right order?
+summary(ind$LC1107)
+levels(ind$LC1107)
+names(con_mar) # having loaded it after
+colSums(cat_mar) # totals are right, order is wrong
+cat_mar <- cat_mar[, c(2, 1, 4, 5, 3, 6)]
+
+cat_age <- model.matrix(~ ind$QS103 - 1)
+colSums(cat_age)
+levels(ind$QS103) # confirmed: col order is same as levels
+colSums(con_age) # seems correct
+
 cat_hrw <- model.matrix(~ ind$QS604 - 1)
+levels(ind$QS604)
+colSums(con_hrw)
+order(names(con_hrw))
+o <- order(match(levels(ind$QS604), names(con_hrw)))
+cat_hrw <- cat_hrw[, o] # totally re-arranged
+
 cat_loc <- model.matrix(~ ind$LC6112_LC6113 - 1)
+colSums(cat_loc)
+names(con_loc)
+levels(ind$LC6112_LC6113) # wrong order
+levels(ind$LC6112_LC6113)[c(1, 3:11, 2)]
+o <- order(match(levels(ind$LC6112_LC6113), names(con_loc)))
+o
+cat_loc <- cat_loc[, o]
 
 ind_cat <- cbind(cat_mar, cat_hrw, cat_loc, cat_age)
 # ind_cat <- cbind(cat_mar, cat_age, cat_hrw, cat_loc) # order test
@@ -20,9 +48,6 @@ colnames(ind_cat) <- c(levels(ind$LC1107), levels(ind$QS604), levels(ind$LC6112_
 summary(ind$QS103)
 # sum(ind$QS103 == "A0")
 colSums(ind_cat)
-colSums(cat_age)
-summary(ind$LC1107)
-colSums(cat_mar)
 
 con_age <- read.csv("data-big/uk-sars/QS103_Age.csv")[-1]
 con_mar <- read.csv("data-big/uk-sars/LC1107_MaritalStatus.csv")[-1]
@@ -85,7 +110,7 @@ i = 1 # preparing for for loop
 w <- ipfp(cons[i, ], A, x0, maxit = 20) # ipfp on 1st constraint
 summary(w)
 weights <- w / umat$u$n # to go from per category to per person weights
-weights <- weights[rep(1:nrow(umat), times = umat$p$n)] # final weights
+weights <- weights[rep(1:nrow(umat$u), times = umat$u$n)] # final weights
 source("~/Dropbox/spatial-microsim-book/R/functions.R")
 
 # in a weight matrix
@@ -98,11 +123,13 @@ iweights <- int_trs(weights[,1])
 length(iweights)
 colSums(ind_cat[iweights,])
 cor(cons[1,], colSums(ind_cat[iweights,]))
-cor(cons[1,], colSums(ind_cat))
+cor(cons[1,], colSums(ind_cat)) # far better than pre-re-arrangement
 
 # Alternative: For loop to extract ind. indices from uniqe weights
 library(sfsmisc)
 sfsmisc::roundfixS(c(0.5, 4, 3, 9.5)) # testing the function
+iw <- roundfixS(weights)
+index <- NULL
 for(i in 1:nrow(umat$u)){
   sel <-  which(umat$p == umat$u$p[i])
   #   head(ind_cat[sel,1:7]) # test it works: remove
@@ -128,9 +155,20 @@ for(j in 1:nrow(cons)){
   ind_agg <- rbind(ind_agg, colSums(ind_cat[index, ]))
 }
 head(ind_agg)
-cor(as.numeric(as.matrix(ind_agg)), as.numeric(as.matrix(cons))) # 90% correlation: not bad
+cor(as.numeric(as.matrix(ind_agg)), as.numeric(as.matrix(cons)))
+# cor > 0.999: not bad
 
 # The above is everything that's needed to get cracking on the write-up of this for a paper, a book and the Maastricht conference
+
+
+
+
+
+
+
+
+
+
 
 # function to see how well the model matrix version fits reality
 fun <- function(par, ind_num, con){

@@ -83,3 +83,4 @@ names(ind_cat)
 summary(ind$age)
 # sum(ind$age == "A0")
 colSums(ind_cat)
+

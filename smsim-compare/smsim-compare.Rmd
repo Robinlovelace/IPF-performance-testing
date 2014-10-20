@@ -79,9 +79,13 @@ To identify a subset of the 17 census questions to use as constraints use is mad
 |Region                   |      0.032|
 |Country of birth         |      0.017|
 
-The question with the greatest association with general health is economic activity. This result is likely to be skewed by the presence of the category, 'economically inactive: long-term sick or disabled' which correlates strongly with the bad health responses. This strong degree of association almost trivialises the prediction of bad health and provides a justification for not including this question as a constraint. Two questions that have very good association with general health are student status (students are most likely to have very good or good health) and age (younger people are more likely to have very good or good health).
+The question with the greatest association with general health is economic activity. This result is likely to be driven by the presence of the category, 'economically inactive: long-term sick or disabled' which correlates strongly with the bad health responses. Two questions that have very good association with general health are student status (students are most likely to have very good or good health) and age (younger people are more likely to have very good or good health).
 
-Of the 17 census questions within the microdata teaching file there will some whose responses will be correlated. Thus knowing the response on one question will mean that the additional information in the correlated question will be negligible. Examples are: family composition which is correlated with marital status; religion with ethnicity; and occupation, industry and approximate social grade. In the selection of questions to use as constraints, only one question from such pairings should be used. **Marital status** has a greater association with general health than family composition. Both ethnicity and religion have poor associations. Of the employment grouping either **occupation** or approximate **social grade** are worthy of consideration as constraints. **Hours per week** is the only remaining question with a Cramer’s V above 0.10 and some distance from the next highest, residence type.
+```{r, echo=FALSE}
+# This strong degree of association almost trivialises the prediction of bad health and provides a justification for not including this question as a constraint. 
+```
+
+Of the 17 census questions within the microdata teaching file there will be some whose responses will be correlated. Thus knowing the response on one question will mean that the additional information in the correlated question will be negligible. Examples are: family composition which is correlated with marital status; religion with ethnicity; and occupation, industry and approximate social grade. In the selection of questions to use as constraints, only one question from such pairings should be used. **Marital status** has a greater association with general health than family composition. Both ethnicity and religion have poor associations. Of the employment grouping either **occupation** or approximate **social grade** are worthy of consideration as constraints. **Hours per week** is the only remaining question with a Cramer’s V above 0.10 and some distance from the next highest, residence type.
 
 ### Constraint tables
 
@@ -93,17 +97,29 @@ every constraint table should contain this exact number of individuals.
 # ???? Students ????
 ```
 
+The **economic activity** constraint is constructed using data from census table QS601. To ensure comparability with the categories in the individual-level data, counts in the two employed categories of ‘employee: part-time’ and ‘employee: full-time’ are merged.^[Similarly the four self-employed categories of ‘self-employed with employees: part-time’; ‘self-employed with employees: full-time’;’self-employed without employees: part-time’; and ‘self-employed without employees: full-time’ are merged into a single self-employed count.] This table excludes people younger than 16 and older than 75. In order to account for the entire population two additional categories were introduced of peopled added 15 or younger and 75 and older (these counts are from the age constraint table, see below).
+
+The individual-level variable with the second strongest association with general health is **student status**. Three categories of student are already included in the economic activity table above and therefore no separate constraint table for this question is required.
+
 The **age** constraint is constructed from an aggregation of the single year of age counts in table QS103 to those age groups that match the corresponding question in the sampling population.
 
-The **marital status** constraint is built on table LC1107. The responses for a marital status of ‘married’ and ‘in a registered same-sex civil partnership’ are aggregated to be consistent with the definition used in the corresponding question in the sampling population. This table excludes those aged 15 or younger which necessitates the inclusion of a category ‘Aged 0 to 15’ to ensure the counts in the table match the England and Wales population. This count is taken from the age constraint table.
+The **marital status** constraint is built on table LC1107. The responses for a marital status of ‘married’ and ‘in a registered same-sex civil partnership’ are aggregated to be consistent with the definition used in the corresponding question in the sampling population. This table excludes those aged 15 or younger which necessitates the inclusion of a category ‘Aged 0 to 15’ to ensure the counts in the table match the England and Wales population. Again, this count is taken from the age constraint table.
 
 The **occupation** constraint is built from two tables, one that gives counts for current occupation (LC6112) and one that gives a count of former occupation or never worked (LC6113). Once again, since this table excludes those aged 15 and younger a count of such people is added as an additional category.
 
-**Number of hours worked** is primarily taken from table QS604 which lists the hour worked by individuals aged 16 to 74 in employed.  To ensure that the count in this table equals the population of England and Wales it is necessary to add categories that: count those aged 15 and younger; count those aged 75 and older (both once more from the age constraint table); and those aged 16 to 74 who are not in employment. This later count is derived as the difference between the aged 16 to 74 populations from the age constraint table minus those in employment (i.e. those counted as either in full or part time employment in QS604).
+**Number of hours worked** is primarily taken from table QS604 which lists the hour worked by individuals aged 16 to 74 in employed.  To ensure the count in this table equals the population of England and Wales it is necessary to add additional categories: 15 and younger;
+75 and older ( both from the age constraint table); and those aged 16 to 74 who are not in employment.^[The latter count is derived from the difference between the aged 16 to 74 populations from the age constraint table minus those in employment (i.e. those counted as either in full or part time employment in QS604).]
 
 Unfortunately the tabulations for approximate social grade (e.g. QS613EW) only include individuals resident in a household which is not compatible with the usual resident population adopted for the sampling population. It is thus not possible to define a compatible constraint table for this question.
 
+### Compatibility of individual-level and constraint tables
+
+A cross-tabulation using the individual-level variables age, economic activity and hours worked questions reveals individulas who are aged 75 and older who have an economic activity or undertake hours of work. This is incompatible with the definition of the corresponding constraint table (which only tabulates such information for those aged 16 to 74). To ensure
+compatibility between individual-level and aggregate data, an age designation of aged 75 or older takes priority over the actual economic activity or number of hours worked. For example a person aged 75 or older who has an economic activity of ‘self-employed’ is coded as ‘aged 75 or older’ for the economic activity question.
+
 ### Geography
+
+The geographic level of aggregation used is the medium layer of super output area (MSOA). There are 7,202 such MSOAs that cover England and Wales. The average usual resident population of an MSOA is 7,787 individuals, with a range of 2,203 to 16,342. This level was chosen as a compromise between the size of the computational task (which increases with the number of geographic units) and the spatial resolution of the output. MSOAs are also designed to group areas of similar characteristics which may not be found in larger areas such as electoral wards or local municipalities.
 
 ### Data preparation Processing 
 

@@ -14,7 +14,7 @@ source("functions.R")
 # Data preparation
 ind_agg <- cons # create aggregated estimated outputs (same dims and cons)
 cons <- apply(cons, 2, as.numeric)
-cons <- cons[1:4, ] # start with small version of the constraints - e.g. 1:10 for ten zones
+cons <- cons[1:2, ] # start with small version of the constraints - e.g. 1:10 for ten zones
 ind_cat <- data.frame(ind_cat) # get ind_cat into right form
 
 umat <- umat_count_dplyr(ind_cat) # create unique version of ind_cat
@@ -78,6 +78,8 @@ for(j in 1:nrow(cons)){
 plot(colSums(ind_agg), colSums(cons))
 cor(as.numeric(as.matrix(ind_agg)), as.numeric(as.matrix(cons)))
 # cor > 0.999: not bad
+final_out <- data.frame(zone = rep(1:nrow(cons), sapply(ids, length)), id = unlist(ids))
+head(final_out)
 
 # The above is demonstrates a new way of using ipf to generate integer weights
 # An alternative to 'TRS integerisation' more suitable for large datasets -

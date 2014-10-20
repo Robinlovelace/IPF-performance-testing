@@ -4,7 +4,7 @@
 ############################################
 
 # Initial conditions # start from IPF-performance-testing folder
-num.its <- 10
+num.its <- 3
 # Read-in data (manually to start, will use scripts in future)
 c.names <- c("id", "age", "sex")
 ind <- c(       1, 59, "m",
@@ -138,5 +138,6 @@ for(it in 1:num.its){
 }
 t1
 t1$numit<-1:nrow(t1)
+t1 <- t1[!is.na(t1$corr),]
 # plot the increasing fit, one interation to the next 
 barplot(height=t1[,2], names.arg=t1[,1], ylim=c(t1[1,2],1), ylab=("Correlation (r)"))

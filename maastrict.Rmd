@@ -1,0 +1,158 @@
+---
+title: "Systematic testing of microsimulation methods"
+author: "Robin Lovelace"
+date: "10/18/2014"
+output:
+  ioslides_presentation:
+    logo: ~/Dropbox/Public/img/logos/cdrc-square.png
+bibliography: /home/robin/Documents/Microsimulation.bib
+---
+
+## Motivation
+
+- Dozens of methods available for (spatial) microsimulation
+- Difficult to choose from options
+- Testing can be time consuming and tricky [@harland2012]
+
+**Need for fast and consistent testing framework**
+
+## Problem: each researcher has their own 'horse' in the race
+
+![racing](http://upload.wikimedia.org/wikipedia/commons/b/b7/Curlin_in_the_Final_Turn_in_the_2008_Stephen_Foster_Handicap_%282972085393%29.jpg)
+
+
+# Past testing efforts in the literature
+
+## The 'model experiment' genre
+
+![genre](http://thecampaignworkshop.com/wp-content/uploads/2013/08/Whats-experiment-informed-program-photo-400x266.jpg)
+
+- Harland, K. et al. (2012). Creating Realistic Synthetic Populations at Varying Spatial Scales... [JASSS](http://jasss.soc.surrey.ac.uk/15/1/1.html), 15(1), 1.
+- Huang and Williamson (2001). A comparison of synthetic reconstruction and combinatorial optimisation approaches to the creation of small-area microdata. [Working Paper](http://pcwww.liv.ac.uk/~william/Microdata/Pop91/Methodology/workingpapers/hw_wp_2001_2.pdf).
+- Ryan, J., Maoh, H., & Kanaroglou, P. (2009). Population synthesis: Comparing the major techniques using a small, complete population of firms. [Geographical Analysis](http://onlinelibrary.wiley.com/doi/10.1111/j.1538-4632.2009.00750.x/full), 41(2), 181–203.
+
+## Results from past work
+
+- Many useful findings - often researcher's own model 'best'
+- No conclusive results - not reproducible - comparing different things
+
+![harland-results](https://dl.dropboxusercontent.com/u/15008199/img/harland-res.png)
+
+## Microsimulation as an experimental procedure
+
+- Controlled experiments are the foundation of science
+- Real-world experiments impossible
+- Simulation allows range of alternatives to be tested safely
+
+Simulation, then is the process of
+imitating the behavior of system patterns.
+Simulation as one method of problem-solving becomes attractive when conventional analytic, numeric or physical experimental methods would be too time-consuming, expensive, difficult, hazardous and/or irreversible or even impossible as real world experiments intended to solve a problem. (Merz, 1991). **International Journal of Forecasting 7 (1991) 77-104 77**
+
+# IPF performance testing
+
+## Setting-up model the experiments
+
+- 'Scrambled' versions of official datasets used
+- All examples on-line deliberately small for portability
+- Work ongoing on larger examples
+
+## Project organisation
+
+```
+|-- data-big
+|-- figure
+|-- input-data
+|   |-- sheffield
+|   |-- simple
+|   `-- small-area-eg
+|-- literature
+|-- models
+|   |-- microbenchmarking
+|   |-- sheffield
+|   |-- simple
+|   |-- small-area
+|   `-- teaching
+|-- paper
+|-- smsim-compare
+`-- tables
+```
+## Try it yourself!
+
+![ipf-test](https://dl.dropboxusercontent.com/u/15008199/img/head-ipf-test.png)
+
+## Replicable results
+
+Reproducible example:
+
+```{r}
+source("models/etsim.R")
+```
+
+## Results 
+
+- 'Empty cells' found to have largest impact on fit
+- Iterations: 10 sufficient for convergence
+- Initial weights had very little impact
+- Implementation of IPF in C (**ipfp** package): **50 fold** speed increase
+
+![]()
+
+# Broadening the tests
+
+## CO in FMF vs IPF in R
+
+- New project to test techniques on very large microdatasets
+- Challenge: allocate 569,741 individuals to 7,787 zones
+- Almost 60 million people in output spatial microdata!
+- New methodology for IPF developed
+
+[![fmf](https://dl.dropboxusercontent.com/u/15008199/img/head-fmf.png)](http://eprints.ncrm.ac.uk/3177/)
+
+## External validation
+
+- More important that 'internal validation' is how well results fit reality
+- Opportunity provided by Census variable on census well-being
+- Simulated at small area level with FMF and R
+
+## Work in progress
+
+- Compare different approaches in terms of timing, model fit and ease of use
+- External validation
+- Use alternative methods to generate same output: [GREGWT](http://www.researchgate.net/publication/257017550_Simulating_the_characteristics_of_populations_at_the_small_area_level_New_validation_techniques_for_a_spatial_microsimulation_model_in_Australia/file/72e7e527aa73850417.pdf)? [SimObesity](http://link.springer.com/chapter/10.1007/978-94-007-4623-7_5#page-1)? [simSALUD](http://www.simsalud.org/simulation/)?
+
+![](http://www.simsalud.org/wp-content/uploads/2013/03/title_simSALUD.png)
+
+# Wider context of spatial microsimulation
+
+## Issues within the field
+
+- "Little
+attention is paid to the choice of programming language used" for
+microsimulation [@Holm1987]
+- Lack of reproducibility [@Lovelace2013-trs]
+- Hard to get started
+- Few simple examples - uses tend to be big and complicated
+- Few introductory teaching resources
+
+## Teaching spatial microsimulation
+
+- Two courses in May (Leeds) and August (Cambridge)
+- Taught basic principles of spatial microsimulation
+- And implementation in R
+- Feedback: students grateful for first rung on ladder
+- More success with latter course focussing on applications
+
+![ladder](http://firstrung.co.uk/dbimgs/Ladder_broken_rung_small(4).jpg)
+
+## Spatial microsimulation introductory textbook
+
+- Contract with CRC Press as part of their [R Series]()
+- Draft of book available online in its entirety
+- Open 'wiki' style allows anyone to contribute
+- Any feedback/input gratefully received
+- Check it out here: [robinlovelace.net/spatial-microsim-book/](http://robinlovelace.net/spatial-microsim-book/)
+
+![ipf](https://dl.dropboxusercontent.com/u/15008199/img/head-smr-online.png)
+
+## Key References
+

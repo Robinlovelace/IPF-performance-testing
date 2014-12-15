@@ -1,20 +1,32 @@
 ---
 title: "Systematic testing of microsimulation methods"
-author: "Robin Lovelace"
-date: "10/18/2014"
+author: "Robin Lovelace (robinlovelace.net)"
+date: "24/10/2014"
 output:
   ioslides_presentation:
-    logo: ~/Dropbox/Public/img/logos/cdrc-square.png
 bibliography: /home/robin/Documents/Microsimulation.bib
+logo: /home/robin/Dropbox/Public/img/logos/cdrc-square.png
 ---
+
+```{r, echo=FALSE}
+# logo: ~/Dropbox/Public/img/logos/cdrc-square.png
+```
 
 ## Motivation
 
 - Dozens of methods available for (spatial) microsimulation
 - Difficult to choose from options
-- Testing can be time consuming and tricky [@harland2012]
+- Testing can be time consuming and tricky [[@harland2012]](http://jasss.soc.surrey.ac.uk/15/1/1.html)
 
 **Need for fast and consistent testing framework**
+
+**Broader motivations**
+
+```{r, echo=FALSE}
+# image here of Times article
+# data analysis: process of persuading people to change opinion on evidence
+```
+
 
 ## Problem: each researcher has their own 'horse' in the race
 
@@ -30,6 +42,10 @@ bibliography: /home/robin/Documents/Microsimulation.bib
 - Harland, K. et al. (2012). Creating Realistic Synthetic Populations at Varying Spatial Scales... [JASSS](http://jasss.soc.surrey.ac.uk/15/1/1.html), 15(1), 1.
 - Huang and Williamson (2001). A comparison of synthetic reconstruction and combinatorial optimisation approaches to the creation of small-area microdata. [Working Paper](http://pcwww.liv.ac.uk/~william/Microdata/Pop91/Methodology/workingpapers/hw_wp_2001_2.pdf).
 - Ryan, J., Maoh, H., & Kanaroglou, P. (2009). Population synthesis: Comparing the major techniques using a small, complete population of firms. [Geographical Analysis](http://onlinelibrary.wiley.com/doi/10.1111/j.1538-4632.2009.00750.x/full), 41(2), 181–203.
+
+```{r, echo=FALSE}
+
+```
 
 ## Results from past work
 
@@ -53,13 +69,19 @@ Simulation as one method of problem-solving becomes attractive when conventional
 ## Setting-up model the experiments
 
 - 'Scrambled' versions of official datasets used
-- All examples on-line deliberately small for portability
 - Work ongoing on larger examples
+
+```{r, echo=FALSE, fig.height=4, fig.width=5}
+# - All examples on-line deliberately small for portability
+library(grid)
+library(png)
+grid.raster(readPNG("figure/ipfinac.png"))
+```
 
 ## Project organisation
 
 ```
-|-- data-big
+|-- data-big (just README links)
 |-- figure
 |-- input-data
 |   |-- sheffield
@@ -67,14 +89,11 @@ Simulation as one method of problem-solving becomes attractive when conventional
 |   `-- small-area-eg
 |-- literature
 |-- models
-|   |-- microbenchmarking
-|   |-- sheffield
-|   |-- simple
-|   |-- small-area
-|   `-- teaching
-|-- paper
-|-- smsim-compare
-`-- tables
+|   |-- ipfinr
+|   |-- FMF
+|   |-- simSALUD
+|   `-- GREGWT
+`-- output
 ```
 ## Try it yourself!
 
@@ -91,11 +110,16 @@ source("models/etsim.R")
 ## Results 
 
 - 'Empty cells' found to have largest impact on fit
-- Iterations: 10 sufficient for convergence
-- Initial weights had very little impact
-- Implementation of IPF in C (**ipfp** package): **50 fold** speed increase
+- **Initial weights had very little impact**
+- C code (**ipfp** package): **50 fold** speed increase
 
-![]()
+```{r, echo=FALSE}
+library(grid)
+library(png)
+grid.raster(readPNG("figure/weights-exp-54nice2.png"))
+```
+
+![ipfinac](figure/weights-exp-54nice2.png)
 
 # Broadening the tests
 

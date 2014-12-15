@@ -1,9 +1,8 @@
 ---
-title: "Evaluating the performance of spatial microsimulation methods for"
+title: "Performance testing of spatial microsimulation methods for synthesising national populations"
 author: "Robin Lovelace and Stephen Clark"
-output: pdf_document
-handling very large input microdatasets: a case study of subjective health in the
-  UK
+output: word_document
+bibliography: /home/robin/Documents/Microsimulation.bib
 ---
 
 ```{r, echo=FALSE}
@@ -20,17 +19,17 @@ products for generating spatial microdata with large input datasets.
 2. Use 'external validation' to assess the suitability of spatial microsimulation
 for estimating subjective well-being.
 
-## Introduction
+# Introduction
 
 Model testing has been a recurring topic in the field of microsimulation. Voas and Williamson (2000) tested a range of combinatorial optimisation approaches for the generation of spatial microdata. Rahman et al. (2010) compared a range of reweighting techniques. Most recently, Harland et al. (2012) tested a number of approaches including deterministic reweighting and simulated annealing. Each study provides useful resources to the microsimulation community, by highlighting options available and suggesting which solutions may be best for particular applications. This paper returns to the issue of model testing based on three factors: 1) evolution of new software and methods; 2) the need for more transparent, systematic and reproducible tests; and 3) the need to implement tests under a wider range of conditions. Microsimulation models are diverse and constantly evolving, so the paper focusses on methods for model testing rather than just results. Example datasets and code will be provided, allowing the test results presented in the paper to be reproduced. Iterative Proportional Fitting, simulated annealing and genetic algorithm approaches to static spatial microsimulation will be tested based on the publicly available individual-level ‘2011 Teaching File’ (ONS, 2014). The results will provide insights about model setup for optimal results of deterministic and probabilistic approaches and facilitate future benchmarking of alternative, perhaps more sophisticated, methods.
 
-## The data 
+# The data 
 
 All datasets used in this study come from the UK's 2011 Census of population, for England and Wales. The *microdata* input has a very coarse geography (the Government Office Region level, which contains only 10 zones across England and Wales) but is advantageous in allowing for custom cross-tabulations of variables and modelling approaches such as dynamic microsimulation and agent-based modelling. The purpose of spatial microsimulation in this context is to synthesise an individual-level dataset that is representative of smaller geographical units --- middle level super output areas (MSOAs), of which there are 7,201 in the study area --- in terms of the aggregate-level constraint variables.
 
 The aggregate-level datasets are supplied via the Nomis data portal. These have the advantage of geographical specificity but are limited in terms of lacking information about the cross-tabulations between different variables and the distribution of individual-level charachteristics (e.g. health). These datasets are introduced below.
 
-### The individual-level data
+## The individual-level data
 
 For the spatial microsimulation the sampling population used is the 2011 Census microdata teaching file (ONS, 2014). This file contains the individual census responses on 17 census questions from 569,741 individuals living in England or Wales, a 1% sample of all such Census returns. The population base for this sample includes usual residents, students who are living away from home during term 
 time^[Schoolchildren and students in full-time education studying away from their family home are treated as usually resident at their term-time address. Basic demographic information only is collected at their non-term-time address. The information on families, household size and household composition for their non-term-time address does not include them.]
@@ -87,7 +86,7 @@ The question with the greatest association with general health is economic activ
 
 Of the 17 census questions within the microdata teaching file there will be some whose responses will be correlated. Thus knowing the response on one question will mean that the additional information in the correlated question will be negligible. Examples are: family composition which is correlated with marital status; religion with ethnicity; and occupation, industry and approximate social grade. In the selection of questions to use as constraints, only one question from such pairings should be used. **Marital status** has a greater association with general health than family composition. Both ethnicity and religion have poor associations. Of the employment grouping either **occupation** or approximate **social grade** are worthy of consideration as constraints. **Hours per week** is the only remaining question with a Cramer’s V above 0.10 and some distance from the next highest, residence type.
 
-### Constraint tables
+## Constraint tables
 
 The size of the usually resident English and Welsh population from the 2011 Census
 is 56,075,912. For spatial microsimulation to work,
@@ -112,16 +111,16 @@ The **occupation** constraint is built from two tables, one that gives counts fo
 
 Unfortunately the tabulations for approximate social grade (e.g. QS613EW) only include individuals resident in a household which is not compatible with the usual resident population adopted for the sampling population. It is thus not possible to define a compatible constraint table for this question.
 
-### Compatibility of individual-level and constraint tables
+## Compatibility of individual-level and constraint tables
 
 A cross-tabulation using the individual-level variables age, economic activity and hours worked questions reveals individulas who are aged 75 and older who have an economic activity or undertake hours of work. This is incompatible with the definition of the corresponding constraint table (which only tabulates such information for those aged 16 to 74). To ensure
 compatibility between individual-level and aggregate data, an age designation of aged 75 or older takes priority over the actual economic activity or number of hours worked. For example a person aged 75 or older who has an economic activity of ‘self-employed’ is coded as ‘aged 75 or older’ for the economic activity question.
 
-### Geography
+## Geography
 
 The geographic level of aggregation used is the medium layer of super output area (MSOA). There are 7,202 such MSOAs that cover England and Wales. The average usual resident population of an MSOA is 7,787 individuals, with a range of 2,203 to 16,342. This level was chosen as a compromise between the size of the computational task (which increases with the number of geographic units) and the spatial resolution of the output. MSOAs are also designed to group areas of similar characteristics which may not be found in larger areas such as electoral wards or local municipalities.
 
-### Data preparation Processing 
+## Data preparation Processing 
 
 We used only population base 1, "Usual resident" to ensure compatibility with
 the constraint tables, which are usually based on usual residents. Even after
@@ -129,9 +128,9 @@ this, there were still 74 individuals with a Health status of -9.
 
 The categories were recoded...
 
-## Method
+# Method
 
-## Combinatorial optimisation with FMF
+## Combinatorial optimisation with 'FMF'
 
 One approach to estimating a spatial microsimulated population for a zone is to select a combination of individuals from within the individual-level data whose aggregation of by attributes best match the zones counts in the constraint tables. The agreement between these aggregated individual-level counts and those in the constraint tables can be measured using a variety of metrics (REF NEEDED). A common metric adopted is the total absolute error (TAE), which sums the absolute differences between these two counts across all the categories within the tables.  The objective is to minimize this metric to zero. Of critical importance to this approach is the efficiency of the algorithm used use to repeatedly modify this selection of individuals so as to achieve a reduction in TAE.
 
@@ -148,29 +147,45 @@ grid.raster(readPNG("FMF-sections.png"))
 
 ## Constraint-unique iterative proportional fitting
 
-The iterative proportional fitting (IPF) method was implemented in R and (via the **ipfp** package) C. It was found that conventional approaches to IPF, such as that reported in Lovelace and Ballas (2013), completely failed on the input data. This was due to the unusually large size of the input microdata (560,966 rows) which would have resulted in a a weight matrix for the UK with more than 4 billion (4 * 10^9^) cells, which cannot be held in RAM on desktop machines.
+The iterative proportional fitting (IPF) method was implemented in R and, via the **ipfp** package, C.^[**ipfp** is an R package which implements IPF in the C language for speed - see http://cran.us.r-project.org/web/packages/ipfp/. Tests have shown the **ipfp** method to be up to 50 times faster than implementations of IPF in pure R.] Even using the C implementation of IPF, it was found that conventional approaches to IPF, such as that reported in Lovelace and Ballas (2013), completely failed on the input data. This was due to the unusually large size of the input microdata (560,966 rows) which would have resulted in a a weight matrix for the UK with more than 4 billion (560,966 $\times$ 7,202) cells. This cannot be held in RAM on most personal computers due to software and hardware limitations.^[A matrix containing $4 * 10^9$ values of type *double*
+(which can store values to a high degree of precision) would occupy over 30 Gb of RAM. Such a large a matrix is forbiden in 32 bit installations of R in any case.]
 
-Thus a modified version of the IPF method was developed, which consists of the following stages:
+To solve this problem we developed
+a modified version of the IPF method which
+we refer to as constraint-unique IPF (CU-IPF). This name
+is derived from its use of only individuals who are
+unique in terms of the constraint variables.
+This greatly reduces the number of rows in the weight matrix,
+from 560,966 to xxx. The challenge posed by this new method
+is to convert the weigths for unique individuals into weights for
+the complete individual-level dataset allocate these news weights appropriately.
+CU-IPF consists of the following stages:
 
 - Select only *constraint-unique* individuals from the microdataset for the IPF, saving the number of individuals with each unique combination of individual-level variables for future reference.
-- Perform IPF on this reduced microdata.
-- Divide the resulting weights by the number of each constraint-unique combination.
-- Convert the resulting weights into integer values ($w_{int}$) using the 'offset-round' method developed by Maechler (2014), a solution to the 'apportionment problem' described in Balinski and Demange (1989).
-- For each constraint-unique combination, randomly sample from all individuals with this category $w_{int}$ times, resulting in the final population for each area.
+- Perform IPF on this reduced microdata, using the constraints as before.
+- Divide the resulting weights by the number of each constraint-unique combination to avoid over-representation of constraint combinations common in the individual-level data.
+- Convert the resulting weights into integer values for each category ($wi$) using the 'offset-round' method developed by Maechler (2014), a solution to the 'apportionment problem' described in Balinski and Demange (1989).
+- For each constraint-unique combination, randomly sample from all individuals in each category $wi_c$ times, resulting in the final population for each area.
 
-## Results
+```{r}
+# Two implimentations of this method were developed and tested, the latter of which orders the input microdataset for speed improvements. The scripts to perform the original and 'ordered' implementations of CU_IPF can be found in supplementary material available online.
+```
 
-### Aggregate-level model fit
+As with the FMF method, IPF requires the individual-level data to be re-formatted to be compatible with the aggregate-level data. Scripts for performing this task are available online.
 
-### Individual-level model fit
+# Results
 
-### Computational time
+## Aggregate-level model fit
 
-### 
+## Individual-level model fit
 
-## Conclusions
+## Computational time
 
-## References
+## 
+
+# Conclusions
+
+# References
 
 Cramer, H. (1946). Mathematical methods of statistics, Princeton, 1946. Mathematical Reviews (MathSciNet): MR16588 Zentralblatt MATH (Vol. 63, p. 300). Princeton University Press.
 

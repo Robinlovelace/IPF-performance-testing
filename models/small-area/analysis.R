@@ -43,4 +43,4 @@ measures$iteration <- iteration
 plot(measures[2:6,c(1,2,4,5)])
 plot(measures$iteration, measures$tae)
 measures
-write.csv(measures, "measures.csv")
+# write.csv(measures, "measures.csv")

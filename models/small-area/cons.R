@@ -31,3 +31,5 @@ con3 <- data.frame(con3[,c(3,4,5,8,9)])
 sapply(con3, mean) # for humans: check the loaded data makes sense
 names(con3)
 
+
+

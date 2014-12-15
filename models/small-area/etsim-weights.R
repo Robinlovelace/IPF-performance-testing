@@ -6,7 +6,7 @@
 
 # Initial conditions # start from IPF-performance-testing folder
 num.ws <- 1 # Number of different weights to test
-num.its <- 3
+num.its <- 10
 # Read-in data (ensure working directory set correctly)
 load("input-data/small-area-eg/ind.RData")  # read-in the survey dataset called 'ind'
 # read aggregate constraints. nrow of these data frames (areas) must be equal 

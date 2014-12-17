@@ -1,6 +1,0 @@
-Debug mode - false
-Exception in thread "Thread-0" java.lang.NullPointerException
-	at javax.swing.ImageIcon.<init>(ImageIcon.java:228)
-	at uk.ac.leeds.mass.fmf.data_management.DataSourceTreeCellRenderer.<init>(DataSourceTreeCellRenderer.java:42)
-	at uk.ac.leeds.mass.fmf.framework.StartUp.<init>(StartUp.java:145)
-	at uk.ac.leeds.mass.fmf.framework.StartUp$1$1.run(StartUp.java:199)

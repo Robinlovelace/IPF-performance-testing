@@ -1,4 +1,5 @@
 *.kilepr
+*.gz*
 .Rproj.user
 .Rhistory
 .RData
@@ -17,7 +18,7 @@ old/
 paper/old-versions/
 *.html
 data-big/
-*jass*
 test-fmf
 test-fmf.*
 smsim-compare.pdf
+*jass*
